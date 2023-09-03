@@ -1,0 +1,57 @@
+@import '~/scss/index.scss';
+
+.login-form {
+    font-family: Arial, sans-serif;
+
+    &__error {
+        font-family: Arial, sans-serif;
+
+        color: $error !important;
+        text-align: center;
+    }
+
+    &__sucess {
+        font-family: Arial, sans-serif;
+
+        color: $info !important;
+        text-align: center;
+    }
+}
+
+.div.ui.left.icon.input {
+    padding-left: 0;
+}
+
+.ui.basic.blue.button {
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: #3d3a4e;
+    background-size: 400%;
+    color: #fff;
+    border: none;
+}
+
+.ui.icon.button,
+.ui.icon.buttons .button {
+    padding: 0.78571429em 0.78571429em 0.78571429em;
+    margin: 0;
+}
+
+.password-input .icon {
+    margin-right: 0;
+    padding: 11px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.password-input .icon:hover {
+    background-color: transparent;
+}
+
+.custom-button {
+    height: 25px;
+    /* Ajusta la altura según tus necesidades */
+}

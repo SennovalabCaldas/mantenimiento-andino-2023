@@ -1,0 +1,127 @@
+ @import "~/src/scss/index.scss";
+ @import '~/src/scss/header.scss';
+
+ .admin-layout {
+   display: flex;
+   width: 100%;
+   min-height: 100vh;
+   max-height: 100vh;
+   background-color: rgba(255, 255, 255, 0.985);
+ }
+
+ .ui.menu {
+   display: flex;
+   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+   background: #fff;
+   font-weight: 400;
+   border: none;
+   min-height: 2.85714286em;
+ }
+
+ .ui.vertical.icon.menu .item {
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-size: 13px;
+
+   >.icon:not(.dropdown) {
+     display: flex;
+     align-items: center;
+     opacity: 0.7;
+     margin: 0 auto;
+     float: none;
+   }
+
+   &.active {
+     color: #20678a;
+     background-color: rgb(191, 191, 191);
+   }
+
+   &.active>.icon {
+     color: #20678a;
+   }
+
+   &:hover {
+     color: #20678a;
+     cursor: pointer !important;
+     background-color: rgb(227, 227, 227);
+   }
+
+   &.active:hover {
+     color: #20678a;
+   }
+ }
+
+
+ .admin-layout__header-logout {
+   position: relative;
+   margin-right: 1em;
+ }
+
+
+ .admin-layout__header {
+   position: fixed;
+   top: 0;
+   right: 0;
+   display: flex;
+   align-items: center;
+ }
+
+
+ .header-bar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   padding: 10px;
+   background-color: #0c3656;
+   height: 50px;
+   width: 100%;
+   z-index: 100;
+ }
+
+ .admin-menu {
+   &.header {
+     top: 0;
+     left: 0;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 10px;
+     background-color: rgb(0 0 0 / 4%);
+     /* height: 60px; */
+     width: 100%;
+     font: 13px/27px Roboto, Arial, sans-serif;
+     z-index: 986;
+   }
+ }
+
+ .admin-layout__right-content {
+   padding-left: 40px;
+   padding-left: 70px;
+   padding-right: 30px;
+   padding-bottom: 40px;
+   padding-top: 40px;
+   overflow-y: auto;
+   overflow-x: hidden;
+ }
+
+ .responsive-table::-webkit-scrollbar {
+   display: none;
+ }
+
+ .cube-container {
+   position: fixed;
+   bottom: -30px;
+   right: 20px;
+   z-index: 100;
+ }
+
+/*  h1:first-child,
+ h2:first-child,
+ h3:first-child,
+ h4:first-child,
+ h5:first-child {
+   margin-top: 135px;
+ } */
+
+ .first-load .slide-wrapper.active .slide-content-text>p {
+   margin-bottom: 0;
+ }

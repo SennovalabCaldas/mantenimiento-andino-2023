@@ -1,0 +1,56 @@
+.users-page{
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border: 0.5px solid #ececec;
+    border-radius: 3px;
+    &.add-user-btn{
+        margin-left: 20px;
+        float: right;
+    }
+}
+
+
+.ui.secondary.pointing.menu {
+    margin-left: 0;
+    margin-right: 0;
+    border-bottom: 2px solid rgba(0, 0, 0, .95);
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+    border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.ui.secondary.pointing.menu .active.item {
+    background-color: rgb(34 36 38 / 9%);
+    box-shadow: lightcyan;
+    border-color: #db2828;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.95);
+    position: relative;
+    z-index: 1;
+
+}
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+}
+
+div.ui.segment.active.tab {
+    display: block;
+    border: none;
+}
+
+@media screen and (min-width: 768px) {
+    .title-section {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .users-page__add {
+        margin-left: 16px;
+    }
+}
+

@@ -1,0 +1,17 @@
+@import "~/src/scss/index.scss";
+
+
+
+.menu-toggle {
+    color: #c1d0d8; // Color del icono
+    font-size: 23px; // Tamaño del icono
+}
+
+.logo-container {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}

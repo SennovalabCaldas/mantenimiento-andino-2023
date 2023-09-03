@@ -1,0 +1,83 @@
+/* Estilos para permitir el desplazamiento horizontal sin mostrar la barra de desplazamiento */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: Arial;
+  font-size: 12px;
+
+  /* Desactiva la barra de desplazamiento en dispositivos móviles */
+}
+
+/* Estilos para ocultar la barra de desplazamiento en navegadores de escritorio */
+.responsive-table::-webkit-scrollbar {
+  display: none;
+}
+
+.neutral-icon {
+  color: #555555;
+}
+
+.neutral-icon-button {
+  font-size: 14px;
+}
+
+.icon-button-group {
+  display: flex;
+  gap: 5px;
+
+  .icon {
+    font-size: 14px;
+    margin-right: 0;
+  }
+}
+
+.ui.icon.button,
+.ui.icon.buttons .button {
+  padding: 0.785714em 0 0.785714em;
+}
+
+.search-bar {
+  .input-search {
+    padding-right: 5px;
+  }
+}
+
+/* Agrega el espacio entre los campos de búsqueda y la tabla */
+.container {
+  padding: 20px;
+}
+
+.search-input {
+  margin-bottom: 10px;
+}
+
+/* Asegura que los inputs de búsqueda tengan el mismo ancho */
+.ui.input {
+  width: 100%;
+}
+
+/* Ajusta el ancho del botón de búsqueda para que sea igual al de los inputs */
+.search-button {
+  width: 100%;
+}
+
+/* Estilos para pantallas grandes */
+.sedes-page > div > div.ui.stackable.four.column.grid {
+  padding-bottom: 10px;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+  .sedes-page > div > div.ui.stackable.four.column.grid {
+    flex-direction: column;
+  }
+
+  .sedes-page > div > div.ui.stackable.four.column.grid > div > div {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

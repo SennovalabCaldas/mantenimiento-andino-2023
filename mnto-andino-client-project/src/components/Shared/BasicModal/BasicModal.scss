@@ -1,0 +1,34 @@
+.ui.modal>.header:not(.ui) {
+    font-size: 1rem;
+    line-height: -4.714286em;
+    font-weight: 500;
+    background-color: #0c3656;
+    color: aliceblue;
+}
+
+.ui.button {
+    background: transparent;
+
+    .modal-close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    &:hover {
+        color: #e60000;
+        background: transparent;
+    }
+}
+
+
+.modal-close-button .icon {
+    margin: 0;
+    font-size: 1rem;
+    color: #fffefe;
+}

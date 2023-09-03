@@ -1,0 +1,22 @@
+.user-form__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .ui.avatar.image,
+    .ui.avatar.image img,
+    .ui.avatar.image svg,
+    .ui.avatar.images .image,
+    .ui.avatar.images img,
+    .ui.avatar.images svg {
+        margin-right: 0.25em;
+        border: 2px dashed;
+        padding: 2px;
+        display: inline-block;
+        width: 9em;
+        height: 9em;
+        border-radius: 500rem;
+        vertical-align: middle;
+    }
+}

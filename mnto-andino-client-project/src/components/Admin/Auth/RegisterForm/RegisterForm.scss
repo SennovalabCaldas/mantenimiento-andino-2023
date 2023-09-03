@@ -1,0 +1,113 @@
+@import '~/src/scss/index.scss';
+
+.register-form {
+    font-family: Arial, sans-serif;
+
+    &__error {
+        font-family: Arial, sans-serif;
+
+        color: $error !important;
+        text-align: center;
+    }
+
+    &__success {
+        font-family: Arial, sans-serif;
+        color: $success !important;
+        text-align: center;
+    }
+
+    .ui.form .field .ui.input input::placeholder,
+    .ui.form .fields .field .ui.input input::placeholder {
+        color: rgba(78, 74, 74, 0.7);
+    }
+
+}
+
+.register-form input,
+.register-form textarea,
+.register-form select .register-form button {
+    font-family: Arial, sans-serif;
+}
+
+
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Agrega esto si también quieres centrarlo horizontalmente */
+    height: auto;
+    /* Ajusta esto según sea necesario */
+}
+
+button.ui.button.terms-button {
+    margin-right: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.ui.search.dropdown>.text {
+    cursor: text;
+    position: absolute;
+    left: 14px;
+    z-index: 3;
+    top: 11px;
+}
+
+
+
+.dropdown-input {
+    input {
+        box-shadow: none;
+        border: none !important;
+        background: transparent !important;
+    }
+
+    .input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+    }
+}
+
+.password-input-register .icon {
+    margin-right: 0;
+    padding: 11px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.password-input-register .icon:hover {
+    background-color: transparent;
+}
+
+.terms-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #a4c7e2;
+
+    &.hover {
+        &:hover {
+            text-decoration: underline;
+            color: #a4c7e2;
+            font-weight: bold;
+        }
+    }
+}
+
+.terms-button:hover {
+    text-decoration: none;
+}
+
+.terms-checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ui.info.message .header {
+    color: #0e566c;
+    font-size: 14px;
+}

@@ -1,0 +1,106 @@
+@import './colors.scss';
+@import './variables';
+
+
+.flex {
+    display: flex;
+    height: inherit;
+    border-radius: .6rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
+    overflow: hidden auto;
+
+    /* Estilos para dispositivos móviles */
+    @media only screen and (max-width : 769px) {
+        .left-panel {
+            display: none;
+        }
+
+        .right-panel {
+            width: 100%;
+            /* Ampliar el ancho del right-panel para ocupar todo el espacio disponible */
+        }
+
+        .right-panel-big {
+            width: calc(100% - 50px);
+            /* Redefinir el ancho para cuando se oculte el left-panel */
+        }
+    }
+
+
+    h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: $text-dark;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.left-panel-small {
+    width: 50px;
+    transition: all 333ms;
+}
+
+.left-panel {
+    min-width: 130px;
+    width: 15%;
+    transition: all 333ms;
+
+}
+
+.right-panel {
+    width: 85%;
+    // background-color: red;
+}
+
+.right-panel-big {
+    width: calc(100% - 50px);
+    // background-color: red;
+}
+
+/* Estilos para el footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9; /* Color de fondo del footer */
+    padding: 10px 0; /* Espaciado interior del footer */
+    text-align: center; /* Centrar el contenido del footer */
+  }
+  
+  .footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Estilos adicionales para el contenido del footer, como el CubeWithImages y el texto de copyright */
+  .footer__content p {
+    margin: 0;
+  }
+// .ui.grid>.row,
+// .ui.grid>.row>.column {
+//     position: static;
+// }
+
+/* Estilos para la barra de desplazamiento vertical */
+.scrollable-container {
+    /* Altura máxima del contenedor para que se muestre la barra de desplazamiento */
+    max-height: 400px;
+    /* Agrega un desplazamiento solo si el contenido excede la altura máxima */
+    overflow-y: auto;
+
+    /* Oculta la barra de desplazamiento */
+    -ms-overflow-style: none;
+    /* Para IE 10+ */
+    scrollbar-width: none;
+    /* Para Firefox */
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;
+    /* Para Chrome, Safari y Opera */
+}

@@ -1,0 +1,41 @@
+/* MenuForm.module.scss */
+
+.menu-form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.modal-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem 0;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  width: calc(50% - 1rem);
+}
+
+.path-input {
+  margin-top: 1rem;
+}
+
+.reorder-list {
+  padding: 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px; /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+  margin-bottom: 1rem; /* Añadir margen inferior */
+}
+
+
+
+.submit-button {
+  margin-top: 1.5rem;
+}

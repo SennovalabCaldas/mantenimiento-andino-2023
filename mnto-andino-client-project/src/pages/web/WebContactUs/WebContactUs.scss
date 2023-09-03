@@ -1,0 +1,59 @@
+#section-contact
+  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.card.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  width: 450px;
+  background-color: #222f39;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(167, 167, 167, 0.8);
+  margin-top: 7px;
+  opacity: 0.7;
+  z-index: 1;
+}
+.textField {
+  margin-bottom: 1px;
+  height: 20px;
+  margin: 10px;
+  width: 100%;
+  color: #bababa;
+}
+
+label[data-shrink="false"]
+  + .MuiInputBase-formControl
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 13px 10px;
+  width: 100%;
+  color: #bababa;
+}
+.loader-contact {
+  width: 44.8px;
+  height: 44.8px;
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.loader-contact:before,
+.loader-contact:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50% 50% 0 50%;
+  background: #0000;
+  background-image: radial-gradient(
+    circle 11.2px at 50% 50%,
+    #0000 94%,
+    #ff4747
+  );
+}
+
+.loader-contact:after {
+  animation: pulse-ytk0dhmd 1s infinite;
+  transform: perspective(336px) translateZ(0px);
+}
+.css-46bh2p-MuiCardContent-root {
+}
+@keyframes pulse-ytk0dhmd {
+  to {
+    transform: perspective(336px) translateZ(168px);
+    opacity: 0;
+  }
+}

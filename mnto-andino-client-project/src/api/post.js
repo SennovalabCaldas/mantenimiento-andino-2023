@@ -1,0 +1,203 @@
+import { ENV } from "../utils";
+import { Auth } from "./auth";
+const POST_ROUTE = ENV.API_ROUTES.POST_ROUTE;
+const CONTENT_TYPE_JSON = "application/json";
+const authController = new Auth();
+
+export class Post {
+  baseApi = ENV.BASE_API;
+
+  async getPosts() {
+    const url = `${this.baseApi}/${POST_ROUTE}`;
+    console.log(url);
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(url, params);
+      if (!response.ok) {
+        throw new Error("Error en la solicitud: " + response.status);
+      }
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async createPost(data) {
+    console.log('data que llega', data);
+    const accessToken = authController.getAccessToken();
+    console.log(data.avatar);
+    try {
+      const formData = new FormData();
+      // Object.keys(data).forEach((key) => {
+      //   if(key ==="avatar"){
+      //     formData.append("avatar", data[key]);
+      //   }else{
+      //     formData.append(key, data[key]);
+      //   }
+      // });
+      formData.append("avatar", data.avatar.image);
+      formData.append("titulo", data.titulo);
+      formData.append("subtitulo", data.subtitulo);
+      formData.append("descripcion", data.descripcion);
+      formData.append("categorias", data.categorias);
+      formData.append("creador", data.creador);
+      formData.append("active", data.active);
+      formData.append("fecha_creacion", data.fecha_creacion);
+
+      console.log("Estos son los datos del post", formData.get("avatar"));
+      const url = `${this.baseApi}/${POST_ROUTE}/new-post`;
+      const params = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: formData,
+      };
+      console.log("Estos son los params", params);
+      const response = await fetch(url, params);
+      const result = await response.json();
+      if (response.status !== 201) throw result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async updatePost(_id, updatedData) {
+    console.log("Datos del post a actualizar:", _id, updatedData);
+    const accessToken = authController.getAccessToken();
+    try {
+      console.log(
+        "Esta es la url",
+        `${this.baseApi}/${POST_ROUTE}/edit/${_id}`
+      );
+      const response = await fetch(
+        `${this.baseApi}/${POST_ROUTE}/edit/${_id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(updatedData),
+          headers: {
+            "Content-Type": CONTENT_TYPE_JSON,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error al actualizar el post:", error);
+      throw error;
+    }
+  }
+
+  async getPostsAssociatedWithCategory(categoryId) {
+    const accessToken = authController.getAccessToken();
+    try {
+      const url = `${this.baseApi}/${POST_ROUTE}/category/${categoryId}`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": CONTENT_TYPE_JSON,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async updatePostState(_id, data) {
+    const accessToken = authController.getAccessToken();
+    try {
+      const url = `${this.baseApi}/${POST_ROUTE}/edit-state/${_id}`;
+      console.log("Url del post a actualizar:", url);
+
+      // Construir el objeto JSON con la propiedad 'mostrar'
+      const requestBody = {
+        mostrar: data, // Supongo que 'data' contiene el valor de mostrar
+      };
+
+      const params = {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json", // Establecer el tipo de contenido a JSON
+        },
+        body: JSON.stringify(requestBody), // Convertir el objeto en formato JSON
+      };
+      console.log("Params del post a actualizar:", params);
+      const response = await fetch(url, params);
+      console.log("Esta es la respuesta", response);
+
+      if (response.status === 200) {
+        const result = await response.json();
+        return result;
+      } else {
+        const errorResult = await response.text();
+        console.error(errorResult);
+        throw new Error("Error en la respuesta del servidor");
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async deletePost(id) {
+    const accessToken = authController.getAccessToken();
+    try {
+      const response = await fetch(
+        `${this.baseApi}/${POST_ROUTE}/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(response);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error al eliminar la noticia:", error);
+      throw error;
+    }
+  }
+
+  async getPost(_id) {
+    console.log(_id);
+    const accessToken = authController.getAccessToken();
+    try {
+      const response = await fetch(`${this.baseApi}/${POST_ROUTE}/${_id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": CONTENT_TYPE_JSON,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error("Error al obtener la noticia:", error);
+      throw error;
+    }
+  }
+}
