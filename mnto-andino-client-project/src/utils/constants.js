@@ -1,4 +1,4 @@
-const SERVER_IP = "72.167.135.41:27017";
+const SERVER_IP = "0.0.0.0:27017";
 const API_VERSION = "v1";
 
 export const ENV = {
