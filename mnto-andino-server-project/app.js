@@ -64,6 +64,8 @@ if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
 
   const PORT = process.env.PORT || 8080;
   httpsServer.listen(PORT, () => {
+    console.log(`${currentFolder}`);
+    console.log(`${currentFolder}/../ssl/certs/`);
     console.log("######################");
     console.log("###### API REST ######");
     console.log("######################");
