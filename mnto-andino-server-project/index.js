@@ -16,7 +16,8 @@ console.log(
 );
 mongoose
   .connect(
-    `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`,
+    // `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`,
+    `mongodb://prueba2:prueba2@127.0.0.1:39896/mnto-andino-db`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
