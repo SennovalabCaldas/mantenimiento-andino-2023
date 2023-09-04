@@ -3,7 +3,7 @@ const API_VERSION = "v1";
 
 export const ENV = {
   BASE_PATH: `${SERVER_IP}`,
-  BASE_API: `${BASE_PATH}/api/${API_VERSION}`,
+  BASE_API: `${SERVER_IP}/api/${API_VERSION}`,
   API_ROUTES: {
     REGISTER: "auth/register",
     LOGIN: "auth/login",
