@@ -47,7 +47,6 @@ app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
 app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
 
-
 // Obtener la ruta absoluta de la carpeta actual
 const currentFolder = __dirname;
 // Validar existencia de archivos key y cert
@@ -64,16 +63,16 @@ if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
 
   const PORT = process.env.PORT || 8080;
   httpsServer.listen(PORT, () => {
-    console.log(`${currentFolder}`);
-    console.log(`${currentFolder}/../ssl/certs/`);
+    console.log(keyPath);
+    console.log(certPath);
     console.log("######################");
     console.log("###### API REST ######");
     console.log("######################");
     console.log(`https://localhost:${PORT}/api/${API_VERSION}`);
   });
 } else {
-  console.log(`${currentFolder}`);
-    console.log(`${currentFolder}/../ssl/certs/`);
+  console.log(keyPath);
+  console.log(certPath);
   console.error("No se encontraron archivos de clave y certificado.");
   console.error("No se puede iniciar el servidor HTTPS.");
 }
