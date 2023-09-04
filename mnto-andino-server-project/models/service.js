@@ -6,8 +6,7 @@ const serviceSchema = new mongoose.Schema({
     required: true,
   },
   description: {
-    type: String,
-    required: true,
+    type: String
   },
   assistanceType: {
     type: String,

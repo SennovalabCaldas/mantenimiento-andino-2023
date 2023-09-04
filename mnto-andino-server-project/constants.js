@@ -4,7 +4,7 @@ const DB_PASSWORD = "prueba2";
 const DB_NAME = "mnto-andino-db";
 
 const API_VERSION = "v1";
-const IP_SERVER = "localhost";
+const IP_SERVER = "72.167.135.41";
 const JWT_SECRET_KEY = "acceso-sistema-2023";
 
 module.exports = {

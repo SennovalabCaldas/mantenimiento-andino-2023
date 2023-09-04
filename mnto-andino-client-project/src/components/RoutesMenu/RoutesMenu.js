@@ -7,6 +7,7 @@ import "./RoutesMenu.scss";
 
 const menuItems = [
   // { path: "/", icon: "building", text: "Home", roles: ["admin"] },
+  { path: "/admin", icon: "building", text: "Dashboard", roles: ["admin"] },
   { path: "/admin/home", icon: "building", text: "Dashboard", roles: ["admin"] },
   {
     path: "/news",
