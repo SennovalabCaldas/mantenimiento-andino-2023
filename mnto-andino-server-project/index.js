@@ -7,7 +7,7 @@ const {
   API_VERSION,
   DB_HOST,
 } = require("./constants");
-const PORT = process.env.is_prod ||'';
+const PORT = process.env.is_prod ? 3000 : 8080; // 3000 para producción, 8080 para desarrollo
 const IP_SERVER_O = process.env.is_prod_hostname || DB_HOST;
 const HOST_INIT= process.env.is_host_prod || 'mongodb+srv://';
 
