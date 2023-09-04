@@ -1,4 +1,4 @@
-const DB_HOST = "cluster0.kl89a4q.mongodb.net";
+const DB_HOST = "72.167.135.41";
 const DB_USER = "prueba2";
 const DB_PASSWORD = "prueba2";
 const DB_NAME = "mnto-andino-db";
