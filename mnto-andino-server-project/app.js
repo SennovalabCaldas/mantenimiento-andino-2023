@@ -39,9 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Configure Header HTTP - CORS
-app.use(cors());
-
+/
 app.use(`/api/${API_VERSION}/auth`, authRoutes);
 app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}/addresses`, addressRoutes);
@@ -52,27 +50,30 @@ app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
 
 
-app.use((req, res, next) => {
-  if (!req.secure) {
-    // Si la solicitud no utiliza HTTPS, redireccionar a HTTPS
-    res.redirect(`https://${req.headers.host}${req.url}`);
-  } else {
-    next(); // Continuar con la solicitud si ya es HTTPS
-  }
-});
 
-// Crear servidor HTTPS
-const httpsOptions = {
-  key: fs.readFileSync("../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key"),
-  cert: fs.readFileSync("../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt"),
-};
+// Validar existencia de archivos key y cert
+const keyPath = "../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
+const certPath = "../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
 
-// const PORT = process.env.PORT || 8080;
-// const httpsServer = https.createServer(httpsOptions, app);
+if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
+  console.log("Archivos de clave y certificado encontrados.");
+  // Crear servidor HTTPS solo si los archivos existen
+  const httpsOptions = {
+    key: fs.readFileSync(keyPath),
+    cert: fs.readFileSync(certPath),
+  };
+  const httpsServer = https.createServer(httpsOptions, app);
 
-// // Iniciar servidor HTTPS
-// httpsServer.listen(PORT, () => {
-//   console.log(`Servidor HTTPS en puerto ${PORT}`);
-// });
+  const PORT = process.env.PORT || 8080;
+  httpsServer.listen(PORT, () => {
+    console.log("######################");
+    console.log("###### API REST ######");
+    console.log("######################");
+    console.log(`https://localhost:${PORT}/api/${API_VERSION}`);
+  });
+} else {
+  console.error("No se encontraron archivos de clave y certificado.");
+  console.error("No se puede iniciar el servidor HTTPS.");
+}
 
 module.exports = app;

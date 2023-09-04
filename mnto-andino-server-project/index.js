@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const app = require("./app");
-const {
-  API_VERSION,
-  DB_HOST,
-} = require("./constants");
-const PORT = process.env.is_prod ? 3000 : 8080; // 3000 para producción, 8080 para desarrollo
+const { API_VERSION, DB_HOST } = require("./constants");
 const IP_SERVER_O = process.env.is_prod_hostname || DB_HOST;
 
 // console.log(
@@ -12,21 +8,20 @@ const IP_SERVER_O = process.env.is_prod_hostname || DB_HOST;
 // );
 console.log(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`);
 mongoose
-  .connect(
-    `mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+  .connect(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Conexión a la base de datos exitosa");
 
-    app.listen(PORT, () => {
+    const server = app.listen(() => {
+      const address = server.address();
+      const port = address.port;
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`http://${IP_SERVER_O}:${PORT}/api/${API_VERSION}`);
+      console.log(`http://${IP_SERVER_O}:${port}/api/${API_VERSION}`);
     });
   })
   .catch((error) => {
