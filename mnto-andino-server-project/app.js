@@ -47,12 +47,12 @@ app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
 app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
 
-// Validar existencia de archivos key y cert
-const keyPath =
-  "../ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
-const certPath =
-  "../ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
 
+// Obtener la ruta absoluta de la carpeta actual
+const currentFolder = __dirname;
+// Validar existencia de archivos key y cert
+const keyPath = `${currentFolder}/../ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key`;
+const certPath = `${currentFolder}/../ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt`;
 if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
   console.log("Archivos de clave y certificado encontrados.");
   // Crear servidor HTTPS solo si los archivos existen
