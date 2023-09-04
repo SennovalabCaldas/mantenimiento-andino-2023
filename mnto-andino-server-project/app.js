@@ -49,9 +49,9 @@ app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
 
 // Validar existencia de archivos key y cert
 const keyPath =
-  "../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
+  "../ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
 const certPath =
-  "../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
+  "../ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
 
 if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
   console.log("Archivos de clave y certificado encontrados.");
