@@ -1,9 +1,9 @@
-const SERVER_IP = "0.0.0.0:27017";
+const SERVER_IP = "http://cluster0.kl89a4q.mongodb.net:8080";
 const API_VERSION = "v1";
 
 export const ENV = {
-  BASE_PATH: `https://${SERVER_IP}`,
-  BASE_API: `https://${SERVER_IP}/api/${API_VERSION}`,
+  BASE_PATH: `${SERVER_IP}`,
+  BASE_API: `${BASE_PATH}/api/${API_VERSION}`,
   API_ROUTES: {
     REGISTER: "auth/register",
     LOGIN: "auth/login",
