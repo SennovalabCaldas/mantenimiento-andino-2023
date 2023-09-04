@@ -14,6 +14,7 @@ const HOST_INIT= process.env.is_host_prod || 'mongodb+srv://';
 // console.log(
 //   `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`
 // );
+console.log(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`);
 mongoose
   .connect(
     // `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`,
