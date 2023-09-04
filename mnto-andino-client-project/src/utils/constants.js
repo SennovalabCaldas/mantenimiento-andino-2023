@@ -1,4 +1,4 @@
-const SERVER_IP = "http://cluster0.kl89a4q.mongodb.net:8080";
+const SERVER_IP = "https://cluster0.kl89a4q.mongodb.net:8080";
 const API_VERSION = "v1";
 
 export const ENV = {
