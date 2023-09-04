@@ -11,13 +11,13 @@ const PORT = process.env.is_prod ||'';
 const IP_SERVER_O = process.env.is_prod_hostname || DB_HOST;
 const HOST_INIT= process.env.is_host_prod || 'mongodb+srv://';
 
-console.log(
-  `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`
-);
+// console.log(
+//   `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`
+// );
 mongoose
   .connect(
     // `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`,
-    `mongodb://prueba2:prueba2@127.0.0.1:39896/mnto-andino-db`,
+    `mongodb://prueba2:prueba2@41.135.167.72.host.secureserver.net:27017/mnto-andino-db`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
