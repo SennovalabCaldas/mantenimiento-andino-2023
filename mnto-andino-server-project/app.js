@@ -72,6 +72,8 @@ if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
     console.log(`https://localhost:${PORT}/api/${API_VERSION}`);
   });
 } else {
+  console.log(`${currentFolder}`);
+    console.log(`${currentFolder}/../ssl/certs/`);
   console.error("No se encontraron archivos de clave y certificado.");
   console.error("No se puede iniciar el servidor HTTPS.");
 }
