@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { API_VERSION } = require("./constants");
+const https = require("https");
+const fs = require("fs");
 const app = express();
 
 /* Cargar rutas */
@@ -48,5 +50,29 @@ app.use(`/api/${API_VERSION}/admin/posts`, postRoutes);
 app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
 app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
+
+
+app.use((req, res, next) => {
+  if (!req.secure) {
+    // Si la solicitud no utiliza HTTPS, redireccionar a HTTPS
+    res.redirect(`https://${req.headers.host}${req.url}`);
+  } else {
+    next(); // Continuar con la solicitud si ya es HTTPS
+  }
+});
+
+// Crear servidor HTTPS
+const httpsOptions = {
+  key: fs.readFileSync("../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key"),
+  cert: fs.readFileSync("../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt"),
+};
+
+// const PORT = process.env.PORT || 8080;
+// const httpsServer = https.createServer(httpsOptions, app);
+
+// // Iniciar servidor HTTPS
+// httpsServer.listen(PORT, () => {
+//   console.log(`Servidor HTTPS en puerto ${PORT}`);
+// });
 
 module.exports = app;
