@@ -22,8 +22,7 @@ app.use(bodyParser.json());
 
 // Configure static folder
 app.use(express.static("uploads"));
-app.use('/uploads', express.static('uploads'));
-
+app.use("/uploads", express.static("uploads"));
 
 // Configurar encabezados CORS
 app.use((req, res, next) => {
@@ -39,7 +38,6 @@ app.use((req, res, next) => {
   next();
 });
 
-/
 app.use(`/api/${API_VERSION}/auth`, authRoutes);
 app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}/addresses`, addressRoutes);
@@ -49,11 +47,11 @@ app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
 app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
 
-
-
 // Validar existencia de archivos key y cert
-const keyPath = "../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
-const certPath = "../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
+const keyPath =
+  "../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
+const certPath =
+  "../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
 
 if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
   console.log("Archivos de clave y certificado encontrados.");
