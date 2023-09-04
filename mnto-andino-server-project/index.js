@@ -17,7 +17,7 @@ const HOST_INIT= process.env.is_host_prod || 'mongodb+srv://';
 mongoose
   .connect(
     // `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`,
-    `mongodb://prueba2:prueba2@41.135.167.72.host.secureserver.net:27017/mnto-andino-db`,
+    `mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
