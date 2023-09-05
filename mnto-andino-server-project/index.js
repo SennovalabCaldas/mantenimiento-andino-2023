@@ -6,9 +6,9 @@ const IP_SERVER_O = process.env.is_prod_hostname || DB_HOST;
 // console.log(
 //   `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`
 // );
-console.log(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`);
+console.log(`mongodb://prueba2:prueba2@localhost:27017/mnto-andino-db`);
 mongoose
-  .connect(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`, {
+  .connect(`mongodb://prueba2:prueba2@localhost:27017/mnto-andino-db`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
