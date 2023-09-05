@@ -8,6 +8,7 @@ const createAddress = async (req, res) => {
     console.log(addressData);
     const newAddress = new address(addressData);
     const savedAddress = await newAddress.save();
+    console.log(savedAddress);
     res.status(201).json(savedAddress);
   } catch (error) {
     console.log(error);

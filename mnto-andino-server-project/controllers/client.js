@@ -6,38 +6,43 @@ const Address = require("../models/address");
 // Crear un nuevo cliente
 async function createClient(req, res) {
   try {
-    const { direccion, ...clientData } = req.body;
-    console.log(direccion);
-    console.log(clientData);
-    console.log(req.files.avatar);
+    const clientData = req.body; // Obtiene los datos del cliente incluyendo la dirección como objeto JSON
+    console.log("clientdata", clientData);
+
     if (!req.files || !req.files.avatar) {
       return res.status(400).json({ msg: "Error al subir la imagen" });
     } else {
-      console.log("Archivo que llega", req.files.avatar);
-      const imagePath = req.files.avatar.path; // Usar la propiedad 'path' para obtener la ruta del archivo
+      const imagePath = req.files.avatar.path;
       console.log("imagePath", imagePath);
       clientData.avatar = imagePath;
     }
 
-    const newAddress = new Address(direccion);
+    // Crear una nueva dirección con los datos proporcionados
+    const newAddress = new Address(clientData.direccion);
     const addressSaved = await newAddress.save();
+
+    // Asignar la dirección creada al cliente
+    clientData.direccion = addressSaved._id;
 
     const clientStored = new Client(clientData);
     await clientStored.save();
+    
     res.status(201).json({
       _id: clientStored._id,
       clientName: clientStored.clientName,
       avatar: clientStored.avatar,
       joinDate: clientStored.joinDate,
       active: clientStored.active,
-      direccion: addressSaved._id,
+      direccion: addressSaved, // Devuelve el objeto de dirección completo
     });
+
     console.log(clientStored);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ msg: "Error al crear la publicación" });
+    res.status(400).json({ msg: "Error al crear el cliente" });
   }
 }
+
 
 // Obtener todos los clientes
 async function getAllClients(req, res) {

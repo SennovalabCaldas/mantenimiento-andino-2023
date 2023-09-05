@@ -36,13 +36,6 @@ export class Post {
     console.log(data.avatar);
     try {
       const formData = new FormData();
-      // Object.keys(data).forEach((key) => {
-      //   if(key ==="avatar"){
-      //     formData.append("avatar", data[key]);
-      //   }else{
-      //     formData.append(key, data[key]);
-      //   }
-      // });
       formData.append("avatar", data.avatar.image);
       formData.append("titulo", data.titulo);
       formData.append("subtitulo", data.subtitulo);

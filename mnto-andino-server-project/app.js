@@ -2,8 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { API_VERSION } = require("./constants");
-const https = require("https");
-const fs = require("fs");
 const app = express();
 
 /* Cargar rutas */
@@ -46,36 +44,5 @@ app.use(`/api/${API_VERSION}/admin/posts`, postRoutes);
 app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
 app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
-
-// Obtener la ruta absoluta de la carpeta actual
-const currentFolder = __dirname;
-// Validar existencia de archivos key y cert
-const keyPath = "../../mntoandino/ssl/keys/99ac9_7e515_50f723af66f148b2e2702d04606367b8.key";
-const certPath = "../../mntoandino/ssl/certs/mantenimientoandino_co_99ac9_7e515_1725333050_fce0bdb052c6f002fe715187c3422759.crt";
-
-if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
-  console.log("Archivos de clave y certificado encontrados.");
-  // Crear servidor HTTPS solo si los archivos existen
-  const httpsOptions = {
-    key: fs.readFileSync(keyPath),
-    cert: fs.readFileSync(certPath),
-  };
-  const httpsServer = https.createServer(httpsOptions, app);
-
-  const PORT = process.env.PORT || 8080;
-  httpsServer.listen(PORT, () => {
-    console.log(keyPath);
-    console.log(certPath);
-    console.log("######################");
-    console.log("###### API REST ######");
-    console.log("######################");
-    console.log(`https://localhost:${PORT}/api/${API_VERSION}`);
-  });
-} else {
-  console.log(keyPath);
-  console.log(certPath);
-  console.error("No se encontraron archivos de clave y certificado.");
-  console.error("No se puede iniciar el servidor HTTPS.");
-}
 
 module.exports = app;

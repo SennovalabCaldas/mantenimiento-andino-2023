@@ -10,28 +10,48 @@ export class Client {
   baseApi = ENV.BASE_API;
 
   async createClient(data) {
-    const url = `${this.baseApi}/${CLIENT_ROUTE}/new-client`;
+    console.log("data que llega", data);
     const accessToken = authController.getAccessToken();
-    const params = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    };
+    console.log("data.avatar", data.avatar);
+
+    // Verifica los valores de los campos antes de crear formData
+    console.log("data.clientName", data.clientName);
+    console.log("data.direccion", data.direccion);
+    console.log("data.active", data.active);
+    console.log("data.joinDate", data.joinDate);
 
     try {
-      const response = await fetch(url, params);
-      if (!response.ok) {
-        throw new Error("Error en la solicitud: " + response.status);
+      const formData = new FormData();
+
+      // Verifica si data.avatar.image es un Blob o File válido
+      if (data.avatar && data.avatar.image instanceof Blob) {
+        formData.append("avatar", data.avatar.image);
+      } else {
+        console.error("Imagen de avatar no válida.");
+        return; // Aborta la función si la imagen no es válida
       }
+      
+
+      formData.append("clientName", data.clientName);
+      formData.append("direccion", JSON.stringify(data.direccion));
+      formData.append("active", data.active);
+      formData.append("joinDate", data.joinDate);
+
+      console.log("Estos son los datos del cliente", formData.get("avatar"));
+      const url = `${this.baseApi}/${CLIENT_ROUTE}/new-client`;
+      const params = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: formData,
+      };
+      console.log("Estos son los params", params);
+      const response = await fetch(url, params);
       const result = await response.json();
-
       if (response.status !== 201) throw result;
-
-      return result;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }

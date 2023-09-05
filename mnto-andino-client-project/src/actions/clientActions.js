@@ -10,8 +10,8 @@ import {
 
 const clientController = new Client();
 
-
 export const createClient = (clientData) => {
+  console.log('clientData',clientData);
   return async (dispatch, getState) => {
     try {
       const client = await clientController.createClient(clientData);

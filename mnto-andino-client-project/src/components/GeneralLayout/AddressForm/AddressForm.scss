@@ -1,31 +1,21 @@
-.custom-column .ui.input {
-    width: 100%;
-    padding: 0;
-    /* Ajusta este valor según tus necesidades */
+.address-form {
+  background-color: rgb(235, 235, 235);
+  margin-left: 0;
+
+  .dropdown-address {
+    margin-left: 0;
+    padding: 20px;
+  }
 }
 
-.custom-row {
-    padding: 0;
-}
-
-
-
-.ui.grid>.column:not(.row),
-.ui.grid>.row>.column {
-    display: inline-block;
-    width: 6.25%;
-    padding-left: 0.5rem;
-    padding-right: rem;
-    vertical-align: top;
-}
-
-@media (max-width: 768px) {
-    .responsive-row {
-        flex-direction: column;
+.address-form-hidde {
+  padding: 20px;
+  margin-left: 0;
+  &.address-form {
+    padding: 20px;
+    margin-left: 0;
+    .dropdown-address {
+      margin-left: 0;
     }
-
-    .responsive-row>* {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+  }
 }

@@ -1,9 +1,9 @@
-const SERVER_IP = "http://cluster0.kl89a4q.mongodb.net:8080";
+const SERVER_IP = "localhost:4000";
 const API_VERSION = "v1";
 
 export const ENV = {
-  BASE_PATH: `${SERVER_IP}`,
-  BASE_API: `${SERVER_IP}/api/${API_VERSION}`,
+  BASE_PATH: `http://${SERVER_IP}`,
+  BASE_API: `http://${SERVER_IP}/api/${API_VERSION}`,
   API_ROUTES: {
     REGISTER: "auth/register",
     LOGIN: "auth/login",

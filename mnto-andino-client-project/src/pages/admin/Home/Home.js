@@ -6,7 +6,7 @@ import "./Home.scss";
 
 export const Home = () => {
   const cardData = [
-    { title: "Página inicial", link: "/admin", background: `url(${image.background})` },
+    { title: "Home", link: "/admin/home", background: `url(${image.background})` },
     { title: "Menú", link: "/admin/menu", background: `url(${image.background})` },
     {
       title: "Empleados",

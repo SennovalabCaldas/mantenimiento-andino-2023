@@ -5,7 +5,7 @@ const ADDRESS = ENV.API_ROUTES.ADDRESS;
 
 export class Address {
   async createAddress(data) {
-    const url = `${BASE_API}/${ADDRESS}`;
+    const url = `${BASE_API}/${ADDRESS}/new-address`;
     const params = {
       method: "POST",
       body: JSON.stringify(data),

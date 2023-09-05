@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Dropdown, Input, Button } from "semantic-ui-react";
 import DepartamentosApi from "../../../api/departamentos";
+import "./AddressForm.scss";
 const countryOptions = [
   { key: "ar", value: "Argentina", flag: "ar", text: "Argentina" },
   { key: "bo", value: "Bolivia", flag: "bo", text: "Bolivia" },
@@ -223,69 +224,79 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
 
   return (
     <>
-      <Dropdown
-        clearable
-        fluid
-        search
-        selection
-        options={countryOptions}
-        value={selectedCountry}
-        placeholder="Selecciona un país"
-        onChange={handleCountryChange}
-      />
-      {selectedCountry === "Colombia" && (
-        <>
-          <Dropdown
-            clearable
-            placeholder="Departamento"
-            fluid
-            search
-            selection
-            options={departamentos.map((departamento) => ({
-              key: departamento,
-              value: departamento,
-              text: departamento,
-            }))}
-            value={selectedDepartamento} // Asegúrate de que selectedDepartamento esté vinculado al Dropdown de departamento
-            onChange={handleDepartamentoChange}
-            style={{ marginLeft: "10px" }}
-          />
-          <Dropdown
-            clearable
-            placeholder="Municipio"
-            fluid
-            search
-            selection
-            options={municipios.map((municipio) => ({
-              key: municipio,
-              value: municipio,
-              text: municipio,
-            }))}
-            value={selectedMunicipio} // Asegúrate de que selectedMunicipio esté vinculado al Dropdown de municipio
-            onChange={handleMunicipioChange}
-            style={{ marginLeft: "10px" }}
-          />
-          <Dropdown
-            clearable
-            fluid
-            search
-            selection
-            options={streetTypeOptions}
-            placeholder="Tipo de calle"
-            onChange={handleStreetChange}
-            value={selectedStreet}
-            style={{ width: "180px", marginLeft: "5px" }}
-          />
-          <Input
-            icon="map signs"
-            iconPosition="left"
-            placeholder="N°"
-            onChange={handleNumero1Change}
-            value={numero1}
-            style={{ width: "70px", marginLeft: "5px" }}
-          />
-        </>
-      )}
+      <div
+        className={`address-form-hidde ${
+          selectedCountry === "Colombia" ? "address-form" : ""
+        }`}
+      >
+        <Dropdown
+          className="dropdown-address"
+          clearable
+          fluid
+          search
+          selection
+          options={countryOptions}
+          value={selectedCountry}
+          placeholder="Selecciona un país"
+          onChange={handleCountryChange}
+        />
+        {selectedCountry === "Colombia" && (
+          <>
+            <div className="address-form">
+              <Dropdown
+                clearable
+                className="dropdown-address"
+                placeholder="Departamento"
+                fluid
+                search
+                selection
+                options={departamentos.map((departamento) => ({
+                  key: departamento,
+                  value: departamento,
+                  text: departamento,
+                }))}
+                value={selectedDepartamento} // Asegúrate de que selectedDepartamento esté vinculado al Dropdown de departamento
+                onChange={handleDepartamentoChange}
+                
+              />
+              <Dropdown
+                clearable
+                placeholder="Municipio"
+                fluid
+                search
+                selection
+                options={municipios.map((municipio) => ({
+                  key: municipio,
+                  value: municipio,
+                  text: municipio,
+                }))}
+                value={selectedMunicipio} // Asegúrate de que selectedMunicipio esté vinculado al Dropdown de municipio
+                onChange={handleMunicipioChange}
+                
+              />
+              <Dropdown
+                clearable
+                fluid
+                search
+                selection
+                options={streetTypeOptions}
+                placeholder="Tipo de calle"
+                onChange={handleStreetChange}
+                value={selectedStreet}
+                
+              />
+              <Input
+                icon="map signs"
+                iconPosition="left"
+                placeholder="N°"
+                onChange={handleNumero1Change}
+                value={numero1}
+                
+              />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

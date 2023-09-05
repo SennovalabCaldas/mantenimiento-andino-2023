@@ -41,19 +41,10 @@ export const AppRouter = () => {
           {isAdmin && (
             <>
               <Route index element={<Home />} />
-              <Route path="/admin" element={<WebMenu />} />
-              <Route
-                path="admin/home"
-                element={loadLayout(AdminLayout, Home)}
-              />
-              <Route
-                path="admin/users"
-                element={loadLayout(AdminLayout, Users)}
-              />
-              <Route
-                path="admin/sedes"
-                element={loadLayout(AdminLayout, Sedes)}
-              />
+              <Route path="admin" element={<WebMenu />} />
+              <Route path="admin/home" element={loadLayout(AdminLayout, Home)} />
+              <Route path="admin/users" element={loadLayout(AdminLayout, Users)} />
+              <Route path="admin/sedes" element={loadLayout(AdminLayout, Sedes)} />
               <Route
                 path="admin/services"
                 element={loadLayout(AdminLayout, Services)}
@@ -62,10 +53,7 @@ export const AppRouter = () => {
                 path="admin/clients"
                 element={loadLayout(AdminLayout, Clients)}
               />
-              <Route
-                path="admin/news"
-                element={loadLayout(AdminLayout, News)}
-              />
+              <Route path="admin/news" element={loadLayout(AdminLayout, News)} />
               <Route
                 path="admin/providers"
                 element={loadLayout(AdminLayout, Providers)}
@@ -74,7 +62,7 @@ export const AppRouter = () => {
                 path="admin/reports"
                 element={loadLayout(AdminLayout, Reports)}
               />
-            </>
+              </>
           )}
           {isEmployee && (
             <Route
