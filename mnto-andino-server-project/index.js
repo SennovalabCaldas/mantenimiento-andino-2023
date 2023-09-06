@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const { API_VERSION } = require("./constants");
-const PORT = process.env.PUERTO || 443; // Cambia 3000 a 443 para HTTPS
+const PORT = process.env.PUERTO || 3000; // Cambia 3000 a 443 para HTTPS
 
 
 // Middleware para verificar si la solicitud es HTTP o HTTPS
