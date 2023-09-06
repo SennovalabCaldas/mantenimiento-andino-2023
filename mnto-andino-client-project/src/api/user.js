@@ -1,7 +1,6 @@
 import { ENV } from "../utils";
 import { Auth } from "./auth";
 
-const USER_ME_ROUTE = ENV.API_ROUTES.USER_ME;
 const UPDATE_ME_ROUTE = ENV.API_ROUTES.UPDATE_ME;
 const USER_ROUTE = ENV.API_ROUTES.USER;
 const GET_USER_ROUTE = ENV.API_ROUTES.GET_USER;
@@ -18,7 +17,7 @@ export class User {
       throw new Error("Usuario no ha iniciado sesión"); // Lanza un error si no hay token de acceso
     }
     try {
-      const response = await fetch(`${this.baseApi}/${USERS_ROUTE}/get-me`, {
+      const response = await fetch(`${this.baseApi}/admin/users/get-me`, {
         method: "GET",
         headers: {
           "Content-Type": CONTENT_TYPE_JSON,
@@ -48,7 +47,7 @@ export class User {
       if (data.fileAvatar) {
         formData.append("avatar", data.fileAvatar);
       }
-      const url = `${ENV.BASE_API}/${UPDATE_ME_ROUTE}`;
+      const url = `${ENV.BASE_API}/admin/users/user/edit-profile`;
       const params = {
         method: "PATCH",
         headers: {
@@ -101,7 +100,7 @@ export class User {
     console.log('Entre en getUser de api ', _id);
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/${GET_USER_ROUTE}/${_id}`, {
+      const response = await fetch(`${this.baseApi}/admin/users/get-user/${_id}`, {
         method: "GET",
         headers: {
           "Content-Type": CONTENT_TYPE_JSON,
@@ -134,7 +133,7 @@ export class User {
         formData.append("avatar", data.fileAvatar);
       }
 
-      const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`;
+      const url = `${ENV.BASE_API}/admin/users/user/${idUser}`;
       const params = {
         method: "PATCH",
         headers: {
@@ -157,7 +156,7 @@ export class User {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
-        `${this.baseApi}/${ENV.API_ROUTES.USER}/${idUser}`,
+        `${this.baseApi}/admin/users/get-user/${idUser}`,
         {
           method: "DELETE",
           headers: {
