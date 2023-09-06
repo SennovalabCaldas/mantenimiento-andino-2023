@@ -1,4 +1,4 @@
-const SERVER_IP = "http://localhost:3000";
+const SERVER_IP = "http://mantenimientoandino.co";
 const API_VERSION = "v1";
 
 export const ENV = {

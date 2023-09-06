@@ -1,8 +1,19 @@
+const express = require("express");
 const mongoose = require("mongoose");
-const app = require("./app");
+const app = express();
 const { API_VERSION } = require("./constants");
 const PORT = process.env.PUERTO || 3000;
 
+// Middleware para verificar si la solicitud es HTTP o HTTPS
+app.use((req, res, next) => {
+  if (req.secure) {
+    // La solicitud es HTTPS
+    next();
+  } else {
+    // La solicitud es HTTP, redirige a HTTPS
+    res.redirect(`https://${req.hostname}${req.url}`);
+  }
+});
 
 console.log(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`);
 mongoose
@@ -14,9 +25,6 @@ mongoose
     console.log("Conexión a la base de datos exitosa");
 
     app.listen(PORT, () => {
-      // const address = server.address();
-      // const port = address.port;
-      // const serverAddress = address.address;
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
