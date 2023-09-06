@@ -25,19 +25,32 @@ app.use("/uploads", express.static("uploads"));
 app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
 
 // Definir rutas API con IP o dominio personalizado
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/auth`, authRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1`, userRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/addresses`, addressRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/sedes`, sedeRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/posts`, postRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/categories`, categoryRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/services`, serviceRoutes);
-app.use(`http://mantenimientoandino.co/ns1.mantenimientoandino.co/api/v1/admin/clients`, clientRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/auth`, authRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1`, userRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/addresses`, addressRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/sedes`, sedeRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/posts`, postRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/categories`, categoryRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/services`, serviceRoutes);
+app.use(`ns1.mantenimientoandino.co/api/v1/admin/clients`, clientRoutes);
 
-app.use((req, res, next) => {
-  // Imprime la ruta total en la consola
-  console.log(req.originalUrl);
-  next();
-});
+// Función para imprimir rutas recursivamente
+function printRoutes(stack, parentPath = "") {
+  stack.forEach((layer) => {
+    if (layer.route) {
+      // Si es una ruta, imprime su método y ruta
+      console.log(
+        `Ruta: [${layer.route.stack[0].method}] ${parentPath}${layer.route.path}`
+      );
+    } else if (layer.name === "router" && layer.handle.stack) {
+      // Si es un enrutador anidado, llama a la función recursivamente
+      printRoutes(layer.handle.stack, `${parentPath}${layer.regexp.source}`);
+    }
+  });
+}
+
+// Imprime todas las rutas configuradas en la aplicación
+console.log("Rutas configuradas en la aplicación:");
+printRoutes(app._router.stack);
 
 module.exports = app;
