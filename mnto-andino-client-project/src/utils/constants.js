@@ -1,4 +1,4 @@
-const SERVER_IP = "https://mantenimientoandino.co"; // Obtiene el protocolo actual (HTTP o HTTPS)
+const SERVER_IP = "ns1.mantenimientoandino.co"; // Obtiene el protocolo actual (HTTP o HTTPS)
 const API_VERSION = "v1";
 
 export const ENV = {
