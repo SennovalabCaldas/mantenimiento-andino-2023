@@ -5,16 +5,19 @@ const PORT = process.env.PUERTO || 3000; // Cambia 3000 a 443 para HTTPS
 
 // Middleware para verificar si la solicitud es HTTP o HTTPS
 app.use((req, res, next) => {
-  console.log(req.hostname);
-  console.log(req.url);
   if (req.secure) {
     next();
   } else {
-    console.log(req.hostname);
-    console.log(req.url);
     res.redirect(`https://${req.hostname}${req.url}`);
   }
 });
+
+app.use((req, res, next) => {
+  console.log("Hostname:", req.hostname);
+  console.log("URL:", req.url);
+  next(); // Llama a next() para continuar con el flujo de la solicitud
+});
+
 
 console.log(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`);
 mongoose
@@ -26,10 +29,7 @@ mongoose
     console.log("Conexión a la base de datos exitosa");
 
     app.listen(PORT, () => {
-      console.log("######################");
-      console.log("###### API REST ######");
-      console.log("######################");
-      console.log(`https://mantenimientoandino.co/${req.url}`);
+      console.log(`Servidor Express en funcionamiento en el puerto 3000`);
     });
   })
   .catch((error) => {
