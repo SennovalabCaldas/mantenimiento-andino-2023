@@ -20,7 +20,7 @@ mongoose
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`http://localhost:${puerto}/api/${API_VERSION}`);
+      console.log(`http://localhost:${PORT}/api/${API_VERSION}`);
     });
   })
   .catch((error) => {
