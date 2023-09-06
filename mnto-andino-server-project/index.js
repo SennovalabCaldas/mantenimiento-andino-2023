@@ -17,10 +17,11 @@ mongoose
     const server = app.listen(() => {
       const address = server.address();
       const port = address.port;
+      const serverAddress = address.address;
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`${address}:${port}/api/${API_VERSION}`);
+      console.log(`${serverAddress}:${port}/api/${API_VERSION}`);
     });
   })
   .catch((error) => {
