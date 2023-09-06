@@ -36,14 +36,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(`/api/${API_VERSION}/auth`, authRoutes);
-app.use(`/api/${API_VERSION}`, userRoutes);
-app.use(`/api/${API_VERSION}/addresses`, addressRoutes);
-app.use(`/api/${API_VERSION}/sedes`, sedeRoutes);
-app.use(`/api/${API_VERSION}/admin/posts`, postRoutes);
-app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
-app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
-app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/auth`, authRoutes);
+app.use(`https://mantenimientoandino.co/api/v1`, userRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/addresses`, addressRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/sedes`, sedeRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/posts`, postRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/categories`, categoryRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/services`, serviceRoutes);
+app.use(`https://mantenimientoandino.co/api/v1/admin/clients`, clientRoutes);
 
 app.use((req, res, next) => {
   // Imprime la ruta total en la consola
