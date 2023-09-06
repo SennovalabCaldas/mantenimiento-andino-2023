@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const app = require("./app");
 const { API_VERSION, DB_HOST } = require("./constants");
-const IP_SERVER_O = process.env.is_prod_hostname || DB_HOST;
 
 // console.log(
 //   `${HOST_INIT}${DB_USER}:${DB_PASSWORD}@${IP_SERVER_O}${PORT}/${DB_NAME}`
@@ -21,7 +20,7 @@ mongoose
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`http://${IP_SERVER_O}:${port}/api/${API_VERSION}`);
+      console.log(`http://mantenimientoandino.co:${port}/api/${API_VERSION}`);
     });
   })
   .catch((error) => {
