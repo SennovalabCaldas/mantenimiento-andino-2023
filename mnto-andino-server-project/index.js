@@ -2,15 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const { API_VERSION } = require("./constants");
-const PORT = process.env.PUERTO || 3000;
+const PORT = process.env.PUERTO || 443; // Cambia 3000 a 443 para HTTPS
+
 
 // Middleware para verificar si la solicitud es HTTP o HTTPS
 app.use((req, res, next) => {
   if (req.secure) {
-    // La solicitud es HTTPS
     next();
   } else {
-    // La solicitud es HTTP, redirige a HTTPS
     res.redirect(`https://${req.hostname}${req.url}`);
   }
 });
@@ -28,7 +27,7 @@ mongoose
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`http://localhost:${PORT}/api/${API_VERSION}`);
+      console.log(`https://${req.hostname}${req.url}`);
     });
   })
   .catch((error) => {
