@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   next(); // Llama a next() para continuar con el flujo de la solicitud
 });
 
-app.get("/", (req, res) => {
+app.get("/holii", (req, res) => {
   res.send("Hola, mundo!");
 });
 
