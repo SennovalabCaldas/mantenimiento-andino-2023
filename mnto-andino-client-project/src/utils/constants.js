@@ -1,4 +1,4 @@
-const SERVER_IP = window.location.protocol + "//mantenimientoandino.co"; // Obtiene el protocolo actual (HTTP o HTTPS)
+const SERVER_IP = "mongodb://prueba2:prueba2@72.167.135.41:27017/mnto-andino-db"; // Obtiene el protocolo actual (HTTP o HTTPS)
 const API_VERSION = "v1";
 
 export const ENV = {
