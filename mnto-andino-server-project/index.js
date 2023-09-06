@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PUERTO || 3000; // Cambia 3000 a 443 para HTTPS
 
-
 // Middleware para verificar si la solicitud es HTTP o HTTPS
 app.use((req, res, next) => {
+  console.log(req.hostname);
+  console.log(req.url);
   if (req.secure) {
     next();
   } else {
+    console.log(req.hostname);
+    console.log(req.url);
     res.redirect(`https://${req.hostname}${req.url}`);
   }
 });
@@ -26,7 +29,7 @@ mongoose
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`https://${req.hostname}${req.url}`);
+      console.log(`https://mantenimientoandino.co/${req.url}`);
     });
   })
   .catch((error) => {
