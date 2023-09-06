@@ -45,4 +45,12 @@ app.use(`/api/${API_VERSION}/admin/categories`, categoryRoutes);
 app.use(`/api/${API_VERSION}/admin/services`, serviceRoutes);
 app.use(`/api/${API_VERSION}/admin/clients`, clientRoutes);
 
+app.use((req, res, next) => {
+  // Imprime la ruta total en la consola
+  console.log(req.originalUrl);
+  next();
+  });
+  
+  
+
 module.exports = app;
