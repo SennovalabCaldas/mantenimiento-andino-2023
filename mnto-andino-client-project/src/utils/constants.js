@@ -10,7 +10,7 @@ export const ENV = {
     RESET_PASSWORD: "auth/change-password",
     PASSWORD_RECOVERY: "auth/password-recovery",
     REFRESH_TOKEN: "auth/refresh-access-token",
-    USER_ME: "user/me",
+    USER_ME: "admin/user/me",
     UPDATE_ME: "user/edit-profile",
     USER: "user",
     GET_USER: "get-user",
