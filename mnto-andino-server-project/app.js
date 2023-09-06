@@ -26,7 +26,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
 
 // Definir rutas API con IP o dominio personalizado
-app.use(`/api/v1/admin/auth`, authRoutes);
+app.use(`/api/v1/auth`, authRoutes);
 app.use(`/api/v1/admin/users`, userRoutes);
 app.use(`/api/v1/admin/addresses`, addressRoutes);
 app.use(`/api/v1/admin/sedes`, sedeRoutes);
