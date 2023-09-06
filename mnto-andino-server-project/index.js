@@ -18,6 +18,9 @@ app.use((req, res, next) => {
   next(); // Llama a next() para continuar con el flujo de la solicitud
 });
 
+app.get("/", (req, res) => {
+  res.send("Hola, mundo!");
+});
 
 console.log(`mongodb://prueba2:prueba2@0.0.0.0:27017/mnto-andino-db`);
 mongoose
