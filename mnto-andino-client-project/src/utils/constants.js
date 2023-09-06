@@ -1,4 +1,4 @@
-const SERVER_IP = ":::45469";
+const SERVER_IP = "http://localhost:3000";
 const API_VERSION = "v1";
 
 export const ENV = {
