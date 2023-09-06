@@ -6,7 +6,7 @@ const md_auth = require("../middlewares/authenticated");
 const md_upload = multiparty({ uploadDir: "./uploads/avatar" });
 const api = express.Router();
 
-api.get("/user/me", [md_auth.ensureAuth], UserController.getMe);
+api.get("/get-me", [md_auth.ensureAuth], UserController.getMe);
 api.patch(
   "/user/edit-profile",
   [md_auth.ensureAuth, md_upload],

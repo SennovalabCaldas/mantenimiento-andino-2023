@@ -18,7 +18,7 @@ export class User {
       throw new Error("Usuario no ha iniciado sesión"); // Lanza un error si no hay token de acceso
     }
     try {
-      const response = await fetch(`${this.baseApi}/${USER_ME_ROUTE}`, {
+      const response = await fetch(`${this.baseApi}/${USERS_ROUTE}/get-me`, {
         method: "GET",
         headers: {
           "Content-Type": CONTENT_TYPE_JSON,
