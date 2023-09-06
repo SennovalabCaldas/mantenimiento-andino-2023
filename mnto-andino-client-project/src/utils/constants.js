@@ -1,4 +1,4 @@
-const SERVER_IP = "ns1.mantenimientoandino.co"; // Obtiene el protocolo actual (HTTP o HTTPS)
+const SERVER_IP = "http://mantenimientoandino.co"; // Obtiene el protocolo actual (HTTP o HTTPS)
 const API_VERSION = "v1";
 
 export const ENV = {
@@ -14,13 +14,12 @@ export const ENV = {
     UPDATE_ME: "user/edit-profile",
     USER: "user",
     GET_USER: "get-user",
-    USERS: "users",
+    USERS: "admin/users",
     SEDE: "sedes/sede",
     SEARCH_SEDES: "sedes/buscar",
-    SEDES: "sedes",
-    ADDRESS: "addresses",
+    SEDES: "admin/sedes",
+    ADDRESS: "admin/addresses",
     SEDESPERMUNICIPIO: "sedes/municipio",
-    ALL_SEDES: "sedes",
     POST_ROUTE: "admin/posts",
     CATEGORY_ROUTE: "admin/categories",
     MENU: "admin/menus",

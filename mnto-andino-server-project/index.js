@@ -5,13 +5,13 @@ const { app, printRoutes } = require("./app");  // Importa la configuración de 
 const PORT = process.env.PUERTO || 3000; // Cambia 3000 a 443 para HTTPS
 
 // Middleware para verificar si la solicitud es HTTP o HTTPS
-app.use((req, res, next) => {
-  if (req.secure) {
-    next();
-  } else {
-    res.redirect(`https://72.167.135.41`);
-  }
-});
+// app.use((req, res, next) => {
+//   if (req.secure) {
+//     next();
+//   } else {
+//     res.redirect(`https://72.167.135.41`);
+//   }
+// });
 
 // Conexión a la base de datos remota
 const uri = "mongodb://prueba2:prueba2@72.167.135.41:27017/mnto-andino-db";
