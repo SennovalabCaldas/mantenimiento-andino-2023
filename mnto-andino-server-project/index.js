@@ -1,7 +1,7 @@
 // index.js
 const express = require("express");
 const mongoose = require("mongoose");
-const app = require("./app"); // Importa la configuración de Express desde app.js
+const { app, printRoutes } = require("./app");  // Importa la configuración de Express desde app.js
 const PORT = process.env.PUERTO || 3000; // Cambia 3000 a 443 para HTTPS
 
 // Middleware para verificar si la solicitud es HTTP o HTTPS

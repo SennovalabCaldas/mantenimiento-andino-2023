@@ -49,4 +49,4 @@ function printRoutes(stack, parentPath = "") {
   });
 }
 
-module.exports = app;
+module.exports = { app, printRoutes };
