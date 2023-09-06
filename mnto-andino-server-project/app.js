@@ -26,14 +26,14 @@ app.use("/uploads", express.static("uploads"));
 app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
 
 // Definir rutas API con IP o dominio personalizado
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/auth`, authRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1`, userRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/addresses`, addressRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/sedes`, sedeRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/posts`, postRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/categories`, categoryRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/services`, serviceRoutes);
-app.use(`ns1.mantenimientoandino.co/api/v1/admin/clients`, clientRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/auth`, authRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1`, userRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/addresses`, addressRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/sedes`, sedeRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/posts`, postRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/categories`, categoryRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/services`, serviceRoutes);
+app.use(`/ns1.mantenimientoandino.co/api/v1/admin/clients`, clientRoutes);
 
 function printRoutes(stack, parentPath = "") {
   stack.forEach((layer) => {
