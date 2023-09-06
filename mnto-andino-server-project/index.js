@@ -20,7 +20,7 @@ mongoose
       console.log("######################");
       console.log("###### API REST ######");
       console.log("######################");
-      console.log(`http://mantenimientoandino.co:${port}/api/${API_VERSION}`);
+      console.log(`http://mantenimientoandino.co:2077/api/${API_VERSION}`);
     });
   })
   .catch((error) => {
