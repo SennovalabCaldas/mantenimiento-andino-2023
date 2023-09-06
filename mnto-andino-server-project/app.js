@@ -1,3 +1,4 @@
+// app.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -34,7 +35,6 @@ app.use(`ns1.mantenimientoandino.co/api/v1/admin/categories`, categoryRoutes);
 app.use(`ns1.mantenimientoandino.co/api/v1/admin/services`, serviceRoutes);
 app.use(`ns1.mantenimientoandino.co/api/v1/admin/clients`, clientRoutes);
 
-// Función para imprimir rutas recursivamente
 function printRoutes(stack, parentPath = "") {
   stack.forEach((layer) => {
     if (layer.route) {
@@ -48,9 +48,5 @@ function printRoutes(stack, parentPath = "") {
     }
   });
 }
-
-// Imprime todas las rutas configuradas en la aplicación
-console.log("Rutas configuradas en la aplicación:");
-printRoutes(app._router.stack);
 
 module.exports = app;
