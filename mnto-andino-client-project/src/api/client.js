@@ -12,7 +12,6 @@ export class Client {
   baseApi = ENV.BASE_API;
 
   async createClient(data) {
-    console.log("data que llega", data);
     const accessToken = authController.getAccessToken();
     console.log("data.avatar", data.avatar);
 
@@ -46,16 +45,19 @@ export class Client {
       formData.append("joinDate", data.joinDate);
 
       console.log("Estos son los datos del cliente", formData.get("avatar"));
-      const url = `${this.baseApi}/${CLIENT_ROUTE}/new-client`;
+      const url = `${this.baseApi}/admin/clients/new-client`;
+      console.log(url);
       const params = {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
+
         },
         body: formData,
       };
       console.log("Estos son los params", params);
       const response = await fetch(url, params);
+      console.log(response);
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {

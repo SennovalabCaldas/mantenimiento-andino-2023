@@ -29,7 +29,7 @@ export const WebHome = ({ posts }) => {
   useEffect(() => {
     const previews = posts.map((post) => ({
       postId: post._id,
-      previewUrl: "http://localhost:4000/" + post.avatar,
+      previewUrl: "http://mantenimientoandino.co:3000/" + post.avatar,
     }));
     console.log(previews);
     setImagePreviews(previews);
