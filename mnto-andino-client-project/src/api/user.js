@@ -1,10 +1,6 @@
 import { ENV } from "../utils";
 import { Auth } from "./auth";
 
-const UPDATE_ME_ROUTE = ENV.API_ROUTES.UPDATE_ME;
-const USER_ROUTE = ENV.API_ROUTES.USER;
-const GET_USER_ROUTE = ENV.API_ROUTES.GET_USER;
-const USERS_ROUTE = ENV.API_ROUTES.USERS;
 const CONTENT_TYPE_JSON = "application/json";
 const authController = new Auth();
 
@@ -97,17 +93,20 @@ export class User {
   }
 
   async getUser(_id) {
-    console.log('Entre en getUser de api ', _id);
+    console.log("Entre en getUser de api ", _id);
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/admin/users/get-user/${_id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      console.log('response getUser',response);
+      const response = await fetch(
+        `${this.baseApi}/admin/users/get-user/${_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": CONTENT_TYPE_JSON,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("response getUser", response);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -173,19 +172,19 @@ export class User {
   }
 
   async getUsers(active = undefined) {
-    const accessToken = authController.getAccessToken();
     try {
-      let url = `${this.baseApi}/${USERS_ROUTE}`;
+      let url = `${this.baseApi}/admin/users`;
       if (active !== undefined) {
         url += `?active=${active}`;
       }
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
         },
       });
       const data = await response.json();
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
