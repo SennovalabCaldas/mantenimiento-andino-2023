@@ -3,7 +3,7 @@ import {
   UPDATE_USER,
   SET_ALL_USERS,
   UPDATE_USER_SUCCESS,
-  GET_USER
+  GET_USER,
 } from "./types";
 
 // Importa los controladores de usuario y autenticación
@@ -11,7 +11,6 @@ import { Auth, User } from "../api";
 import { loginSuccess } from "./authActions";
 const userController = new User();
 const authController = new Auth();
-
 
 export const updateAdmin = (userData) => {
   console.log("entre al updateAdmin", userData);
@@ -22,19 +21,17 @@ export const updateAdmin = (userData) => {
       const { avatar: avatarTemp, ...resultData } = userData;
       /* ...(avatar && {avatar}) reemplaza avatar: avatar ? avatar : undefined*/
       /* los parentesis (avatar && {avatar}) son para retornar */
-      dispatch(loginSuccess({ ...resultData, ...(avatar && {avatar}) }));
+      dispatch(loginSuccess({ ...resultData, ...(avatar && { avatar }) }));
     } catch (error) {
       console.log("error", error);
     }
   };
 };
 
-
-export const getAllUsers = () => {
+export const getAllUsers = (active) => {
   return async (dispatch, getState) => {
     try {
-      const accessToken = authController.getAccessToken();
-      const users = await userController.getUsers();
+      const users = await userController.getUsers(active);
       dispatch(setAllUsers(users));
     } catch (error) {
       console.error(error);
@@ -42,7 +39,7 @@ export const getAllUsers = () => {
   };
 };
 
-export const getUser = (_id) =>{
+export const getUser = (_id) => {
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
@@ -52,9 +49,9 @@ export const getUser = (_id) =>{
       console.error(error);
     }
   };
-}
+};
 
-export const updateUser = (_id) =>{
+export const updateUser = (_id) => {
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
@@ -64,7 +61,7 @@ export const updateUser = (_id) =>{
       console.error(error);
     }
   };
-}
+};
 
 /* ############################################################### */
 /* ############################################################### */
@@ -83,12 +80,12 @@ export const setAllUsers = (users) => {
   };
 };
 
-export const updateUserSussess =(updateUser)=>{
-  return{
+export const updateUserSussess = (updateUser) => {
+  return {
     type: UPDATE_USER_SUCCESS,
-    payload: updateUser
-  }
-}
+    payload: updateUser,
+  };
+};
 
 export const getUserSuccess = (user) => {
   return {

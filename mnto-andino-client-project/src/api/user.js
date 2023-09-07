@@ -173,21 +173,26 @@ export class User {
 
   async getUsers(active = undefined) {
     try {
-      let url = `${this.baseApi}/admin/users`;
+      let query = {}; // Objeto de consulta inicial
       if (active !== undefined) {
-        url += `?active=${active}`;
+        query = { active: active }; // Filtrar por el valor de "active"
       }
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+
+      const response = await fetch(
+        `${this.baseApi}/admin/users?active=${active}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": CONTENT_TYPE_JSON,
+          },
+        }
+      );
+
       const data = await response.json();
       console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      console.error("Error al obtener los usuarios:", error);
       throw error;
     }
   }

@@ -25,7 +25,7 @@ async function getUser(req, res) {
     const { id } = req.params;
 
     const response = await User.findById(id);
-    console.log('respuesta',response);
+    console.log("respuesta", response);
     if (!response) {
       return res.status(400).send({ msg: "No se ha encontrado usuario" });
     }
@@ -64,17 +64,9 @@ async function updateMe(req, res) {
 
 // Obtener lista de usuarios
 async function getUsers(req, res) {
-  console.log("Estoy en el listar usuarios");
   try {
-    const { active } = req.query;
-    let response = null;
-
-    if (active === undefined) {
-      response = await User.find();
-    } else {
-      response = await User.find({ active });
-    }
-
+    const response = await User.find();
+    console.log(response);
     res.status(200).send(response);
   } catch (error) {
     console.error(error);
