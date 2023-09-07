@@ -1,33 +1,28 @@
 import React, { useEffect } from "react";
 import "./WebClient.scss";
-import { getAllSedes } from "../../../actions/sedesActions";
-import { Loading } from "../../../components/Shared";
+import { ClientCard, Loading } from "../../../components/Shared";
 import { useDispatch, useSelector } from "react-redux";
+import { Mapa } from "../../../components/GeneralLayout";
+import { getAllClients } from "../../../actions/clientActions";
 
 export const WebClients = () => {
   const dispatch = useDispatch();
-  const clientsData = useSelector((state) => state.sede.allSedes);
+  const clientsData = useSelector((state) => state.client.allClients);
+  console.log(clientsData);
   useEffect(() => {
     (async () => {
       try {
-        await dispatch(getAllSedes());
+        await dispatch(getAllClients());
       } catch (error) {
         console.error(error);
       }
     })();
-  }, []);
+  }, [dispatch]);
 
-  // Verificar si clientsData contiene el array de sedes
-  if (!clientsData || !clientsData.clients || !Array.isArray(clientsData.sedes)) {
-    return <Loading />; // Puedes mostrar un indicador de carga o mensaje de error mientras se obtienen los datos
-  }
   return (
-    <>
-      {clientsData.map((client) => (
-        <div key={client.id} className="btn-client">
-          {client.name}
-        </div>
-      ))}
-    </>
+    <div className="web-clients-container">
+      <Mapa className="mapa"></Mapa>
+      <ClientCard className="client-card"></ClientCard>
+    </div>
   );
 };

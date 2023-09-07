@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import "./Mapa.scss";
 
 export const Mapa = ({ departamentos }) => {
@@ -39,19 +40,6 @@ export const Mapa = ({ departamentos }) => {
       (sede) => sede.direccion.departamento === deptName
     );
   };
-
-  const getDepartamentoColor = (deptName) => {
-    const color = "#D7DBDD";
-    if (deptName === hoveredDept) {
-      // Si el departamento coincide con el que se encuentra seleccionado asignar color verde (#3B732F)
-      return "#70A9B0";
-    } else {
-      return departamentos?.find((name) => name === deptName)
-        ? "#D64C18"
-        : color;
-    }
-  };
-
   var simplemaps_countrymap_mapinfo = {
     map_name: "country",
     state_bbox_array: {
@@ -221,6 +209,32 @@ export const Mapa = ({ departamentos }) => {
     },
   };
 
+  const coloresDepartamentos = [
+    "#FF5733",
+    "#33FF57",
+    "#5733FF",
+    "#FF33E9",
+    // Agrega más colores según sea necesario
+  ];
+  let colorIndex = 0;
+
+  const getDepartamentoColor = (deptName) => {
+    const color = "#D7DBDD";
+    if (deptName === hoveredDept) {
+      // Si el departamento coincide con el que se encuentra seleccionado asignar color verde (#3B732F)
+      return "#70A9B0";
+    } else {
+      if (departamentos?.find((name) => name === deptName)) {
+        const colorSeleccionado = coloresDepartamentos[colorIndex];
+        colorIndex = (colorIndex + 1) % coloresDepartamentos.length; // Avanza al siguiente color circularmente
+        return colorSeleccionado;
+      } else {
+        return color;
+      }
+    }
+  };
+
+
   // Obtener la lista de departamentos del objeto simplemaps_countrymap_mapinfo
   const departamentosMapa = Object.keys(
     simplemaps_countrymap_mapinfo.names
@@ -279,7 +293,7 @@ export const Mapa = ({ departamentos }) => {
     if (!isHoveringMessage) {
       timer = setTimeout(() => {
         setHoveredDept(null);
-      }, 900); // Puedes ajustar el valor del tiempo de retraso (en milisegundos) aquí
+      }, 500); // Puedes ajustar el valor del tiempo de retraso (en milisegundos) aquí
     }
     return () => {
       clearTimeout(timer);
@@ -289,7 +303,6 @@ export const Mapa = ({ departamentos }) => {
   return (
     <>
       <div className="mapa">
-      
         {sedeInfo && sedeInfo.sedeInfoArray.length > 0 && (
           <Card variant="outlined">
             <CardContent>
@@ -324,10 +337,7 @@ export const Mapa = ({ departamentos }) => {
           </Card>
         )}
 
-        <svg
-          viewBox="0 0 2100 2100"
-          onMouseMove={handleMouseMove}
-        >
+        <svg viewBox="0 0 1500 1500" onMouseMove={handleMouseMove}>
           {Object.values(simplemaps_countrymap_mapinfo.names).map(
             (deptName) => {
               return null;

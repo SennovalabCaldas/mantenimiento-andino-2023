@@ -16,24 +16,16 @@ async function createClient(req, res) {
       console.log("imagePath", imagePath);
       clientData.avatar = imagePath;
     }
-
-    // Crear una nueva dirección con los datos proporcionados
-    const newAddress = new Address(clientData.direccion);
-    const addressSaved = await newAddress.save();
-
-    // Asignar la dirección creada al cliente
-    clientData.direccion = addressSaved._id;
-
     const clientStored = new Client(clientData);
     await clientStored.save();
-    
+
     res.status(201).json({
       _id: clientStored._id,
       clientName: clientStored.clientName,
       avatar: clientStored.avatar,
       joinDate: clientStored.joinDate,
       active: clientStored.active,
-      direccion: addressSaved, // Devuelve el objeto de dirección completo
+      direccion: clientStored.direccion._id, // Devuelve el objeto de dirección completo
     });
 
     console.log(clientStored);
@@ -42,7 +34,6 @@ async function createClient(req, res) {
     res.status(400).json({ msg: "Error al crear el cliente" });
   }
 }
-
 
 // Obtener todos los clientes
 async function getAllClients(req, res) {

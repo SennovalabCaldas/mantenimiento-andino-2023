@@ -37,16 +37,18 @@ export class Sede {
   };
 
   getAllSedes = async () => {
-    const url = `${this.baseApi}/${API_ROUTES.ALL_SEDES}`;
+    const url = `${this.baseApi}/admin/sedes`;
+    console.log(url);
     const params = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     };
-
+    console.log(params);
     try {
       const response = await fetch(url, params);
+      console.log(response);
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
