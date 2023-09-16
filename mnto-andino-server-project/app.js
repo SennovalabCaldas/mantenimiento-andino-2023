@@ -29,11 +29,15 @@ app.use(bodyParser.json());
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
-
 const corsOptions = {
-  origin: ['https://mantenimientoandino.co', 'http://mantenimientoandino.co'],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
+  origin: [
+    "https://mantenimientoandino.co",
+    "http://mantenimientoandino.co",
+    "https://mantenimientoandino.co:3000",
+    "http://mantenimientoandino.co:3000",
+  ],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
 };
 
 app.use(cors(corsOptions));
