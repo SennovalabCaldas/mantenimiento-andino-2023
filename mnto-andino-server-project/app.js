@@ -29,8 +29,14 @@ app.use(bodyParser.json());
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
-// Configurar encabezados CORS
-app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
+
+const corsOptions = {
+  origin: ['https://mantenimientoandino.co', 'http://mantenimientoandino.co'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+};
+
+app.use(cors(corsOptions));
 
 // Definir rutas API con IP o dominio personalizado
 app.use(`/api/v1/auth`, authRoutes);
