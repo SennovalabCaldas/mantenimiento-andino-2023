@@ -1,4 +1,4 @@
-const SERVER_IP = "http://mantenimientoandino.co:3000";
+const SERVER_IP = "https://mantenimientoandino.co:3000";
 // const SERVER_IP = "http://localhost:3100";
 const API_VERSION = "v1";
 

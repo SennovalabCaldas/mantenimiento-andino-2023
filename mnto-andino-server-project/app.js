@@ -29,18 +29,19 @@ app.use(bodyParser.json());
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
-const corsOptions = {
-  origin: [
-    "https://mantenimientoandino.co",
-    "http://mantenimientoandino.co",
-    "https://mantenimientoandino.co:3000",
-    "http://mantenimientoandino.co:3000",
-  ],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-};
+// const corsOptions = {
+//   origin: [
+//     "https://mantenimientoandino.co",
+//     "http://mantenimientoandino.co",
+//     "https://mantenimientoandino.co:3000",
+//     "http://mantenimientoandino.co:3000",
+//   ],
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   allowedHeaders: "Content-Type,Authorization",
+//   exposedHeaders: "api/v1/admin",
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Definir rutas API con IP o dominio personalizado
 app.use(`/api/v1/auth`, authRoutes);
