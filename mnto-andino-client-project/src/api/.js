@@ -124,7 +124,7 @@ export class Client {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
-        `${this.baseApi}/${CLIENT_ROUTE}/${_id}`,
+        `${this.baseApi}/${CLIENT_ROUTE}/edit/${_id}`,
         {
           method: "PATCH",
           body: JSON.stringify(updatedData),
@@ -146,7 +146,7 @@ export class Client {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
-        `${this.baseApi}/${CLIENT_ROUTE}/${_id}`,
+        `${this.baseApi}/${CLIENT_ROUTE}/delete/${_id}`,
         {
           method: "DELETE",
           headers: {
@@ -154,7 +154,7 @@ export class Client {
           },
         }
       );
-      console.log(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`);
+      console.log(`${this.baseApi}/${CLIENT_ROUTE}/delete/${_id}`);
       const data = await response.json();
       console.log("data", data);
       return data;
