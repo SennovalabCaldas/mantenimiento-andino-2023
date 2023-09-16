@@ -22,7 +22,7 @@ export const Caseth = () => {
               <p class="num">90</p>
             </div>
             <div class="or">
-              <p class="time">2×30min</p>
+              <p class="time">MANTENIMIENTO ANDINO 2×30min</p>
             </div>
           </div>
           <div class="card2_main">

@@ -51,7 +51,6 @@ export class Client {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
-
         },
         body: formData,
       };
@@ -65,52 +64,6 @@ export class Client {
       throw error;
     }
   }
-
-  // async createClient(data) {
-  //   console.log("data que llega", data);
-  //   const accessToken = authController.getAccessToken();
-  //   console.log("data.avatar", data.avatar);
-
-  //   // Verifica los valores de los campos antes de crear formData
-  //   console.log("data.clientName", data.clientName);
-  //   console.log("data.direccion", data.direccion._id);
-  //   console.log("data.active", data.active);
-  //   console.log("data.joinDate", data.joinDate);
-
-  //   try {
-  //     const formData = new FormData();
-
-  //     // Verifica si data.avatar.image es un Blob o File válido
-  //     if (data.avatar && data.avatar.image instanceof Blob) {
-  //       formData.append("avatar", data.avatar.image);
-  //     } else {
-  //       console.error("Imagen de avatar no válida.");
-  //       return; // Aborta la función si la imagen no es válida
-  //     }
-
-  //     formData.append("clientName", data.clientName);
-  //     formData.append("direccion", JSON.stringify(data.direccion));
-  //     formData.append("active", data.active);
-  //     formData.append("joinDate", data.joinDate);
-
-  //     console.log("Estos son los datos del cliente", formData.get("avatar"));
-  //     const url = `${this.baseApi}/${CLIENT_ROUTE}/new-client`;
-  //     const params = {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //       body: formData,
-  //     };
-  //     console.log("Estos son los params", params);
-  //     const response = await fetch(url, params);
-  //     const result = await response.json();
-  //     if (response.status !== 201) throw result;
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw error;
-  //   }
-  // }
 
   async getClients() {
     try {
@@ -144,6 +97,32 @@ export class Client {
       return data;
     } catch (error) {
       console.error("Error al obtener el cliente:", error);
+      throw error;
+    }
+  }
+
+  async getAddressByDireccion(direccion) {
+    console.log(direccion);
+    try {
+      // Llama a la función getAddressAll de la API de dirección para obtener todas las direcciones
+      const addresses = await addressController.getAddressAll();
+      console.log(addresses);
+      // Busca la dirección correspondiente en el array de direcciones
+      const matchingAddress = addresses.find(
+        (address) => address._id === direccion
+      );
+      console.log(matchingAddress);
+      if (matchingAddress) {
+        // Si se encuentra la dirección, devuelve la dirección completa
+        console.log('Matching',matchingAddress);
+        return matchingAddress;
+      } else {
+        // Si no se encuentra la dirección, devuelve un mensaje de error o null
+        console.error("La dirección no se encontró:", direccion);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al obtener la dirección:", error);
       throw error;
     }
   }

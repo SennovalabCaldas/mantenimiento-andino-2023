@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "./actions/authActions";
 import { Auth } from "./pages/admin";
 import { Loading, WebMenu } from "./components/Shared";
+import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "./pages/web";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -36,7 +37,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     const handleLoggedIn = async () => {
       if (token && !isLoggedIn) {
@@ -57,11 +57,17 @@ const App = () => {
         ) : (
           <Routes>
             {isLoggedIn ? (
-              <Route path="/*" element={<AppRouter isLoggedIn={isLoggedIn} />} />
+              <Route
+                path="/*"
+                element={<AppRouter isLoggedIn={isLoggedIn} />}
+              />
             ) : (
               <Route path="/*" element={<WebMenu />} />
             )}
             <Route path="/login" element={<Auth />} />
+            <Route path="/makinandina" element={<MakinaAndina />} />
+            <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
+            <Route path="/lamartina" element={<LaMartina />} />
           </Routes>
         )}
       </BrowserRouter>

@@ -9,7 +9,6 @@
     align-items: center;
     /* padding: 50px 0; */
 
-
     .logo {
         max-width: 100px;
         margin-bottom: 10px;
@@ -38,7 +37,7 @@
     &::before {
         content: "";
         position: absolute;
-        background-image: url('../../../assets/jpg/bg-image.jpg');
+        background-image: url("../../../assets/jpg/bg-image.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -99,5 +98,30 @@
     @media (max-width: 768px) {
         /* Estilos para pantallas pequeñas */
         padding: 10px;
+    }
+}
+.back-to-mnto {
+    position: fixed; /* Para que el botón sea fijo en la pantalla */
+    top: 20px; /* Posición desde la parte inferior */
+    left: 20px; /* Posición desde la derecha */
+    background-color: #1a1539bf; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Relleno del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    z-index: 999; /* Capa superior para que esté por encima del contenido */
+    transition:
+        background-color 0.3s,
+        transform 0.3s; /* Efectos de transición */
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: #075161b7; /* Color de fondo al pasar el mouse */
+        transform: scale(1.1); /* Escala al pasar el mouse */
+        color: #ffffff;
+        text-decoration: none;
+        font-family: Arial, Helvetica, sans-serif;
     }
 }

@@ -10,6 +10,9 @@ import { Providers } from "../pages/admin/Providers";
 import { EmployeeNews } from "../pages/employee/EmployeeNews";
 import Reports from "../pages/admin/Reports/Reports";
 import { WebMenu } from "../components/WebMenu";
+import { Projects } from "../pages/admin/Projects/Projects";
+import Certifications from "../pages/admin/Certifications/Certifications";
+import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "../pages/web";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
@@ -35,6 +38,9 @@ export const AppRouter = () => {
         <>
           <Route path="/" element={<WebMenu />} />
           <Route path="/login" element={<Auth />} />
+          <Route path="/makinandina" element={<MakinaAndina />} />
+          <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
+          <Route path="/lamartina" element={<LaMartina />} />
         </>
       ) : (
         <>
@@ -42,18 +48,38 @@ export const AppRouter = () => {
             <>
               <Route index element={<Home />} />
               <Route path="admin" element={<WebMenu />} />
-              <Route path="admin/home" element={loadLayout(AdminLayout, Home)} />
-              <Route path="admin/users" element={loadLayout(AdminLayout, Users)} />
-              <Route path="admin/sedes" element={loadLayout(AdminLayout, Sedes)} />
+              <Route
+                path="admin/home"
+                element={loadLayout(AdminLayout, Home)}
+              />
+              <Route
+                path="admin/users"
+                element={loadLayout(AdminLayout, Users)}
+              />
+              <Route
+                path="admin/sedes"
+                element={loadLayout(AdminLayout, Sedes)}
+              />
               <Route
                 path="admin/services"
                 element={loadLayout(AdminLayout, Services)}
               />
               <Route
+                path="admin/projects"
+                element={loadLayout(AdminLayout, Projects)}
+              />
+              <Route
+                path="admin/certifications"
+                element={loadLayout(AdminLayout, Certifications)}
+              />
+              <Route
                 path="admin/clients"
                 element={loadLayout(AdminLayout, Clients)}
               />
-              <Route path="admin/news" element={loadLayout(AdminLayout, News)} />
+              <Route
+                path="admin/news"
+                element={loadLayout(AdminLayout, News)}
+              />
               <Route
                 path="admin/providers"
                 element={loadLayout(AdminLayout, Providers)}
@@ -62,7 +88,7 @@ export const AppRouter = () => {
                 path="admin/reports"
                 element={loadLayout(AdminLayout, Reports)}
               />
-              </>
+            </>
           )}
           {isEmployee && (
             <Route

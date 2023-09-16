@@ -1,0 +1,62 @@
+.container {
+  margin: 30px 30px 80px 30px;
+  padding: 30px 30px 100px 30px;
+}
+.sliderStyle {
+  width: 100%;
+  height: 100%;
+  .slide-container {
+    height: 500px;
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .slide-title {
+        font-size: 2em;
+        font-weight: 600;
+        margin-bottom: 0.5em;
+      }
+      .slide-subtitle {
+        font-size: 1.5em;
+        font-weight: 500;
+        margin-bottom: 1em;
+      }
+      .slide-description {
+        font-size: 1em;
+        font-weight: 400;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
+.back-to-mnto {
+  position: fixed; /* Para que el botón sea fijo en la pantalla */
+  top: 20px; /* Posición desde la parte inferior */
+  left: 20px; /* Posición desde la derecha */
+  background-color: #1a1539bf; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Relleno del botón */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cursor de puntero al pasar por encima */
+  z-index: 999; /* Capa superior para que esté por encima del contenido */
+  transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #075161b7; /* Color de fondo al pasar el mouse */
+    transform: scale(1.1); /* Escala al pasar el mouse */
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}

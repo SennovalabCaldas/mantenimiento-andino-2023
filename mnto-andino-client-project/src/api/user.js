@@ -9,9 +9,6 @@ export class User {
 
   async getMe() {
     const accessToken = authController.getAccessToken();
-    if (!accessToken) {
-      throw new Error("Usuario no ha iniciado sesión"); // Lanza un error si no hay token de acceso
-    }
     try {
       const response = await fetch(`${this.baseApi}/admin/users/get-me`, {
         method: "GET",
@@ -20,10 +17,12 @@ export class User {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      console.log(response);
       const data = await response.json();
+      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
+      console.error("Error al obtener el usuario:", error);
       throw error;
     }
   }
@@ -171,28 +170,37 @@ export class User {
     }
   }
 
-  async getUsers(active = undefined) {
+  async getUsersByActiveStatus(active) {
+    const accessToken = authController.getAccessToken();
     try {
-      let query = {}; // Objeto de consulta inicial
-      if (active !== undefined) {
-        query = { active: active }; // Filtrar por el valor de "active"
-      }
-
       const response = await fetch(
         `${this.baseApi}/admin/users?active=${active}`,
         {
           method: "GET",
           headers: {
             "Content-Type": CONTENT_TYPE_JSON,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
 
+      if (response.status !== 200) {
+        throw new Error(
+          `Error al obtener usuarios ${
+            active === "true" ? "activos" : "inactivos"
+          }`
+        );
+      }
+
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
-      console.error("Error al obtener los usuarios:", error);
+      console.error(
+        `Error al obtener usuarios ${
+          active === "true" ? "activos" : "inactivos"
+        }:`,
+        error
+      );
       throw error;
     }
   }

@@ -13,10 +13,6 @@ const PostSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  creador: {
-    type: String,
-    required: true,
-  },
   avatar:
     {
       type: String, // Guardaremos la URL de la imagen en la base de datos

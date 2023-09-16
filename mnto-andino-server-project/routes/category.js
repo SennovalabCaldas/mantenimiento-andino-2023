@@ -20,20 +20,14 @@ api.get("/:idCategory",CategoryController.obtenerCategoriaPorId);
 
 // Ruta para actualizar una categoría por su ID
 api.patch(
-  "/edit/:idCategory",
-  [md_auth.ensureAuth],
-  CategoryController.editarCategoria
-);
-
-api.patch(
-  "/update-posts-show/:idCategory",
+  "/:id",
   [md_auth.ensureAuth],
   CategoryController.editarCategoria
 );
 
 // Ruta para eliminar una categoría por su ID
 api.delete(
-  "/delete/:idCategory",
+  "/:id",
   md_auth.ensureAuth,
   CategoryController.eliminarCategoria
 );

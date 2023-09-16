@@ -13,9 +13,9 @@ router.post(
 );
 router.get("/", serviceController.getServices);
 router.get("/:id", serviceController.getServiceById);
-router.patch("/edit/:id", [md_auth.ensureAuth, md_upload], serviceController.updateService);
+router.patch("/:id", [md_auth.ensureAuth, md_upload], serviceController.updateService);
 router.delete(
-  "/delete/:id",
+  "/:id",
   [md_auth.ensureAuth],
   serviceController.deleteService
 );

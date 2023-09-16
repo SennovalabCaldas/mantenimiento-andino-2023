@@ -1,0 +1,57 @@
+.back-to {
+    display: flex;
+    position: relative;
+    width: 205px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+  .btn-back-to {
+    width: 9em;
+    height: 2em;
+    border-radius: 20em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    transition: 0.5s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .btn-back-to::before {
+    content: "";
+    width: 0;
+    height: 2em;
+    border-radius: 20em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #dabb58bb 0%, #f03f38ae 100%);
+    transition: 0.5s ease;
+    display: block;
+    z-index: -1;
+    align-items: center;
+    justify-content: center;
+    color: #acacac;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .btn-back-to:hover::before {
+    width: 9em;
+  }
+}

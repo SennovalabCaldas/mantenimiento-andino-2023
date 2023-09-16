@@ -6,7 +6,7 @@ const api = express.Router();
 
 api.post("/new-address", AddressController.createAddress);
 api.get("/", AddressController.getAllAddresses);
-api.put("/:id", AddressController.updateAddressById);
+api.patch("/:id", AddressController.updateAddressById);
 api.delete("/:id", AddressController.deleteAddressById);
 api.get("/:id", AddressController.getAddressById);
 

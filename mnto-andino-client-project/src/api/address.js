@@ -80,7 +80,7 @@ export class Address {
     const url = `${BASE_API}/${ADDRESS}/${_id}`;
     console.log(url);
     const params = {
-      method: "PUT",
+      method: "PATCH",
       body: JSON.stringify(data.direccion), // Utiliza data.direccion en lugar de data
       headers: {
         "Content-Type": "application/json",

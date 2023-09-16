@@ -1,14 +1,109 @@
-.web-clients-container {
-  display: flex; /* Utiliza Flexbox para distribuir los elementos horizontalmente */
-  justify-content: space-between; /* Espacio uniforme entre los elementos */
-  align-items: flex-start; /* Alinea los elementos en la parte superior */
+.clients-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // margin-top: 2em;
+  background-image: url("../../../assets/jpg/auth-bg.jpg");
+  // margin-bottom: 2em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
 }
+.content-suppliers-page {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  gap: -6px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 
-.mapa {
-  flex: 1; /* Hace que el mapa ocupe todo el espacio disponible en el contenedor */
-}
+  .suppliers-page__item {
+    padding: 23px;
+    width: 190px;
+    height: 200px;
+    background-color: rgba(167, 47, 47, 0.3);
+    margin: 15px;
+    box-shadow: 0px 0px 10px 1px rgba(139, 29, 29, 0.9333333333);
+    border-radius: 5px;
+    overflow: hidden;
 
-.client-card {
-  flex: 1; /* Hace que la tarjeta de cliente ocupe todo el espacio disponible en el contenedor */
-  margin-left: 20px; /* Agrega un margen izquierdo para separar los elementos */
+    .card-service-inf {
+      padding: 23px;
+      overflow: visible;
+      width: 300px;
+      height: 200px;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+  .suppliers-page__item:hover {
+    background-color: rgba(212, 155, 31, 0.535);
+  }
+
+  button {
+    outline: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 140px;
+    height: 50px;
+    border-radius: 0.5em;
+    box-shadow: 0 0.625em 1em 0 rgba(30, 143, 255, 0.35);
+    overflow: hidden;
+  }
+
+  button div {
+    transform: translateY(0px);
+    width: 100%;
+  }
+
+  button,
+  button div {
+    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  button div span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    /* font-family: sans-serif; */
+    padding: 0.75em 1.125em;
+  }
+
+  button div:nth-child(1) {
+    background-color: #0b0c2fa3;
+  }
+
+  button div:nth-child(2) {
+    background-color: #21dc62;
+  }
+
+  button:hover {
+    box-shadow: 0 0.625em 1em 0 rgba(33, 220, 98, 0.35);
+  }
+
+  button:hover div {
+    transform: translateY(-50px);
+  }
+
+  button p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #161515;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
 }

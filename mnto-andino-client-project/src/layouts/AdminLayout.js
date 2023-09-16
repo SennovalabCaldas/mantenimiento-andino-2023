@@ -17,7 +17,7 @@ export const AdminLayout = (props) => {
         <TopBar menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
       </div>
       {/* Contenido de la página */}
-      <div className="flex">
+      <div className="flex-dashboard">
         <RoutesMenu menuVisible={menuVisible} activeMenuItem={activeMenuItem}/>
         <div className="right-panel">
           <div className="admin-layout__right-content">{children}</div>

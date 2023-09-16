@@ -7,20 +7,7 @@ export const HomeLayout = (props) => {
 
   return (
     <div>
-      {/* Menu superior - header */}
-      <div className="topbar-wrapper">
-        <WebMenu />
-      </div>
-      {/* Contenido de la página */}
-      <div>{children}</div>
-      <div className="cube-container">
-        <CubeWithImages />
-      </div>
-      <div className="footer">
-        <div className="footer__content">
-          <p>© 2023 - SENNOVALAB</p>
-        </div>
-      </div>
+      <WebMenu />
     </div>
   );
 };

@@ -13,10 +13,10 @@ export const Providers = () => {
     const fetchClients = async () => {
       try {
         // Lógica para obtener la lista de clientes y filtrar activos/inactivos
-        const response = dispatch(getAllClients());
-        console.log(response);
-        const active = response.filter((client) => client.active);
-        const inactive = response.filter((client) => !client.active);
+        const providers = await dispatch(getAllClients());
+        console.log(providers);
+        const active = providers.providers.filter((client) => client.active);
+        const inactive = providers.providers.filter((client) => !client.active);
         setActiveClients(active);
         setInactiveClients(inactive);
       } catch (error) {

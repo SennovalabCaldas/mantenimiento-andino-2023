@@ -25,7 +25,7 @@ async function getUser(req, res) {
     const { id } = req.params;
 
     const response = await User.findById(id);
-    console.log("respuesta", response);
+    console.log('respuesta',response);
     if (!response) {
       return res.status(400).send({ msg: "No se ha encontrado usuario" });
     }
@@ -63,16 +63,50 @@ async function updateMe(req, res) {
 }
 
 // Obtener lista de usuarios
+// async function getUsers(req, res) {
+//   console.log("Estoy en el listar usuarios");
+//   try {
+//     const { active } = req.query;
+//     let response = null;
+
+//     if (active === undefined) {
+//       response = await User.find();
+//     } else {
+//       response = await User.find({ active });
+//     }
+
+//     res.status(200).send(response);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ msg: "Error del servidor" });
+//   }
+// }
+
+
 async function getUsers(req, res) {
+  console.log("Estoy en el listar usuarios");
   try {
-    const response = await User.find();
-    console.log(response);
+    const { active } = req.query;
+    let response = null;
+
+    if (active === undefined) {
+      response = await User.find();
+    } else if (active === 'true') {
+      response = await User.find({ active: true });
+    } else if (active === 'false') {
+      response = await User.find({ active: false });
+    } else {
+      res.status(400).send({ msg: "El parámetro 'active' debe ser 'true', 'false' o no proporcionado" });
+      return;
+    }
+
     res.status(200).send(response);
   } catch (error) {
     console.error(error);
     res.status(500).send({ msg: "Error del servidor" });
   }
 }
+
 
 // Crear un nuevo usuario
 async function createUser(req, res) {

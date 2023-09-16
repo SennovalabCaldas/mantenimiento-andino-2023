@@ -6,8 +6,16 @@ import "./Home.scss";
 
 export const Home = () => {
   const cardData = [
-    { title: "Home", link: "/admin/home", background: `url(${image.background})` },
-    { title: "Menú", link: "/admin/menu", background: `url(${image.background})` },
+    {
+      title: "Home",
+      link: "/admin/home",
+      background: `url(${image.background})`,
+    },
+    {
+      title: "Menú",
+      link: "/admin/menu",
+      background: `url(${image.background})`,
+    },
     {
       title: "Empleados",
       link: "/admin/users",
@@ -46,38 +54,40 @@ export const Home = () => {
   ];
 
   return (
-    <div className="users-page">
-      <div style={{ padding: "20px" }}>
-        <Typography variant="h4" gutterBottom>
-          Dashboard
-        </Typography>
-        <Grid container spacing={3}>
-          {cardData.map((card) => (
-            <Grid item xs={12} md={4} key={card.title}>
-              <Card
-                className="dashboard-card"
-                style={{
-                  backgroundImage: card.background,
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6" className="card-title">
-                    {card.title}
-                  </Typography>
-                  <Button
-                    component={Link}
-                    to={card.link}
-                    variant="contained"
-                    color="primary"
-                    className="card-button"
-                  >
-                    Ir a {card.title}
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+    <div className="dashboard-page">
+      <div className="dashboard-card">
+        <div style={{ padding: "20px" }}>
+          <Typography variant="h4" gutterBottom>
+            Dashboard
+          </Typography>
+          <Grid container spacing={3}>
+            {cardData.map((card) => (
+              <Grid item xs={12} md={4} key={card.title}>
+                <Card
+                  className="dashboard-card"
+                  style={{
+                    backgroundImage: card.background,
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" className="card-title">
+                      {card.title}
+                    </Typography>
+                    <Button
+                      component={Link}
+                      to={card.link}
+                      variant="contained"
+                      color="primary"
+                      className="card-button"
+                    >
+                      Ir a {card.title}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </div>
     </div>
   );

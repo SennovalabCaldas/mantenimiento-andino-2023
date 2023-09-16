@@ -1,76 +1,32 @@
 // addressReducer.js (Reducer específico para las direcciones)
 import {
-  FETCH_ADDRESSES_REQUEST,
-  FETCH_ADDRESSES_FAILURE,
-  CREATE_ADDRESS_REQUEST,
-  CREATE_ADDRESS_SUCCESS,
-  CREATE_ADDRESS_FAILURE,
-  UPDATE_ADDRESS_REQUEST,
-  UPDATE_ADDRESS_SUCCESS,
-  UPDATE_ADDRESS_FAILURE,
-  DELETE_ADDRESS_REQUEST,
-  DELETE_ADDRESS_SUCCESS,
-  DELETE_ADDRESS_FAILURE,
-  FETCH_ADDRESSES_SUCCESS,
+  CREATE_ADDRESS,
+  GET_ALL_ADDRESSES,
+  GET_ADDRESS,
 } from "../actions/types";
 
 const initialState = {
-  addresses: [],
-  loading: false,
-  error: null,
+  addresses: [], // Array de todas las direcciones del usuario
+  address: {}, // Dirección seleccionada
 };
 
 const addressReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ADDRESSES_REQUEST:
-    case CREATE_ADDRESS_REQUEST:
-    case UPDATE_ADDRESS_REQUEST:
-    case DELETE_ADDRESS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
-    case FETCH_ADDRESSES_SUCCESS:
-      return {
-        ...state,
-        addresses: action.payload,
-        loading: false,
-        error: null,
-      };
-    case CREATE_ADDRESS_SUCCESS:
+    case CREATE_ADDRESS:
       return {
         ...state,
         addresses: [...state.addresses, action.payload],
-        loading: false,
-        error: null,
       };
-    case UPDATE_ADDRESS_SUCCESS:
+    case GET_ALL_ADDRESSES:
       return {
         ...state,
-        addresses: state.addresses.map((address) =>
-          address._id === action.payload._id ? action.payload : address
-        ),
-        loading: false,
-        error: null,
+        addresses: action.payload,
       };
-    case DELETE_ADDRESS_SUCCESS:
+    case GET_ADDRESS:
+      console.log(action.payload);
       return {
         ...state,
-        addresses: state.addresses.filter(
-          (address) => address._id !== action.payload
-        ),
-        loading: false,
-        error: null,
-      };
-    case FETCH_ADDRESSES_FAILURE:
-    case CREATE_ADDRESS_FAILURE:
-    case UPDATE_ADDRESS_FAILURE:
-    case DELETE_ADDRESS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
+        address: action.payload,
       };
     default:
       return state;

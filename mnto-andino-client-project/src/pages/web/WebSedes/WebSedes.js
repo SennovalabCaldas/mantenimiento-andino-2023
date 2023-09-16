@@ -57,7 +57,7 @@ export const WebSedes = () => {
   );
 
   return (
-    <div>
+    <div className="content-section-websedes">
       <Mapa departamentos={departamentosSinDuplicados} />
     </div>
   );

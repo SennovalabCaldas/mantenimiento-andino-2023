@@ -9,17 +9,13 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  assistanceType: {
-    type: String,
-    required: true,
-  },
-  serviceLine: {
-    type: String,
-    required: true,
-  },
   active: {
     type: Boolean,
     default: true,
+  },
+  categoryService: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "CategoryService",
   },
   photos: [
     {

@@ -20,17 +20,20 @@ const crearCategoria = async (req, res) => {
 
 // Método para editar una categoría existente
 const editarCategoria = async (req, res) => {
-  console.log("Editar categoría", req.params);
-  const { idCategory } = req.params;
-  const categoryData = req.body;
-  console.log(`id: ${idCategory}`);
-  console.log("Datos de la categoría a actualizar:", categoryData);
   try {
-    await Category.findByIdAndUpdate({ _id: idCategory }, categoryData);
-    const updatedCategory = await Category.findOne({ _id: idCategory });
-    res.status(200).send(updatedCategory); // Enviar el menú actualizado como respuesta
+    const { id } = req.params;
+    console.log("id", id);
+    const categoryData = req.body;
+    const updatedCategory = await Category.findByIdAndUpdate(id, categoryData, {
+      new: true,
+    });
+    if (updatedCategory) {
+      res.json(updatedCategory);
+    } else {
+      res.status(404).json({ error: "Categoría no encontrado" });
+    }
   } catch (error) {
-    res.status(400).send({ msg: "Error al actualizar la categoría" });
+    res.status(500).json({ error: "Error al actualizar el Categoría" });
   }
 };
 
@@ -48,7 +51,7 @@ const obtenerTodasCategorias = async (req, res) => {
 // Método para consultar una categoría específica por su ID
 const obtenerCategoriaPorId = async (req, res) => {
   try {
-    const { idCategory } = req.params; // Cambio aquí para que coincida con la ruta
+    const { idCategory } = req.params; 
     const categoria = await Category.findById(idCategory);
     if (!categoria) {
       return res.status(404).json({ mensaje: "Categoría no encontrada" });
@@ -62,25 +65,34 @@ const obtenerCategoriaPorId = async (req, res) => {
 
 const eliminarCategoria = async (req, res) => {
   try {
-    const { idCategory } = req.params; // Cambio aquí para que coincida con la ruta
-    console.log(`/api/v1/admin/categories/${idCategory}`); // Reemplaza API_VERSION por la versión correcta
+    const { id } = req.params;
 
-    const categoriaEliminada = await Category.findByIdAndDelete(idCategory);
+    console.log("id", id);
+
+    // Buscar la categoría para eliminar
+    const categoriaEliminada = await Category.findById(id);
     if (!categoriaEliminada) {
       return res.status(404).json({ mensaje: "Categoría no encontrada" });
     }
+
     // Buscar los posts que pertenecen solo a la categoría eliminada
-    const postsAEliminar = await Post.find({ categorias: idCategory });
-    // Recorrer los posts y decidir si eliminar o quitar la categoría
+    const postsAEliminar = await Post.find({ categorias: id });
+
+    // Eliminar o actualizar los posts asociados
     for (const post of postsAEliminar) {
       if (post.categorias.length === 1) {
+        // Si el post solo pertenece a esta categoría, eliminarlo
         await Post.findByIdAndDelete(post._id);
       } else {
-        post.categorias.pull(idCategory);
+        // Si el post pertenece a otras categorías, quitar esta categoría
+        post.categorias.pull(id);
         await post.save();
       }
     }
-    res.status(200).json(categoriaEliminada);
+
+    // Eliminar la categoría
+    await Category.findByIdAndDelete(id);
+    res.status(200).json({ mensaje: "Categoría eliminada correctamente" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: "Error al eliminar la categoría" });

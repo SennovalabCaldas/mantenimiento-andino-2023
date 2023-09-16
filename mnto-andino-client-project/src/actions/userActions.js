@@ -31,7 +31,7 @@ export const updateAdmin = (userData) => {
 export const getAllUsers = (active) => {
   return async (dispatch, getState) => {
     try {
-      const users = await userController.getUsers(active);
+      const users = await userController.getUsersByActiveStatus(active);
       dispatch(setAllUsers(users));
     } catch (error) {
       console.error(error);

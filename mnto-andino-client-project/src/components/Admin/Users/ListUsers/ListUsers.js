@@ -24,8 +24,9 @@ const userController = new User();
 
 const ListUsers = ({ usersActive, reload, onReload }) => {
   const classes = useStyles();
-
+console.log(usersActive);
   const users = useSelector((state) => state.user.allUsers);
+  console.log(users);
   const selectedUser = useSelector((state) => state.user.user);
   const loggedInUser = useSelector((state) => state.auth.user);
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,7 +44,7 @@ const ListUsers = ({ usersActive, reload, onReload }) => {
     (async () => {
       try {
         await dispatch(getMe());
-        await dispatch(getAllUsers());
+        await dispatch(getAllUsers(usersActive));
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -68,7 +69,7 @@ const ListUsers = ({ usersActive, reload, onReload }) => {
       (user) => user._id !== loggedInUser._id && user.active === false
     );
   }
-
+console.log(filteredUsersToRender);
   const handleSelectedUser = async (userId) => {
     try {
       await dispatch(getUser(userId));

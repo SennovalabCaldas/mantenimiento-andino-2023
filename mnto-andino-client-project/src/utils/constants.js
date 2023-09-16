@@ -1,4 +1,5 @@
-const SERVER_IP = "http://mantenimientoandino.co:3000"; // Obtiene el protocolo actual (HTTP o HTTPS)
+// const SERVER_IP = "http://mantenimientoandino.co:3000";
+const SERVER_IP = "http://localhost:3100";
 const API_VERSION = "v1";
 
 export const ENV = {
@@ -18,11 +19,11 @@ export const ENV = {
     REFRESH_TOKEN: "auth/refresh-access-token",
     POST_ROUTE: "admin/posts",
     USERS: "admin/users",
-    SEDE: "sedes/sede",
+    SEDE: "sedes/new-sede",
     SEARCH_SEDES: "sedes/buscar",
     SEDES: "admin/sedes",
     ADDRESS: "admin/addresses",
-    SEDESPERMUNICIPIO: "sedes/municipio",
+    SEDESPERDPTO: "sedes/departamento",
     CATEGORY_ROUTE: "admin/categories",
     MENU: "admin/menus",
     SERVICE: "admin/services",

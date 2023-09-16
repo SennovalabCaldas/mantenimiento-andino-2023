@@ -3,6 +3,7 @@ import { Tab } from "semantic-ui-react";
 import { image } from "../../../assets/";
 import { RegisterForm, LoginForm } from "../../../components/Admin/Auth";
 import "./Auth.scss";
+import { BackToMntoAndino } from "../../../components/Client/BackToMntoAndino/BackToMntoAndino";
 
 export const Auth = () => {
   /* Para que cuando el usuario se registre pase a login */
@@ -41,6 +42,12 @@ export const Auth = () => {
 
   return (
     <div className="auth">
+      <div className="back-to-mnto">
+        <BackToMntoAndino
+          thumbnailSrc={image.logo} // Ruta de la miniatura de la imagen
+          fullSrc={image.logoSennovalabNoC} // Ruta de la imagen completa
+        />
+      </div>
       <img src={image.logo} alt="" className="logo" />
       <div className="auth__form auth-form__tab">
         <Tab

@@ -337,7 +337,7 @@ export const Mapa = ({ departamentos }) => {
           </Card>
         )}
 
-        <svg viewBox="0 0 1500 1500" onMouseMove={handleMouseMove}>
+        <svg viewBox="0 0 1200 1200" onMouseMove={handleMouseMove}>
           {Object.values(simplemaps_countrymap_mapinfo.names).map(
             (deptName) => {
               return null;

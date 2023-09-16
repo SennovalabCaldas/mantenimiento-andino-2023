@@ -87,7 +87,7 @@ export class Sede {
   filterSedesPerMunicipio = async (parametro) => {
     console.log("Filtrando por municipio");
     /* http://localhost:3200/api/v1/sedes/municipio?municipio= */
-    const url = `${this.baseApi}/${API_ROUTES.SEDESPERMUNICIPIO}${parametro}`;
+    const url = `${this.baseApi}/${API_ROUTES.SEDESPERDPTO}${parametro}`;
     console.log(url);
     const params = {
       method: "GET",

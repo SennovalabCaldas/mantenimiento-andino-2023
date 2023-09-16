@@ -1,113 +1,169 @@
-@import '~/src/scss/index.scss';
+@import "~/src/scss/index.scss";
 
+.ui.form .fields > .field {
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+}
+.ui.form .field {
+    clear: both;
+}
+.ui.small.modal > .header:not(.ui) {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+.ui.form .field .ui.input, .ui.form .fields .field .ui.input, .ui.form .wide.field .ui.input {
+    width: 100%;
+    margin: 0;
+    padding: 5px 5px;
+}
 .register-form {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .inputs-nombre {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    .input-nombre {
+      width: 50%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .ui.input {
+        width: 100%;
+      }
+    }
+  }
+  .input-email{
+    width: 100%;
+
+  }
+  &__error {
     font-family: Arial, sans-serif;
 
-    &__error {
-        font-family: Arial, sans-serif;
+    color: $error !important;
+    text-align: center;
+  }
 
-        color: $error !important;
-        text-align: center;
-    }
+  &__success {
+    font-family: Arial, sans-serif;
+    color: $success !important;
+    text-align: center;
+  }
 
-    &__success {
-        font-family: Arial, sans-serif;
-        color: $success !important;
-        text-align: center;
-    }
-
-    .ui.form .field .ui.input input::placeholder,
-    .ui.form .fields .field .ui.input input::placeholder {
-        color: rgba(78, 74, 74, 0.7);
-    }
-
+  .ui.form .field .ui.input input::placeholder,
+  .ui.form .fields .field .ui.input input::placeholder {
+    color: rgba(78, 74, 74, 0.7);
+  }
 }
 
 .register-form input,
 .register-form textarea,
 .register-form select .register-form button {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-
 .terms-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Agrega esto si también quieres centrarlo horizontalmente */
-    height: auto;
-    /* Ajusta esto según sea necesario */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Agrega esto si también quieres centrarlo horizontalmente */
+  height: auto;
+  /* Ajusta esto según sea necesario */
 }
 
 button.ui.button.terms-button {
-    margin-right: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.ui.search.dropdown>.text {
-    cursor: text;
-    position: absolute;
-    left: 14px;
-    z-index: 3;
-    top: 11px;
+.ui.search.dropdown > .text {
+  cursor: text;
+  position: absolute;
+  left: 14px;
+  z-index: 3;
+  top: 11px;
 }
-
-
 
 .dropdown-input {
-    input {
-        box-shadow: none;
-        border: none !important;
-        background: transparent !important;
-    }
+  input {
+    box-shadow: none;
+    border: none !important;
+    background: transparent !important;
+  }
 
-    .input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 4;
-    }
+  .input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+  }
 }
 
 .password-input-register .icon {
-    margin-right: 0;
-    padding: 11px;
-    background-color: transparent;
-    cursor: pointer;
+  margin-right: 0;
+  padding: 11px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .password-input-register .icon:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .terms-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    text-decoration: underline;
-    color: #a4c7e2;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #a4c7e2;
 
-    &.hover {
-        &:hover {
-            text-decoration: underline;
-            color: #a4c7e2;
-            font-weight: bold;
-        }
+  &.hover {
+    &:hover {
+      text-decoration: underline;
+      color: #a4c7e2;
+      font-weight: bold;
     }
+  }
 }
 
 .terms-button:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .terms-checkbox {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .ui.info.message .header {
-    color: #0e566c;
-    font-size: 14px;
+  color: #232b32de;
+  font-size: 14px;
+}
+
+.ui.modal > .header:not(.ui) {
+    font-size: 1.2rem;
+    line-height: 2.285714em;
+    font-weight: 600;
+    background-color: #232b32de;
+    color: aliceblue;
 }

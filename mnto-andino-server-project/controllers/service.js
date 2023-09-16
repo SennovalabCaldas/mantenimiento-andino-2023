@@ -4,7 +4,7 @@ const baseUrl = "http://localhost:4000/";
 async function createService(req, res) {
   try {
     // Extract data from the FormData object
-    const { name, description, assistanceType, serviceLine } = req.body;
+    const { name, description,categoryService} = req.body;
     // Extract image files from the request
     console.log("req.files", req.files);
     const photos = Array.isArray(req.files.photos)
@@ -15,9 +15,8 @@ async function createService(req, res) {
     const newService = new Service({
       name,
       description,
-      assistanceType,
-      serviceLine,
-      photos, // Save image paths to the database
+      photos, 
+      categoryService
     });
     console.log("newService", newService);
     const savedService = await newService.save();
@@ -51,8 +50,9 @@ async function getServices(req, res) {
 }
 
 async function getServiceById(req, res) {
+  console.log("Entró a getServiceById");
   const { id } = req.params;
-
+  console.log("id", id);
   try {
     const service = await Service.findById(id);
     if (!service) {

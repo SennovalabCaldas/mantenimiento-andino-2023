@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./CubeWithImages.scss";
+import { Link } from "react-router-dom";
+import { image } from "../../../assets";
 
 export const CubeWithImages = () => {
   useEffect(() => {
@@ -10,56 +12,123 @@ export const CubeWithImages = () => {
     const option3 = document.getElementById("option3");
     let animationPaused = false;
 
-    /*  Función que detiene y reactiva el movimiento del cubo */
-    cube.addEventListener("click", () => {
-      console.log("Di clic en el cubo");
-      if (!animationPaused) {
-        console.log("Animación pausada");
-        cube.style.animationPlayState = "paused";
-        optionsContainer.style.display = "block";
-        animationPaused = true;
-        setTimeout(() => {
-          cube.style.animationPlayState = "running";
-          optionsContainer.style.display = "none";
-          animationPaused = false;
-        }, 5000);
-      }
-    });
-
-    /* Función para páginas */
-    option1.addEventListener("click", () => {
-      console.log("Di clic en la opción 1");
-      window.location.href = "../pages/services.html";
-    });
-    option2.addEventListener("click", () => {
-      console.log("Di clic en la opción 2");
-      window.location.href = "../pages/newsletter.html";
-    });
-    option3.addEventListener("click", () => {
-      console.log("Di clic en la opción 3");
-      window.location.href = "../pages/contact.html";
-    });
+    if (cube && optionsContainer && option1 && option2 && option3) {
+      cube.addEventListener("click", () => {
+        console.log("Di clic en el cubo");
+        if (!animationPaused) {
+          console.log("Animación pausada");
+          cube.style.animationPlayState = "paused";
+          optionsContainer.style.display = "block";
+          animationPaused = true;
+          setTimeout(() => {
+            cube.style.animationPlayState = "running";
+            optionsContainer.style.display = "none";
+            animationPaused = false;
+          }, 5000);
+        }
+      });
+    }
   }, []);
 
   return (
-    <div class="loader">
-      <div class="cube" id="animatedCube">
-        <div class="front"></div>
-        <div class="back"></div>
-        <div class="top"></div>
-        <div class="bottom"></div>
-        <div class="left"></div>
-        <div class="right"></div>
+    <div className="cubeContainer">
+      <div className="cube" id="animatedCube">
+        <div
+          className="front"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={image.logomn}
+            alt="Imagen 1"
+            style={{ width: "80%", height: "80%" }}
+          />
+        </div>
+        <div
+          className="back"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={image.logomn}
+            alt="Imagen 1"
+            style={{ width: "80%", height: "80%" }}
+          />
+        </div>
+        <div
+          className="top"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={image.logo3}
+            alt="Imagen 1"
+            style={{ width: "80%", height: "80%" }}
+          />
+        </div>
+        <div
+          className="bottom"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={image.logo2}
+            alt="Imagen 1"
+            style={{ width: "80%", height: "80%" }}
+          />
+        </div>
+        <div
+          className="left"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={image.logo4}
+            alt="Imagen 1"
+            style={{ width: "80%", height: "80%" }}
+          />
+        </div>
+        <div
+          className="right"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <img
+            src={image.logomn}
+            alt="Imagen 1"
+            style={{ width: "80%", height: "80%" }}
+          />
+        </div>
       </div>
-      <div class="options" id="options">
-        <div class="option" id="option1">
-          Opción 1
+      <div className="options" id="options">
+        <div className="option" id="option1">
+          <Link to="/makinandinamiami" className="btn">
+            <span>Makina Andina Miami</span>
+          </Link>
         </div>
-        <div class="option" id="option2">
-          Opción 2
+        <div className="option" id="option2">
+          <Link to="/makinandina" className="btn">
+            <span>Makina Andina</span>
+          </Link>
         </div>
-        <div class="option" id="option3">
-          Opción 3
+        <div className="option" id="option3">
+          <Link to="/lamartina" className="btn">
+            <span>La Martina</span>
+          </Link>
         </div>
       </div>
     </div>

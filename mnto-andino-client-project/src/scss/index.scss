@@ -1,106 +1,124 @@
-@import './colors.scss';
-@import './variables';
+@import "./colors.scss";
+@import "./variables";
 
-
-.flex {
-    display: flex;
-    height: inherit;
-    border-radius: .6rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
-    overflow: hidden auto;
-
-    /* Estilos para dispositivos móviles */
-    @media only screen and (max-width : 769px) {
-        .left-panel {
-            display: none;
-        }
-
-        .right-panel {
-            width: 100%;
-            /* Ampliar el ancho del right-panel para ocupar todo el espacio disponible */
-        }
-
-        .right-panel-big {
-            width: calc(100% - 50px);
-            /* Redefinir el ancho para cuando se oculte el left-panel */
-        }
-    }
-
-
-    h4 {
-        margin: 0;
-        font-size: 1.2rem;
-        color: $text-dark;
-    }
+body {
+  background: transparent;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1em;
 }
 
-.hide {
+.flex-dashboard {
+  display: flex;
+  height: inherit;
+  border-radius: 0;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  overflow: hidden auto;
+  flex-direction: row;
+  justify-content: center;
+  .admin-menu-container {
+    background-color: #608fb380;
+    .admin-menu {
+      width: 190px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 0;
+      flex-direction: column;
+      border-radius: 0;
+      background-color: rgba(5, 47, 60, 0.208);
+      // padding: 0 7px 15px !important;
+      flex-wrap: wrap;
+      align-content: center;
+    }
+    .slide-bar-panel {
+      position: fixed;
+      margin-left: 10px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: antiquewhite;
+      width: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 82vh;
+      z-index: 999;
+      border-radius: 7px;
+    }
+  }
+}
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 880px) {
+  .admin-menu-container .admin-menu {
     display: none;
+  }
+  .admin-menu-container .slide-bar-panel {
+    position: fixed;
+    margin-left: 10px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: rgba(126, 120, 175, 0.586);
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 82vh;
+    border-radius: 7px;
+    .icon-panel {
+      font-size: 22px;
+      position: fixed;
+      top: 70px;
+      color: #000000;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      padding: 10px;
+    }
+    .icon-panel.active {
+      background-color: #d8962376; /* Cambia el color de fondo cuando está activo (opcional) */
+      border-right: 4px solid #fff; /* Añade un indicador visual cuando está activo (opcional) */
+    }
+  }
 }
 
 .left-panel-small {
-    width: 50px;
-    transition: all 333ms;
+  width: 70px;
+  transition: all 333ms;
 }
 
 .left-panel {
-    min-width: 130px;
-    width: 15%;
-    transition: all 333ms;
-
+  min-width: 180px;
+  width: 15%;
+  transition: all 333ms;
+  border-radius: 0;
 }
 
 .right-panel {
-    width: 85%;
-    // background-color: red;
+  width: 85%;
+  background-color: #ffffffd4;
 }
 
 .right-panel-big {
-    width: calc(100% - 50px);
-    // background-color: red;
+  width: calc(100% - 70px);
+  // background-color: red;
 }
 
-/* Estilos para el footer */
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f9f9f9; /* Color de fondo del footer */
-    padding: 10px 0; /* Espaciado interior del footer */
-    text-align: center; /* Centrar el contenido del footer */
-  }
-  
-  .footer__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Estilos adicionales para el contenido del footer, como el CubeWithImages y el texto de copyright */
-  .footer__content p {
-    margin: 0;
-  }
-// .ui.grid>.row,
-// .ui.grid>.row>.column {
-//     position: static;
-// }
-
-/* Estilos para la barra de desplazamiento vertical */
 .scrollable-container {
-    /* Altura máxima del contenedor para que se muestre la barra de desplazamiento */
-    max-height: 400px;
-    /* Agrega un desplazamiento solo si el contenido excede la altura máxima */
-    overflow-y: auto;
+  /* Altura máxima del contenedor para que se muestre la barra de desplazamiento */
+  max-height: 400px;
+  /* Agrega un desplazamiento solo si el contenido excede la altura máxima */
+  overflow-y: auto;
 
-    /* Oculta la barra de desplazamiento */
-    -ms-overflow-style: none;
-    /* Para IE 10+ */
-    scrollbar-width: none;
-    /* Para Firefox */
+  /* Oculta la barra de desplazamiento */
+  -ms-overflow-style: none;
+  /* Para IE 10+ */
+  scrollbar-width: none;
+  /* Para Firefox */
 }
 
 .scrollable-container::-webkit-scrollbar {
-    display: none;
-    /* Para Chrome, Safari y Opera */
+  display: none;
 }

@@ -5,5 +5,7 @@ export * from "./Services";
 export * from "./Clients";
 export * from "./News";
 export * from "./Providers";
+export * from "./Projects";
 export * from "./Sedes";
 export * from "./Reports";
+export * from "./Certifications";

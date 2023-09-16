@@ -160,9 +160,10 @@ export const RegisterForm = (props) => {
         />
       )}
       <Form className="register-form" onSubmit={formik.handleSubmit}>
-        <Form.Group widths="equal">
+        <Form.Group className="inputs-nombre">
           <Form.Input
             size="mini"
+            className="input-nombre"
             icon="user"
             iconPosition="left"
             fluid
@@ -176,6 +177,7 @@ export const RegisterForm = (props) => {
           />
           <Form.Input
             size="mini"
+            className="input-nombre"
             icon="user"
             iconPosition="left"
             fluid
@@ -192,6 +194,7 @@ export const RegisterForm = (props) => {
         <Form.Input
           size="mini"
           icon="envelope"
+          className="input-email"
           iconPosition="left"
           name="email"
           placeholder="Correo electrónico"
@@ -200,9 +203,10 @@ export const RegisterForm = (props) => {
           value={formik.values.email}
           error={formik.errors.email}
         />
-        <Form.Group widths="equal">
+        <Form.Group className="inputs-nombre">
           <Form.Input
             size="mini"
+            className="input-nombre"
             name="current_password"
             type={showCurrentPassword ? "text" : "password"}
             autoComplete="current_password"
@@ -216,11 +220,11 @@ export const RegisterForm = (props) => {
               onClick: toggleCurrentPasswordVisibility,
             }}
             iconPosition="left"
-            className="password-input"
           />
           <Form.Input
             size="mini"
             name="confirm_password"
+            className="input-nombre"
             type={showCurrentPassword ? "text" : "password"}
             autoComplete="confirm_password"
             placeholder="Repetir contraseña"
@@ -230,16 +234,15 @@ export const RegisterForm = (props) => {
             icon={{
               name: showCurrentPassword ? "eye" : "eye slash",
               link: true,
-              onClick: toggleCurrentPasswordVisibility,
+              onClick: toggleConfirmPasswordVisibility,
             }}
             iconPosition="left"
-            className="password-input"
           />
         </Form.Group>
 
         <div className="terms-checkbox">
           <button onClick={handleOpenModal} className="terms-button hover">
-            He leído y acepto los Términos y Condiciones y Política de
+            Leer los Términos y Condiciones y Política de
             privacidad de SENNOVALAB
           </button>
         </div>
@@ -249,7 +252,7 @@ export const RegisterForm = (props) => {
             close={handleCloseModal}
             title={
               <>
-                Términos y Condiciones <br /> SENNOVALAB
+                Términos y Condiciones SENNOVALAB
               </>
             }
             acceptanceState={acceptanceState}

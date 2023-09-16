@@ -16,18 +16,18 @@ api.post(
 api.get("/", ClientController.getAllClients);
 
 // Ruta para obtener una categoría específica por su ID
-api.get("/:idClient", ClientController.getClientById);
+api.get("/:id", ClientController.getClientById);
 
 // Ruta para actualizar una categoría por su ID
 api.patch(
-  "/edit/:idClient",
+  "/:id",
   [md_auth.ensureAuth],
   ClientController.updateClientById
 );
 
 // Ruta para eliminar una categoría por su ID
 api.delete(
-  "/delete/:idClient",
+  "/:id",
   md_auth.ensureAuth,
   ClientController.deleteClientById
 );

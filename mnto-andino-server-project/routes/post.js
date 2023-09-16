@@ -22,14 +22,14 @@ api.get("/category/:categoryId", PostController.getPostsAssociatedWithCategory);
 
 // Ruta para actualizar una noticia por su ID
 api.patch(
-  "/edit/:id",
+  "/:id",
   [md_auth.ensureAuth],
   PostController.editarNoticia
 );
 
 // Ruta para eliminar una noticia por su ID
 api.delete(
-  "/delete/:id",
+  "/:id",
   [md_auth.ensureAuth],
   PostController.eliminarNoticia
 );

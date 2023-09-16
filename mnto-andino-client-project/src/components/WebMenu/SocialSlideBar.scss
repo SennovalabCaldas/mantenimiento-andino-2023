@@ -1,0 +1,59 @@
+/* Estilos para el slide bar */
+.social-slide-bar {
+  position: fixed;
+  border-radius: 3px;
+  bottom: 300px;
+  right: 15px;
+  width: 50px;
+  height: 35%;
+  background-color: rgb(105 143 147 / 51%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.3s;
+  .toggle-button {
+    cursor: pointer;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    background-color: rgba(186, 18, 40, 0.4117647059);
+    // padding: 10px;
+    border-radius: 3px;
+    width: 100%;
+    text-align: center;
+    border-bottom: #ffffffcf 2px solid;
+    user-select: none;
+  }
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-icons a {
+  text-decoration: none;
+  transition: transform 0.3s;
+  .footer__icon-img-large {
+    width: 35px;
+    height: 35px;
+  }
+  .footer__icon-img-large-whatsapp {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.social-icons a:hover {
+  transform: scale(1.2); /* Efecto de escala al pasar el mouse */
+}
+
+
+/* Estilos para el botón de mostrar/ocultar */
+.social-slide-bar.open {
+  right: 0;
+}
+
+/* Agrega estilos adicionales según sea necesario */

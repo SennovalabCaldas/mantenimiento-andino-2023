@@ -1,0 +1,32 @@
+/* SlideBarWebMenu.scss (o tu archivo de estilos preferido) */
+
+.slide-bar-panel {
+  position: fixed;
+  margin-left: 10px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: antiquewhite;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 60vh;
+  z-index: 999;
+  border-radius: 7px;
+}
+
+.icon-panel {
+  font-size: 22px; /* Tamaño de icono */
+  color: #000000; /* Color de icono */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el icono (opcional) */
+  transition: background-color 0.3s; /* Agrega una transición suave al cambio de color de fondo (opcional) */
+  padding: 10px; /* Espaciado interior del icono (opcional) */
+
+}
+
+.icon-panel.active {
+  background-color: #d8962376; /* Cambia el color de fondo cuando está activo (opcional) */
+  border-right: 4px solid #fff; /* Añade un indicador visual cuando está activo (opcional) */
+}

@@ -1,0 +1,115 @@
+.cubeContainer {
+    bottom: 225px;
+    right: 120px;
+    position: fixed;
+    z-index: 999;
+    .cube {
+      width: 70px;
+      height: 70px;
+      transform-style: preserve-3d;
+      animation: spin 8s infinite linear;
+      position: fixed;
+  
+      div {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        opacity: 0.8;
+      }
+      .front {
+        transform: translateZ(35px);
+        background: linear-gradient(45deg, #ff4e50, #f9d423);
+      }
+  
+      .back {
+        transform: translateZ(-35px);
+        background: linear-gradient(45deg, #40e0d0, #ff8c00);
+      }
+  
+      .top {
+        transform: rotateX(90deg) translateZ(35px);
+        background: linear-gradient(45deg, #800080, #00bfff);
+      }
+  
+      .bottom {
+        transform: rotateX(90deg) translateZ(-35px);
+        background: linear-gradient(45deg, #008000, #ffff00);
+      }
+  
+      .left {
+        transform: rotateY(90deg) translateZ(35px);
+        background: linear-gradient(45deg, #0000ff, #ff1493);
+      }
+  
+      .right {
+        transform: rotateY(90deg) translateZ(-35px);
+        background: linear-gradient(45deg, #00ffff, #ff0000);
+      }
+    }
+  }
+  .options {
+    display: none;
+    position: absolute;
+    transform: translate(-35%, -130%);
+  
+    & .option {
+      .btn {
+        width: 170px;
+        height: 30px;
+        padding-bottom: 5px;
+        background-color: rgba(59, 56, 56, 0.063);
+        color: #000;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-bottom: 1px #444 solid;
+        overflow: hidden;
+      }
+  
+      .btn span {
+        font-size: 12px;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+        transition: top 0.5s;
+      }
+  
+      .btn-text-one {
+        // position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+  
+      .btn-text-two {
+        // position: absolute;
+        width: 100%;
+        top: 150%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+  
+      .btn:hover .btn-text-one {
+        top: -100%;
+      }
+  
+      .btn:hover .btn-text-two {
+        top: 50%;
+      }
+    }
+    & .option:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+  
+    100% {
+      transform: rotateX(360deg) rotateY(360deg);
+    }
+  }
+  

@@ -1,33 +1,40 @@
-.sedes-page {
-    margin-top: 10px;
-    padding: 20px;
-    background-color: #fff;
-    border: 0.5px solid #ececec;
-    border-radius: 3px;
+.content-section-websedes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // margin-top: 2em;
+  background-image: url("../../../assets/jpg/auth-bg.jpg");
+  // margin-bottom: 2em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  .custom-button {
+    background-color: #ff4081;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 
-    .custom-button {
-        background-color: #ff4081;
-        color: #fff;
-        border: none;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-            background-color: #e91e63;
-        }
+    &:hover {
+      background-color: #e91e63;
     }
+  }
 }
 
 .modal-create-sedes .modal-dialog {
-    width: 800px !important;
+  width: 800px !important;
 
-    /* Ajusta el valor según tus necesidades */
-    @media (max-width: 768px) {
-        .modal-create-sedes .modal-dialog {
-            width: 90%;
-            /* Ajusta el valor según tus necesidades */
-        }
+  /* Ajusta el valor según tus necesidades */
+  @media (max-width: 768px) {
+    .modal-create-sedes .modal-dialog {
+      width: 90%;
+      /* Ajusta el valor según tus necesidades */
     }
+  }
 }
