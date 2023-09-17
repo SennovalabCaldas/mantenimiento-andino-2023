@@ -93,7 +93,7 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
 
   return (
     <div className="admin-menu-container">
-        <Menu fluid vertical icon className={`admin-menu ${menuVisible ? "" :"hidden"}`}>
+        <Menu fluid vertical icon className={`admin-menu ${!menuVisible ? "hidden" :""}`}>
           {filteredMenuItems.map((item) => (
             <Menu.Item
               as={Link}
