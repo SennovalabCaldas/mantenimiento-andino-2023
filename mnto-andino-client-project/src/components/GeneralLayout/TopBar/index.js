@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "semantic-ui-react";
 import Logout from "../../Admin/AdminLayout/ProfileMenu/ProfileMenu";
-import "../../../scss/_header.scss";
+// import "../../../scss/_header.scss";
 
 
 
