@@ -82,7 +82,6 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
   };
 
   const handleSetActiveSection = (section) => {
-    console.log("Sección activa", section);
     setActiveSection(section);
   };
 
@@ -98,7 +97,7 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
             <Menu.Item
               as={Link}
               to={item.path}
-              active={activeSection === item.path} // Utiliza activeSection para determinar el elemento activo
+              active={activeMenuItem === item.path} // Utiliza activeSection para determinar el elemento activo
               key={item.path}
               className={activeSection === item.path ? "active" : ""}
             >
