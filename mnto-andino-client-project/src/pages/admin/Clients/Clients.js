@@ -13,10 +13,8 @@ export const Clients = () => {
   }, [dispatch]);
 
   const clients = useSelector((state) => state.client.clients);
-  console.log("Estos son los clientes", clients);
   return (
     <div>
-      <h2>Clients works!</h2>
       <ClientForm />
       <ClientList clients={clients} />
     </div>

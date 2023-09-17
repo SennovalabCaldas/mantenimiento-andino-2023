@@ -16,6 +16,7 @@ import {
 // import "../../../scss/index.scss";
 import { Icon } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 library.add(
   faBuilding,
@@ -30,7 +31,7 @@ library.add(
 );
 
 const menuItems = [
-  { path: "/", icon: faBuilding, text: "Home", roles: ["admin"] },
+  // { path: "/", icon: faBuilding, text: "Home", roles: ["admin"] },
   // { path: "/admin", icon: faBuilding, text: "Home", roles: ["admin"] },
   {
     path: "/admin/home",
@@ -65,7 +66,7 @@ const menuItems = [
     roles: ["admin"],
   },
   {
-    path: "/admin/suppliers",
+    path: "/admin/allies",
     icon: faHome,
     roles: ["admin"],
   },
@@ -80,7 +81,7 @@ const menuItems = [
     roles: ["admin"],
   },
   {
-    path: "/admin/reports",
+    path: "/admin/foundation",
     icon: faHome,
     roles: ["admin"],
   },
@@ -88,6 +89,8 @@ const menuItems = [
 
 function SlideBarWebMenuPanel({ handleSetActiveSection, show }) {
   const [activeSection, setActiveSection] = useState("");
+  const user = useSelector((state) => state.auth.user);
+
 
   const handleClick = (section) => {
     console.log("Se hizo clic en el elemento del menú:", section);
@@ -99,9 +102,14 @@ function SlideBarWebMenuPanel({ handleSetActiveSection, show }) {
     console.log("activeSection actualizado:", activeSection);
   }, [activeSection]);
 
+  const filteredMenuItems = menuItems.filter(
+    (item) =>
+      item.roles.length === 0 || (user && item.roles.includes(user.role))
+  );
+
   return (
     <div className={` slide-bar-panel ${show ? "" :"show"}`}>
-      {menuItems.map((menuItem) => (
+      {filteredMenuItems.map((menuItem) => (
         <Link
           to={menuItem.path}
           onClick={() => handleClick(menuItem.path)}

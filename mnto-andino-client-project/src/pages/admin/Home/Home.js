@@ -61,7 +61,7 @@ export const Home = () => {
 
   return (
     <div className="dashboard-page">
-      <div className="dashboard-card">
+      <div className="">
         <div style={{ padding: "20px" }}>
           <Typography variant="h4" gutterBottom>
             Dashboard
