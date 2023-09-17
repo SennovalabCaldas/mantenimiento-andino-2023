@@ -1,7 +1,8 @@
 const SERVER_IP =
-  process.env.ENVIROMENT === "prod"
+  process.env.REACT_APP_ENVIROMENT === "prod"
     ? "http://mantenimientoandino.co:3000"
     : "http://localhost:3100";
+
 const API_VERSION = "v1";
 
 export const ENV = {
