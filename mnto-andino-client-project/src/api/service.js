@@ -15,6 +15,7 @@ export class Service {
       const formData = new FormData();
       Object.keys(serviceData).forEach((key) => {
         if (key === "photos") {
+          console.log("serviceData[key]", serviceData[key]);
           serviceData[key].forEach((photo) => {
             formData.append("photos", photo);
           });
@@ -87,21 +88,35 @@ export class Service {
   }
 
   async updateService(_id, updatedData) {
+    console.log("updatedData", updatedData);
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${SERVICE_ROUTE}/edit/${_id}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(updatedData),
-          headers: {
-            "Content-Type": CONTENT_TYPE_JSON,
-            Authorization: `Bearer ${accessToken}`,
-          },
+      const formData = new FormData();
+      Object.keys(updatedData).forEach((key) => {
+        if (key === "photos") {
+          updatedData[key].forEach((photo) => {
+            formData.append("photos", photo);
+          });
+        } else {
+          formData.append(key, updatedData[key]);
         }
-      );
-      const data = await response.json();
-      return data;
+      });
+
+      const url = `${this.baseApi}/${SERVICE_ROUTE}/${_id}`;
+      const params = {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: formData,
+      };
+
+      console.log("params", params);
+      const response = await fetch(url, params);
+      const result = await response.json();
+
+      if (response.status !== 200) throw result;
+
     } catch (error) {
       console.error("Error al actualizar el servicio:", error);
       throw error;
@@ -111,15 +126,12 @@ export class Service {
   async deleteService(_id) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${SERVICE_ROUTE}/delete/${_id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${this.baseApi}/${SERVICE_ROUTE}/${_id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       const data = await response.json();
       return data;
     } catch (error) {

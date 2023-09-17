@@ -66,12 +66,12 @@ export class Client {
           "Content-Type": CONTENT_TYPE_JSON,
         },
       });
-
+      console.log(response);
       const data = await response.json();
       console.log(data);
       return data;
     } catch (error) {
-      console.error("Error al obtener los clientes:", error);
+      console.error("Error al obtener las categorías:", error);
       throw error;
     }
   }
@@ -107,7 +107,7 @@ export class Client {
       console.log(matchingAddress);
       if (matchingAddress) {
         // Si se encuentra la dirección, devuelve la dirección completa
-        console.log('Matching',matchingAddress);
+        console.log("Matching", matchingAddress);
         return matchingAddress;
       } else {
         // Si no se encuentra la dirección, devuelve un mensaje de error o null
@@ -123,17 +123,14 @@ export class Client {
   async updateClient(_id, updatedData) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${CLIENT_ROUTE}/${_id}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(updatedData),
-          headers: {
-            "Content-Type": CONTENT_TYPE_JSON,
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`, {
+        method: "PATCH",
+        body: JSON.stringify(updatedData),
+        headers: {
+          "Content-Type": CONTENT_TYPE_JSON,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       const data = await response.json();
       return data;
     } catch (error) {
@@ -145,15 +142,12 @@ export class Client {
   async deleteClient(_id) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${CLIENT_ROUTE}/${_id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`);
       const data = await response.json();
       console.log("data", data);

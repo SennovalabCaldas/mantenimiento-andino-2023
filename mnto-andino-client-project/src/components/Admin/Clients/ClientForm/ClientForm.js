@@ -36,7 +36,6 @@ export const ClientForm = () => {
   const [pageData, setPageData] = useState([]);
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
-
   const [editingClient, setEditingClient] = useState({
     clientName: "",
     direccion: {},
@@ -119,11 +118,13 @@ export const ClientForm = () => {
       console.log("Updating clients", data._id);
       console.log(data._id);
       await dispatch(updateClient(data._id, data));
+      await dispatch(getAllClients());
     } else {
       console.log("Saving new client data", data);
       await dispatch(createClient(data));
+      await dispatch(getAllClients());
     }
-    await dispatch(getAllClients());
+
   };
 
   const handleToggleShow = async (clientId, updateData) => {

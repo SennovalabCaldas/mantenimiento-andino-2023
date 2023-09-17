@@ -1,16 +1,14 @@
 import { ENV } from "../utils";
 import { Auth } from "./auth";
-import { Address } from "./address";
 
-const SUPPLIER = ENV.API_ROUTES.SUPPLIER;
+const ALLIES = ENV.API_ROUTES.ALLIE;
 const CONTENT_TYPE_JSON = "application/json";
 const authController = new Auth();
-const addressController = new Address();
 
-export class Supplier {
+export class Ally {
   baseApi = ENV.BASE_API;
 
-  async createSupplier(data) {
+  async createAlly(data) {
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
@@ -18,18 +16,13 @@ export class Supplier {
         formData.append("avatar", data.avatar.image);
       } else {
         console.error("Imagen de avatar no válida.");
-        return; 
+        return; // Aborta la función si la imagen no es válida
       }
-      const addressResult = await addressController.createAddress(
-        data.direccion
-      );
-      console.log(addressResult);
-      formData.append("supplierName", data.clientName);
-      formData.append("direccion", addressResult._id);
+      formData.append("allyName", data.allyName);
       formData.append("active", data.active);
 
-      console.log("Estos son los datos del proveedor", formData.get("avatar"));
-      const url = `${this.baseApi}/${SUPPLIER}/new-supplier`;
+      console.log("Estos son los datos del aliado", formData.get("avatar"));
+      const url = `${this.baseApi}/${ALLIES}/new-ally`;
       console.log(url);
       const params = {
         method: "POST",
@@ -49,9 +42,9 @@ export class Supplier {
     }
   }
 
-  async getSuppliers() {
+  async getAllies() {
     try {
-      const response = await fetch(`${this.baseApi}/${SUPPLIER}`, {
+      const response = await fetch(`${this.baseApi}/${ALLIES}`, {
         method: "GET",
         headers: {
           "Content-Type": CONTENT_TYPE_JSON,
@@ -62,15 +55,15 @@ export class Supplier {
       console.log(data);
       return data;
     } catch (error) {
-      console.error("Error al obtener los proveedores:", error);
+      console.error("Error al obtener los aliados:", error);
       throw error;
     }
   }
 
-  async getSupplier(_id) {
+  async getAlly(_id) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/${SUPPLIER}/${_id}`, {
+      const response = await fetch(`${this.baseApi}/${ALLIES}/${_id}`, {
         method: "GET",
         headers: {
           "Content-Type": CONTENT_TYPE_JSON,
@@ -80,51 +73,47 @@ export class Supplier {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Error al obtener el proveedor:", error);
+      console.error("Error al obtener el aliado:", error);
       throw error;
     }
   }
 
-  async updateSupplier(_id, updatedData) {
+  async updateAlly(_id, updatedData) {
+    console.log("id", _id);
+    console.log("Estos son los datos del aliado", updatedData);
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${SUPPLIER}/${_id}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(updatedData),
-          headers: {
-            "Content-Type": CONTENT_TYPE_JSON,
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${this.baseApi}/${ALLIES}/${_id}`, {
+        method: "PATCH",
+        body: JSON.stringify(updatedData),
+        headers: {
+          "Content-Type": CONTENT_TYPE_JSON,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Error al actualizar el proveedor:", error);
+      console.error("Error al actualizar el aliado:", error);
       throw error;
     }
   }
 
-  async deleteSupplier(_id) {
+  async deleteAlly(_id) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${SUPPLIER}/${_id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      console.log(`${this.baseApi}/${SUPPLIER}/${_id}`);
+      const response = await fetch(`${this.baseApi}/${ALLIES}/${_id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      console.log(`${this.baseApi}/${ALLIES}/${_id}`);
       const data = await response.json();
       console.log("data", data);
       return data;
     } catch (error) {
-      console.error("Error al eliminar el proveedor:", error);
+      console.error("Error al eliminar el aliado:", error);
       throw error;
     }
   }

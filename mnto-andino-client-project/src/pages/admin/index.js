@@ -8,4 +8,4 @@ export * from "./Providers";
 export * from "./Projects";
 export * from "./Sedes";
 export * from "./Foundation";
-export * from "./Certifications";
+export * from "./Certification";

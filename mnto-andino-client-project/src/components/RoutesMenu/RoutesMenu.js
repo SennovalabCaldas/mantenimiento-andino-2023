@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, Icon, Popup } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 

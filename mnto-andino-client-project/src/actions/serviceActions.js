@@ -23,53 +23,45 @@ export const createService = (serviceData) => {
   };
 };
 
-export const getServices = () => async (dispatch) => {
-  try {
-    const services = await serviceController.getServices();
-    dispatch({
-      type: types.GET_SERVICES_SUCCESS,
-      payload: services,
-    });
-  } catch (error) {
-    dispatch({
-      type: types.GET_SERVICES_FAILURE,
-      payload: error.message,
-    });
-  }
+export const updateService = (serviceId, updatedServiceData) => {
+  console.log("updatedServiceData", updatedServiceData);
+  return async (dispatch, getState) => {
+    try {
+      const updatedService = await serviceController.updateService(
+        serviceId,
+        updatedServiceData
+      );
+      dispatch({
+        type: types.UPDATE_SERVICE_SUCCESS,
+        payload: updatedService,
+      });
+      await dispatch(getServices());
+    } catch (error) {
+      dispatch({
+        type: types.UPDATE_SERVICE_FAILURE,
+        payload: error.message,
+      });
+    }
+  };
 };
 
-export const getService = (_id) => async (dispatch) => {
-  try {
-    const service = await serviceController.getService(_id);
-    dispatch({
-      type: types.GET_SERVICE_SUCCESS,
-      payload: service,
-    });
-  } catch (error) {
-    dispatch({
-      type: types.GET_SERVICE_FAILURE,
-      payload: error.message,
-    });
-  }
-};
-
-export const updateService = (_id, updatedData) => async (dispatch) => {
-  try {
-    const updatedService = await serviceController.updateService(
-      _id,
-      updatedData
-    );
-    console.log("updatedService en actions", updatedService);
-    dispatch({
-      type: types.UPDATE_SERVICE_SUCCESS,
-      payload: updatedService,
-    });
-  } catch (error) {
-    dispatch({
-      type: types.UPDATE_SERVICE_FAILURE,
-      payload: error.message,
-    });
-  }
+export const getServices = () => {
+  return async (dispatch, getState) => {
+    try {
+      const services = await serviceController.getServices();
+      console.log("services", services);
+      dispatch({
+        type: types.GET_SERVICES_SUCCESS,
+        payload: services,
+      });
+    } catch (error) {
+      // En caso de error, despacha una acción de error
+      dispatch({
+        type: types.GET_SERVICES_FAILURE,
+        payload: error.message,
+      });
+    }
+  };
 };
 
 export const deleteService = (_id) => async (dispatch) => {

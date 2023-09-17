@@ -15,8 +15,6 @@ const initialState = {
     _id: null,
     name: null,
     description: null,
-    assistanceType: null,
-    serviceLine: null,
     photos: [],
     creationDate: null,
   },

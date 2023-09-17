@@ -6,3 +6,8 @@ export * from "./post";
 export * from "./address";
 export * from "./menu";
 export * from "./client";
+export * from "./categoryService";
+export * from "./service";
+export * from "./provider";
+export * from "./ally";
+export * from "./project";

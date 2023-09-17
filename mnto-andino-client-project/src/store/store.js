@@ -7,8 +7,14 @@ import categoryReducer from "../reducers/categoryReducer";
 import postReducer from "../reducers/postReducer";
 import addressReducer from "../reducers/addressReducer";
 import menuReducer from "../reducers/menuReducer";
-import serviceReducer from "../reducers/serviceReducer";
 import clientReducer from "../reducers/clientReducer";
+import categoryServiceReducer from "../reducers/categoryServiceReducer";
+import serviceReducer from "../reducers/serviceReducer";
+import supplierReducer from "../reducers/supplierReducer";
+import allyReducer from "../reducers/allyReducer";
+import projectReducer from "../reducers/projectReducer";
+import foundationReducer from "../reducers/foundationReducer";
+
 
 const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
@@ -22,6 +28,11 @@ const rootReducer = combineReducers({
   menu: menuReducer,
   service: serviceReducer,
   client: clientReducer,
+  categoryService: categoryServiceReducer,
+  supplier: supplierReducer,
+  ally: allyReducer,
+  project: projectReducer,
+  foundation: foundationReducer
 });
 
 const store = createStore(

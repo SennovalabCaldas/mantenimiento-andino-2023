@@ -12,7 +12,7 @@ const initialState = {
   client: {
     _id: null,
     clientName: null,
-    store: null,
+    avatar: null,
     direccion: {
       country: null,
       departamento: null,
@@ -29,19 +29,15 @@ const initialState = {
       selectedZone: null,
       barrio: null,
     },
-    storeNumber: null,
-    logo: null,
-    active: null,
     joinDate: {
       type: Date,
       default: Date.now,
     },
   },
-  error: null,
   clients: [],
-  selectedClient: null,
 };
 
+// Reducer de clientes
 // Reducer de clientes
 const clientReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -51,6 +47,7 @@ const clientReducer = (state = initialState, action) => {
         clients: [...state.clients, action.payload],
       };
     case SET_ALL_CLIENTS:
+      console.log("Estos son los clientes", action.payload);
       return {
         ...state,
         clients: action.payload,

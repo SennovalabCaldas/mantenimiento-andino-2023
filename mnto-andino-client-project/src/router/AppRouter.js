@@ -11,8 +11,9 @@ import { EmployeeNews } from "../pages/employee/EmployeeNews";
 import Foundation from "../pages/admin/Foundation/Foundation";
 import { WebMenu } from "../components/WebMenu";
 import { Projects } from "../pages/admin/Projects/Projects";
-import Certifications from "../pages/admin/Certifications/Certifications";
 import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "../pages/web";
+import { Allies } from "../components/Admin/Allies";
+import { Certification } from "../pages/admin/Certification";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
@@ -70,7 +71,7 @@ export const AppRouter = () => {
               />
               <Route
                 path="admin/certifications"
-                element={loadLayout(AdminLayout, Certifications)}
+                element={loadLayout(AdminLayout, Certification)}
               />
               <Route
                 path="admin/clients"
@@ -87,6 +88,10 @@ export const AppRouter = () => {
               <Route
                 path="admin/foundation"
                 element={loadLayout(AdminLayout, Foundation)}
+              />
+              <Route
+                path="admin/allies"
+                element={loadLayout(AdminLayout, Allies)}
               />
             </>
           )}

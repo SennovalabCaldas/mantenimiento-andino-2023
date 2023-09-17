@@ -15,6 +15,7 @@ export const createClient = (clientData) => {
   return async (dispatch, getState) => {
     try {
       const client = await clientController.createClient(clientData);
+      await dispatch(getAllClients());
       dispatch(createClientSuccess(client));
     } catch (error) {
       console.error(error);
@@ -25,8 +26,8 @@ export const createClient = (clientData) => {
 export const getAllClients = () => {
   return async (dispatch, getState) => {
     try {
-      const categories = await clientController.getClients();
-      dispatch(setAllClients(categories));
+      const clients = await clientController.getClients();
+      dispatch(setAllClients(clients));
     } catch (error) {
       console.error(error);
     }

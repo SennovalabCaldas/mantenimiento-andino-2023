@@ -10,6 +10,10 @@ import {
   TextField,
   Alert,
   IconButton,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CloseIcon from "@mui/icons-material/Close";
@@ -19,8 +23,7 @@ import {
   deleteService,
   getServices,
   updateService,
-} from "../../../actions/serviceActions";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+} from "../../../../actions/serviceActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -37,10 +40,15 @@ const ServiceList = () => {
   const [editedService, setEditedService] = useState({
     name: "",
     description: "",
-
+    categoryService: "",
     photos: [],
     imageUrls: [],
   });
+
+  const [isImageEditing, setIsImageEditing] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
+
+  const [categoryService, setCategoryService] = useState("");
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -51,16 +59,19 @@ const ServiceList = () => {
     dispatch(deleteService(serviceId));
     dispatch(getServices());
   };
+
   const handleEdit = (service) => {
+    console.log("Service data in handleEdit:", service);
     setEditingService(service);
     setIsEditing(true);
     setEditedService({
       name: service.name,
       description: service.description,
-
-      photos: service.photos,
-      imageUrls: service.photos,
+      categoryService: service.categoryService,
+      photos: service.photos.map((photo) => photo),
+      imageUrls: service.photos.map((photo) => photo),
     });
+    console.log("editedService", editedService);
     handleModalOpen();
   };
 
@@ -71,10 +82,46 @@ const ServiceList = () => {
     setEditedService({
       name: "",
       description: "",
-
+      categoryService: "",
       photos: [],
       imageUrls: [],
     });
+  };
+
+  // Función para activar/desactivar el modo de edición de imágenes
+  const toggleImageEditing = () => {
+    setIsImageEditing(!isImageEditing);
+    setSelectedImages([]); // Limpia las imágenes seleccionadas al cambiar el modo
+  };
+
+  // Función para manejar la selección/deselección de imágenes
+  const handleImageSelection = (index) => {
+    if (selectedImages.includes(index)) {
+      // Si ya está seleccionada, quítala de la lista
+      setSelectedImages(selectedImages.filter((i) => i !== index));
+    } else {
+      // Si no está seleccionada, agrégala a la lista
+      setSelectedImages([...selectedImages, index]);
+    }
+  };
+
+  // Función para eliminar las imágenes seleccionadas
+  const deleteSelectedImages = () => {
+    // Filtra las imágenes no seleccionadas y actualiza editedService.photos e imageUrls
+    const updatedPhotos = editedService.photos.filter(
+      (_, index) => !selectedImages.includes(index)
+    );
+    const updatedImageUrls = editedService.imageUrls.filter(
+      (_, index) => !selectedImages.includes(index)
+    );
+
+    setEditedService({
+      ...editedService,
+      photos: updatedPhotos,
+      imageUrls: updatedImageUrls,
+    });
+
+    setIsImageEditing(false); // Sal del modo de edición de imágenes
   };
 
   const onFileChange = (event, formik) => {
@@ -83,16 +130,13 @@ const ServiceList = () => {
       .map((file) => URL.createObjectURL(file))
       .filter((url) => url);
 
-    if (urls.length > 0) {
-      setEditedService((prevService) => ({
-        ...prevService,
-        photos: [...prevService.photos, ...selectedFiles],
-        imageUrls: [...prevService.imageUrls, ...urls],
-      }));
-      console.log("editedService", editedService);
+    setEditedService((prevService) => ({
+      ...prevService,
+      photos: [...prevService.photos, ...selectedFiles],
+      imageUrls: [...prevService.imageUrls, ...urls],
+    }));
 
-      formik.setFieldValue("photos", [...formik.values.photos, ...urls]);
-    }
+    formik.setFieldValue("photos", [...formik.values.photos, ...selectedFiles]);
   };
 
   /* ------------------------------------------------------ */
@@ -100,14 +144,22 @@ const ServiceList = () => {
   const handleCreateService = async () => {
     setIsCreatingService(true);
     try {
-      const createdService = await dispatch(createService(editedService));
+      // Envía solo las imágenes en el campo 'photos' de 'editedService'
+      await dispatch(
+        createService({
+          name: editedService.name,
+          description: editedService.description,
+          categoryService, // Utiliza categoryService aquí
+          photos: editedService.photos,
+        })
+      );
       await dispatch(getServices());
       setEditedService({
         name: "",
         description: "",
-
-        photos: [],
-        imageUrls: [],
+        categoryService: "", // Limpia el campo 'categoryService'
+        photos: [], // Limpia el campo 'photos'
+        imageUrls: [], // No es necesario limpiar 'imageUrls'
       });
       setModalOpen(false);
     } catch (error) {
@@ -118,11 +170,14 @@ const ServiceList = () => {
   const handleUpdateService = async () => {
     setIsCreatingService(true);
     try {
+      console.log("Updated Photos:", editedService.photos);
       const updatedService = {
         ...editingService,
         photos: editedService.photos,
       };
+      console.log("Updated Service:", updatedService);
       await dispatch(updateService(editingService._id, updatedService));
+      await dispatch(getServices());
       setIsEditing(false);
       handleModalClose();
     } catch (error) {
@@ -144,6 +199,7 @@ const ServiceList = () => {
       >
         Crear Servicio
       </Button>
+
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
         {services.map((service) => (
           <Card key={service.id} style={{ margin: "10px", minWidth: "200px" }}>
@@ -162,7 +218,7 @@ const ServiceList = () => {
               {/* Display other service details */}
               <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {service.photos &&
-                  service.photos.slice(1).map((photo, index) => (
+                  service.photos.map((photo, index) => (
                     <img
                       key={index}
                       src={photo} // Use the stored URL directly
@@ -178,9 +234,6 @@ const ServiceList = () => {
                   marginTop: "10px",
                 }}
               >
-                <IconButton>
-                  <VisibilityIcon />
-                </IconButton>
                 <IconButton onClick={() => handleEdit(service)}>
                   <EditIcon />
                 </IconButton>
@@ -236,6 +289,31 @@ const ServiceList = () => {
                     setEditedService({ ...editedService, name: e.target.value })
                   }
                 />
+
+                <FormControl fullWidth margin="normal">
+                  <InputLabel id="service-label">
+                    Selecciona un servicio
+                  </InputLabel>
+                  <Select
+                    labelId="service-label"
+                    id="service-select"
+                    value={categoryService}
+                    onChange={(e) => {
+                      setCategoryService(e.target.value); // Actualiza categoryService
+                      setEditedService({
+                        ...editedService,
+                        categoryService: e.target.value, // Actualiza categoryService en editedService
+                      });
+                    }}
+                  >
+                    {services.map((service) => (
+                      <MenuItem key={service._id} value={service._id}>
+                        {service.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
                 <TextField
                   label="Descripción"
                   fullWidth
