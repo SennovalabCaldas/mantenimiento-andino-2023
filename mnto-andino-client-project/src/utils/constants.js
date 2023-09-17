@@ -1,13 +1,15 @@
-// const SERVER_IP = "http://mantenimientoandino.co:3000";
-const SERVER_IP = "http://localhost:3100";
+const SERVER_IP =
+  process.env.ENVIROMENT === "prod"
+    ? "http://mantenimientoandino.co:3000"
+    : "http://localhost:3100";
 const API_VERSION = "v1";
 
 export const ENV = {
   BASE_PATH: SERVER_IP,
   BASE_API: `${SERVER_IP}/api/${API_VERSION}`,
   API_ROUTES: {
-    UPDATE_ME: "user/edit-profile", 
-    SUPPLIER:"admin/suppliers",
+    UPDATE_ME: "user/edit-profile",
+    SUPPLIER: "admin/suppliers",
     USER: "admin/users/user",
     GET_USER: "get-user",
     REGISTER: "auth/register",

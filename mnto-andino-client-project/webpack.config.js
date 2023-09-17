@@ -1,5 +1,5 @@
 const path = require("path");
-
+const webpack = require('webpack'); 
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -13,5 +13,10 @@ module.exports = {
       "timers": require.resolve("timers-browserify"),
       "dns": require.resolve("node-libs-browser/mock/dns")
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        "process.env": JSON.stringify(process.env),
+      }),
+    ],
   },
 };
