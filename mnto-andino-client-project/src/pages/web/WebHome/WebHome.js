@@ -56,8 +56,8 @@ export const WebHome = ({ posts }) => {
     return (
       <div
         className="post-slide"
-        style={{ backgroundImage: `url(http://localhost:3100/${post.avatar})` }}
-        // style={{ backgroundImage: `url(http://mantenimientoandino.co/${post.avatar})` }}
+        // style={{ backgroundImage: `url(http://localhost:3100/${post.avatar})` }}
+        style={{ backgroundImage: `url(http://mantenimientoandino.co/${post.avatar})` }}
         // <img
         //   src={`http://mantenimientoandino.co/${post.avatar}`}
         //   alt={post.titulo}

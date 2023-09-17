@@ -1,5 +1,5 @@
-const SERVER_IP = "https://mantenimientoandino.co:3000";
-// const SERVER_IP = "http://localhost:3100";
+// const SERVER_IP = "http://mantenimientoandino.co:3000";
+const SERVER_IP = "http://localhost:3100";
 const API_VERSION = "v1";
 
 export const ENV = {
@@ -8,7 +8,7 @@ export const ENV = {
   API_ROUTES: {
     UPDATE_ME: "user/edit-profile", 
     SUPPLIER:"admin/suppliers",
-    USER: "user",
+    USER: "admin/users/user",
     GET_USER: "get-user",
     REGISTER: "auth/register",
     LOGIN: "auth/login",

@@ -8,7 +8,7 @@ import { Users, Sedes, Home, Clients } from "../pages/admin";
 import { EmployeeHome, EmployeeServices } from "../pages/employee";
 import { Providers } from "../pages/admin/Providers";
 import { EmployeeNews } from "../pages/employee/EmployeeNews";
-import Reports from "../pages/admin/Reports/Reports";
+import Foundation from "../pages/admin/Foundation/Foundation";
 import { WebMenu } from "../components/WebMenu";
 import { Projects } from "../pages/admin/Projects/Projects";
 import Certifications from "../pages/admin/Certifications/Certifications";
@@ -85,26 +85,10 @@ export const AppRouter = () => {
                 element={loadLayout(AdminLayout, Providers)}
               />
               <Route
-                path="admin/reports"
-                element={loadLayout(AdminLayout, Reports)}
+                path="admin/foundation"
+                element={loadLayout(AdminLayout, Foundation)}
               />
             </>
-          )}
-          {isEmployee && (
-            <Route
-              path="/employee"
-              element={
-                <AdminLayout
-                  activeSection={activeSection}
-                  setActiveSection={setActiveSection}
-                />
-              }
-            >
-              <Route path="/" element={<EmployeeHome />} />
-              <Route path="/home" element={<EmployeeHome />} />
-              <Route path="/services" element={<EmployeeServices />} />
-              <Route path="/news" element={<EmployeeNews />} />
-            </Route>
           )}
         </>
       )}

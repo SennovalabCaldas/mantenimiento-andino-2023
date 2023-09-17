@@ -2,6 +2,19 @@
   margin: 0 auto;
   max-width: 500px; /* Ajusta el ancho máximo según tus necesidades */
 }
+.personal-details-section {
+  width: 100%;
+  display: flex;
+  .input-register-field {
+    padding-bottom: 10px;
+    width: 50%;
+  }
+}
+.input-email-field {
+  padding-bottom: 10px;
+  width: 100%;
+}
+
 .inline-fields,
 .dropdowns-section {
   display: flex;
@@ -30,6 +43,7 @@
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
+  border: dashed 1px #000000;
 }
 
 .avatar-image {
@@ -70,4 +84,3 @@
   color: #000;
   background: none;
 }
-

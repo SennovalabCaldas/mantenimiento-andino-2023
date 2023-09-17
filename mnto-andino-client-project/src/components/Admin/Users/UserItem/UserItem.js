@@ -34,7 +34,6 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
     fetchData();
   }, [dispatch]);
 
-
   const openUpdateUser = () => {
     setTitleModal(`Actualizar ${user.firstname} ${user.lastname}`);
     onOpenCloseModal();
@@ -43,8 +42,6 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
   const handleItemClick = () => {
     handleSelectedUser(user._id); // Llama a la función con el ID del usuario
   };
-
-  
 
   const openDesactivateActivateConfim = () => {
     setIsDelete(false);
@@ -91,27 +88,14 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
 
     return (
       <div className={`user-item__image ${avatarClassName}`}>
-        <Image
-          avatar
-          src={imageUrl}
-          style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            objectFit: "cover", // Ajustar la imagen proporcionalmente
-            padding: "2px",
-            border: "2px solid rgb(8, 163, 60)",
-            borderWidth: "2px",
-            borderStyle: "solid",
-          }}
-        />
+        <Image avatar src={imageUrl} />
       </div>
     );
   };
 
   return (
     <>
-      <div className={userItemClass} onClick={handleItemClick}>
+      <div className="user-flatlist" onClick={handleItemClick}>
         <div className="user-item__info">
           <UserAvatar
             imageUrl={
@@ -124,27 +108,37 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
               {user.firstname} {user.lastname}
             </p>
             <div className="user-item__details">
-              <p className="user-item__info">{user.email}</p>
-              <p className="user-item__info">{user.sede}- {user.role}</p>
+              <p className="user-basic-info">{user.email}</p>
+              <p className="user-basic-info">
+                {user.sede}- {user.role}
+              </p>
             </div>
           </div>
         </div>
 
         <div className="user-item__buttons">
           <Button icon onClick={openUpdateUser}>
-            <Icon name="pencil" />
+            <Icon className="icon-user-item" name="pencil" />
           </Button>
           <Button icon onClick={openDesactivateActivateConfim}>
-            <Icon name={user.active ? "eye slash outline" : "eye"} />
+            <Icon
+              className="icon-user-item"
+              name={user.active ? "eye slash outline" : "eye"}
+            />
           </Button>
           <Button icon onClick={openDeleteConfirm}>
-            <Icon name="trash" />
+            <Icon className="icon-user-item" name="trash" />
           </Button>
         </div>
       </div>
 
       <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-        <UserForm close={onOpenCloseModal} onReload={onReload} user={user} sedes={sedes}/>
+        <UserForm
+          close={onOpenCloseModal}
+          onReload={onReload}
+          user={user}
+          sedes={sedes}
+        />
       </BasicModal>
 
       <Confirm

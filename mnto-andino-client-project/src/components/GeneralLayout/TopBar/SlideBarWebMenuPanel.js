@@ -120,7 +120,7 @@ function SlideBarWebMenuPanel({ handleSetActiveSection }) {
             activeSection === menuItem.path ? "active" : ""
           }`}
         >
-          <Icon className="icon-panel" name={menuItem.icon} />
+          <FontAwesomeIcon icon={menuItem.icon} className="icon-panel" />
         </Link>
       ))}
     </div>

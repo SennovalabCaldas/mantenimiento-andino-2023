@@ -71,8 +71,8 @@ const UserForm = (props) => {
       }}
     >
       {(formik) => (
-        <form className="user-form" onSubmit={formik.handleSubmit}>
-          <div className="user-form__avatar">
+        <form className="user-form-register" onSubmit={formik.handleSubmit}>
+          <div className="user-form-register__avatar">
             <div className="avatar-image">
               <input
                 id="avatar-input"
@@ -91,93 +91,88 @@ const UserForm = (props) => {
             </div>
           </div>
 
-          <div className="inline-fields">
-            <div className="personal-details-section">
-              <TextField
-                name="firstname"
-                label="Nombre"
-                onChange={formik.handleChange}
-                value={formik.values.firstname}
-                error={
-                  formik.touched.firstname && Boolean(formik.errors.firstname)
-                }
-                helperText={formik.touched.firstname && formik.errors.firstname}
-              />
-              <TextField
-                name="lastname"
-                label="Apellidos"
-                onChange={formik.handleChange}
-                value={formik.values.lastname}
-                error={
-                  formik.touched.lastname && Boolean(formik.errors.lastname)
-                }
-                helperText={formik.touched.lastname && formik.errors.lastname}
-              />
-            </div>
-
+          <div className="personal-details-section">
             <TextField
-              name="email"
-              label="Correo electrónico"
+              className="input-register-field"
+              name="firstname"
+              label="Nombre"
               onChange={formik.handleChange}
-              value={formik.values.email}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
+              value={formik.values.firstname}
+              error={
+                formik.touched.firstname && Boolean(formik.errors.firstname)
+              }
+              helperText={formik.touched.firstname && formik.errors.firstname}
+            />
+            <TextField
+              className="input-register-field"
+              name="lastname"
+              label="Apellidos"
+              onChange={formik.handleChange}
+              value={formik.values.lastname}
+              error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+              helperText={formik.touched.lastname && formik.errors.lastname}
             />
           </div>
+
+          <TextField
+            name="email"
+            className="input-email-field"
+            label="Correo electrónico"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+          />
           <div className="dropdowns-section">
-            <div className="inline-fields">
-              <FormControl>
-                <InputLabel id="sede-select-label">
-                  Selecciona una sede
-                </InputLabel>
-                <Select
-                  labelId="sede-select-label"
-                  id="sede-select"
-                  name="sede"
-                  value={formik.values.sede}
-                  label="Selecciona una sede"
-                  onChange={formik.handleChange}
-                >
-                  {sedes &&
-                    sedes.map((sede) => (
-                      <MenuItem key={sede.nombre} value={sede.nombre}>
-                        {sede.nombre}
-                      </MenuItem>
-                    ))}
-                </Select>
-
-                <FormHelperText
-                  error={formik.touched.sede && Boolean(formik.errors.sede)}
-                >
-                  {formik.touched.sede && formik.errors.sede}
-                </FormHelperText>
-              </FormControl>
-
-              <FormControl>
-                <InputLabel id="role-select-label">
-                  Selecciona un rol
-                </InputLabel>
-                <Select
-                  labelId="role-select-label"
-                  id="role-select"
-                  name="role"
-                  value={formik.values.role}
-                  label="Selecciona un rol"
-                  onChange={formik.handleChange}
-                >
-                  {roleOptions.map((option) => (
-                    <MenuItem key={option.key} value={option.value}>
-                      {option.text}
+            <FormControl>
+              <InputLabel id="sede-select-label">
+                Selecciona una sede
+              </InputLabel>
+              <Select
+                labelId="sede-select-label"
+                id="sede-select"
+                name="sede"
+                value={formik.values.sede}
+                label="Selecciona una sede"
+                onChange={formik.handleChange}
+              >
+                {sedes &&
+                  sedes.map((sede) => (
+                    <MenuItem key={sede.nombre} value={sede.nombre}>
+                      {sede.nombre}
                     </MenuItem>
                   ))}
-                </Select>
-                <FormHelperText
-                  error={formik.touched.role && Boolean(formik.errors.role)}
-                >
-                  {formik.touched.role && formik.errors.role}
-                </FormHelperText>
-              </FormControl>
-            </div>
+              </Select>
+
+              <FormHelperText
+                error={formik.touched.sede && Boolean(formik.errors.sede)}
+              >
+                {formik.touched.sede && formik.errors.sede}
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl>
+              <InputLabel id="role-select-label">Selecciona un rol</InputLabel>
+              <Select
+                labelId="role-select-label"
+                id="role-select"
+                name="role"
+                value={formik.values.role}
+                label="Selecciona un rol"
+                onChange={formik.handleChange}
+              >
+                {roleOptions.map((option) => (
+                  <MenuItem key={option.key} value={option.value}>
+                    {option.text}
+                  </MenuItem>
+                ))}
+              </Select>
+              <FormHelperText
+                error={formik.touched.role && Boolean(formik.errors.role)}
+              >
+                {formik.touched.role && formik.errors.role}
+              </FormHelperText>
+            </FormControl>
           </div>
           <div className="inline-fields">
             <TextField

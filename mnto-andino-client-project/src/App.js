@@ -62,7 +62,7 @@ const App = () => {
                 element={<AppRouter isLoggedIn={isLoggedIn} />}
               />
             ) : (
-              <Route path="/*" element={<WebMenu />} />
+              <Route path="/" element={<WebMenu />} />
             )}
             <Route path="/login" element={<Auth />} />
             <Route path="/makinandina" element={<MakinaAndina />} />

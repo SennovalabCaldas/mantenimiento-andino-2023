@@ -7,8 +7,6 @@ import "./RoutesMenu.scss";
 import SlideBarWebMenuPanel from "../GeneralLayout/TopBar/SlideBarWebMenuPanel";
 
 const menuItems = [
-  // { path: "/", icon: "building", text: "Home", roles: ["admin"] },
-  { path: "/admin", icon: "building", text: "Home", roles: ["admin"] },
   {
     path: "/admin/home",
     icon: "building",
@@ -49,7 +47,7 @@ const menuItems = [
     roles: ["admin"],
   },
   {
-    path: "/admin/providers",
+    path: "/admin/allies",
     icon: "shipping fast",
     text: "Aliados",
     roles: ["admin"],
@@ -67,9 +65,9 @@ const menuItems = [
     roles: ["admin"],
   },
   {
-    path: "/admin/reports",
+    path: "/admin/foundation",
     icon: "shipping fast",
-    text: "Reportes",
+    text: "Fundación",
     roles: ["admin"],
   },
 ];
@@ -94,8 +92,7 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
   );
 
   return (
-    <div
-      className="admin-menu-container">
+    <div className="admin-menu-container">
       {menuVisible ? (
         <Menu fluid vertical icon className="admin-menu">
           {filteredMenuItems.map((item) => (

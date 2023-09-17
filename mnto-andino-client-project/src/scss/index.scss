@@ -37,13 +37,13 @@ body {
       top: 50%;
       left: 0;
       transform: translateY(-50%);
-      background-color: antiquewhite;
+      background-color: #405566;
       width: 50px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-      height: 82vh;
+      height: 60vh;
       z-index: 999;
       border-radius: 7px;
     }
@@ -68,19 +68,6 @@ body {
     justify-content: space-around;
     height: 82vh;
     border-radius: 7px;
-    .icon-panel {
-      font-size: 22px;
-      position: fixed;
-      top: 70px;
-      color: #000000;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      padding: 10px;
-    }
-    .icon-panel.active {
-      background-color: #d8962376; /* Cambia el color de fondo cuando está activo (opcional) */
-      border-right: 4px solid #fff; /* Añade un indicador visual cuando está activo (opcional) */
-    }
   }
 }
 

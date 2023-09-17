@@ -37,8 +37,7 @@ const ServiceList = () => {
   const [editedService, setEditedService] = useState({
     name: "",
     description: "",
-    assistanceType: "",
-    serviceLine: "",
+
     photos: [],
     imageUrls: [],
   });
@@ -58,8 +57,7 @@ const ServiceList = () => {
     setEditedService({
       name: service.name,
       description: service.description,
-      assistanceType: service.assistanceType,
-      serviceLine: service.serviceLine,
+
       photos: service.photos,
       imageUrls: service.photos,
     });
@@ -73,8 +71,7 @@ const ServiceList = () => {
     setEditedService({
       name: "",
       description: "",
-      assistanceType: "",
-      serviceLine: "",
+
       photos: [],
       imageUrls: [],
     });
@@ -108,8 +105,7 @@ const ServiceList = () => {
       setEditedService({
         name: "",
         description: "",
-        assistanceType: "",
-        serviceLine: "",
+
         photos: [],
         imageUrls: [],
       });
@@ -252,32 +248,6 @@ const ServiceList = () => {
                     })
                   }
                 />
-
-                <TextField
-                  label="Tipo de Asistencia"
-                  fullWidth
-                  margin="normal"
-                  value={editedService.assistanceType}
-                  onChange={(e) =>
-                    setEditedService({
-                      ...editedService,
-                      assistanceType: e.target.value,
-                    })
-                  }
-                />
-                <TextField
-                  label="Línea de Servicio"
-                  fullWidth
-                  margin="normal"
-                  value={editedService.serviceLine}
-                  onChange={(e) =>
-                    setEditedService({
-                      ...editedService,
-                      serviceLine: e.target.value,
-                    })
-                  }
-                />
-
                 <input
                   type="file"
                   accept="image/*"

@@ -24,7 +24,7 @@ const userController = new User();
 
 const ListUsers = ({ usersActive, reload, onReload }) => {
   const classes = useStyles();
-console.log(usersActive);
+  console.log(usersActive);
   const users = useSelector((state) => state.user.allUsers);
   console.log(users);
   const selectedUser = useSelector((state) => state.user.user);
@@ -69,7 +69,7 @@ console.log(usersActive);
       (user) => user._id !== loggedInUser._id && user.active === false
     );
   }
-console.log(filteredUsersToRender);
+  console.log(filteredUsersToRender);
   const handleSelectedUser = async (userId) => {
     try {
       await dispatch(getUser(userId));
@@ -92,8 +92,8 @@ console.log(filteredUsersToRender);
 
   return (
     <>
-      <div className={classes.listUsersContent}>
-        <div className={classes.usersPageSearch}>
+      <div>
+        <div>
           <Input
             disableUnderline
             startAdornment={<SearchIcon />}
@@ -103,72 +103,58 @@ console.log(filteredUsersToRender);
             className={classes.input}
           />
         </div>
-
         <Button
-          variant="contained"
-          primary
+          className="show-card-btn"
           onClick={() => setShowCard((prevState) => !prevState)}
-          classes={{
-            root: classes.buttonRoot,
-            label: classes.buttonLabel,
-          }}
         >
           {showCard ? "Ocultar información" : "Ver información"}
         </Button>
-
-        <Grid container spacing={2}>
-          <Grid item xs={10} sm={10} className={classes.customGrid}>
-            <div className={classes.usersList}>
-              {currentUsers.map((user) => (
-                <UserItem
-                  key={user._id}
-                  user={user}
-                  onReload={onReload}
-                  handleSelectedUser={() => handleSelectedUser(user._id)}
-                />
-              ))}
-            </div>
-          </Grid>
-          <Grid item xs={2} sm={2}>
-            {showCard && selectedUser && (
-              <Slide direction="up" in={showCard} mountOnEnter unmountOnExit>
-                <Card className={classes.userCard}>
-                  <Avatar
-                    src={
-                      selectedUser.avatar
-                        ? `${ENV.BASE_PATH}/${selectedUser.avatar}`
-                        : image.noAvatar
-                    }
-                    alt="User Avatar"
-                    className={classes.avatar}
-                  />
-                  <CardContent>
-                    <Typography variant="h6" className={classes.cardTitle}>
-                      <strong>
-                        {`${selectedUser.firstname} ${selectedUser.lastname}`}
-                      </strong>
-                    </Typography>
-                    <Typography
-                      color="textSecondary"
-                      className={classes.cardSubtitle}
-                    >
-                      {selectedUser.email}
-                    </Typography>
-                    <Typography variant="body2" className={classes.cardText}>
-                      <span className={classes.lightText}>
-                        {selectedUser.sede}
-                      </span>
-                      <br />
-                      <span className={classes.lightText}>
-                        {selectedUser.role}
-                      </span>
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Slide>
-            )}
-          </Grid>
-        </Grid>
+        }
+        <div>
+          <div className={classes.usersList}>
+            {currentUsers.map((user) => (
+              <UserItem
+                key={user._id}
+                user={user}
+                onReload={onReload}
+                handleSelectedUser={() => handleSelectedUser(user._id)}
+              />
+            ))}
+          </div>
+        </div>
+        {showCard && selectedUser && (
+          <Slide direction="up" in={showCard} mountOnEnter unmountOnExit>
+            <Card className={classes.userCard}>
+              <Avatar
+                src={
+                  selectedUser.avatar
+                    ? `${ENV.BASE_PATH}/${selectedUser.avatar}`
+                    : image.noAvatar
+                }
+                alt="User Avatar"
+                className={classes.avatar}
+              />
+              <CardContent>
+                <Typography variant="h6" className={classes.cardTitle}>
+                  <strong>
+                    {`${selectedUser.firstname} ${selectedUser.lastname}`}
+                  </strong>
+                </Typography>
+                <Typography
+                  color="textSecondary"
+                  className={classes.cardSubtitle}
+                >
+                  {selectedUser.email}
+                </Typography>
+                <Typography variant="body2" className={classes.cardText}>
+                  <span className={classes.lightText}>{selectedUser.sede}</span>
+                  <br />
+                  <span className={classes.lightText}>{selectedUser.role}</span>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Slide>
+        )}
       </div>
       <Pagination
         currentPage={currentPage}

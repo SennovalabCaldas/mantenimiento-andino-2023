@@ -7,5 +7,5 @@ export * from "./News";
 export * from "./Providers";
 export * from "./Projects";
 export * from "./Sedes";
-export * from "./Reports";
+export * from "./Foundation";
 export * from "./Certifications";

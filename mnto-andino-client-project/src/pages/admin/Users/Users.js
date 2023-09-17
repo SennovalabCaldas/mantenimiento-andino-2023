@@ -72,7 +72,7 @@ export const Users = () => {
       <h2>Usuarios</h2>
       <div className="users-page">
         <div className="title-section">
-          <Button variant="contained" color="primary" onClick={handleOpenModal}>
+          <Button className="add-user-btn" color="primary" onClick={handleOpenModal}>
             Nuevo usuario
           </Button>
         </div>

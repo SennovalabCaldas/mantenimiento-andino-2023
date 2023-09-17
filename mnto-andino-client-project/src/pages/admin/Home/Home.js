@@ -7,17 +7,7 @@ import "./Home.scss";
 export const Home = () => {
   const cardData = [
     {
-      title: "Home",
-      link: "/admin/home",
-      background: `url(${image.background})`,
-    },
-    {
-      title: "Menú",
-      link: "/admin/menu",
-      background: `url(${image.background})`,
-    },
-    {
-      title: "Empleados",
+      title: "Usuarios registrados",
       link: "/admin/users",
       background: `url(${image.background})`,
     },
@@ -32,18 +22,28 @@ export const Home = () => {
       background: `url(${image.background})`,
     },
     {
+      title: "Noticias",
+      link: "/admin/news",
+      background: `url(${image.background})`,
+    },
+    {
       title: "Clientes",
       link: "/admin/clients",
       background: `url(${image.background})`,
     },
     {
       title: "Proveedores",
-      link: "/admin/providers",
+      link: "/admin/suppliers",
       background: `url(${image.background})`,
     },
     {
-      title: "Noticias",
-      link: "/admin/news",
+      title: "Aliados",
+      link: "/admin/allies",
+      background: `url(${image.background})`,
+    },
+    {
+      title: "Proyectos",
+      link: "/admin/projects",
       background: `url(${image.background})`,
     },
     {
@@ -51,6 +51,12 @@ export const Home = () => {
       link: "/admin/certifications",
       background: `url(${image.background})`,
     },
+    {
+      title: "Fundación",
+      link: "/admin/foundation",
+      background: `url(${image.background})`,
+    },
+    
   ];
 
   return (
