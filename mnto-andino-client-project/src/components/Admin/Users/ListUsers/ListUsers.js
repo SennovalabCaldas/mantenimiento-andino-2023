@@ -109,7 +109,6 @@ const ListUsers = ({ usersActive, reload, onReload }) => {
         >
           {showCard ? "Ocultar información" : "Ver información"}
         </Button>
-        }
         <div>
           <div className={classes.usersList}>
             {currentUsers.map((user) => (

@@ -29,6 +29,17 @@ app.use(bodyParser.json());
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
+const corsOptions = {
+  origin: [
+    "http://mantenimientoandino.co",
+    "http://mantenimientoandino.co:3000",
+  ], // Reemplaza con tus dominios permitidos
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
 app.use(`/api/v1/auth`, authRoutes);
 app.use(`/api/v1/admin/users`, userRoutes);
 app.use(`/api/v1/admin/addresses`, addressRoutes);
