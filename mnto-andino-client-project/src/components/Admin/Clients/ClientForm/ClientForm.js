@@ -143,7 +143,7 @@ export const ClientForm = () => {
   };
 
   return (
-    <div>
+    <div className="client-form">
       <Button variant="contained" color="primary" onClick={handleCreate}>
         Crear cliente
       </Button>

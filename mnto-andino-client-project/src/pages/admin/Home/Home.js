@@ -56,16 +56,15 @@ export const Home = () => {
       link: "/admin/foundation",
       background: `url(${image.background})`,
     },
-    
   ];
 
   return (
-    <div className="dashboard-page">
+    <div className="dashboard-page ">
       <div className="">
-        <div style={{ padding: "20px" }}>
-          <Typography variant="h4" gutterBottom>
-            Dashboard
-          </Typography>
+        <Typography variant="h4" gutterBottom>
+          Dashboard
+        </Typography>
+        <div  className="admin-layout__right-content">
           <Grid container spacing={3}>
             {cardData.map((card) => (
               <Grid item xs={12} md={4} key={card.title}>

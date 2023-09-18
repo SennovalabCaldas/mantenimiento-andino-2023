@@ -105,7 +105,7 @@ export const ClientList = () => {
 
   return (
     <div>
-      <h2>Categorías de servicios</h2>
+      <h2>Clientes</h2>
 
       <h3>Lista de Categorías</h3>
       <TableContainer>

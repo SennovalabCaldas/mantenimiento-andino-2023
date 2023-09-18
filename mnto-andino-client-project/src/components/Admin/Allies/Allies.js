@@ -164,6 +164,7 @@ export const Allies = () => {
 
   return (
     <div>
+       <h2>Aliados</h2>
       <div>
         <Card>
           <CardContent>

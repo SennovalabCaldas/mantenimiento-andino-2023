@@ -4,7 +4,7 @@ import { FoundationNews } from '../../../components'
 const Foundation = () => {
   return (
     <div>
-      <h1>Foundation</h1>
+      <h2>Foundation</h2>
       <FoundationNews />
     </div>
   )

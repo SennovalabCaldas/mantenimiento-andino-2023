@@ -113,8 +113,17 @@ body {
   width: 85%;
   background-color: #ffffffd4;
   h2, h4{
-
     color: black;
+  }
+
+  .admin-layout__right-content {
+    position: relative;
+    padding: 0;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    margin-top: 10px;
+    padding: 20px;
   }
 }
 
@@ -139,7 +148,6 @@ body {
 .scrollable-container::-webkit-scrollbar {
   display: none;
 }
-
 
 
 
