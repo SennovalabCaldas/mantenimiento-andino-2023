@@ -92,24 +92,33 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
 
   return (
     <div className="admin-menu-container">
-        <Menu fluid vertical icon className={`admin-menu ${!menuVisible ? "hidden" :""}`}>
-          {filteredMenuItems.map((item) => (
-            <Menu.Item
-              as={Link}
-              to={item.path}
-              active={activeMenuItem === item.path} // Utiliza activeSection para determinar el elemento activo
-              key={item.path}
-              className={activeSection === item.path ? "active" : ""}
-            >
-              <Icon name={item.icon} />
-              {menuVisible && item.text}{" "}
-              {/* Mostrar el texto solo si el menú está visible */}
-            </Menu.Item>
-          ))}
-        </Menu>
- 
-        <SlideBarWebMenuPanel handleSetActiveSection={handleSetActiveSection} className="admin-menu"  show={ menuVisible } />
-    
+      <Menu
+        fluid
+        vertical
+        icon
+        className={`admin-menu ${!menuVisible ? "hidden" : ""}`}
+      >
+        {filteredMenuItems.map((item) => (
+          <Menu.Item
+            as={Link}
+            to={item.path}
+            active={activeMenuItem === item.path} // Utiliza activeSection para determinar el elemento activo
+            key={item.path}
+            className={activeSection === item.path ? "active" : ""}
+          >
+            <Icon name={item.icon} />
+            {menuVisible && item.text}{" "}
+            {/* Mostrar el texto solo si el menú está visible */}
+          </Menu.Item>
+        ))}
+      </Menu>
+
+      <SlideBarWebMenuPanel
+        handleSetActiveSection={handleSetActiveSection}
+        activeMenuItem={activeMenuItem}
+        className="admin-menu"
+        show={menuVisible}
+      />
     </div>
   );
 };

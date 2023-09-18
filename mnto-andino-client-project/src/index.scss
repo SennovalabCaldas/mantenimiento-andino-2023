@@ -56,6 +56,12 @@ body {
       height: 60vh;
       z-index: 999;
       border-radius: 7px;
+
+      .icon-panel.active{
+        color: white;
+      }
+      
+
       @media only screen and (max-width: 880px) {
         display: flex;
       }

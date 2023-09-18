@@ -43,7 +43,7 @@ const menuItems = [
     icon: faHome,
     roles: ["user"],
   },
-  { path: "/admin/users", icon: faHome,  roles: ["admin"] },
+  { path: "/admin/users", icon: faHome, roles: ["admin"] },
   { path: "/admin/sedes", icon: faHome, roles: ["admin"] },
   {
     path: "/admin/services",
@@ -87,10 +87,13 @@ const menuItems = [
   },
 ];
 
-function SlideBarWebMenuPanel({ handleSetActiveSection, show }) {
+function SlideBarWebMenuPanel({
+  handleSetActiveSection,
+  show,
+  activeMenuItem,
+}) {
   const [activeSection, setActiveSection] = useState("");
   const user = useSelector((state) => state.auth.user);
-
 
   const handleClick = (section) => {
     console.log("Se hizo clic en el elemento del menú:", section);
@@ -108,16 +111,21 @@ function SlideBarWebMenuPanel({ handleSetActiveSection, show }) {
   );
 
   return (
-    <div className={` slide-bar-panel ${show ? "" :"show"}`}>
+    <div className={` slide-bar-panel ${show ? "" : "show"}`}>
       {filteredMenuItems.map((menuItem) => (
         <Link
           to={menuItem.path}
           onClick={() => handleClick(menuItem.path)}
           className={`icon-panel ${
-            activeSection === menuItem.path ? "active" : ""
+            activeMenuItem === menuItem.path ? "active" : ""
           }`}
+          key={menuItem.path}
         >
-          <FontAwesomeIcon icon={menuItem.icon} className="icon-panel" title="test" />
+          <FontAwesomeIcon
+            icon={menuItem.icon}
+            className="icon-panel"
+            title="test"
+          />
         </Link>
       ))}
     </div>
