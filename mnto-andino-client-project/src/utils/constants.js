@@ -15,6 +15,7 @@ export const ENV = {
     CATEGORY_SERVICE:"admin/category-services",
     SUPPLIER: "admin/suppliers",
     ALLIE: "admin/allies",
+    NEW_ALLIE: "admin/allies/new-ally",
     CERTIFICATION: "admin/certifications",
     PROJECTS: "admin/projects",
     FOUNDATION: "admin/foundations",

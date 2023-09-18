@@ -46,9 +46,7 @@ export const getCertification = (_id) => {
   };
 };
 
-export const updateCertification = (_id, updatedData) => {
-    
-    
+export const updateCertification = (_id, updatedData) => {  
   return async (dispatch, getState) => {
     try {
       const updatedCertification = await certificationController.updateCertification(

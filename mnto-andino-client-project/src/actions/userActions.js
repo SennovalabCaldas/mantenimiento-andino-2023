@@ -17,10 +17,7 @@ export const updateAdmin = (userData) => {
   return async (dispatch, getState) => {
     try {
       const { avatar } = await userController.updateMe(userData);
-      /* resultData es todo lo que habia en userData pero sin avatar */
       const { avatar: avatarTemp, ...resultData } = userData;
-      /* ...(avatar && {avatar}) reemplaza avatar: avatar ? avatar : undefined*/
-      /* los parentesis (avatar && {avatar}) son para retornar */
       dispatch(loginSuccess({ ...resultData, ...(avatar && { avatar }) }));
     } catch (error) {
         

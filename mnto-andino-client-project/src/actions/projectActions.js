@@ -49,26 +49,24 @@ export const getProject = (_id) => {
 };
 
 export const updateProject = (_id, updatedData) => {
-    
-    
   return async (dispatch, getState) => {
     try {
       const updatedProject = await projectController.updateProject(
         _id,
         updatedData
       );
-      dispatch(updateCategorySuccess(updatedProject));
+      dispatch(updateProjectSuccess(updatedProject));
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-export const deleteCategoryService = (_id) => {
+export const deleteProject = (_id) => {
   return async (dispatch, getState) => {
     try {
       await projectController.deleteProject(_id);
-      dispatch(deleteCategorySuccess(_id));
+      dispatch(deleteProjectSuccess(_id));
     } catch (error) {
       console.error(error);
     }
@@ -99,15 +97,15 @@ export const getProjectSuccess = (project) => {
   };
 };
 
-export const updateCategorySuccess = (updatedCategory) => {
+export const updateProjectSuccess = (updatedProject) => {
     
   return {
     type: UPDATE_PROJECT_SUCCESS,
-    payload: updatedCategory,
+    payload: updatedProject,
   };
 };
 
-export const deleteCategorySuccess = (_id) => {
+export const deleteProjectSuccess = (_id) => {
   return {
     type: DELETE_PROJECT_SUCCESS,
     payload: _id,

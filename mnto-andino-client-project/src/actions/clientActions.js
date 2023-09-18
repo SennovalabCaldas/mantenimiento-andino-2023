@@ -10,8 +10,7 @@ import {
 
 const clientController = new Client();
 
-export const createClient = (clientData) => {
-    
+export const createClient = (clientData) => { 
   return async (dispatch, getState) => {
     try {
       const client = await clientController.createClient(clientData);

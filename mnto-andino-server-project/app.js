@@ -33,7 +33,12 @@ const corsOptions = {
   origin: [
     "http://mantenimientoandino.co",
     "http://mantenimientoandino.co:3000",
-  ], // Reemplaza con tus dominios permitidos
+    "https://mantenimientoandino.co",
+    "https://mantenimientoandino.co:3000",
+    "https://mantenimientoandino.co",
+    "https://mantenimientoandino.co:3000/api/v1",
+    "http://mantenimientoandino.co:3000/api/v1",
+  ], 
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   optionsSuccessStatus: 204,
 };

@@ -9,7 +9,6 @@ export const createService = (serviceData) => {
   return async (dispatch, getState) => {
     try {
       const newService = await serviceController.createService(serviceData);
-        
       dispatch({
         type: types.CREATE_SERVICE_SUCCESS,
         payload: newService,

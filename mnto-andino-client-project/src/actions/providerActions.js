@@ -12,7 +12,6 @@ import { Provider } from "../api/provider";
 const providerController = new Provider();
 
 export const createSupplier = (data) => {
-    
   return async (dispatch, getState) => {
     try {
       const supplier = await providerController.createSupplier(
@@ -29,7 +28,7 @@ export const getAllSuppliers = () => {
   return async (dispatch, getState) => {
     try {
       const suppliers = await providerController.getSuppliers();
-      dispatch(setAllCategories(suppliers));
+      dispatch(setAllSuppliers(suppliers));
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +39,7 @@ export const getSupplier = (_id) => {
   return async (dispatch, getState) => {
     try {
       const supplier = await providerController.getSupplier(_id);
-      dispatch(getCategorySuccess(supplier));
+      dispatch(getSupplierSuccess(supplier));
     } catch (error) {
       console.error(error);
     }
@@ -48,15 +47,13 @@ export const getSupplier = (_id) => {
 };
 
 export const updateSupplier = (_id, updatedData) => {
-    
-    
   return async (dispatch, getState) => {
     try {
       const updatedSupplier = await providerController.updateSupplier(
         _id,
         updatedData
       );
-      dispatch(updateCategorySuccess(updatedSupplier));
+      dispatch(updateSupplierSuccess(updatedSupplier));
     } catch (error) {
       console.error(error);
     }
@@ -66,8 +63,8 @@ export const updateSupplier = (_id, updatedData) => {
 export const deleteSupplier = (_id) => {
   return async (dispatch, getState) => {
     try {
-      await providerController.deleteCategory(_id);
-      dispatch(deleteCategorySuccess(_id));
+      await providerController.deleteSupplier(_id);
+      dispatch(deleteSupplierSuccess(_id));
     } catch (error) {
       console.error(error);
     }
@@ -84,21 +81,21 @@ export const createSupplierSuccess = (supplier) => {
   };
 };
 
-export const setAllCategories = (categories) => {
+export const setAllSuppliers = (suppliers) => {
   return {
     type: SET_ALL_PROVIDERS_SERVICE,
-    payload: categories,
+    payload: suppliers,
   };
 };
 
-export const getCategorySuccess = (supplier) => {
+export const getSupplierSuccess = (supplier) => {
   return {
     type: GET_PROVIDER_SUCCESS,
     payload: supplier,
   };
 };
 
-export const updateCategorySuccess = (updateSupplier) => {
+export const updateSupplierSuccess = (updateSupplier) => {
     
   return {
     type: UPDATE_PROVIDER_SUCCESS,
@@ -106,7 +103,7 @@ export const updateCategorySuccess = (updateSupplier) => {
   };
 };
 
-export const deleteCategorySuccess = (_id) => {
+export const deleteSupplierSuccess = (_id) => {
   return {
     type: DELETE_PROVIDER_SUCCESS,
     payload: _id,

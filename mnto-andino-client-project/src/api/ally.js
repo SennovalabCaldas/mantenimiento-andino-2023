@@ -2,6 +2,7 @@ import { ENV } from "../utils";
 import { Auth } from "./auth";
 
 const ALLIES = ENV.API_ROUTES.ALLIE;
+const NEW_ALLIE = ENV.API_ROUTES.NEW_ALLIE;
 const CONTENT_TYPE_JSON = "application/json";
 const authController = new Auth();
 
@@ -22,8 +23,8 @@ export class Ally {
       formData.append("active", data.active);
 
       console.log("Estos son los datos del aliado", formData.get("avatar"));
-      const url = `${this.baseApi}/${ALLIES}/new-ally`;
-        
+      const url = `${this.baseApi}/${NEW_ALLIE}`;
+      console.log("Esta es la url", url);
       const params = {
         method: "POST",
         headers: {
@@ -31,9 +32,9 @@ export class Ally {
         },
         body: formData,
       };
-        
+
       const response = await fetch(url, params);
-        
+      console.log("Esta es la respuesta del servidor", response);
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -52,7 +53,7 @@ export class Ally {
       });
 
       const data = await response.json();
-        
+
       return data;
     } catch (error) {
       console.error("Error al obtener los aliados:", error);
@@ -79,8 +80,6 @@ export class Ally {
   }
 
   async updateAlly(_id, updatedData) {
-      
-      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${ALLIES}/${_id}`, {
@@ -108,9 +107,9 @@ export class Ally {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-        
+
       const data = await response.json();
-        
+
       return data;
     } catch (error) {
       console.error("Error al eliminar el aliado:", error);

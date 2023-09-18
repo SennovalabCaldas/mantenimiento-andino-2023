@@ -74,18 +74,18 @@ export const deleteAlly = (_id) => {
 
 /* Acciones */
 
-export const createAllySuccess = (category) => {
+export const createAllySuccess = (ally) => {
     
   return {
     type: CREATE_ALLY_SUCCESS,
-    payload: category,
+    payload: ally,
   };
 };
 
-export const setAllAllies = (categories) => {
+export const setAllAllies = (allies) => {
   return {
     type: SET_ALL_ALLIES_SERVICE,
-    payload: categories,
+    payload: allies,
   };
 };
 

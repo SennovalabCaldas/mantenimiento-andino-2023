@@ -15,10 +15,10 @@ export const createCategoryService = (data) => {
     
   return async (dispatch, getState) => {
     try {
-      const category = await categoryServiceController.createCategoryService(
+      const categoryService = await categoryServiceController.createCategoryService(
         data
       );
-      dispatch(createCategorySuccess(category));
+      dispatch(createCategoryServiceSuccess(categoryService));
     } catch (error) {
       console.error(error);
     }
@@ -29,7 +29,7 @@ export const getAllCategoriesService = () => {
   return async (dispatch, getState) => {
     try {
       const categories = await categoryServiceController.getCategories();
-      dispatch(setAllCategories(categories));
+      dispatch(setAllCategoriesServices(categories));
     } catch (error) {
       console.error(error);
     }
@@ -39,8 +39,8 @@ export const getAllCategoriesService = () => {
 export const getCategoryService = (_id) => {
   return async (dispatch, getState) => {
     try {
-      const category = await categoryServiceController.getCategory(_id);
-      dispatch(getCategorySuccess(category));
+      const categoryService = await categoryServiceController.getCategory(_id);
+      dispatch(getCategoryServiceSuccess(categoryService));
     } catch (error) {
       console.error(error);
     }
@@ -50,11 +50,11 @@ export const getCategoryService = (_id) => {
 export const updateCategoryService = (_id, updatedData) => {
   return async (dispatch, getState) => {
     try {
-      const updatedCategory = await categoryServiceController.updateCategory(
+      const updatedCategoryService = await categoryServiceController.updateCategory(
         _id,
         updatedData
       );
-      dispatch(updateCategorySuccess(updatedCategory));
+      dispatch(updateCategoryServiceSuccess(updatedCategoryService));
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +65,7 @@ export const deleteCategoryService = (_id) => {
   return async (dispatch, getState) => {
     try {
       await categoryServiceController.deleteCategory(_id);
-      dispatch(deleteCategorySuccess(_id));
+      dispatch(deleteCategoryServiceSuccess(_id));
     } catch (error) {
       console.error(error);
     }
@@ -74,29 +74,29 @@ export const deleteCategoryService = (_id) => {
 
 /* Acciones */
 
-export const createCategorySuccess = (category) => {
+export const createCategoryServiceSuccess = (categoryService) => {
     
   return {
     type: CREATE_CATEGORY_SERVICE_SUCCESS,
-    payload: category,
+    payload: categoryService,
   };
 };
 
-export const setAllCategories = (categories) => {
+export const setAllCategoriesServices = (categories) => {
   return {
     type: SET_ALL_CATEGORIES_SERVICE,
     payload: categories,
   };
 };
 
-export const getCategorySuccess = (category) => {
+export const getCategoryServiceSuccess = (categoryService) => {
   return {
     type: GET_CATEGORY_SERVICE_SUCCESS,
-    payload: category,
+    payload: categoryService,
   };
 };
 
-export const updateCategorySuccess = (updatedCategory) => {
+export const updateCategoryServiceSuccess = (updatedCategory) => {
     
   return {
     type: UPDATE_CATEGORY_SERVICE_SUCCESS,
@@ -104,7 +104,7 @@ export const updateCategorySuccess = (updatedCategory) => {
   };
 };
 
-export const deleteCategorySuccess = (_id) => {
+export const deleteCategoryServiceSuccess = (_id) => {
   return {
     type: DELETE_CATEGORY_SERVICE_SUCCESS,
     payload: _id,
