@@ -8,7 +8,7 @@ import { NextArrow } from "./NextArrow";
 import { PrevArrow } from "./PrevArrow";
 
 export const WebHome = ({ posts }) => {
-  console.log(posts);
+    
 
   const dispatch = useDispatch();
   const [colorIndex, setColorIndex] = useState(0);

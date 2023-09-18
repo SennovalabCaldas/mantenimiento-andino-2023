@@ -9,7 +9,7 @@ export const createMenu = (menuData) => {
   return async (dispatch, getState) => {
     try {
       const menu = await menuController.createMenu(menuData);
-      console.log("Menu creada >>>>>>>>>>", menu);
+        
       dispatch(createMenuSussess(menu));
     } catch (error) {
       console.error(error);
@@ -21,7 +21,7 @@ export const getAllMenus = (menuActive) => {
   return async (dispatch, getState) => {
     try {
       const menus = await menuController.getAllMenus(menuActive); // Pasa el valor de 'active'
-      console.log("Menus del actions >", menus);
+        
       dispatch(setAllMenus(menus));
     } catch (error) {
       console.error(error);
@@ -30,7 +30,7 @@ export const getAllMenus = (menuActive) => {
 };
 
 export const updateMenu = (_id, data) => {
-  console.log('id', _id);
+    
   return async (dispatch, getState) => {
     try {
       const menu = await menuController.updateMenuById(_id, data); // Pasa el objeto de actualización 'data'
@@ -44,7 +44,7 @@ export const updateMenu = (_id, data) => {
 
 
 export const deleteMenuA = (_id) => {
-  console.log("id", _id);
+    
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
@@ -68,7 +68,7 @@ export const createMenuSussess = (menuData) => {
 };
 
 export const setAllMenus = (menus) => {
-  console.log(menus);
+    
   return {
     type: GET_ALL_MENUS,
     payload: menus,

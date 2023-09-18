@@ -14,7 +14,7 @@ export const createAddress = (addressData) => {
     try {
       const accessToken = authController.getAccessToken();
       const address = await addressController.createAddress(addressData);
-      console.log("Dirección creada >>>>>>>>>>", address);
+        
       dispatch(createAddressSuccess(address));
     } catch (error) {
       console.error(error);
@@ -25,9 +25,9 @@ export const createAddress = (addressData) => {
 export const getAllAddress = () => {
   return async (dispatch, getState) => {
     try {
-      console.log("Entre al getAlladdresss del actions");
+        
       const addresses = await addressController.getAllAddress();
-      console.log("addresses del actions >", addresses);
+        
       dispatch(setAllAddresses(addresses));
     } catch (error) {
       console.error(error);
@@ -36,12 +36,12 @@ export const getAllAddress = () => {
 };
 
 export const getAddress = (_id) => {
-  console.log(_id);
+    
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
       const address = await addressController.getAddressById(_id);
-      console.log("address >>>>>>>>>>", address);
+        
       dispatch(getAddressSuccess(address));
     } catch (error) {
       console.error(error);

@@ -12,7 +12,7 @@ import { Project } from "../api/project";
 const projectController = new Project();
 
 export const createProject = (data) => {
-  console.log("Datos de la nueva proyecto:", data);
+    
   return async (dispatch, getState) => {
     try {
       const project = await projectController.createProject(
@@ -26,7 +26,7 @@ export const createProject = (data) => {
 };
 
 export const getAllProjects = () => {
-  console.log("Obteniendo todos los proyectos");
+    
   return async (dispatch, getState) => {
     try {
       const projects = await projectController.getProjects();
@@ -49,8 +49,8 @@ export const getProject = (_id) => {
 };
 
 export const updateProject = (_id, updatedData) => {
-  console.log("id", _id);
-  console.log("Datos de la proyecto actualizada:", updatedData);
+    
+    
   return async (dispatch, getState) => {
     try {
       const updatedProject = await projectController.updateProject(
@@ -78,7 +78,7 @@ export const deleteCategoryService = (_id) => {
 /* Acciones */
 
 export const createProjectSuccess = (project) => {
-  console.log("Datos de la nueva proyecto:", project);
+    
   return {
     type: CREATE_PROJECT_SUCCESS,
     payload: project,
@@ -100,7 +100,7 @@ export const getProjectSuccess = (project) => {
 };
 
 export const updateCategorySuccess = (updatedCategory) => {
-  console.log("Datos de la proyecto actualizada:", updatedCategory);
+    
   return {
     type: UPDATE_PROJECT_SUCCESS,
     payload: updatedCategory,

@@ -47,7 +47,7 @@ const clientReducer = (state = initialState, action) => {
         clients: [...state.clients, action.payload],
       };
     case SET_ALL_CLIENTS:
-      console.log("Estos son los clientes", action.payload);
+        
       return {
         ...state,
         clients: action.payload,

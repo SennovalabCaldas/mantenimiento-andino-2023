@@ -22,8 +22,8 @@ export const AppRouter = () => {
   const isEmployee = user && user.role === "user";
   const [activeSection, setActiveSection] = useState("");
 
-  console.log(isAuthenticated);
-  console.log(isAdmin);
+    
+    
 
   const loadLayout = (Layout, Page) => {
     return (

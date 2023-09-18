@@ -52,18 +52,18 @@ export const CategoryManagement = (news) => {
   };
 
   const handleUpdateCategory = async (categoryId, updatedData) => {
-    console.log("Datos de la categoría a actualizar:", updatedData);
+      
     try {
       // Si la categoría se está activando y existen noticias relacionadas
       if (!updatedData.active) {
-        console.log("La categoría se está desactivando", news);
+          
         // Lógica para verificar si existen noticias relacionadas con esta categoría
         const noticiasRelacionadas = news.news.filter((noticia) => {
           noticia.categorias.includes(categoryId);
-          console.log("Noticias relacionadas:", noticia);
+            
         });
         if (noticiasRelacionadas.length > 0) {
-          console.log("Noticias relacionadas:", noticiasRelacionadas);
+            
           // Llama al dispatch para actualizar el estado de las noticias relacionadas
           for (const noticia of noticiasRelacionadas) {
             await dispatch(updatePostState(noticia._id, false));

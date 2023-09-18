@@ -74,7 +74,7 @@ export const Allies = () => {
 
   const dispatch = useDispatch();
   const allies = useSelector((state) => state.ally.allAllies);
-  console.log(allies);
+    
 
   useEffect(() => {
     dispatch(getAllAllies());
@@ -107,8 +107,8 @@ export const Allies = () => {
 
   const handleEdit = () => {
     if (selectedAlly) {
-      console.log("Editando aliado:", selectedAlly._id);
-      console.log("Nombre del aliado:", selectedAlly._id);
+        
+        
       setAllyName(selectedAlly.allyName);
       setIsEditDialogOpen(true);
       handleOpenEditDialog(selectedAlly);
@@ -123,7 +123,7 @@ export const Allies = () => {
       avatar: avatar,
     };
 
-    console.log("Datos del aliado a actualizar:", updatedData);
+      
     try {
       await dispatch(updateAlly(allyId, updatedData));
       await dispatch(getAllAllies());
@@ -149,14 +149,14 @@ export const Allies = () => {
       active: editingAlly.active,
       avatar: avatar,
     };
-    console.log("Guardando datos del aliado:", data);
+      
 
     if (data._id) {
-      console.log("Updating aliado", data._id);
-      console.log(data._id);
+        
+        
       await dispatch(updateAlly(data._id, data));
     } else {
-      console.log("Saving new ally data", data);
+        
       await dispatch(createAlly(data));
     }
     await dispatch(getAllAllies());

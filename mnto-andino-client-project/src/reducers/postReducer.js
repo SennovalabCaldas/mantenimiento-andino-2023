@@ -52,13 +52,13 @@ const postReducer = (state = initialState, action) => {
       };
 
     case SET_ALL_POSTS:
-      // console.log("Recibiendo datos de noticias en el reducer:", action.payload);
+      //   
       return {
         ...state,
         allPosts: action.payload,
       };
     case GET_POST_SUCCESS:
-      console.log(action.payload);
+        
       return {
         ...state,
         post: {

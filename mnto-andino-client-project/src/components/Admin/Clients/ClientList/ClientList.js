@@ -52,7 +52,7 @@ export const ClientList = () => {
 
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.client.clients);
-  console.log(categories);
+    
 
   useEffect(() => {
     dispatch(getAllClients());
@@ -72,7 +72,7 @@ export const ClientList = () => {
   };
 
   const handleEdit = async (id) => {
-    console.log("Editando categoría:", id);
+      
     const categoryToEdit = categories.find((item) => item._id === id);
     const newActiveState = !categoryToEdit.active;
     try {
@@ -84,7 +84,7 @@ export const ClientList = () => {
   };
 
   const handleUpdateClient = async (clientId, updatedData) => {
-    console.log("Datos del cliente a actualizar:", updatedData);
+      
     try {
       await dispatch(updateClient(clientId, updatedData));
       await dispatch(getAllClients());

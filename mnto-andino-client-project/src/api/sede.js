@@ -12,7 +12,7 @@ export class Sede {
   createSede = async (data) => {
     const accessToken = authController.getAccessToken();
     const url = `${this.baseApi}/admin/sedes/new-sede`;
-    console.log(url);
+      
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -21,8 +21,8 @@ export class Sede {
         Authorization: `Bearer ${accessToken}`,
       },
     };
-    console.log(params);
-    //console.log(`Creando sede ${data}`);
+      
+    //  
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -38,17 +38,17 @@ export class Sede {
 
   getAllSedes = async () => {
     const url = `${this.baseApi}/admin/sedes`;
-    console.log(url);
+      
     const params = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     };
-    console.log(params);
+      
     try {
       const response = await fetch(url, params);
-      console.log(response);
+        
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
@@ -62,21 +62,21 @@ export class Sede {
 
   getSede = async (_id) => {
     const url = `${this.baseApi}/${API_ROUTES.SEDES}/${_id}`;
-    console.log(url);
+      
     const params = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     };
-    console.log(params);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-      console.log(result);
+        
       return result;
     } catch (error) {
       console.error(error);
@@ -85,10 +85,10 @@ export class Sede {
   };
 
   filterSedesPerMunicipio = async (parametro) => {
-    console.log("Filtrando por municipio");
+      
     /* http://localhost:3200/api/v1/sedes/municipio?municipio= */
     const url = `${this.baseApi}/${API_ROUTES.SEDESPERDPTO}${parametro}`;
-    console.log(url);
+      
     const params = {
       method: "GET",
       headers: {
@@ -102,7 +102,7 @@ export class Sede {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-      console.log(result);
+        
       return result;
     } catch (error) {
       console.error(error);
@@ -112,7 +112,7 @@ export class Sede {
 
   searchSedes = async (nombre, departamento, municipio) => {
     const url = `${this.baseApi}/${API_ROUTES.SEARCH_SEDES}?nombre=${nombre}&departamento=${departamento}&municipio=${municipio}`;
-    console.log(url);
+      
     const params = {
       method: "GET",
       headers: {
@@ -126,7 +126,7 @@ export class Sede {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-      console.log(result);
+        
       return result;
     } catch (error) {
       console.error(error);
@@ -135,18 +135,18 @@ export class Sede {
   };
 
   updateSede = async (_id, data) => {
-    console.log("Entre en updateSede");
+      
     const accessToken = authController.getAccessToken();
     const direccion = data.direccion;
     const id_direccion = data.direccion._id;
-    console.log("id_direccion de sede.js", _id);
+      
     const url = `${this.baseApi}/${API_ROUTES.SEDES}/${_id}`;
     try {
       const updatedAddress = await addressController.updateAddressById(
         id_direccion,
         direccion
       );
-      console.log(url);
+        
       const params = {
         method: "PATCH",
         body: JSON.stringify(data),
@@ -162,9 +162,9 @@ export class Sede {
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
-      console.log("Response", response);
+        
       const result = await response.json();
-      console.log(result);
+        
       return result;
     } catch (error) {
       console.error(error);
@@ -187,7 +187,7 @@ export class Sede {
           },
         }
       );
-      console.log(response);
+        
       const data = await response.json();
       return data;
     } catch (error) {

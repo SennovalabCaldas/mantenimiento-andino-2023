@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { getAllProjects } from "../../../actions/projectActions";
 
 export const ProjectsNal = ({ projects, national }) => {
-  console.log("Projects:", projects);
-  console.log("National:", national);
+    
+    
 
   return (
     <div>

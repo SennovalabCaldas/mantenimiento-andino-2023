@@ -32,8 +32,8 @@ export const EditProfileModal = connect()((props) => {
   };
 
   const onSelectionChange = () => {
-    console.log("Departamento seleccionado:", departamentoSeleccionado);
-    console.log("Municipio seleccionado:", municipioSeleccionado);
+      
+      
   };
 
   const roleOptions = [

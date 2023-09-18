@@ -12,7 +12,7 @@ import { Foundation } from "../api/foundation";
 const foundationController = new Foundation();
 
 export const createFoundation = (data) => {
-  console.log("Datos de la nueva fundación:", data);
+    
   return async (dispatch, getState) => {
     try {
       const foundation = await foundationController.createFoundation(data);
@@ -46,8 +46,8 @@ export const getFoundation = (_id) => {
 };
 
 export const updateFoundation = (_id, updatedData) => {
-  console.log("id", _id);
-  console.log("Datos de la categoría actualizada:", updatedData);
+    
+    
   return async (dispatch, getState) => {
     try {
       const updatedFoundation = await foundationController.updateFoundation(
@@ -75,7 +75,7 @@ export const deleteCategoryService = (_id) => {
 /* Acciones */
 
 export const createFoundationSuccess = (foundation) => {
-  console.log("Datos de la nueva categoría:", foundation);
+    
   return {
     type: CREATE_FOUNDATION_SUCCESS,
     payload: foundation,
@@ -97,7 +97,7 @@ export const getFoundationSuccess = (foundation) => {
 };
 
 export const updateFoundationSuccess = (updateFoundation) => {
-  console.log("Datos de la categoría actualizada:", updateFoundation);
+    
   return {
     type: UPDATE_FOUNDATION_SUCCESS,
     payload: updateFoundation,

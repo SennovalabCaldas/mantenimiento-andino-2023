@@ -16,7 +16,7 @@ import {
 import "./SlideBarWebMenu.scss";
 
 function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
-  console.log("Sección activa", activeSection);
+    
   return (
     <div className="slide-bar">
       <Link

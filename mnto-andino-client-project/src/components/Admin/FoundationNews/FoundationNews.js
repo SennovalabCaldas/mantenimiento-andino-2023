@@ -80,14 +80,14 @@ export const FoundationNews = () => {
   //     active: editingSupplier.active,
   //     avatar: avatar,
   //   };
-  //   console.log("Guardando datos de la categoría:", data);
+  //     
 
   //   if (data._id) {
-  //     console.log("Updating clients", data._id);
-  //     console.log(data._id);
+  //       
+  //       
   //     await dispatch(updateSupplier(data._id, data));
   //   } else {
-  //     console.log("Saving new client data", data);
+  //       
   //     await dispatch(createSupplier(data));
   //   }
   //   await dispatch(getAllFoundations());

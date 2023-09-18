@@ -18,7 +18,7 @@ export const createSede = (sedeData) => {
     try {
       const accessToken = authController.getAccessToken();
       const sede = await sedeController.createSede(sedeData);
-      console.log("Sede creada >>>>>>>>>>", sede);
+        
       dispatch(createSedeSussess(sede));
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ export const getSede = (_id) => {
     try {
       const accessToken = authController.getAccessToken();
       const sede = await sedeController.getSede(_id);
-      console.log("Sede >>>>>>>>>>", sede);
+        
       dispatch(getSedeSuccess(sede));
     } catch (error) {
       console.error(error);
@@ -74,9 +74,9 @@ export const updateSede = (_id, data) => {
         direccion._id,
         direccion
       );
-      console.log("updatedAddress", updatedAddress);
+        
       const sede = await sedeController.updateSede(_id, data);
-      console.log("Sede >>>>>>>>>>", sede);
+        
       dispatch(getUpdateSedeSuccess(sede));
     } catch (error) {
       console.error(error);
@@ -85,7 +85,7 @@ export const updateSede = (_id, data) => {
 };
 
 export const deleteSede = (_id) => {
-  console.log("id", _id);
+    
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
@@ -130,7 +130,7 @@ export const searchSedesSuccess = (searchResults) => {
 };
 
 export const getUpdateSedeSuccess = (sedeData) => {
-  console.log("sedeData en el actions", sedeData);
+    
   return {
     type: UPDATE_SEDE,
     payload: sedeData,

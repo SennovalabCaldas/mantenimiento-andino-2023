@@ -49,7 +49,7 @@ const sedeReducer = (state = initialState, action) => {
       };
 
     case UPDATE_SEDE:
-      console.log("Recibiendo datos de sedes en el reducer:", action.payload);
+        
       return {
         ...state,
         sede: {
@@ -58,7 +58,7 @@ const sedeReducer = (state = initialState, action) => {
         },
       };
     case GET_ALL_SEDES:
-      console.log("Recibiendo datos de sedes en el reducer:", action.payload);
+        
       return {
         ...state,
         allSedes: action.payload,

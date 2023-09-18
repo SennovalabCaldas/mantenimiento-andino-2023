@@ -23,7 +23,7 @@ export class Ally {
 
       console.log("Estos son los datos del aliado", formData.get("avatar"));
       const url = `${this.baseApi}/${ALLIES}/new-ally`;
-      console.log(url);
+        
       const params = {
         method: "POST",
         headers: {
@@ -31,9 +31,9 @@ export class Ally {
         },
         body: formData,
       };
-      console.log("Estos son los params", params);
+        
       const response = await fetch(url, params);
-      console.log(response);
+        
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -52,7 +52,7 @@ export class Ally {
       });
 
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener los aliados:", error);
@@ -79,8 +79,8 @@ export class Ally {
   }
 
   async updateAlly(_id, updatedData) {
-    console.log("id", _id);
-    console.log("Estos son los datos del aliado", updatedData);
+      
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${ALLIES}/${_id}`, {
@@ -108,9 +108,9 @@ export class Ally {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(`${this.baseApi}/${ALLIES}/${_id}`);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error("Error al eliminar el aliado:", error);

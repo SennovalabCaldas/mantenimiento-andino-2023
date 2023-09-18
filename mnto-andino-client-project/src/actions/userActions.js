@@ -13,7 +13,7 @@ const userController = new User();
 const authController = new Auth();
 
 export const updateAdmin = (userData) => {
-  console.log("entre al updateAdmin", userData);
+    
   return async (dispatch, getState) => {
     try {
       const { avatar } = await userController.updateMe(userData);
@@ -23,7 +23,7 @@ export const updateAdmin = (userData) => {
       /* los parentesis (avatar && {avatar}) son para retornar */
       dispatch(loginSuccess({ ...resultData, ...(avatar && { avatar }) }));
     } catch (error) {
-      console.log("error", error);
+        
     }
   };
 };

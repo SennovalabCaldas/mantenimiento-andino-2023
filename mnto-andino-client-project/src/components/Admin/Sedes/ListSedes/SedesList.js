@@ -40,7 +40,7 @@ const SedeList = ({ sedes }) => {
   // Función para abrir el modal de edición
   const handleOpenEditModal = (sede) => {
     setSelectedSede(sede);
-    console.log("Datos sede de Sedelist", sede);
+      
     setShowEditModal(true);
   };
 
@@ -108,7 +108,7 @@ const SedeList = ({ sedes }) => {
       await dispatch(getAllSedes());
       // Actualiza el estado de las sedes después de eliminar la sede
       const updatedSedes = sedes.filter((sede) => sede._id !== sedeId);
-      console.log("Update Sedes info >>", updatedSedes);
+        
     } catch (error) {
       console.error("Error al eliminar la sede:", error);
     }

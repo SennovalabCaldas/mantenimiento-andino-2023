@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { getAllProjects } from "../../../actions/projectActions";
 
 export const ProjectsInterNal = ({ projects, national }) => {
-  console.log("Projects:", projects);
-  console.log("National:", national);
+    
+    
   return (
     <div>
       <h3>Proyectos Internacionales</h3>

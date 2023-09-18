@@ -11,7 +11,7 @@ import {
 const clientController = new Client();
 
 export const createClient = (clientData) => {
-  console.log('clientData',clientData);
+    
   return async (dispatch, getState) => {
     try {
       const client = await clientController.createClient(clientData);
@@ -94,7 +94,7 @@ export const getClientSuccess = (client) => {
 };
 
 export const updateClientSuccess = (updatedClient) => {
-  console.log("Datos del cliente actualizado:", updatedClient);
+    
   return {
     type: UPDATE_CLIENT_SUCCESS,
     payload: updatedClient,

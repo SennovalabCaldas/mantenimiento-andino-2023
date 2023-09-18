@@ -23,7 +23,7 @@ const addressReducer = (state = initialState, action) => {
         addresses: action.payload,
       };
     case GET_ADDRESS:
-      console.log(action.payload);
+        
       return {
         ...state,
         address: action.payload,

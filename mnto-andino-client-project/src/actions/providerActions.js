@@ -12,7 +12,7 @@ import { Provider } from "../api/provider";
 const providerController = new Provider();
 
 export const createSupplier = (data) => {
-  console.log("Datos de la nueva categoría:", data);
+    
   return async (dispatch, getState) => {
     try {
       const supplier = await providerController.createSupplier(
@@ -48,8 +48,8 @@ export const getSupplier = (_id) => {
 };
 
 export const updateSupplier = (_id, updatedData) => {
-  console.log("id", _id);
-  console.log("Datos de la categoría actualizada:", updatedData);
+    
+    
   return async (dispatch, getState) => {
     try {
       const updatedSupplier = await providerController.updateSupplier(
@@ -77,7 +77,7 @@ export const deleteSupplier = (_id) => {
 /* Acciones */
 
 export const createSupplierSuccess = (supplier) => {
-  console.log("Datos de la nueva categoría:", supplier);
+    
   return {
     type: CREATE_PROVIDER_SUCCESS,
     payload: supplier,
@@ -99,7 +99,7 @@ export const getCategorySuccess = (supplier) => {
 };
 
 export const updateCategorySuccess = (updateSupplier) => {
-  console.log("Datos de la categoría actualizada:", updateSupplier);
+    
   return {
     type: UPDATE_PROVIDER_SUCCESS,
     payload: updateSupplier,

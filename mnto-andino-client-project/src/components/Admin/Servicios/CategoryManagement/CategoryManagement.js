@@ -51,7 +51,7 @@ export const CategoryManagement = (news) => {
   const categories = useSelector(
     (state) => state.categoryService.allCategoriesService
   );
-  console.log(categories);
+    
 
   useEffect(() => {
     dispatch(getAllCategoriesService());
@@ -71,7 +71,7 @@ export const CategoryManagement = (news) => {
   };
 
   const handleEdit = async (id) => {
-    console.log("Editando categoría:", id);
+      
     const categoryToEdit = categories.find((item) => item._id === id);
     const newActiveState = !categoryToEdit.active;
     try {
@@ -84,7 +84,7 @@ export const CategoryManagement = (news) => {
 
 
   const handleUpdateCategory = async (categoryId, updatedData) => {
-    console.log("Datos de la categoría a actualizar:", updatedData);
+      
     try {
       await dispatch(updateCategoryService(categoryId, updatedData));
       await dispatch(getAllCategoriesService());
@@ -109,14 +109,14 @@ export const CategoryManagement = (news) => {
       active: editingCategory.active,
       avatar: avatar,
     };
-    console.log("Guardando datos de la categoría:", data);
+      
 
     if (data._id) {
-      console.log("Updating clients", data._id);
-      console.log(data._id);
+        
+        
       await dispatch(updateCategoryService(data._id, data));
     } else {
-      console.log("Saving new client data", data);
+        
       await dispatch(createCategoryService(data));
     }
     await dispatch(getAllCategoriesService());

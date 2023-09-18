@@ -81,7 +81,7 @@ export const ClientForm = () => {
   };
 
   const handleEdit = (id) => {
-    console.log("Editando cliente:", id);
+      
     const clientToEdit = clients.find((item) => item._id === id);
     setEditingClient({
       ...clientToEdit,
@@ -115,12 +115,12 @@ export const ClientForm = () => {
     data.avatar = avatar;
     if (data._id) {
       // Editing existing news
-      console.log("Updating clients", data._id);
-      console.log(data._id);
+        
+        
       await dispatch(updateClient(data._id, data));
       await dispatch(getAllClients());
     } else {
-      console.log("Saving new client data", data);
+        
       await dispatch(createClient(data));
       await dispatch(getAllClients());
     }
@@ -128,14 +128,14 @@ export const ClientForm = () => {
   };
 
   const handleToggleShow = async (clientId, updateData) => {
-    console.log("Toggling client item:", clientId, updateData);
+      
     try {
       // Actualiza el estado "active" de la noticia en la página actual
       const updatedPageData = pageData.map((item) =>
         item._id === clientId ? { ...item, active: updateData.active } : item
       );
       setPageData(updatedPageData);
-      console.log("Actualizando estado de active del cliente:", clientId);
+        
       await dispatch(updateClient(clientId, { active: updateData.active }));
     } catch (error) {
       console.error("Error toggling news item:", error);

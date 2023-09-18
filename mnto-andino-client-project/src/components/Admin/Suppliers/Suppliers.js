@@ -74,7 +74,7 @@ export const Suppliers = () => {
 
   const dispatch = useDispatch();
   const suppliers = useSelector((state) => state.supplier.allSuppliers);
-  console.log(suppliers);
+    
 
   useEffect(() => {
     dispatch(getAllSuppliers());
@@ -107,8 +107,8 @@ export const Suppliers = () => {
 
   const handleEdit = () => {
     if (selectedSupplier) {
-      console.log("Editando proveedor:", selectedSupplier._id);
-      console.log("Nombre del proveedor:", selectedSupplier._id);
+        
+        
       setSupplierName(selectedSupplier.supplierName);
       setIsEditDialogOpen(true);
       handleOpenEditDialog(selectedSupplier);
@@ -123,7 +123,7 @@ export const Suppliers = () => {
       avatar: avatar,
     };
 
-    console.log("Datos del proveedor a actualizar:", updatedData);
+      
     try {
       await dispatch(updateSupplier(supplierId, updatedData));
       await dispatch(getAllSuppliers());
@@ -149,14 +149,14 @@ export const Suppliers = () => {
       active: editingSupplier.active,
       avatar: avatar,
     };
-    console.log("Guardando datos de la categoría:", data);
+      
 
     if (data._id) {
-      console.log("Updating clients", data._id);
-      console.log(data._id);
+        
+        
       await dispatch(updateSupplier(data._id, data));
     } else {
-      console.log("Saving new client data", data);
+        
       await dispatch(createSupplier(data));
     }
     await dispatch(getAllSuppliers());

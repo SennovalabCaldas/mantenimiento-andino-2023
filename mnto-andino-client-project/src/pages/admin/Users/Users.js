@@ -24,7 +24,7 @@ export const Users = () => {
     fetchData();
   }, [dispatch]);
 
-  // console.log(sedes);
+  //   
   const handleOpenModal = () => {
     setShowModal(true);
     setReload(false);

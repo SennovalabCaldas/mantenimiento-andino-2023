@@ -12,7 +12,7 @@ import { Ally } from "../api/ally";
 const allyController = new Ally();
 
 export const createAlly = (data) => {
-  console.log("Datos del nuevo aliado:", data);
+    
   return async (dispatch, getState) => {
     try {
       const ally = await allyController.createAlly(data);
@@ -46,8 +46,8 @@ export const getAlly = (_id) => {
 };
 
 export const updateAlly = (_id, updatedData) => {
-  console.log("id", _id);
-  console.log("Datos del aliado actualizado:", updatedData);
+    
+    
   return async (dispatch, getState) => {
     try {
       const updatedAlly = await allyController.updateAlly(
@@ -75,7 +75,7 @@ export const deleteAlly = (_id) => {
 /* Acciones */
 
 export const createAllySuccess = (category) => {
-  console.log("Datos de la nueva categoría:", category);
+    
   return {
     type: CREATE_ALLY_SUCCESS,
     payload: category,
@@ -97,7 +97,7 @@ export const getAllySuccess = (ally) => {
 };
 
 export const updateAllySuccess = (updatedAlly) => {
-  console.log("Datos de la categoría actualizada:", updatedAlly);
+    
   return {
     type: UPDATE_ALLY_SUCCESS,
     payload: updatedAlly,

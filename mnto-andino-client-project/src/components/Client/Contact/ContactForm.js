@@ -22,7 +22,7 @@ const ContactForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aquí puedes manejar el envío del formulario a través de una API o lógica adicional
-    console.log("Datos del formulario:", formData);
+      
   };
 
   return (

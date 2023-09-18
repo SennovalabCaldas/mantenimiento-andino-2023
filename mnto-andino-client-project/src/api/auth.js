@@ -28,9 +28,9 @@ export class Auth {
   };
 
   login = async (data) => {
-    console.log("Data de login", data);
+      
     const url = `${this.baseApi}/${API_ROUTES.LOGIN}`;
-    console.log(url);
+      
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -59,7 +59,7 @@ export class Auth {
 
   resetPassword = async (data) => {
     const url = `${this.baseApi}/${API_ROUTES.RESET_PASSWORD}`;
-    console.log(url);
+      
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -67,7 +67,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
-    console.log(params);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -83,7 +83,7 @@ export class Auth {
 
   passwordRecovery = async (data) => {
     const url = `${this.baseApi}/${API_ROUTES.PASSWORD_RECOVERY}`;
-    console.log(url);
+      
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -91,7 +91,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
-    console.log(params);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -107,7 +107,7 @@ export class Auth {
 
   refreshAccessToken = async (refreshToken) => {
     const url = `${this.baseApi}/${API_ROUTES.REFRESH_TOKEN}`;
-    console.log(url);
+      
     const params = {
       method: "POST",
       body: JSON.stringify({ token: refreshToken }),
@@ -115,7 +115,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
-    console.log(params);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {

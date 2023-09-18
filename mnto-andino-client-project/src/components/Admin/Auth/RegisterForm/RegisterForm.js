@@ -37,8 +37,8 @@ export const RegisterForm = (props) => {
   };
 
   const onSelectionChange = () => {
-    console.log("Departamento seleccionado:", departamentoSeleccionado);
-    console.log("Municipio seleccionado:", municipioSeleccionado);
+      
+      
   };
 
   const handleOpenModal = () => {
@@ -95,7 +95,7 @@ export const RegisterForm = (props) => {
     validateOnBlur: false,
 
     onSubmit: async (formValue) => {
-      console.log(acceptanceState);
+        
       if (acceptanceState) {
         try {
           setErrorMessage("");
@@ -107,7 +107,7 @@ export const RegisterForm = (props) => {
             openLogin(true); // Establecer la variable de redirección a true
           }
         } catch (error) {
-          console.log(error);
+          console.error(error);
           formik.setErrors({
             // Establecer errores específicos en los campos correspondientes
             email:

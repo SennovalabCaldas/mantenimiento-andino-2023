@@ -19,7 +19,7 @@ export const Projects = () => {
   }, [dispatch]);
 
   const projects = useSelector((state) => state.project.allProjects) || [];
-console.log("projects:", projects);
+  
   return (
     <div>
       <ProjectList />

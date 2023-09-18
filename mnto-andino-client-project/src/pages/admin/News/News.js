@@ -10,7 +10,7 @@ export const News = () => {
   const [activeTab, setActiveTab] = useState(0);
   const dispatch = useDispatch();
   const news = useSelector((state) => state.post.allPosts);
-  console.log("News.js", news);
+    
   // Se ejecutará cada vez que dispatch cambie
   useEffect(() => {
     const fetchData = async () => {

@@ -35,7 +35,7 @@ export class Address {
         "Content-Type": "application/json",
       },
     };
-    console.log("get address all");
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -56,7 +56,7 @@ export class Address {
         "Content-Type": "application/json",
       },
     };
-    console.log("get address by id", _id);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -71,14 +71,14 @@ export class Address {
 
 
   async updateAddressById(_id, data) {
-    console.log(data);
-    console.log('Id update', _id);
+      
+      
     if (!_id || !data ) {
       throw new Error("El objeto 'direccion' o la propiedad '_id' no están definidos.");
     }
 
     const url = `${BASE_API}/${ADDRESS}/${_id}`;
-    console.log(url);
+      
     const params = {
       method: "PATCH",
       body: JSON.stringify(data.direccion), // Utiliza data.direccion en lugar de data
@@ -86,7 +86,7 @@ export class Address {
         "Content-Type": "application/json",
       },
     };
-    console.log("update address by id", _id);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -107,7 +107,7 @@ export class Address {
         "Content-Type": "application/json",
       },
     };
-    console.log("delete address by id", _id);
+      
     try {
       const response = await fetch(url, params);
       if (!response.ok) {

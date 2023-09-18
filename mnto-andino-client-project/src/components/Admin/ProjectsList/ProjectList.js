@@ -28,7 +28,7 @@ export const ProjectList = () => {
   const dispatch = useDispatch();
   const clients = useSelector((state) => state.client.clients);
   const projects = useSelector((state) => state.project.allProjects);
-  console.log("Projects:", projects);
+    
 
   const [client, setClient] = useState("");
   const nationalProjects = projects.filter((project) => project.national);
@@ -127,13 +127,13 @@ export const ProjectList = () => {
       avatar: avatar,
       joinDate: new Date().toISOString(),
     };
-    console.log("Guardando datos de project:", data);
+      
     if (data._id) {
-      console.log("Updating project", data._id);
-      console.log(data._id);
+        
+        
       await dispatch(updateProject(data._id, data));
     } else {
-      console.log("Saving new project", data);
+        
       await dispatch(createProject(data));
     }
     await dispatch(getAllProjects());
@@ -156,12 +156,12 @@ export const ProjectList = () => {
   const handleUpdateProject = async () => {
     setIsCreatingProject(true);
     try {
-      console.log("Updated Photos:", editingProject.avatar);
+        
       const updatedProject = {
         ...editingProject,
         avatar: editingProject.avatar,
       };
-      console.log("Updated project:", updatedProject);
+        
       await dispatch(updateProject(editingProject._id, updatedProject));
       await dispatch(getAllProjects());
       setIsEditing(false);

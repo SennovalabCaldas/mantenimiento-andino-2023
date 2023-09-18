@@ -24,7 +24,7 @@ export class Provider {
 
       console.log("Estos son los datos del proveedor", formData.get("avatar"));
       const url = `${this.baseApi}/${SUPPLIER}/new-supplier`;
-      console.log(url);
+        
       const params = {
         method: "POST",
         headers: {
@@ -32,9 +32,9 @@ export class Provider {
         },
         body: formData,
       };
-      console.log("Estos son los params", params);
+        
       const response = await fetch(url, params);
-      console.log(response);
+        
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -53,7 +53,7 @@ export class Provider {
       });
 
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
@@ -80,8 +80,8 @@ export class Provider {
   }
 
   async updateSupplier(_id, updatedData) {
-    console.log("id", _id);
-    console.log("Estos son los datos del proveedor", updatedData);
+      
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${SUPPLIER}/${_id}`, {
@@ -109,9 +109,9 @@ export class Provider {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(`${this.baseApi}/${SUPPLIER}/${_id}`);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error("Error al eliminar el proveedor:", error);

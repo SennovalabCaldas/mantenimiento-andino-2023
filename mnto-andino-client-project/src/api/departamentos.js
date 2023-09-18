@@ -53,23 +53,23 @@ class DepartamentosApi {
 
   async fetchCoordinates(address_dir) {
     try {
-      console.log("Si estoy entrando al try");
-      console.log("Dirección: ", address_dir);
+        
+        
 
       const API_KEY = "AIzaSyBU_4Kck6p2b4Iri-bVSGznJqAWUHWWzUU";
       const encode_uri = encodeURIComponent(address_dir);
-      console.log("Dirección con encodeURI: ", encode_uri);
+        
       const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encode_uri}&key=${API_KEY}`;
-      console.log(url);
+        
       const response = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${encode_uri}&key=${API_KEY}`
       );
 
-      console.log(response);
+        
       if (response.data.results.length > 0) {
         const latitude = response.data.results[0].geometry.location.lat;
         const longitude = response.data.results[0].geometry.location.lng;
-        console.log("Coordenadas:", latitude, longitude);
+          
         return { latitude: latitude, longitude: longitude };
       } else {
         console.log(
@@ -77,7 +77,7 @@ class DepartamentosApi {
         );
       }
     } catch (error) {
-      console.log("Error al obtener las coordenadas:", error);
+        
       throw error;
     }
   }

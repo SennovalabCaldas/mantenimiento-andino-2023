@@ -219,7 +219,7 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
       // Agrega aquí los demás campos de dirección
     };
     onSelectedData(data);
-    console.log("Datos de dirección seleccionados: ", data);
+      
   };
 
   return (

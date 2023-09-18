@@ -176,7 +176,7 @@ const NewsComponent = () => {
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+      
     if (file) {
       /* Convertir a blob */
       const blob = new Blob([file], { type: file.type });
@@ -205,7 +205,7 @@ const NewsComponent = () => {
   };
 
   const handleEdit = (id) => {
-    console.log("Editando noticia:", id);
+      
     const newsToEdit = news.find((item) => item._id === id);
     setEditingNews({
       ...newsToEdit,
@@ -239,11 +239,11 @@ const NewsComponent = () => {
     data.avatar = avatar;
     if (data._id) {
       // Editing existing news
-      console.log("Updating news", data._id);
-      console.log(data._id);
+        
+        
       await dispatch(updatePost(data._id, data));
     } else {
-      console.log("Saving new news data", data);
+        
       await dispatch(createPost(data));
     }
     await dispatch(getAllPosts());
@@ -251,14 +251,14 @@ const NewsComponent = () => {
   };
 
   const handleToggleShow = async (postId, updateData) => {
-    console.log("Toggling news item:", postId, updateData);
+      
     try {
       // Actualiza el estado "active" de la noticia en la página actual
       const updatedPageData = pageData.map((item) =>
         item._id === postId ? { ...item, active: updateData.active } : item
       );
       setPageData(updatedPageData);
-      console.log("Actualizando estado de active de noticia:", postId);
+        
       await dispatch(updatePost(postId, { active: updateData.active }));
     } catch (error) {
       console.error("Error toggling news item:", error);

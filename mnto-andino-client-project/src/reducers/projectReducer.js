@@ -29,7 +29,7 @@ const projectReducer = (state = initialState, action) => {
         loading: false,
       };
     case SET_ALL_PROJECTS_SERVICE:
-      console.log("Datos de todos los proyectos:", action.payload);
+        
       return {
         ...state,
         allProjects: action.payload,

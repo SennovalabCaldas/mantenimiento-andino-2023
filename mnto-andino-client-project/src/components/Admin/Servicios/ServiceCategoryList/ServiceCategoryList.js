@@ -24,12 +24,12 @@ export const ServiceCategoryList = () => {
     (state) => state.categoryService.allCategoriesService
   );
   categories.forEach((category) => {
-    console.log("Nombre de categoría:", category.nameCategoryService);
+      
   });
   console.log(
     "categories",
     categories.forEach((category) => {
-      console.log(category.nameCategoryService);
+        
     })
   );
 
@@ -38,12 +38,12 @@ export const ServiceCategoryList = () => {
 
   services.forEach((service) => {
     const categoryId = service.categoryService;
-    console.log("categoryId", categoryId);
+      
     const matchingCategory = categories.find(
       (category) => category._id === categoryId
     );
 
-    console.log("matchingCategory", matchingCategory);
+      
     if (matchingCategory) {
       categoryNames[categoryId] = matchingCategory.nameCategoryService;
     } else {
@@ -51,7 +51,7 @@ export const ServiceCategoryList = () => {
     }
   });
 
-  console.log(categoryNames);
+    
 
   // Agrupa los servicios por categoría
   const groupedServices = groupServicesByCategory(services);

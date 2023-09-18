@@ -26,12 +26,12 @@ export const WebClients = ({ clients }) => {
   ]);
   const theme = useTheme();
   const dispatch = useDispatch();
-  console.log(clients);
+    
 
   const getAddress = async (direccion) => {
     try {
       const address = await clientController.getAddressByDireccion(direccion);
-      console.log(address);
+        
       return address;
     } catch (error) {
       console.error("Error al obtener la dirección del cliente:", error);

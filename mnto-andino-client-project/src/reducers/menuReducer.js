@@ -30,7 +30,7 @@ const menuReducer = (state = initialState, action) => {
       };
 
     case UPDATE_MENU:
-      console.log("Recibiendo datos de menus en el reducer:", action.payload);
+        
       return {
         ...state,
         menu: {
@@ -39,7 +39,7 @@ const menuReducer = (state = initialState, action) => {
         },
       };
     case GET_ALL_MENUS:
-      console.log("Recibiendo datos de menus en el reducer:", action.payload);
+        
       return {
         ...state,
         allMenus: action.payload,

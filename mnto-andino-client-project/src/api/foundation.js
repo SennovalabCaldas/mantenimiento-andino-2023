@@ -24,7 +24,7 @@ export class Foundation {
 
       console.log("Estos son los datos de la fundación", formData.get("avatar"));
       const url = `${this.baseApi}/${FOUNDATION}/new-foundation`;
-      console.log(url);
+        
       const params = {
         method: "POST",
         headers: {
@@ -32,9 +32,9 @@ export class Foundation {
         },
         body: formData,
       };
-      console.log("Estos son los params", params);
+        
       const response = await fetch(url, params);
-      console.log(response);
+        
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -53,7 +53,7 @@ export class Foundation {
       });
 
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener las fundaciones:", error);
@@ -80,8 +80,8 @@ export class Foundation {
   }
 
   async updateFoundaion(_id, updatedData) {
-    console.log("id", _id);
-    console.log("Estos son los datos del fundación", updatedData);
+      
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {
@@ -109,9 +109,9 @@ export class Foundation {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(`${this.baseApi}/${FOUNDATION}/${_id}`);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error("Error al eliminar la fundación:", error);

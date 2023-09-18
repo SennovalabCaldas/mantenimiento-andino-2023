@@ -29,7 +29,7 @@ export class Client {
         data.direccion
       );
 
-      console.log(addressResult);
+        
 
       // Ahora puedes utilizar addressResult._id al crear el cliente
       formData.append("clientName", data.clientName);
@@ -39,7 +39,7 @@ export class Client {
 
       console.log("Estos son los datos del cliente", formData.get("avatar"));
       const url = `${this.baseApi}/admin/clients/new-client`;
-      console.log(url);
+        
       const params = {
         method: "POST",
         headers: {
@@ -47,9 +47,9 @@ export class Client {
         },
         body: formData,
       };
-      console.log("Estos son los params", params);
+        
       const response = await fetch(url, params);
-      console.log(response);
+        
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -66,9 +66,9 @@ export class Client {
           "Content-Type": CONTENT_TYPE_JSON,
         },
       });
-      console.log(response);
+        
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
@@ -95,19 +95,19 @@ export class Client {
   }
 
   async getAddressByDireccion(direccion) {
-    console.log(direccion);
+      
     try {
       // Llama a la función getAddressAll de la API de dirección para obtener todas las direcciones
       const addresses = await addressController.getAddressAll();
-      console.log(addresses);
+        
       // Busca la dirección correspondiente en el array de direcciones
       const matchingAddress = addresses.find(
         (address) => address._id === direccion
       );
-      console.log(matchingAddress);
+        
       if (matchingAddress) {
         // Si se encuentra la dirección, devuelve la dirección completa
-        console.log("Matching", matchingAddress);
+          
         return matchingAddress;
       } else {
         // Si no se encuentra la dirección, devuelve un mensaje de error o null
@@ -148,9 +148,9 @@ export class Client {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error("Error al eliminar el cliente:", error);

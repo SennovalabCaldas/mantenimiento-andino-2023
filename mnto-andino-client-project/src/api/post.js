@@ -9,7 +9,7 @@ export class Post {
 
   async getPosts() {
     const url = `${this.baseApi}/${POST_ROUTE}`;
-    console.log(url);
+      
     const params = {
       method: "GET",
       headers: {
@@ -31,9 +31,9 @@ export class Post {
   }
 
   async createPost(data) {
-    console.log('data que llega', data);
+      
     const accessToken = authController.getAccessToken();
-    console.log(data.avatar);
+      
     try {
       const formData = new FormData();
       formData.append("avatar", data.avatar.image);
@@ -54,7 +54,7 @@ export class Post {
         },
         body: formData,
       };
-      console.log("Estos son los params", params);
+        
       const response = await fetch(url, params);
       const result = await response.json();
       if (response.status !== 201) throw result;
@@ -65,7 +65,7 @@ export class Post {
   }
 
   async updatePost(_id, updatedData) {
-    console.log("Datos del post a actualizar:", _id, updatedData);
+      
     const accessToken = authController.getAccessToken();
     try {
       console.log(
@@ -119,7 +119,7 @@ export class Post {
     const accessToken = authController.getAccessToken();
     try {
       const url = `${this.baseApi}/${POST_ROUTE}/edit-state/${_id}`;
-      console.log("Url del post a actualizar:", url);
+        
 
       // Construir el objeto JSON con la propiedad 'mostrar'
       const requestBody = {
@@ -134,9 +134,9 @@ export class Post {
         },
         body: JSON.stringify(requestBody), // Convertir el objeto en formato JSON
       };
-      console.log("Params del post a actualizar:", params);
+        
       const response = await fetch(url, params);
-      console.log("Esta es la respuesta", response);
+        
 
       if (response.status === 200) {
         const result = await response.json();
@@ -164,7 +164,7 @@ export class Post {
           },
         }
       );
-      console.log(response);
+        
       const data = await response.json();
       return data;
     } catch (error) {
@@ -174,7 +174,7 @@ export class Post {
   }
 
   async getPost(_id) {
-    console.log(_id);
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${POST_ROUTE}/${_id}`, {
@@ -184,9 +184,9 @@ export class Post {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(response);
+        
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener la noticia:", error);

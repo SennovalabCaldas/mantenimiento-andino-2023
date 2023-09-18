@@ -252,7 +252,7 @@ export const Mapa = ({ departamentos }) => {
       if (sedeExiste) {
         // Si hay sedes en el municipio, muestra la información de las sedes
         const sedesDepartamento = getSedesPorDepartamento(deptName);
-        // console.log(sedesDepartamento);
+        //   
 
         if (sedesDepartamento.length > 0) {
           // Creamos un array para almacenar la información de las sedes
@@ -262,7 +262,7 @@ export const Mapa = ({ departamentos }) => {
             // Agrega aquí otras propiedades de la sede que desees mostrar
           }));
           setSedeInfo({ sedeInfoArray, existeSede: true });
-          console.log(sedeInfoArray[0].direccion.departamento);
+            
         } else {
           setSedeInfo({ deptName, existeSede: false });
         }

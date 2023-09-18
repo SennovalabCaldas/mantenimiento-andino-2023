@@ -20,7 +20,7 @@ const initialState = {
 const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_CATEGORY_SUCCESS:
-      console.log("Datos de la nueva categoría en el reducer:", action.payload);
+        
       return {
         ...state,
         category: {

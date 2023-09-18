@@ -48,7 +48,7 @@ export class Category {
       });
 
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
@@ -100,7 +100,7 @@ export class Category {
   }
 
   async updatePostsEstadoMostrar(_id, mostrar) {
-    console.log("Datos de la categoría a actualizar:", _id, mostrar);
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
@@ -115,9 +115,9 @@ export class Category {
           },
         }
       );
-      console.log("response", response);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error(
@@ -140,9 +140,9 @@ export class Category {
           },
         }
       );
-      console.log(`${this.baseApi}/${CATEGORY_ROUTE}/delete/${_id}`);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error("Error al eliminar la categoría:", error);

@@ -20,7 +20,7 @@ export const AuthProvider = (props) => {
       setToken(response.access);
       await login(response.access);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -62,7 +62,7 @@ export const AuthProvider = (props) => {
       setUser(response);
       setToken(accessToken);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

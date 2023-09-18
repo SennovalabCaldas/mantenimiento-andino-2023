@@ -17,9 +17,9 @@ export class User {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(response);
+        
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener el usuario:", error);
@@ -92,7 +92,7 @@ export class User {
   }
 
   async getUser(_id) {
-    console.log("Entre en getUser de api ", _id);
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
@@ -105,7 +105,7 @@ export class User {
           },
         }
       );
-      console.log("response getUser", response);
+        
       const data = await response.json();
       return data;
     } catch (error) {

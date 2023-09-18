@@ -5,11 +5,11 @@ import { Service } from "../api/service"; // Ajusta la ruta a la ubicación de t
 const serviceController = new Service();
 
 export const createService = (serviceData) => {
-  console.log("serviceData", serviceData);
+    
   return async (dispatch, getState) => {
     try {
       const newService = await serviceController.createService(serviceData);
-      console.log("newService", newService);
+        
       dispatch({
         type: types.CREATE_SERVICE_SUCCESS,
         payload: newService,
@@ -24,7 +24,7 @@ export const createService = (serviceData) => {
 };
 
 export const updateService = (serviceId, updatedServiceData) => {
-  console.log("updatedServiceData", updatedServiceData);
+    
   return async (dispatch, getState) => {
     try {
       const updatedService = await serviceController.updateService(
@@ -49,7 +49,7 @@ export const getServices = () => {
   return async (dispatch, getState) => {
     try {
       const services = await serviceController.getServices();
-      console.log("services", services);
+        
       dispatch({
         type: types.GET_SERVICES_SUCCESS,
         payload: services,

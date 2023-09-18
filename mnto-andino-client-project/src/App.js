@@ -48,7 +48,7 @@ const App = () => {
     handleLoggedIn();
   }, [dispatch, token, isLoggedIn, user]);
 
-  console.log(isLoggedIn);
+    
   return (
     <ErrorBoundary>
       <BrowserRouter>

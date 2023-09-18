@@ -29,7 +29,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const ServiceList = () => {
   const services = useSelector((state) => state.service.services);
-  console.log(services);
+    
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -55,13 +55,13 @@ const ServiceList = () => {
   };
 
   const handleDelete = (serviceId) => {
-    console.log("serviceId", serviceId);
+      
     dispatch(deleteService(serviceId));
     dispatch(getServices());
   };
 
   const handleEdit = (service) => {
-    console.log("Service data in handleEdit:", service);
+      
     setEditingService(service);
     setIsEditing(true);
     setEditedService({
@@ -71,7 +71,7 @@ const ServiceList = () => {
       photos: service.photos.map((photo) => photo),
       imageUrls: service.photos.map((photo) => photo),
     });
-    console.log("editedService", editedService);
+      
     handleModalOpen();
   };
 
@@ -170,12 +170,12 @@ const ServiceList = () => {
   const handleUpdateService = async () => {
     setIsCreatingService(true);
     try {
-      console.log("Updated Photos:", editedService.photos);
+        
       const updatedService = {
         ...editingService,
         photos: editedService.photos,
       };
-      console.log("Updated Service:", updatedService);
+        
       await dispatch(updateService(editingService._id, updatedService));
       await dispatch(getServices());
       setIsEditing(false);

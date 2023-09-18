@@ -25,7 +25,7 @@ export const PasswordRecovery = (props) => {
         setTimeout(() => {
           close();
         }, 2000);
-        console.log(response);
+          
       } catch (error) {
         setErrorMessage(
           "El correo electrónico no se encuentra registrado en nuestras bases de datos"

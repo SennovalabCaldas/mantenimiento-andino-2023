@@ -9,13 +9,13 @@ export class Service {
   baseApi = ENV.BASE_API;
 
   async createService(serviceData) {
-    console.log("serviceData", serviceData);
+      
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
       Object.keys(serviceData).forEach((key) => {
         if (key === "photos") {
-          console.log("serviceData[key]", serviceData[key]);
+            
           serviceData[key].forEach((photo) => {
             formData.append("photos", photo);
           });
@@ -33,7 +33,7 @@ export class Service {
         body: formData,
       };
 
-      console.log("params", params);
+        
       const response = await fetch(url, params);
       const result = await response.json();
 
@@ -53,7 +53,7 @@ export class Service {
           "Content-Type": CONTENT_TYPE_JSON,
         },
       });
-      console.log("response", response);
+        
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(
@@ -62,7 +62,7 @@ export class Service {
       }
 
       const serviceData = await response.json();
-      console.log("serviceData", serviceData);
+        
       return serviceData;
     } catch (error) {
       throw error; // Re-lanzamos el error para manejarlo en un nivel superior
@@ -88,7 +88,7 @@ export class Service {
   }
 
   async updateService(_id, updatedData) {
-    console.log("updatedData", updatedData);
+      
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
@@ -111,7 +111,7 @@ export class Service {
         body: formData,
       };
 
-      console.log("params", params);
+        
       const response = await fetch(url, params);
       const result = await response.json();
 

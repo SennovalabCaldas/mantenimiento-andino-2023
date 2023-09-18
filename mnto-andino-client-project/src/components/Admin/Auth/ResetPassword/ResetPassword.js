@@ -31,10 +31,10 @@ export const ResetPassword = (props) => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (formValue) => {
-      console.log("entre al onsubmit");
+        
       try {
         const response = await authController.resetPassword(formValue);
-        console.log(response);
+          
       } catch (error) {
         console.error(error);
       }

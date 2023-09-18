@@ -85,13 +85,13 @@ export const Foundation = () => {
   //     active: editingProject.active,
   //     avatar: avatar,
   //   };
-  //   console.log("Guardando datos de project:", data);
+  //     
   //   if (data._id) {
-  //     console.log("Updating project", data._id);
-  //     console.log(data._id);
+  //       
+  //       
   //     await dispatch(updateProject(data._id, data));
   //   } else {
-  //     console.log("Saving new project", data);
+  //       
   //     await dispatch(createProject(data));
   //   }
   //   await dispatch(getAllProjects());

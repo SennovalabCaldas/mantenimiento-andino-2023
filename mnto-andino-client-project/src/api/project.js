@@ -26,7 +26,7 @@ export class Project {
 
       console.log("Estos son los datos del proyecto", formData.get("avatar"));
       const url = `${this.baseApi}/${PROJECTS}/new-project`;
-      console.log(url);
+        
       const params = {
         method: "POST",
         headers: {
@@ -34,9 +34,9 @@ export class Project {
         },
         body: formData,
       };
-      console.log("Estos son los params", params);
+        
       const response = await fetch(url, params);
-      console.log(response);
+        
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -53,9 +53,9 @@ export class Project {
           "Content-Type": CONTENT_TYPE_JSON,
         },
       });
-console.log(response);
+  
       const data = await response.json();
-      console.log(data);
+        
       return data;
     } catch (error) {
       console.error("Error al obtener los proyectos:", error);
@@ -82,8 +82,8 @@ console.log(response);
   }
 
   async updateProject(_id, updatedData) {
-    console.log("id", _id);
-    console.log("Estos son los datos del proyecto", updatedData);
+      
+      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${PROJECTS}/${_id}`, {
@@ -111,9 +111,9 @@ console.log(response);
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(`${this.baseApi}/${PROJECTS}/${_id}`);
+        
       const data = await response.json();
-      console.log("data", data);
+        
       return data;
     } catch (error) {
       console.error("Error al eliminar el proyecto:", error);

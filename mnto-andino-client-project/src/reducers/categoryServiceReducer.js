@@ -21,7 +21,7 @@ const initialState = {
 const categoryServiceReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_CATEGORY_SERVICE_SUCCESS:
-      console.log("Datos de la nueva categoría en el reducer:", action.payload);
+        
       return {
         ...state,
         categoryService: {
@@ -31,7 +31,7 @@ const categoryServiceReducer = (state = initialState, action) => {
       };
 
     case UPDATE_CATEGORY_SERVICE_SUCCESS:
-      console.log(action.payload);
+        
       const updatedCategory = action.payload;
       const updatedCategories = state.allCategoriesService.map(
         (categoryService) =>

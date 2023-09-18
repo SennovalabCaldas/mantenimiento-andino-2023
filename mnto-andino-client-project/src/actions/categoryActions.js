@@ -97,7 +97,7 @@ export const getCategorySuccess = (category) => {
 };
 
 export const updateCategorySuccess = (updatedCategory) => {
-  console.log("Datos de la categoría actualizada:", updatedCategory);
+    
   return {
     type: UPDATE_CATEGORY_SUCCESS,
     payload: updatedCategory,

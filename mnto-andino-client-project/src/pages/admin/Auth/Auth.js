@@ -10,7 +10,7 @@ export const Auth = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const openLogin = () => {
     setActiveIndex(0);
-    console.log("Entre en tab");
+      
   };
 
   const handleRegisterClick = () => {

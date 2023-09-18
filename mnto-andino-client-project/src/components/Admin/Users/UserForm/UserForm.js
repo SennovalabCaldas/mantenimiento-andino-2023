@@ -23,7 +23,7 @@ const userController = new User();
 const UserForm = (props) => {
   const { close, onReload, user, sedes } = props;
   const [showPassword, setShowPassword] = useState(false);
-  console.log("Sedes:", sedes);
+    
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -60,7 +60,7 @@ const UserForm = (props) => {
             onReload();
             close();
           } else {
-            console.log("Updating user:", user._id, formValue);
+              
             await userController.updateUser(user._id, formValue);
             onReload();
             close();

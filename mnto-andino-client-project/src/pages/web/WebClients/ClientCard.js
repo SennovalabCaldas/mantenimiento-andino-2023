@@ -15,7 +15,7 @@ export const ClientCard = ({ clientAvatars }) => {
     const avatarUrl = clientAvatars[index % clientAvatars.length];
     const isCellEmpty =
       avatarUrl === undefined || avatarUrl === null || avatarUrl === ""; // Verifica si la URL del avatar está vacía
-    console.log(avatarUrl);
+      
     return (
       <div
         className={`client-cell d-${index + 1} ${

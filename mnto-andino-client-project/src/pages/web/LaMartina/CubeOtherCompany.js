@@ -14,9 +14,9 @@ export const CubeOtherCompany = () => {
     // Verificar si los elementos existen antes de agregar eventos
     if (cube && optionsContainer && option1 && option2 && option3) {
       cube.addEventListener("click", () => {
-        console.log("Di clic en el cubo");
+          
         if (!animationPaused) {
-          console.log("Animación pausada");
+            
           cube.style.animationPlayState = "paused";
           optionsContainer.style.display = "block";
           animationPaused = true;

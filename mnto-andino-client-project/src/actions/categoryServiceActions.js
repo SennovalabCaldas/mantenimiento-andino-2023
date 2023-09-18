@@ -12,7 +12,7 @@ import { CategoryService } from "../api/categoryService";
 const categoryServiceController = new CategoryService();
 
 export const createCategoryService = (data) => {
-  console.log("Datos de la nueva categoría:", data);
+    
   return async (dispatch, getState) => {
     try {
       const category = await categoryServiceController.createCategoryService(
@@ -75,7 +75,7 @@ export const deleteCategoryService = (_id) => {
 /* Acciones */
 
 export const createCategorySuccess = (category) => {
-  console.log("Datos de la nueva categoría:", category);
+    
   return {
     type: CREATE_CATEGORY_SERVICE_SUCCESS,
     payload: category,
@@ -97,7 +97,7 @@ export const getCategorySuccess = (category) => {
 };
 
 export const updateCategorySuccess = (updatedCategory) => {
-  console.log("Datos de la categoría actualizada:", updatedCategory);
+    
   return {
     type: UPDATE_CATEGORY_SERVICE_SUCCESS,
     payload: updatedCategory,

@@ -40,16 +40,16 @@ export function WebMenu() {
   };
 
   const toggleMenu = () => {
-    console.log("Clic en abrir-cerrar");
+      
     setIsMenuOpen((prevState) => !prevState);
-    console.log(isMenuOpen);
+      
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
   const showSlideBar = activeSection !== "section1";
-  console.log("Mostrar slideBar", showSlideBar);
+    
 
   return (
     <div className="webmenu-page">
@@ -235,7 +235,7 @@ function Section2() {
 
 function Section3() {
   const clients = useSelector((state) => state.client.clients);
-console.log(clients);
+  
   return (
     <div className="section" id="section3">
       <WebClients clients={clients} />

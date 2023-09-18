@@ -98,13 +98,13 @@ function SlideBarWebMenuPanel({
   const user = useSelector((state) => state.auth.user);
 
   const handleClick = (section) => {
-    console.log("Se hizo clic en el elemento del menú:", section);
+      
     setActiveSection(section);
     handleSetActiveSection(section);
   };
 
   useEffect(() => {
-    console.log("activeSection actualizado:", activeSection);
+      
   }, [activeSection]);
 
   const filteredMenuItems = menuItems.filter(
