@@ -2,37 +2,39 @@ import React, { useEffect, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core"; // Importa library desde FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHome,
+  faNewspaper,
   faBuilding,
   faCalendar,
-  faCubes,
   faTruck,
+  faTruckFast,
   faHandshake,
   faCertificate,
-  faHandHoldingHeart,
-  faRocket,
   faFolderOpen,
+  faUser,
+  faCogs,
+  faInstitution,
+  faSitemap,
 } from "@fortawesome/free-solid-svg-icons";
 // import "../../../scss/index.scss";
-import { Icon } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 library.add(
   faBuilding,
+  faNewspaper,
   faCalendar,
-  faCubes,
   faTruck,
+  faTruckFast,
   faCertificate,
   faHandshake,
-  faHandHoldingHeart,
-  faRocket,
-  faFolderOpen
+  faFolderOpen, 
+  faUser,
+  faCogs,
+  faInstitution,
+  faSitemap,
 );
 
 const menuItems = [
-  // { path: "/", icon: faBuilding, text: "Home", roles: ["admin"] },
-  // { path: "/admin", icon: faBuilding, text: "Home", roles: ["admin"] },
   {
     path: "/admin/home",
     icon: faBuilding,
@@ -40,49 +42,49 @@ const menuItems = [
   },
   {
     path: "/news",
-    icon: faHome,
+    icon: faNewspaper,
     roles: ["user"],
   },
-  { path: "/admin/users", icon: faHome, roles: ["admin"] },
-  { path: "/admin/sedes", icon: faHome, roles: ["admin"] },
+  { path: "/admin/users", icon: faUser, roles: ["admin"] },
+  { path: "/admin/sedes", icon: faBuilding, roles: ["admin"] },
   {
     path: "/admin/services",
-    icon: faHome,
+    icon: faCalendar,
     roles: ["admin"],
   },
   {
     path: "/admin/news",
-    icon: faHome,
+    icon: faNewspaper,
     roles: ["admin"],
   },
   {
     path: "/admin/clients",
-    icon: faHome,
+    icon: faHandshake,
     roles: ["admin"],
   },
   {
     path: "/admin/providers",
-    icon: faHome,
+    icon: faTruckFast,
     roles: ["admin"],
   },
   {
     path: "/admin/allies",
-    icon: faHome,
+    icon: faTruck,
     roles: ["admin"],
   },
   {
     path: "/admin/projects",
-    icon: faHome,
+    icon: faSitemap,
     roles: ["admin"],
   },
   {
     path: "/admin/certifications",
-    icon: faHome,
+    icon: faCertificate,
     roles: ["admin"],
   },
   {
     path: "/admin/foundation",
-    icon: faHome,
+    icon: faInstitution,
     roles: ["admin"],
   },
 ];

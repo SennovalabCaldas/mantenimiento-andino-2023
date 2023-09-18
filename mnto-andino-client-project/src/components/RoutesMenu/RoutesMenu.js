@@ -54,7 +54,7 @@ const menuItems = [
   },
   {
     path: "/admin/projects",
-    icon: "cogs",
+    icon: "sitemap",
     text: "Proyectos",
     roles: ["admin"],
   },
@@ -66,7 +66,7 @@ const menuItems = [
   },
   {
     path: "/admin/foundation",
-    icon: "shipping fast",
+    icon: "university",
     text: "Fundación",
     roles: ["admin"],
   },
