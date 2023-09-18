@@ -33,7 +33,7 @@ export class Post {
   async createPost(data) {
       
     const accessToken = authController.getAccessToken();
-      
+    
     try {
       const formData = new FormData();
       formData.append("avatar", data.avatar.image);

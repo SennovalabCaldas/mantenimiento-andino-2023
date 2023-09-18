@@ -24,7 +24,7 @@ export class Certification {
 
       console.log("Estos son los datos del proyecto", formData.get("avatar"));
       const url = `${this.baseApi}/${CERTIFICATION}/new-certification`;
-        
+
       const params = {
         method: "POST",
         headers: {
@@ -32,7 +32,7 @@ export class Certification {
         },
         body: formData,
       };
-        
+
       const response = await fetch(url, params);
       const result = await response.json();
       if (response.status !== 201) throw result;
@@ -43,13 +43,15 @@ export class Certification {
   }
 
   async getCertifications() {
+    const url = `${this.baseApi}/${CERTIFICATION}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${CERTIFICATION}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-        },
-      });
+      const response = await fetch(url, params);
       const data = await response.json();
       return data;
     } catch (error) {

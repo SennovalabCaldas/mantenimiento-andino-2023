@@ -46,16 +46,16 @@ export class CategoryService {
   }
 
   async getCategories() {
+    const url = `${this.baseApi}/${CATEGORY_ROUTE}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${CATEGORY_ROUTE}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-        },
-      });
-
+      const response = await fetch(url, params);
       const data = await response.json();
-
       return data;
     } catch (error) {
       console.error("Error al obtener las categorías:", error);

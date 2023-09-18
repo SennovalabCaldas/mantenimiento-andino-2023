@@ -46,14 +46,15 @@ export class Service {
   }
 
   async getServices() {
+    const url = `${this.baseApi}/${SERVICE_ROUTE}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${SERVICE_ROUTE}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-        },
-      });
-        
+      const response = await fetch(url, params);  
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(

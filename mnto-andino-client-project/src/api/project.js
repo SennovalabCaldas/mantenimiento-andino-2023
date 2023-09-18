@@ -46,16 +46,16 @@ export class Project {
   }
 
   async getProjects() {
+    const url = `${this.baseApi}/${PROJECTS}`;
+    const params = {  
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${PROJECTS}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-        },
-      });
-  
+      const response = await fetch(url, params);
       const data = await response.json();
-        
       return data;
     } catch (error) {
       console.error("Error al obtener los proyectos:", error);

@@ -44,16 +44,16 @@ export class Foundation {
   }
 
   async getFoundations() {
+    const url = `${this.baseApi}/${FOUNDATION}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${FOUNDATION}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-        },
-      });
-
+      const response = await fetch(url, params);
       const data = await response.json();
-        
       return data;
     } catch (error) {
       console.error("Error al obtener las fundaciones:", error);

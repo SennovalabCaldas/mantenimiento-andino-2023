@@ -44,16 +44,16 @@ export class Provider {
   }
 
   async getSuppliers() {
+    const url = `${this.baseApi}/${SUPPLIER}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${SUPPLIER}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-        },
-      });
-
+      const response = await fetch(url, params);
       const data = await response.json();
-        
       return data;
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
