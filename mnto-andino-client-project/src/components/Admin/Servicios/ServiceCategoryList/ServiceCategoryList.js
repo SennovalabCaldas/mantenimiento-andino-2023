@@ -53,7 +53,7 @@ export const ServiceCategoryList = () => {
         const categoryName = categoryNames[categoryId] || categoryId;
         return (
           <div key={categoryId}>
-            <h2>Categoría: {categoryName}</h2>
+            <h2>{categoryName}</h2>
             <div
               style={{
                 display: "flex",
