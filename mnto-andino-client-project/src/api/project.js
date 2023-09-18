@@ -53,7 +53,7 @@ export class Project {
           "Content-Type": CONTENT_TYPE_JSON,
         },
       });
-
+console.log(response);
       const data = await response.json();
       console.log(data);
       return data;

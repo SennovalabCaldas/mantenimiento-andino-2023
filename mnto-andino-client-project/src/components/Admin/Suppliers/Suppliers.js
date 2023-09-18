@@ -40,7 +40,7 @@ export const Suppliers = () => {
   const [editSupplierName, setEditSupplierName] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(null);
 
-  const [newSupplier, setNewCategory] = useState({
+  const [newSupplier, setNewSupplier] = useState({
     supplierName: "",
     active: true,
     avatar: [],
@@ -194,7 +194,7 @@ export const Suppliers = () => {
                 <Switch
                   checked={newSupplier.active}
                   onChange={(e) =>
-                    setNewCategory({
+                    setNewSupplier({
                       ...newSupplier,
                       active: e.target.checked,
                     })

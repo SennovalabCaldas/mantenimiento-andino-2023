@@ -1,38 +1,28 @@
-import React, { useState } from "react";
-import { Tab } from "semantic-ui-react";
+import React, { useEffect } from "react";
+import { ProjectList } from "../../../components/Admin/ProjectsList";
+import { useSelector } from "react-redux";
+import { getAllProjects } from "../../../actions/projectActions";
 import { useDispatch } from "react-redux";
-import { ProjectsNal } from "../../../components/Admin/ProjectList/ProjectsNal/ProjectsNal";
-import { ProjectsInterNal } from "../../../components/Admin/ProjectList/ProjectsInterNal/ProjectsInterNal";
 
 export const Projects = () => {
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState(0);
-  const panes = [
-    {
-      menuItem: "Proyectos Nacionales",
-      render: () => (
-        <Tab.Pane>
-          <ProjectsNal />
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: "Proyectos Internacionales",
-      render: () => (
-        <Tab.Pane>
-          <ProjectsInterNal />
-        </Tab.Pane>
-      ),
-    },
-  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(getAllProjects());
+      } catch (error) {
+        console.error("Error al obtener las sedes:", error);
+      }
+    };
+    fetchData();
+  }, [dispatch]);
+
+  const projects = useSelector((state) => state.project.allProjects) || [];
+console.log("projects:", projects);
   return (
     <div>
-      <Tab
-        panes={panes}
-        activeIndex={activeTab}
-        onTabChange={(_, data) => setActiveTab(data.activeIndex)}
-        className="custom-tab"
-      />
+      <ProjectList />
     </div>
   );
 };

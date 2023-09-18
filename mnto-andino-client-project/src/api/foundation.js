@@ -20,7 +20,7 @@ export class Foundation {
         return; // Aborta la función si la imagen no es válida
       }
       formData.append("foundationName", data.foundationName);
-      formData.append("direccion", data.direccion);
+      formData.append("active", data.active);
 
       console.log("Estos son los datos de la fundación", formData.get("avatar"));
       const url = `${this.baseApi}/${FOUNDATION}/new-foundation`;

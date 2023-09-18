@@ -26,10 +26,11 @@ export const createProject = (data) => {
 };
 
 export const getAllProjects = () => {
+  console.log("Obteniendo todos los proyectos");
   return async (dispatch, getState) => {
     try {
       const projects = await projectController.getProjects();
-      dispatch(setAllCategories(projects));
+      dispatch(setAllProjects(projects));
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +41,7 @@ export const getProject = (_id) => {
   return async (dispatch, getState) => {
     try {
       const project = await projectController.getProject(_id);
-      dispatch(getCategorySuccess(project));
+      dispatch(getProjectSuccess(project));
     } catch (error) {
       console.error(error);
     }
@@ -84,14 +85,14 @@ export const createProjectSuccess = (project) => {
   };
 };
 
-export const setAllCategories = (categories) => {
+export const setAllProjects = (categories) => {
   return {
     type: SET_ALL_PROJECTS_SERVICE,
     payload: categories,
   };
 };
 
-export const getCategorySuccess = (project) => {
+export const getProjectSuccess = (project) => {
   return {
     type: GET_PROJECT_SUCCESS,
     payload: project,

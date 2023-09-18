@@ -16,8 +16,6 @@ const initialState = {
     client: null,
     joinDate: null,
   },
-  error: null,
-  loading: false,
   allProjects: [],
 };
 
@@ -31,6 +29,7 @@ const projectReducer = (state = initialState, action) => {
         loading: false,
       };
     case SET_ALL_PROJECTS_SERVICE:
+      console.log("Datos de todos los proyectos:", action.payload);
       return {
         ...state,
         allProjects: action.payload,
