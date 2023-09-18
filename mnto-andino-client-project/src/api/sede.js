@@ -12,7 +12,6 @@ export class Sede {
   createSede = async (data) => {
     const accessToken = authController.getAccessToken();
     const url = `${this.baseApi}/admin/sedes/new-sede`;
-      
     const params = {
       method: "POST",
       body: JSON.stringify(data),

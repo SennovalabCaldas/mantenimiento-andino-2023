@@ -29,7 +29,6 @@ export class CategoryService {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
         },
         body: formData,
       };

@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
 import { ENV } from "../utils";
 import { Auth } from "./auth";
-import { Post } from "./post";
 
 const CATEGORY_ROUTE = ENV.API_ROUTES.CATEGORY_ROUTE;
 const GET_CATEGORY_ROUTE = ENV.API_ROUTES.GET_CATEGORY;
