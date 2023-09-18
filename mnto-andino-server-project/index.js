@@ -11,8 +11,6 @@ mongoose
   .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
     dbName: "mnto-andino-db",
   })
   .then(() => {
