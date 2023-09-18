@@ -57,7 +57,7 @@ export class Client {
   }
 
   async getClients() {
-    const url = `${this.baseApi}/${CLIENT_ROUTE}`;
+    const url = `${this.baseApi}/admin/clients`;
     const params = {
       method: "GET",
       headers: {
@@ -94,7 +94,6 @@ export class Client {
 
   async getAddressByDireccion(direccion) {
     try {
-      // Llama a la función getAddressAll de la API de dirección para obtener todas las direcciones
       const addresses = await addressController.getAddressAll();
 
       // Busca la dirección correspondiente en el array de direcciones

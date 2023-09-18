@@ -1,0 +1,40 @@
+/* CardClient.scss */
+
+.client-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre las tarjetas */
+  }
+  
+  .client-card {
+    width: calc(33.3333% - 20px); 
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px; /* Esquinas redondas */
+    overflow: hidden; /* Ocultar contenido fuera de las esquinas redondas */
+    transition: transform 0.3s ease-in-out; /* Efecto de transformación suave */
+  
+    &:hover {
+      transform: scale(1.05); /* Efecto de escala al pasar el cursor */
+    }
+  
+    .MuiCardMedia-root {
+      max-height: 200px; /* Altura máxima de la imagen */
+      object-fit: cover; /* Ajustar imagen al tamaño de la tarjeta */
+    }
+  
+    .MuiCardContent-root {
+      padding: 16px;
+    }
+  
+    .MuiTypography-h6 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  
+    .MuiTypography-body2 {
+      font-size: 0.9rem;
+    }
+  }
+  

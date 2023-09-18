@@ -47,6 +47,7 @@ export class CategoryService {
 
   async getCategories() {
     const url = `${this.baseApi}/${CATEGORY_ROUTE}`;
+    console.log("URL", url);
     const params = {
       method: "GET",
       headers: {

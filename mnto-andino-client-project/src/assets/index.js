@@ -40,6 +40,16 @@ import triangle2 from "./svg/triangle2.svg";
 import mapamundo from "./svg/mapamundi.svg";
 
 import video1 from "./video/mp4/bg-video.mp4";
+import carulla from './clients/carulla.png';
+import consorcio from './clients/consorcio.png';
+import exito from './clients/exito.png';
+import juanvaldez from './clients/juanvaldez.jpg';
+import ani from './clients/ani.png';
+import ara from './clients/ara.svg';
+import Mercaldas from './clients/Mercaldas.png';
+import Rational from './clients/Rational.png';
+import superinter from './clients/superinter.png';
+import superal from './clients/superal.png';
 
 const image = {
   authBg,
@@ -80,6 +90,16 @@ const image = {
   s6,
   s7,
   s8,
-  mapamundo
+  mapamundo,
+  carulla,
+  consorcio,
+  exito,
+  juanvaldez,
+  ani,
+  ara,
+  Mercaldas,
+  Rational,
+  superinter,
+  superal,
 };
 export { image };

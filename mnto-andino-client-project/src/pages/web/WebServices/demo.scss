@@ -48,6 +48,12 @@
   }
 
   .content-service {
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
     margin: 0 auto;
     max-width: 1000px;
   }

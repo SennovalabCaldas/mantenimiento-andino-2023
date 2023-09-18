@@ -5,7 +5,7 @@ import { image } from "../../assets";
 export const SocialSlideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const codigoPais = "57";
-  const numeroDeTelefono = "310833591"; // Reemplaza esto con el número de teléfono deseado
+  const numeroDeTelefono = "3103833591"; // Reemplaza esto con el número de teléfono deseado
   const enlaceWhatsApp = `https://wa.me/${codigoPais}${numeroDeTelefono}`;
 
   const toggleSlideBar = () => {
