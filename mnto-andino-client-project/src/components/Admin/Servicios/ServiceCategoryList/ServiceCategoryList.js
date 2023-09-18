@@ -1,5 +1,7 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { Card, CardContent } from "@mui/material";
 
 // Función para agrupar los servicios por categoría
 function groupServicesByCategory(services) {
@@ -23,35 +25,24 @@ export const ServiceCategoryList = () => {
   const categories = useSelector(
     (state) => state.categoryService.allCategoriesService
   );
-  categories.forEach((category) => {
-      
-  });
-  console.log(
-    "categories",
-    categories.forEach((category) => {
-        
-    })
-  );
+  categories.forEach((category) => {});
 
   // Mapea los IDs de categoría a sus nombres correspondientes
-  const categoryNames = {}
+  const categoryNames = {};
 
   services.forEach((service) => {
     const categoryId = service.categoryService;
-      
+
     const matchingCategory = categories.find(
       (category) => category._id === categoryId
     );
 
-      
     if (matchingCategory) {
       categoryNames[categoryId] = matchingCategory.nameCategoryService;
     } else {
       categoryNames[categoryId] = "Categoría Desconocida"; // O un valor predeterminado en caso de que no haya coincidencia
     }
   });
-
-    
 
   // Agrupa los servicios por categoría
   const groupedServices = groupServicesByCategory(services);
@@ -60,37 +51,75 @@ export const ServiceCategoryList = () => {
     <>
       {Object.keys(groupedServices).map((categoryId) => {
         const categoryName = categoryNames[categoryId] || categoryId;
-
         return (
           <div key={categoryId}>
             <h2>Categoría: {categoryName}</h2>
             <div
-              style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                marginTop: "20px",
+              }}
             >
               {groupedServices[categoryId].map((service) => (
-                <div
+                <Card
                   key={service._id}
-                  style={{ margin: "10px", minWidth: "200px" }}
+                  style={{
+                    margin: "10px",
+                    minWidth: "280px",
+                    maxWidth: "280px",
+                  }}
                 >
-                  <h3>{service.name}</h3>
-                  <p>{service.description}</p>
-                  {/* Aquí puedes mostrar imágenes en miniatura */}
-                  <div>
-                    {service.photos &&
-                      service.photos.map((photo, index) => (
+                  <CardContent>
+                    <div
+                      class="image"
+                      style={{
+                        margin: "10px",
+                        minHeight: "280px",
+                        maxHeight: "280px",
+                        display: "flex",
+                        "object-fit": "cover",
+                        alignItems: "center",
+                        borderRadius: "4px",
+                        background: " rgba(0,0,0,0.01)",
+                      }}
+                    >
+                      {service.photos && service.photos.length > 0 && (
                         <img
-                          key={index}
-                          src={photo}
-                          alt={`Foto ${index}`}
-                          style={{
-                            width: "100px",
-                            height: "100px",
-                            margin: "2px",
-                          }}
+                          src={service.photos[0]} 
+                          alt={`Foto principal`}
+                          style={{ width: "100%", height: "auto" }}
                         />
-                      ))}
-                  </div>
-                </div>
+                      )}
+                    </div>
+                    <Typography variant="h6">{service.name}</Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {service.description}
+                    </Typography>
+                    <div style={{ display: "flex", flexWrap: "wrap" }}>
+                      {service.photos &&
+                        service.photos.map((photo, index) => (
+                          <img
+                            key={index}
+                            src={photo} // Use the stored URL directly
+                            alt={`Foto ${index}`}
+                            style={{
+                              width: "40px",
+                              height: "40px",
+                              margin: "2px",
+                            }}
+                          />
+                        ))}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginTop: "10px",
+                      }}
+                    ></div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
