@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { app, printRoutes } = require("./app"); // Importa la configuración de Express desde app.js
-let PORT = process.env.PUERTO || 3100;
+let PORT = process.env.PUERTO || 3000;
 
 // Dirección de conexión a la base de datos remota
 const uri = "mongodb://prueba2:prueba2@72.167.135.41:27017/mnto-andino-db";
