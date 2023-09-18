@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const CertificationsInterNal = () => {
+const CertificationsInterNal = () => {
   return (
     <div>CertificationsInterNal</div>
   )
 }
+
+export default CertificationsInterNal

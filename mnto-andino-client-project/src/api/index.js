@@ -11,3 +11,4 @@ export * from "./service";
 export * from "./provider";
 export * from "./ally";
 export * from "./project";
+export * from "./certification";

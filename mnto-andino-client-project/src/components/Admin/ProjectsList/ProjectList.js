@@ -23,6 +23,7 @@ import {
 } from "../../../actions/projectActions";
 import { useSelector } from "react-redux";
 import { getAllClients } from "../../../actions/clientActions";
+import "./ProjectList.scss";
 
 export const ProjectList = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ export const ProjectList = () => {
       menuItem: "Proyectos Nacionales",
       render: () => (
         <Tab.Pane>
-          <ProjectsNal projects={nationalProjects} national={true}/>
+          <ProjectsNal projects={nationalProjects} national={true} />
         </Tab.Pane>
       ),
     },
@@ -84,7 +85,7 @@ export const ProjectList = () => {
       menuItem: "Proyectos Internacionales",
       render: () => (
         <Tab.Pane>
-          <ProjectsInterNal projects={internationalProjects} national={false}/>
+          <ProjectsInterNal projects={internationalProjects} national={false} />
         </Tab.Pane>
       ),
     },
@@ -174,7 +175,7 @@ export const ProjectList = () => {
     <div>
       <h2>Crear proyecto</h2>
 
-      <Card>
+      <Card className="card-create-project">
         <CardContent>
           <Typography variant="h5" component="h3">
             Ingresar un nuevo proyecto
@@ -252,12 +253,14 @@ export const ProjectList = () => {
           </form>
         </CardContent>
       </Card>
-      <Tab
-        panes={panes}
-        activeIndex={activeTab}
-        onTabChange={(_, data) => setActiveTab(data.activeIndex)}
-        className="custom-tab"
-      />
+      <Card className="card-list-project">
+        <Tab
+          panes={panes}
+          activeIndex={activeTab}
+          onTabChange={(_, data) => setActiveTab(data.activeIndex)}
+          className="custom-tab"
+        />
+      </Card>
     </div>
   );
 };

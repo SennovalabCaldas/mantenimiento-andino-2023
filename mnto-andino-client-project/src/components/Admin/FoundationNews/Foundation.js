@@ -1,159 +1,168 @@
-import React, { useState } from "react";
-import { Tab } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
-import { ProjectsInterNal } from "../ProjectsInterNal";
-import { ProjectsNal } from "../ProjectsNal";
-
+import { DialogContent } from "@material-ui/core";
 import {
-  TextField,
   Button,
-  Card,
-  CardContent,
-  Typography,
-  Switch,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
-} from "@material-ui/core";
+  DialogTitle,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  Switch,
+  TextField,
+} from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
-  createProject,
-  getAllProjects,
-  updateProject,
-} from "../../../actions/projectActions";
+  createFoundation,
+  getAllFoundations,
+  updateFoundation,
+} from "../../../actions/foundationActions";
 
 export const Foundation = () => {
-  // const dispatch = useDispatch();
-  // const [activeTab, setActiveTab] = useState(0);
-  // const [foundationName, setFoundationName] = useState("");
-  // const [avatarPreview, setAvatarPreview] = useState(null);
-  // const [avatar, setAvatar] = useState(null);
-  // const [newProject, setNewProject] = useState({
-  //   foundationName: "",
-  //   active: true,
-  //   avatar: [],
-  // });
+  const dispatch = useDispatch();
 
-  // const [editingProject, setEditingProject] = useState({
-  //   foundationName: "",
-  //   active: true,
-  //   avatar: [],
-  // });
+  const [avatar, setAvatar] = useState(null);
+  const [active, setActive] = useState(true);
+  const [foundationName, setfFoundationName] = useState("");
+  const [joinDate, setJoinDate] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [editingFoundation, setEditingFoundation] = useState({});
+  const [newFoundation, setNewFoundation] = useState({
+    foundationName: "",
+    active: true,
+    avatar: [],
+  });
 
-  // const panes = [
-  //   {
-  //     menuItem: "Proyectos Nacionales",
-  //     render: () => (
-  //       <Tab.Pane>
-  //         <ProjectsNal />
-  //       </Tab.Pane>
-  //     ),
-  //   },
-  //   {
-  //     menuItem: "Proyectos Internacionales",
-  //     render: () => (
-  //       <Tab.Pane>
-  //         <ProjectsInterNal />
-  //       </Tab.Pane>
-  //     ),
-  //   },
-  // ];
+  const handleCreate = () => {
+    setOpenDialog(true);
+    setEditingFoundation({});
+    setNewFoundation({
+      foundationName: "",
+      active: true,
+      avatar: [],
+    });
+  };
 
-  // const handleAvatarChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const blob = new Blob([file], { type: file.type });
-  //     setAvatar({
-  //       blob,
-  //       image: file,
-  //     });
-  //     const imageUrl = URL.createObjectURL(file);
-  //     setAvatarPreview(imageUrl);
-  //   }
-  // };
+  const handleFoundationNameChange = (e) => {
+    setfFoundationName(e.target.value);
+  };
 
-  // const handleSave = async () => {
-  //   const data = {
-  //     ...newProject,
-  //     foundationName: foundationName,
-  //     active: editingProject.active,
-  //     avatar: avatar,
-  //   };
-  //     
-  //   if (data._id) {
-  //       
-  //       
-  //     await dispatch(updateProject(data._id, data));
-  //   } else {
-  //       
-  //     await dispatch(createProject(data));
-  //   }
-  //   await dispatch(getAllProjects());
-  // };
+  const handleJoinDate = (e) => {
+    setNewFoundation((prevData) => ({
+      ...prevData,
+      joinDate: e.target.value,
+    }));
+  };
 
-  // return (
-  //   <div>
-  //     <h2>Crear proyecto</h2>
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    setAvatar(file);
+    setAvatarPreview(URL.createObjectURL(file));
+  };
 
-  //     <Card>
-  //       <CardContent>
-  //         <Typography variant="h5" component="h3">
-  //           Ingresar un nuevo proyecto
-  //         </Typography>
-  //         <form encType="multipart/form-data">
-  //           <div style={{ display: "flex", alignItems: "center" }}>
-  //             <TextField
-  //               label="Nombre"
-  //               value={foundationName}
-  //               onChange={(e) => setFoundationName(e.target.value)}
-  //             />
-  //             <input
-  //               type="file"
-  //               id="imageUpload"
-  //               style={{ display: "none" }}
-  //               onChange={handleAvatarChange}
-  //             />
-  //             {/* Button to trigger file input */}
-  //             <Button
-  //               onClick={() => document.getElementById("imageUpload").click()}
-  //               variant="contained"
-  //               color="primary"
-  //             >
-  //               Upload Image
-  //             </Button>
-  //             <Switch
-  //               checked={newProject.active}
-  //               onChange={(e) =>
-  //                 setNewProject({
-  //                   ...newProject,
-  //                   active: e.target.checked,
-  //                 })
-  //               }
-  //               color="primary"
-  //               inputProps={{ "aria-label": "Categoría activa" }}
-  //             />
-  //             <Typography>
-  //               {newProject.active ? "Categoría activa" : "Categoría inactiva"}
-  //             </Typography>
-  //             <Button onClick={handleSave} variant="contained" color="primary">
-  //               Crear
-  //             </Button>
-  //           </div>
-  //         </form>
-  //       </CardContent>
-  //     </Card>
-  //     <Tab
-  //       panes={panes}
-  //       activeIndex={activeTab}
-  //       onTabChange={(_, data) => setActiveTab(data.activeIndex)}
-  //       className="custom-tab"
-  //     />
-  //   </div>
-  // );
+  const handleSave = async () => {
+    const data = {
+      ...newFoundation,
+      foundationName: foundationName,
+      active: editingFoundation.active,
+      avatar: avatar,
+    };
+
+    if (data._id) {
+      await dispatch(updateFoundation(data._id, data));
+      // await dispatch(getAllFoundations());
+    } else {
+      await dispatch(createFoundation(data));
+      // await dispatch(getAllFoundations());
+    }
+  };
+  return (
+    <>
+      <Button variant="contained" color="primary" onClick={handleCreate}>
+        Crear fundación
+      </Button>
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+        <DialogTitle>Crear fundación</DialogTitle>
+        <DialogContent>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Fundación"
+                value={foundationName} // Usa el estado clientName directamente
+                onChange={handleFoundationNameChange} // Captura el cambio en clientName
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Fecha de inicio"
+                type="date"
+                value={joinDate} // Usa joinDate en lugar de editingClient.joinDate
+                onChange={handleJoinDate}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={editingFoundation.active}
+                    onChange={(e) =>
+                      setEditingFoundation((prevData) => ({
+                        ...prevData,
+                        active: e.target.checked,
+                      }))
+                    }
+                    name="active"
+                    color="primary"
+                  />
+                }
+                label="Activo"
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <InputLabel>Logo</InputLabel>
+                  <input type="file" onChange={handleAvatarChange} />
+                </Grid>
+                <Grid item xs={12}>
+                  {avatarPreview && (
+                    <div
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        overflow: "hidden",
+                        borderRadius: "50%",
+                      }}
+                    >
+                      <img
+                        src={avatarPreview}
+                        alt="Imagen de previsualización"
+                        style={{ maxWidth: "100%", maxHeight: "100%" }}
+                      />
+                    </div>
+                  )}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDialog(false)} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleSave} color="primary">
+            Guardar
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
 };

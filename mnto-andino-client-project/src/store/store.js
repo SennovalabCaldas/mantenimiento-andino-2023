@@ -14,6 +14,7 @@ import supplierReducer from "../reducers/supplierReducer";
 import allyReducer from "../reducers/allyReducer";
 import projectReducer from "../reducers/projectReducer";
 import foundationReducer from "../reducers/foundationReducer";
+import certificationReducer from "../reducers/certificationReducer";
 
 const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   ally: allyReducer,
   project: projectReducer,
   foundation: foundationReducer,
+  certification: certificationReducer,
 });
 
 const store = createStore(

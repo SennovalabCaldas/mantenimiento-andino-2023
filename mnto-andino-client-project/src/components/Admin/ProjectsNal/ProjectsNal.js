@@ -4,17 +4,59 @@ import { useDispatch } from "react-redux";
 import { getAllProjects } from "../../../actions/projectActions";
 
 export const ProjectsNal = ({ projects, national }) => {
-    
-    
-
+  console.log("Projects:", projects);
+  console.log("National:", national);
+  const baseUrl = "http://localhost:3001";
+  const handleDeleteProject = (projectId) => {};
+  const handleEditProject = (projectId) => {};
   return (
     <div>
-      <h3>Proyectos Nacionales</h3>
-      <ul className="ui card fluid">
-        {projects.map((project) => (
-          <li key={project.id}>{project.projectName}</li>
-        ))}
-      </ul>
+      <table className="project-table">
+        <thead>
+          <tr>
+            <th>Nombre del Proyecto</th>
+            <th>Entidad</th>
+            <th>Foto</th>
+            <th>Nacional</th>
+            <th>Cliente</th>
+            <th>Fecha de inicio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((project) => (
+            <tr key={project.id}>
+              <td>{project.projectName}</td>
+              <td>{project.entity}</td>
+              <td>
+                <img
+                  src={`${baseUrl}/${project.avatar}`}
+                  alt="Avatar"
+                  width="50"
+                  height="50"
+                />
+              </td>
+              <td>{project.national ? "Sí" : "No"}</td>
+              <td>{project.client}</td>
+              <td>{new Date(project.joinDate).toLocaleDateString()}</td>
+              <td>
+                <span
+                  className="edit-link"
+                  onClick={() => handleEditProject(project.id)}
+                >
+                  Editar
+                </span>
+                <span
+                  className="delete-link"
+                  onClick={() => handleDeleteProject(project.id)}
+                >
+                  Eliminar
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

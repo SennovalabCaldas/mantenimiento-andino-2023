@@ -1,0 +1,49 @@
+.card-create-project {
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+  }
+  
+  .card-list-project{
+      padding-bottom: 60px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      .custom-tab{
+          position: relative;
+          top: 0;
+          left:50px;
+          padding: 10px;
+          .btn{
+              padding: 0;
+              margin: 0;
+              border: none;
+              background: transparent;
+              color: #000;
+              &:hover{
+                  background: transparent;
+                  color: #000;
+              }
+          }
+          .edit-link {
+              color: blue; 
+              margin-right: 10px; 
+              cursor: pointer; 
+            }
+            
+            .delete-link {
+              color: rgb(0, 0, 0); 
+              cursor: pointer; 
+              
+            }
+      }
+  }
