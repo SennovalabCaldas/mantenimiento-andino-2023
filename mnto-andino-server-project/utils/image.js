@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:4000";
+// const BASE_URL = "http://localhost:3100";
+const BASE_URL = "http://mantenimientoandino.co:3000";
 const sharp = require('sharp');
 
 function getFilePath(file) {

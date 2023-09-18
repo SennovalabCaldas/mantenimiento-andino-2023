@@ -1,6 +1,6 @@
 const Service = require("../models/service");
-// const baseUrl = "http://mantenimientoandino.co:3000"
-const baseUrl = "http://localhost:3100/";
+const baseUrl = "http://mantenimientoandino.co:3000"
+// const baseUrl = "http://localhost:3100/";
 async function createService(req, res) {
   try {
     // Extract data from the FormData object
