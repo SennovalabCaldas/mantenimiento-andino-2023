@@ -1,4 +1,6 @@
 const CategoryService = require("../models/categoryService");
+// const baseUrl = "http://mantenimientoandino.co:3000"
+const baseUrl = "http://localhost:3100/";
 
 async function createCategoryService(req, res) {
   try {
@@ -31,6 +33,7 @@ async function createCategoryService(req, res) {
 
 async function getAllCategoryServices(req, res) {
   try {
+    
     const categories = await CategoryService.find();
     res.json(categories);
   } catch (error) {

@@ -17,9 +17,8 @@ async function createFoundation(req, res) {
 
     res.status(201).json({
       _id: foundationStored._id,
-      projectName: foundationStored.foundationName,
-      avatar: foundationStored.avatar,
-      entity: foundationStored.direccion,
+      foundationName: foundationStored.foundationName,
+      active: foundationStored.active,
     });
 
     console.log(foundationStored);

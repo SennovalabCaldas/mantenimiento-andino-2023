@@ -6,11 +6,6 @@ const allySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  direccion: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",
-    required: true,
-  },
   avatar: {
     type: String,
   },

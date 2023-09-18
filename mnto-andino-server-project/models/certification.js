@@ -6,8 +6,8 @@ const certificationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  entity: {
-    type: String,
+  national: {
+    type: Boolean,
     required: true,
   },
   avatar: {

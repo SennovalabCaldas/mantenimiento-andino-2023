@@ -9,10 +9,9 @@ const FoundationSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  direccion: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",
-    required: true,
+  active: {
+    type: Boolean,
+    default: true,
   },
 });
 

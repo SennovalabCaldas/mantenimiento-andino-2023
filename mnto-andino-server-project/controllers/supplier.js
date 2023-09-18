@@ -24,7 +24,6 @@ async function createSupplier(req, res) {
       supplierName: supplierStored.supplierName,
       avatar: supplierStored.avatar,
       active: supplierStored.active,
-      direccion: supplierStored.direccion._id, // Devuelve el objeto de dirección completo
     });
 
     console.log(supplierStored);
@@ -80,22 +79,31 @@ async function updateSupplierById(req, res) {
     const { id } = req.params;
     console.log("id", id);
     const supplierData = req.body;
-    const updatedSupplier = await Supplier.findByIdAndUpdate(
-      id,
-      supplierData,
-      {
-        new: true,
-      }
-    );
+    console.log("supplierData", supplierData);
+
+    // Verifica si el proveedor existe antes de intentar actualizarlo
+    const existingSupplier = await Supplier.findById(id);
+    console.log("existingSupplier", existingSupplier);
+    if (!existingSupplier) {
+      return res.status(404).json({ error: "Proveedor no encontrado" });
+    }
+
+    const updatedSupplier = await Supplier.findByIdAndUpdate(id, supplierData, {
+      new: true,
+    });
+    console.log("updatedSupplier", updatedSupplier);
+
     if (updatedSupplier) {
       res.json(updatedSupplier);
     } else {
       res.status(404).json({ error: "Proveedor no encontrado" });
     }
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Error al actualizar el Proveedor" });
   }
 }
+
 
 module.exports = {
   createSupplier,

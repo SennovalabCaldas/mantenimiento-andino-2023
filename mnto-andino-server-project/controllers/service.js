@@ -1,10 +1,10 @@
 const Service = require("../models/service");
-const baseUrl = "http://localhost:4000/";
-
+// const baseUrl = "http://mantenimientoandino.co:3000"
+const baseUrl = "http://localhost:3100/";
 async function createService(req, res) {
   try {
     // Extract data from the FormData object
-    const { name, description,categoryService} = req.body;
+    const { name, description, categoryService } = req.body;
     // Extract image files from the request
     console.log("req.files", req.files);
     const photos = Array.isArray(req.files.photos)
@@ -15,8 +15,8 @@ async function createService(req, res) {
     const newService = new Service({
       name,
       description,
-      photos, 
-      categoryService
+      photos,
+      categoryService,
     });
     console.log("newService", newService);
     const savedService = await newService.save();
@@ -66,24 +66,31 @@ async function getServiceById(req, res) {
 }
 
 async function updateService(req, res) {
+  console.log("req.files", req.body);
+  const photos = Array.isArray(req.files.photos)
+    ? req.files.photos.map((file) => file.path)
+    : [];
+  console.log("photos", photos);
   const { id } = req.params;
-  const serviceData = req.body;
-  console.log("req.files", req.files);
-  console.log("serviceData", serviceData);
+  const { name, description, categoryService } = req.body;
+  const updatedService = {
+    name,
+    description,
+    photos,
+    categoryService,
+  };
 
+  console.log("updatedService", updatedService);
   try {
-    const updatedService = await Service.findByIdAndUpdate(id, serviceData, {
-      new: true,
-    });
-    console.log("updatedService", updatedService);
-    if (!updatedService) {
+    const service = await Service.findById(id);
+    if (!service) {
       return res.status(404).send({ msg: "Servicio no encontrado" });
     }
-
-    res.status(200).send(updatedService); // Enviar el servicio actualizado como respuesta
+    await Service.findByIdAndUpdate(id, updatedService);
+    res.status(200).send({ msg: "Servicio actualizado" });
   } catch (error) {
-    console.log(error);
-    res.status(400).send({ msg: "Error al actualizar el servicio" });
+    console.error(error);
+    res.status(500).send({ msg: "Error del servidor" });
   }
 }
 

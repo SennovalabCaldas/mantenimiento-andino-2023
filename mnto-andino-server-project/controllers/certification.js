@@ -19,7 +19,7 @@ async function createCertification(req, res) {
       _id: allyStored._id,
       certificationName: allyStored.certificationName,
       avatar: allyStored.avatar,
-      entity: allyStored.entity,
+      national: allyStored.national,
       joinDate: allyStored.joinDate, // Devuelve el objeto de dirección completo
     });
 

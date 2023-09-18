@@ -22,7 +22,6 @@ async function createAlly(req, res) {
       allyName: allyStored.allyName,
       avatar: allyStored.avatar,
       active: allyStored.active,
-      direccion: allyStored.direccion._id, // Devuelve el objeto de dirección completo
     });
 
     console.log(allyStored);
