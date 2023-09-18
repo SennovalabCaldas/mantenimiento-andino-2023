@@ -47,7 +47,7 @@ export const AppRouter = () => {
         <>
           {isAdmin && (
             <>
-              <Route index element={<Home />} />
+              <Route index  element={loadLayout(AdminLayout, Users)} />
               <Route path="admin" element={<WebMenu />} />
               <Route
                 path="admin/home"
