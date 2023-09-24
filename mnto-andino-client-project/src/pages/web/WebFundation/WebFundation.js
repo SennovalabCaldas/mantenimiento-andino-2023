@@ -27,14 +27,7 @@ export const WebFundation = () => {
   }
   return (
     <div className="fundation-section">
-      <div className="left-news-section">
-        <Caseth></Caseth>
-      </div>
-      <div className="content-news-section">
-        <div className="card-container">
-          <SocialCard></SocialCard>
-        </div>
-      </div>
+    
     </div>
   );
 };

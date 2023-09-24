@@ -70,33 +70,31 @@ export class Address {
   }
 
 
-  async updateAddressById(_id, data) {
+  async updateAddressById(direccion) {
+  console.log("direccion", direccion);
+    // if ( !direccion ) {
+    //   throw new Error("El objeto 'direccion' o la propiedad '_id' no están definidos.");
+    // }
+    // const url = `${BASE_API}/${ADDRESS}/${direccionId}`;
       
+    // const params = {
+    //   method: "PATCH",
+    //   body: JSON.stringify(direccion.direccion), // Utiliza data.direccion en lugar de data
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
       
-    if (!_id || !data ) {
-      throw new Error("El objeto 'direccion' o la propiedad '_id' no están definidos.");
-    }
-
-    const url = `${BASE_API}/${ADDRESS}/${_id}`;
-      
-    const params = {
-      method: "PATCH",
-      body: JSON.stringify(data.direccion), // Utiliza data.direccion en lugar de data
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-      
-    try {
-      const response = await fetch(url, params);
-      if (!response.ok) {
-        throw new Error("Error en la solicitud: " + response.status);
-      }
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      throw error;
-    }
+    // try {
+    //   const response = await fetch(url, params);
+    //   if (!response.ok) {
+    //     throw new Error("Error en la solicitud: " + response.status);
+    //   }
+    //   const result = await response.json();
+    //   return result;
+    // } catch (error) {
+    //   throw error;
+    // }
   }
 
   async deleteAddressById(_id) {

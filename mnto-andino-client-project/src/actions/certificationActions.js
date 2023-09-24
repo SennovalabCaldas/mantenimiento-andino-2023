@@ -14,7 +14,7 @@ const certificationController = new Certification();
 export const createCertification = (data) => {  
   return async (dispatch, getState) => {
     try {
-      const certification = await certificationController.crea(
+      const certification = await certificationController.createCertification(
         data
       );
       dispatch(createCertificationSuccess(certification));

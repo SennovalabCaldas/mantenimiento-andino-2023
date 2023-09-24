@@ -153,19 +153,21 @@ export class User {
   async deleteUser(idUser) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/admin/users/get-user/${idUser}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const data = await response.json();
-      return data;
+      const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`;
+      const params = {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      const response = await fetch(url, params);
+      const result = await response.json();
+
+      if (response.status !== 200) throw result;
+
+      return result;
     } catch (error) {
-      console.error("Error al eliminar el usuario:", error);
       throw error;
     }
   }

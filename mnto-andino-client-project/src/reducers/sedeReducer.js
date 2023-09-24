@@ -11,31 +11,21 @@ const initialState = {
   sede: {
     _id: null,
     nombre: null,
-    nombre_contacto: null,
     telefono_contacto: null,
     email_contacto: null,
     direccion: {
+      _id: null,
       country: null,
       departamento: null,
       municipio: null,
       state: null,
       selectedStreet: null,
-      selectedLetter1: null,
-      numero1: null,
-      selectedLetter2: null,
-      numero2: null,
-      selectedLetter3: null,
-      numero3: null,
-      selectedComplement: null,
+      nomenclature: null,
       selectedZone: null,
       barrio: null,
     },
   },
-  error: null,
-  isAuthenticated: false,
-  loading: false,
   allSedes: [],
-  searchResults: [],
 };
 const sedeReducer = (state = initialState, action) => {
   switch (action.type) {

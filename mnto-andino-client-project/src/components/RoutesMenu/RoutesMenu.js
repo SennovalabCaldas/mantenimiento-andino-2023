@@ -8,7 +8,7 @@ import SlideBarWebMenuPanel from "../GeneralLayout/TopBar/SlideBarWebMenuPanel";
 
 const menuItems = [
   {
-    path: "/admin/home",
+    path: "/admin/dashboard",
     icon: "building",
     text: "Panel de control",
     roles: ["admin"],
@@ -68,6 +68,24 @@ const menuItems = [
     path: "/admin/foundation",
     icon: "university",
     text: "Fundación",
+    roles: ["admin"],
+  },
+  {
+    path: "/admin/makina-andina",
+    icon: "university",
+    text: "Makina Andina",
+    roles: ["admin"],
+  },
+  {
+    path: "/admin/makina-andina-miami",
+    icon: "university",
+    text: "Makina Andina Miami",
+    roles: ["admin"],
+  },
+  {
+    path: "/admin/glamping",
+    icon: "university",
+    text: "Glamping",
     roles: ["admin"],
   },
 ];

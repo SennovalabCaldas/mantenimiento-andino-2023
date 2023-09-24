@@ -18,7 +18,7 @@ export const createSede = (sedeData) => {
     try {
       const accessToken = authController.getAccessToken();
       const sede = await sedeController.createSede(sedeData);
-        
+
       dispatch(createSedeSussess(sede));
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ export const getSede = (_id) => {
     try {
       const accessToken = authController.getAccessToken();
       const sede = await sedeController.getSede(_id);
-        
+
       dispatch(getSedeSuccess(sede));
     } catch (error) {
       console.error(error);
@@ -67,16 +67,17 @@ export const searchSedes = (nombre, departamento, municipio) => {
 };
 
 export const updateSede = (_id, data) => {
+  console.log("_id", _id);
+  console.log("data", data);
   return async (dispatch, getState) => {
     try {
       const direccion = data.direccion;
       const updatedAddress = await addressController.updateAddressById(
-        direccion._id,
         direccion
       );
-        
+      console.log("updatedAddress", updatedAddress);
       const sede = await sedeController.updateSede(_id, data);
-        
+
       dispatch(getUpdateSedeSuccess(sede));
     } catch (error) {
       console.error(error);
@@ -85,7 +86,6 @@ export const updateSede = (_id, data) => {
 };
 
 export const deleteSede = (_id) => {
-    
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
@@ -130,7 +130,6 @@ export const searchSedesSuccess = (searchResults) => {
 };
 
 export const getUpdateSedeSuccess = (sedeData) => {
-    
   return {
     type: UPDATE_SEDE,
     payload: sedeData,

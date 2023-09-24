@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   WebAliados,
   WebClients,
@@ -6,6 +6,7 @@ import {
   WebHome,
   WebProjects,
   WebSedes,
+  WebServices,
 } from "../../pages/web";
 import { WebCertifications } from "../../pages/web/WebCertifications/WebCertifications";
 import WebSuppliers from "../../pages/web/WebSuppliers/WebSuppliers";
@@ -21,12 +22,20 @@ import { image } from "../../assets";
 import { Link } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import { SocialSlideBar } from "./SocialSlideBar";
-import WebServices from "../../pages/web/WebServices/WebServices";
+import { useDispatch } from "react-redux";
+import { getAllAllies } from "../../actions/allyActions";
+import { getAllFoundationsNews } from "../../actions/foundationNewsActions";
+import { getAllCertifications } from "../../actions/certificationActions";
+import { getAllClients } from "../../actions/clientActions";
+import { getAllProjects } from "../../actions/projectActions";
+import { getAllSuppliers } from "../../actions/providerActions";
+import { getServices } from "../../actions/serviceActions";
 
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
   const [showToggleButton, setShowToggleButton] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const menuIcon = isMenuOpen ? faTimes : faBars;
 
@@ -40,16 +49,13 @@ export function WebMenu() {
   };
 
   const toggleMenu = () => {
-      
     setIsMenuOpen((prevState) => !prevState);
-      
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
   const showSlideBar = activeSection !== "section1";
-    
 
   return (
     <div className="webmenu-page">
@@ -225,58 +231,103 @@ function Section1() {
   );
 }
 
+
 function Section2() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getServices());
+  }, [dispatch]);
+  const services = useSelector((state) => state.service.services);
   return (
     <div className="section" id="section2">
-      <WebServices />
+      <WebServices services={services}/>
     </div>
   );
 }
 
+
 function Section3() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllClients());
+  }, [dispatch]);
   const clients = useSelector((state) => state.client.clients);
-  
   return (
     <div className="section" id="section3">
       <WebClients clients={clients} />
     </div>
   );
 }
+
+
 function Section4() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllSuppliers());
+  }, [dispatch]);
+  const suppliers = useSelector((state) => state.supplier.allSuppliers);
   return (
     <div className="section" id="section4">
-      <WebSuppliers />
+      <WebSuppliers suppliers={suppliers}/>
     </div>
   );
 }
+
+
 function Section5() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllAllies());
+  }, [dispatch]);
+  const allies = useSelector((state) => state.ally.allAllies);
   return (
     <div className="section" id="section5">
-      <WebAliados />
+      <WebAliados allies={allies} />
     </div>
   );
 }
+
 function Section6() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllCertifications());
+  }, [dispatch]);
+  const certifications = useSelector(
+    (state) => state.certification.allCertification
+  );
   return (
     <div className="section" id="section6">
-      <WebCertifications />
+      <WebCertifications certifications={certifications}/>
     </div>
   );
 }
+
 function Section7() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProjects());
+  }, [dispatch]);
+  const projects = useSelector((state) => state.project.allProjects);
   return (
     <div className="section" id="section7">
-      <WebProjects />
+      <WebProjects projects={projects}/>
     </div>
   );
 }
+
 function Section8() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllFoundationsNews());
+  }, [dispatch]);
+  const foundation = useSelector((state) => state.foundation.allFoundations);
   return (
     <div className="section" id="section8">
-      <WebFundation />
+      <WebFundation foundation={foundation}/>
     </div>
   );
 }
+
 function Section9() {
   return (
     <div className="section" id="section9">

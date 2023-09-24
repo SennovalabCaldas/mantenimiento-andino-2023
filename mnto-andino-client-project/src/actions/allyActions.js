@@ -83,6 +83,7 @@ export const createAllySuccess = (ally) => {
 };
 
 export const setAllAllies = (allies) => {
+  console.log("allies", allies);
   return {
     type: SET_ALL_ALLIES_SERVICE,
     payload: allies,

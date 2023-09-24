@@ -8,21 +8,29 @@ import ServiceList from "../../../components/Admin/Servicios/ServicioList/Servic
 import { useSelector } from "react-redux";
 import { getServices } from "../../../actions/serviceActions";
 import { useDispatch } from "react-redux";
+import { getAllCategoriesService } from "../../../actions/categoryServiceActions";
 
 export const Services = () => {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
+    dispatch(getAllCategoriesService());
     dispatch(getServices());
   }, [dispatch]);
 
+  const categories = useSelector(
+    (state) => state.categoryService.allCategoriesService
+  );
+  console.log(categories);
+  const services = useSelector((state) => state.service.services);
+  console.log(services);
   const panes = [
     {
       menuItem: "Categorías",
       render: () => (
         <Tab.Pane>
-          <CategoryManagement />
+          <CategoryManagement categories={categories} />
         </Tab.Pane>
       ),
     },
@@ -38,7 +46,7 @@ export const Services = () => {
       menuItem: "Servicios por categoría",
       render: () => (
         <Tab.Pane>
-          <ServiceCategoryList />
+          <ServiceCategoryList categories={categories} services={services} />
         </Tab.Pane>
       ),
     },

@@ -3,7 +3,7 @@ const allyController = require("../controllers/ally");
 const multiparty = require("connect-multiparty");
 const md_auth = require("../middlewares/authenticated");
 
-const md_upload = multiparty({ uploadDir: "./uploads/allys" });
+const md_upload = multiparty({ uploadDir: "./uploads/allies" });
 const api = express.Router();
 // Ruta para crear una nueva categoría
 api.post(

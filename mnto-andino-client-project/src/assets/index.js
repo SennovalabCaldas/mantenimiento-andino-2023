@@ -4,7 +4,6 @@ import noAvatar from "./png/no-avatar.png";
 import icon1 from "./png/icons/icon1.png";
 import icon2 from "./png/icons/icon2.png";
 import icon3 from "./png/icons/icon3.png";
-import logo from "./png/logo.png";
 
 import authBg from "./jpg/auth-bg.jpg";
 import background from "./jpg/bg-image.jpg";
@@ -12,17 +11,12 @@ import logo2 from "./jpg/logo2.jpg";
 import logo3 from "./jpg/logo3.jpg";
 import logo4 from "./jpg/logo4.jpg";
 import contact from "./jpg/contact.jpg";
-import s0 from "./jpg/s0.jpg";
-import s1 from "./jpg/s1.jpeg";
-import s2 from "./jpg/s2.jpg";
-import s3 from "./jpg/s3.jpg";
-import s4 from "./jpg/s4.jpg";
-import s5 from "./jpg/s5.jpg";
-import s6 from "./jpg/s6.jpg";
-import s7 from "./jpg/s7.webp";
-import s8 from "./jpg/s8.jpeg";
-
-import logomn from "./jpg/logo.jpeg";
+import video2 from "./video/mp4/video1.mp4";
+import video3 from "./video/mp4/video2.mp4";
+import img1 from "./png/img1.png";
+import img2 from "./png/img2.png";
+import section from "./png/section.jpeg";
+import logomn from "./jpg/logo.jpg";
 
 import uno from "./svg/uno.svg";
 import dos from "./svg/dos.svg";
@@ -40,16 +34,21 @@ import triangle2 from "./svg/triangle2.svg";
 import mapamundo from "./svg/mapamundi.svg";
 
 import video1 from "./video/mp4/bg-video.mp4";
-import carulla from './clients/carulla.png';
-import consorcio from './clients/consorcio.png';
-import exito from './clients/exito.png';
-import juanvaldez from './clients/juanvaldez.jpg';
-import ani from './clients/ani.png';
-import ara from './clients/ara.svg';
-import Mercaldas from './clients/Mercaldas.png';
-import Rational from './clients/Rational.png';
-import superinter from './clients/superinter.png';
-import superal from './clients/superal.png';
+import carulla from "./clients/carulla.png";
+import consorcio from "./clients/consorcio.png";
+import exito from "./clients/exito.png";
+import juanvaldez from "./clients/juanvaldez.jpg";
+import ani from "./clients/ani.png";
+import ara from "./clients/ara.svg";
+import Mercaldas from "./clients/Mercaldas.png";
+import Rational from "./clients/Rational.png";
+import superinter from "./clients/superinter.png";
+import superal from "./clients/superal.png";
+import fondo1 from "./jpg/1.jpg";
+import fondo2 from "./jpg/2.jpg";
+import fondo3 from "./jpg/3.jpg";
+import fondo4 from "./jpg/4.jpg";
+import fondo5 from "./jpg/5.jpg";
 
 const image = {
   authBg,
@@ -58,7 +57,6 @@ const image = {
   icon1,
   icon2,
   icon3,
-  logo,
   logo2,
   logo3,
   logo4,
@@ -76,20 +74,13 @@ const image = {
   instagram,
   logomn,
   video1,
+  video2,
+  video3,
   tiktok,
   linkedin,
   contact,
   triangle,
   triangle2,
-  s0,
-  s1,
-  s2,
-  s3,
-  s4,
-  s5,
-  s6,
-  s7,
-  s8,
   mapamundo,
   carulla,
   consorcio,
@@ -101,5 +92,13 @@ const image = {
   Rational,
   superinter,
   superal,
+  fondo1,
+  fondo2,
+  fondo3,
+  fondo4,
+  fondo5,
+  img1,
+  img2,
+  section
 };
 export { image };

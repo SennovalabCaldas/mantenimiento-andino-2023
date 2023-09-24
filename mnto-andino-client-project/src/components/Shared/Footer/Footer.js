@@ -42,8 +42,26 @@ const Footer = () => {
         </a>
       </div>
       <div className="footer__item">
+        <h3>Dirección</h3>
+
+        <a
+          href="https://goo.gl/maps/9JvQ1J1Z1Z1Z1Z1Z1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <p>
+            Cl 76a # 21-85, Milan.
+            <br />
+            <strong> Manizales, Caldas, Colombia.</strong>
+          </p>
+          <p>
+            <strong>Horario de atención:</strong> <br />
+            Lunes a Viernes de 8:00 am a 5:00 pm
+          </p>
+        </a>
+      </div>
+      <div className="footer__item">
         <ul>
-          <div className="footer__item-icon">
             <div className="footer__item-sennovalab">
               <div className="footer__item-img">
                 <a
@@ -59,10 +77,9 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h3>© 2023 Copyright SENNOVALAB</h3>
+                <h3>© Copyright 2023 SENNOVALAB</h3>
               </a>
             </div>
-          </div>
         </ul>
       </div>
     </footer>

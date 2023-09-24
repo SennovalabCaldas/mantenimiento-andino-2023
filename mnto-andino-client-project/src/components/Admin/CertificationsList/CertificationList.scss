@@ -1,49 +1,99 @@
+// .card-create-project {
+//     padding-bottom: 60px;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     align-content: center;
+//     align-items: center;
+//     justify-content: center;
+//     border-radius: 0;
+//   }
+
+//   .card-list-project{
+//       padding-bottom: 60px;
+//       display: flex;
+//       flex-direction: row;
+//       flex-wrap: wrap;
+//       align-content: center;
+//       align-items: center;
+//       justify-content: flex-start;
+//       position: relative;
+//       .custom-tab{
+//           position: relative;
+//           top: 0;
+//           left:50px;
+//           padding: 10px;
+//           .btn{
+//               padding: 0;
+//               margin: 0;
+//               border: none;
+//               background: transparent;
+//               color: #000;
+//               &:hover{
+//                   background: transparent;
+//                   color: #000;
+//               }
+//           }
+//           .edit-link {
+//               color: blue;
+//               margin-right: 10px;
+//               cursor: pointer;
+//             }
+
+//             .delete-link {
+//               color: rgb(0, 0, 0);
+//               cursor: pointer;
+
+//             }
+//       }
+//   }
+
+/* CertificationsList.scss */
+
 .card-create-project {
-    padding-bottom: 60px;
+  /* Estilos para el contenedor del formulario */
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+
+  form {
+    /* Estilos para el formulario dentro del Card */
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    border-radius: 0;
-  }
-  
-  .card-list-project{
-      padding-bottom: 60px;
+
+    .card-project-style {
+      /* Estilos para los elementos del formulario */
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-content: center;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      .custom-tab{
-          position: relative;
-          top: 0;
-          left:50px;
-          padding: 10px;
-          .btn{
-              padding: 0;
-              margin: 0;
-              border: none;
-              background: transparent;
-              color: #000;
-              &:hover{
-                  background: transparent;
-                  color: #000;
-              }
-          }
-          .edit-link {
-              color: blue; 
-              margin-right: 10px; 
-              cursor: pointer; 
-            }
-            
-            .delete-link {
-              color: rgb(0, 0, 0); 
-              cursor: pointer; 
-              
-            }
+      margin-top: 20px;
+
+      .MuiTextField-root {
+        margin-bottom: 10px;
       }
+
+      .MuiSwitch-root {
+        margin-bottom: 10px;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+      }
+    }
   }
+}
+
+/* Agrega estilos adicionales según tus necesidades */

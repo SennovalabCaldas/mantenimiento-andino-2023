@@ -1,86 +1,45 @@
-.user-form {
-  margin: 0 auto;
-  max-width: 500px; /* Ajusta el ancho máximo según tus necesidades */
-}
-.personal-details-section {
-  width: 100%;
-  display: flex;
-  .input-register-field {
-    padding-bottom: 10px;
-    width: 50%;
+.user-form-register {
+  .user-form-register__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    .avatar-image {
+      img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: dashed 1px #000000;
+      }
+    }
   }
-}
-.input-email-field {
-  padding-bottom: 10px;
-  width: 100%;
-}
-
-.inline-fields,
-.dropdowns-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 16px; /* Márgenes inferiores */
-}
-.dropdowns-section {
-  display: flex;
-  flex-direction: column; /* Cambiar a columna para dispositivos móviles */
-  gap: 12px; /* Espacio entre los grupos de campos */
-  .MuiFormControl-root {
+  .personal-details-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     width: 100%;
-    border: 1px solid #ccc; /* Agregar un borde a los dropdowns */
-    border-radius: 4px;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    .input-register-field {
+      width: 50%;
+      margin-bottom: 20px;
+      .MuiFormControl-root {
+        width: 100%;
+      }
+    }
   }
-}
-
-/* Alineación de texto centrada para los campos de contraseña */
-.inline-fields .MuiInputBase-input[type="password"] {
-  text-align: center;
-}
-.user-form__avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto;
-  border: dashed 1px #000000;
-}
-
-.avatar-image {
-  position: relative;
-  width: 150px; /* Ajusta el tamaño deseado del avatar */
-  height: 150px; /* Ajusta el tamaño deseado del avatar */
-  overflow: hidden;
-  border-radius: 50%;
-  cursor: pointer;
-  margin: 0 auto;
-
-  .avatar-img {
+  .input-email-field {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajusta la imagen para cubrir completamente el espacio del avatar */
+    margin-bottom: 20px;
   }
-}
-.user-form button {
-  margin-top: 16px; /* Espacio superior */
-  background-color: #007bff; /* Color de fondo del botón */
-  color: white; /* Color del texto del botón */
-  &:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+  .select-sede {
+    width: 70%;
+    margin-bottom: 20px;
   }
-}
-.MuiFormHelperText-root.Mui-error {
-  color: #f44336; /* Color rojo para los mensajes de error */
-}
-.inline-fields .MuiFormControl-root {
-  width: 100%;
-}
-
-/* Alineación de texto centrada para los campos de contraseña */
-.inline-fields .MuiInputBase-input[type="password"] {
-  text-align: center;
-}
-.password-icon {
-  color: #000;
-  background: none;
+  .select-role {
+    width: 30%;
+    margin-bottom: 20px;
+  }
 }

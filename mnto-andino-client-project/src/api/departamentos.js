@@ -30,6 +30,7 @@ class DepartamentosApi {
     }
   }
 
+ 
   async cargarMunicipios(departamento) {
     try {
       if (DepartamentosApi.municipios[departamento]) {

@@ -22,7 +22,7 @@ import {
   updateCertification,
 } from "../../../actions/certificationActions";
 import { CertificationsNal } from "../CertificationsNal";
-import CertificationsInterNal from "../CertificationsInterNal/CertificationsInterNal";
+import { CertificationsInterNal } from "../CertificationsInterNal";
 
 export const CertificationsList = () => {
   const dispatch = useDispatch();
@@ -54,6 +54,14 @@ export const CertificationsList = () => {
     joinDate: new Date().toISOString(),
   });
 
+  const nationalCertification = certifications.filter(
+    (certification) => certification.national
+  );
+  const internationalCertification = certifications.filter(
+    (certification) => !certification.national
+  );
+  console.log("Certificaciones nacionales:", nationalCertification);
+  console.log("Certificaciones internacionales:", internationalCertification);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -67,18 +75,24 @@ export const CertificationsList = () => {
   const panes = [
     {
       menuItem: "Certificaciones Nacionales",
-
       render: () => (
         <Tab.Pane>
-          <CertificationsInterNal />
+          <CertificationsNal
+            certifications={nationalCertification}
+            national={false}
+          />
         </Tab.Pane>
       ),
     },
     {
       menuItem: "Certificaciones Internacionales",
+
       render: () => (
         <Tab.Pane>
-          <CertificationsNal />
+          <CertificationsInterNal
+            certifications={internationalCertification}
+            national={true}
+          />
         </Tab.Pane>
       ),
     },
@@ -175,18 +189,18 @@ export const CertificationsList = () => {
                   value={certificationName}
                   onChange={(e) => setCertificationName(e.target.value)}
                 />
-
                 <Switch
                   checked={national}
                   onChange={(e) => setNational(e.target.checked)}
                   color="primary"
-                  inputProps={{ "aria-label": "Proyecto Nacional" }}
+                  inputProps={{ "aria-label": "Certificación Nacional" }}
                 />
                 <Typography>
-                  {newCertification.national
-                    ? "Proyecto Nacional"
-                    : "Proyecto Internacional"}
+                  {national
+                    ? "Certificación Nacional"
+                    : "Certificación Internacional"}
                 </Typography>
+
                 <input
                   type="file"
                   id="imageUpload"

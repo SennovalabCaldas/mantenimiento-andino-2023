@@ -1,117 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getAllPosts } from "../../../actions/postActions";
+import React, { useEffect } from "react";
 import "./WebHome.scss";
-import Slider from "react-slick";
-import { image } from "../../../assets";
-import { NextArrow } from "./NextArrow";
-import { PrevArrow } from "./PrevArrow";
-
-export const WebHome = ({ posts }) => {
-    
-
-  const dispatch = useDispatch();
-  const [colorIndex, setColorIndex] = useState(0);
-  const [imagePreviews, setImagePreviews] = useState([]);
-
-  const backgroundColors = [
-    "rgba(95, 161, 222, 0.3)",
-    "rgba(222, 95, 161, 0.3)",
-    "rgba(161, 222, 95, 0.3)",
-  ];
-
-  const defaultVideo = (
-    <video controls width="100%" height="auto">
-      <source src={image.video1} type="video/mp4" />
-    </video>
-  );
-
+import { useSelector } from "react-redux";
+export const WebHome = () => {
+  const news = useSelector((state) => state.post.allPosts);
+  console.log(news);
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, [dispatch]);
-
-  const postsConURLCompleta = posts.map((post) => ({
-    ...post,
-    // avatar: `http://localhost:3100/${post.avatar}`,
-    avatar: `http://mantenimientoandino.co/${post.avatar}`,
-  }));
-
-  const handleNext = () => {
-    setColorIndex((colorIndex + 1) % backgroundColors.length);
-  };
-
-  const handlePrev = () => {
-    setColorIndex(
-      colorIndex === 0 ? backgroundColors.length - 1 : colorIndex - 1
-    );
-  };
-
-  const Slide = ({ post, nextPost }) => {
-    // Convierte la cadena de fecha en un objeto Date
-    const fechaCreacion = new Date(post.fecha_creacion);
-
-    const dia = fechaCreacion.getDate();
-    const mes = fechaCreacion.getMonth() + 1; // Suma 1 porque los meses comienzan en 0
-    const anio = fechaCreacion.getFullYear();
-    return (
-      <div
-        className="post-slide"
-        // style={{ backgroundImage: `url(http://localhost:3100/${post.avatar})` }}
-        style={{ backgroundImage: `url(http://mantenimientoandino.co/${post.avatar})` }}
-        // <img
-        //   src={`http://mantenimientoandino.co/${post.avatar}`}
-        //   alt={post.titulo}
-        // />
-      >
-        <div className="slide-content">
-          <h2 className="slide-title">{post.titulo}</h2>
-          <p className="slide-subtitle">{post.subtitulo}</p>
-          <div
-            className="slide-description"
-            dangerouslySetInnerHTML={{ __html: post.descripcion }}
-          />
-          <p className="slide-creator">Creador: {post.creador}</p>
-          <p className="slide-fecha">
-            Fecha publicación: {dia}/{mes}/{anio}
-          </p>
-        </div>
-        {post.avatar ? null : (
-          <video controls width="100%" height="auto">
-            <source src={image.video1} type="video/mp4" />
-          </video>
-        )}
-      </div>
-    );
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  };
+    [].slice
+      .call(document.querySelectorAll('a[href="#"'))
+      .forEach(function (el) {
+        el.addEventListener("click", function (ev) {
+          ev.preventDefault();
+        });
+      });
+  }, []);
   return (
-    <>
-      <div className="content-section-webhome">
-        {posts.length === 0 ? (
-          defaultVideo
-        ) : (
-          <Slider {...settings} className="sliderStyle">
-            {posts.map((post, index) => (
-              <Slide
-                key={post._id}
-                post={post}
-                nextPost={posts[index + 1]} // Pasa el post siguiente
-              />
-            ))}
-          </Slider>
-        )}
-      </div>
-    </>
+    <div>
+      {news.map((post) => (
+        <div className="demo-cont">
+          <div className="fnc-slider example-slider">
+            <div className="fnc-slider__slides">
+              <div className="fnc-slide m--blend-green m--active-slide">
+                <div className="fnc-slide__inner">
+                  <div className="fnc-slide__mask">
+                    <div className="fnc-slide__mask-inner"></div>
+                  </div>
+                  <div className="fnc-slide__content">
+                    <h2 className="fnc-slide__heading">
+                      <div className="fnc-slide__heading-line">
+                        <span> {post.titulo}</span>
+                      </div>
+                      <div className="fnc-slide__heading-line">
+                        <span> {post.subtitulo}</span>
+                      </div>
+                    </h2>
+                    <button type="button" className="fnc-slide__action-btn">
+                      Credits
+                      <span data-text="Credits">Credits</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nav className="fnc-nav">
+              <div className="fnc-nav__bgs">
+                <div className="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                <div className="fnc-nav__bg m--navbg-dark"></div>
+                <div className="fnc-nav__bg m--navbg-red"></div>
+                <div className="fnc-nav__bg m--navbg-blue"></div>
+              </div>
+              <div className="fnc-nav__controls">
+                <button className="fnc-nav__control">
+                  {post.titulo}
+                  <span className="fnc-nav__control-progress"></span>
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };

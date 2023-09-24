@@ -18,10 +18,9 @@ async function createProject(req, res) {
     res.status(201).json({
       _id: projectStored._id,
       projectName: projectStored.projectName,
-      avatar: projectStored.avatar,
       entity: projectStored.entity,
+      avatar: projectStored.avatar,
       national: projectStored.national,
-      client: projectStored.client,
       joinDate: projectStored.joinDate,
     });
 

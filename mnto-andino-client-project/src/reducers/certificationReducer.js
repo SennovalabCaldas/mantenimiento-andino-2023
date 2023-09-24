@@ -10,12 +10,10 @@ const initialState = {
   certification: {
     _id: null,
     certificationName: null,
-    entity: null,
+    national: undefined,
     avatar: [],
     joinDate: null,
   },
-  error: null,
-  loading: false,
   allCertification: [],
 };
 
@@ -29,6 +27,7 @@ const certificationReducer = (state = initialState, action) => {
         loading: false,
       };
     case SET_ALL_CERTIFICATIONS_SERVICE:
+      console.log("action.payload", action.payload);
       return {
         ...state,
         allCertification: action.payload,

@@ -1,6 +1,7 @@
 const express = require("express");
 const SedeController = require("../controllers/sede");
 const md_auth = require("../middlewares/authenticated");
+
 const api = express.Router();
 
 api.post("/new-sede", [md_auth.ensureAuth], SedeController.createSede);

@@ -36,7 +36,7 @@ library.add(
 
 const menuItems = [
   {
-    path: "/admin/home",
+    path: "/admin/dashboard",
     icon: faBuilding,
     roles: ["admin"],
   },

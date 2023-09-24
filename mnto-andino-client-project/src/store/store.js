@@ -6,7 +6,6 @@ import sedeReducer from "../reducers/sedeReducer";
 import categoryReducer from "../reducers/categoryReducer";
 import postReducer from "../reducers/postReducer";
 import addressReducer from "../reducers/addressReducer";
-import menuReducer from "../reducers/menuReducer";
 import clientReducer from "../reducers/clientReducer";
 import categoryServiceReducer from "../reducers/categoryServiceReducer";
 import serviceReducer from "../reducers/serviceReducer";
@@ -15,6 +14,9 @@ import allyReducer from "../reducers/allyReducer";
 import projectReducer from "../reducers/projectReducer";
 import foundationReducer from "../reducers/foundationReducer";
 import certificationReducer from "../reducers/certificationReducer";
+import makinaAndinaReducer from "../reducers/makinaAndinaReducer";
+import makinaAndinaMiamiReducer from "../reducers/makinaAndinaMiamiReducer";
+import glampingReducer from "../reducers/glampingReducer";
 
 const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
@@ -25,7 +27,6 @@ const rootReducer = combineReducers({
   sede: sedeReducer,
   category: categoryReducer,
   post: postReducer,
-  menu: menuReducer,
   service: serviceReducer,
   client: clientReducer,
   categoryService: categoryServiceReducer,
@@ -34,6 +35,9 @@ const rootReducer = combineReducers({
   project: projectReducer,
   foundation: foundationReducer,
   certification: certificationReducer,
+  makinaAndina: makinaAndinaReducer,
+  makinaAndinaMiami: makinaAndinaMiamiReducer,
+  glamping: glampingReducer,
 });
 
 const store = createStore(

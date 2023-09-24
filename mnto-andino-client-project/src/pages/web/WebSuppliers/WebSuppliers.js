@@ -1,48 +1,33 @@
 import React from "react";
 import "./WebSuppliers.scss";
 import { image } from "../../../assets";
-const WebSuppliers = () => {
+
+const WebSuppliers = ({ suppliers }) => {
+  console.log(suppliers);
+  const nationalSuppliers = suppliers.filter(
+    (supplier) => supplier.national === true
+  );
+  const internationalSuppliers = suppliers.filter(
+    (supplier) => supplier.national === false
+  );
+  console.log(nationalSuppliers);
+  console.log(internationalSuppliers);
+
   return (
-    <div className="suppliers-page">
-      <div className="content-suppliers-page">
-        <div className="suppliers-page__item">
-          <div className="suppliers-page__item__img">
-            <img src={image.logo} alt="" />
-          </div>
-          <div className="suppliers-page__item__info">
-            <h3>Proveedor 1</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              voluptatum, quibusdam, voluptates, quia voluptate quod
-            </p>
-            <button>Conoce más</button>
-          </div>
+    <div className="content-web-section">
+      <div className="division">
+        <div className="division-title-section">
+          <h1>Proveedores</h1>
         </div>
-        <div className="suppliers-page__item">
-          <div className="suppliers-page__item__img">
-            <img src={image.logo} alt="" />
-          </div>
-          <div className="suppliers-page__item__info">
-            <h3>Proveedor 1</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              voluptatum, quibusdam, voluptates, quia voluptate quod
-            </p>
-            <button>Conoce más</button>
-          </div>
+        <div className="division__item">
+          {nationalSuppliers.map((supplier) => (
+            <img src={supplier.avatar} alt="Imagen 1" className="image" />
+          ))}
         </div>
-        <div className="suppliers-page__item">
-          <div className="suppliers-page__item__img">
-            <img src={image.logo} alt="" />
-          </div>
-          <div className="suppliers-page__item__info">
-            <h3>Proveedor 1</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              voluptatum, quibusdam, voluptates, quia voluptate quod
-            </p>
-            <button>Conoce más</button>
-          </div>
+        <div className="division__item">
+          {internationalSuppliers.map((supplier, index) => (
+           <img src={supplier.avatar} alt="Imagen 1" className="image" />
+          ))}
         </div>
       </div>
     </div>

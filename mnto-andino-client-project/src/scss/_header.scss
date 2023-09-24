@@ -13,14 +13,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: rgb(24 67 81 / 92%);
+  background-color: rgb(0 0 0 / 21%); /* Utiliza rgba para definir la opacidad */
   height: 50px;
   width: 100%;
   z-index: 2;
   align-content: center;
   flex-wrap: wrap;
   flex-direction: row;
+  backdrop-filter: blur(20px); /* Ajusta el valor de blur según tu preferencia */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
+
 .ui.menu.fluid > .item, .ui.vertical.menu.fluid > .item {
   display: flex;
   color: #b0afaf;

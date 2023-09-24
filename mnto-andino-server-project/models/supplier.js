@@ -13,6 +13,10 @@ const supplierSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  national: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Supplier = mongoose.model("Supplier", supplierSchema);

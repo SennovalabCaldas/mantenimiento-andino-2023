@@ -9,3 +9,5 @@ export * from "./ProjectsInterNal";
 export * from "./CertificationsNal";
 export * from "./CertificationsList";
 export * from "./CertificationsInterNal";
+export * from './MakinaAndinaAdmin';
+export * from './MakinaAndinaMiami';

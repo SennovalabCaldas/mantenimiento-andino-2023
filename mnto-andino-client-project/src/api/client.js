@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
 import { ENV } from "../utils";
 import { Auth } from "./auth";
 import { Address } from "./address";
 
 const CLIENT_ROUTE = ENV.API_ROUTES.CLIENT;
+const CLIENTS_ROUTE = ENV.API_ROUTES.CLIENTS;
 const CONTENT_TYPE_JSON = "application/json";
 const authController = new Auth();
 const addressController = new Address();
@@ -23,20 +23,14 @@ export class Client {
         console.error("Imagen de avatar no válida.");
         return; // Aborta la función si la imagen no es válida
       }
-
-      // Llama a la función createAddress de la API de dirección
-      const addressResult = await addressController.createAddress(
-        data.direccion
-      );
-
       // Ahora puedes utilizar addressResult._id al crear el cliente
       formData.append("clientName", data.clientName);
-      formData.append("direccion", addressResult._id);
+      formData.append("national", data.national);
       formData.append("active", data.active);
       formData.append("joinDate", data.joinDate);
 
       console.log("Estos son los datos del cliente", formData.get("avatar"));
-      const url = `${this.baseApi}/admin/clients/new-client`;
+      const url = `${this.baseApi}/${CLIENT_ROUTE}`;
 
       const params = {
         method: "POST",
@@ -57,13 +51,15 @@ export class Client {
   }
 
   async getClients() {
-    const url = `${this.baseApi}/admin/clients`;
+    const url = `${this.baseApi}/${CLIENTS_ROUTE}`;
+    console.log("URL:", url);
     const params = {
       method: "GET",
       headers: {
         "Content-Type": CONTENT_TYPE_JSON,
       },
     };
+    console.log("Params:", params);
     try {
       const response = await fetch(url, params);
       const data = await response.json();
@@ -119,7 +115,7 @@ export class Client {
   async updateClient(_id, updatedData) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`, {
+      const response = await fetch(`${this.baseApi}/${CLIENTS_ROUTE}/${_id}`, {
         method: "PATCH",
         body: JSON.stringify(updatedData),
         headers: {
@@ -138,7 +134,7 @@ export class Client {
   async deleteClient(_id) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/${CLIENT_ROUTE}/${_id}`, {
+      const response = await fetch(`${this.baseApi}/${CLIENTS_ROUTE}/${_id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${accessToken}`,

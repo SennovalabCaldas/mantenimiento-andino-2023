@@ -3,10 +3,9 @@ import { ENV } from "../utils";
 const { BASE_API, API_ROUTES } = ENV;
 
 export class Auth {
-  baseApi = BASE_API;
-
   register = async (data) => {
-    const url = `${this.baseApi}/${API_ROUTES.REGISTER}`;
+    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.REGISTER}`;
+
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -14,6 +13,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -28,9 +28,8 @@ export class Auth {
   };
 
   login = async (data) => {
-      
-    const url = `${this.baseApi}/${API_ROUTES.LOGIN}`;
-      
+    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.LOGIN}`;
+    console.log(url);
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -59,7 +58,7 @@ export class Auth {
 
   resetPassword = async (data) => {
     const url = `${this.baseApi}/${API_ROUTES.RESET_PASSWORD}`;
-      
+
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -67,7 +66,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
-      
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -83,7 +82,7 @@ export class Auth {
 
   passwordRecovery = async (data) => {
     const url = `${this.baseApi}/${API_ROUTES.PASSWORD_RECOVERY}`;
-      
+
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -91,7 +90,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
-      
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -107,7 +106,7 @@ export class Auth {
 
   refreshAccessToken = async (refreshToken) => {
     const url = `${this.baseApi}/${API_ROUTES.REFRESH_TOKEN}`;
-      
+
     const params = {
       method: "POST",
       body: JSON.stringify({ token: refreshToken }),
@@ -115,7 +114,7 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
-      
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {

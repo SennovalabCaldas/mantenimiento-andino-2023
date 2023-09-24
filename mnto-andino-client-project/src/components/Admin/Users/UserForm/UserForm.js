@@ -83,11 +83,10 @@ const UserForm = (props) => {
               />
               <img
                 alt="Avatar"
-                src={formik.values.avatar || image.noAvatar}
+                src={formik.values.avatar || image.logomn}
                 onClick={onAvatarClick}
                 className="avatar-img"
               />
-              <div className="overlay"></div>
             </div>
           </div>
 
@@ -124,7 +123,7 @@ const UserForm = (props) => {
             helperText={formik.touched.email && formik.errors.email}
           />
           <div className="dropdowns-section">
-            <FormControl>
+            <FormControl className="select-sede">
               <InputLabel id="sede-select-label">
                 Selecciona una sede
               </InputLabel>
@@ -151,13 +150,14 @@ const UserForm = (props) => {
               </FormHelperText>
             </FormControl>
 
-            <FormControl>
+            <FormControl className="select-role">
               <InputLabel id="role-select-label">Selecciona un rol</InputLabel>
               <Select
                 labelId="role-select-label"
                 id="role-select"
+                
                 name="role"
-                value={formik.values.role}
+                value={formik.values.rol}
                 label="Selecciona un rol"
                 onChange={formik.handleChange}
               >

@@ -62,26 +62,6 @@ async function updateMe(req, res) {
   }
 }
 
-// Obtener lista de usuarios
-// async function getUsers(req, res) {
-//   console.log("Estoy en el listar usuarios");
-//   try {
-//     const { active } = req.query;
-//     let response = null;
-
-//     if (active === undefined) {
-//       response = await User.find();
-//     } else {
-//       response = await User.find({ active });
-//     }
-
-//     res.status(200).send(response);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({ msg: "Error del servidor" });
-//   }
-// }
-
 
 async function getUsers(req, res) {
   console.log("Estoy en el listar usuarios");

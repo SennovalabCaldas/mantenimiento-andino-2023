@@ -23,17 +23,20 @@ import {
   getAllCategoriesService,
   updateCategoryService,
 } from "../../../../actions/categoryServiceActions";
-import { Box } from "@mui/material";
+import { ENV } from "../../../../utils";
 
-export const CategoryManagement = (news) => {
+export const CategoryManagement = ({ categories }) => {
+  console.log(categories);
+  // const categories = useSelector(
+  //   (state) => state.categoryService.allCategoriesService
+  // );
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const baseUrl = "http://localhost:3100/";
+  const baseApi = ENV.BASE_PATH;
 
   const [avatar, setAvatar] = useState(null);
   const [nameCategoryService, setNameCategoryService] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(null);
- 
 
   const [newCategory, setNewCategory] = useState({
     nameCategoryService: "",
@@ -48,10 +51,6 @@ export const CategoryManagement = (news) => {
   });
 
   const dispatch = useDispatch();
-  const categories = useSelector(
-    (state) => state.categoryService.allCategoriesService
-  );
-    
 
   useEffect(() => {
     dispatch(getAllCategoriesService());
@@ -71,7 +70,6 @@ export const CategoryManagement = (news) => {
   };
 
   const handleEdit = async (id) => {
-      
     const categoryToEdit = categories.find((item) => item._id === id);
     const newActiveState = !categoryToEdit.active;
     try {
@@ -82,9 +80,7 @@ export const CategoryManagement = (news) => {
     }
   };
 
-
   const handleUpdateCategory = async (categoryId, updatedData) => {
-      
     try {
       await dispatch(updateCategoryService(categoryId, updatedData));
       await dispatch(getAllCategoriesService());
@@ -109,14 +105,10 @@ export const CategoryManagement = (news) => {
       active: editingCategory.active,
       avatar: avatar,
     };
-      
 
     if (data._id) {
-        
-        
       await dispatch(updateCategoryService(data._id, data));
     } else {
-        
       await dispatch(createCategoryService(data));
     }
     await dispatch(getAllCategoriesService());
@@ -200,7 +192,7 @@ export const CategoryManagement = (news) => {
                 <TableCell>
                   {category.avatar && (
                     <img
-                      src={`${baseUrl}${category.avatar}`}
+                      src={`${baseApi}${category.avatar}`}
                       alt="Imagen de previsualización"
                       style={{ maxWidth: "100%", maxHeight: "200px" }}
                     />

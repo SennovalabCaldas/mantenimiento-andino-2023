@@ -105,7 +105,7 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
   const [selectedStreet, setSelectedStreet] = useState(
     addressData.selectedStreet || ""
   );
-  const [numero1, setNumero1] = useState(addressData.numero1 || "");
+  const [nomenclature, setN] = useState(addressData.nomenclature || "");
 
   const [departamentos, setDepartamentos] = useState([]);
   const [municipios, setMunicipios] = useState([]);
@@ -147,7 +147,7 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
       setSelectedDepartamento("");
       setSelectedMunicipio("");
       setSelectedStreet("");
-      setNumero1("");
+      setN("");
     }
   }, [clearForm]);
 
@@ -157,7 +157,7 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
     setSelectedDepartamento(addressData.departamento || "");
     setSelectedMunicipio(addressData.municipio || "");
     setSelectedStreet(addressData.selectedStreet || "");
-    setNumero1(addressData.numero1 || "");
+    setN(addressData.nomenclature || "");
   }, [addressData]);
   // Agrega aquí los estados y efectos necesarios para el resto de los campos de dirección
 
@@ -199,13 +199,13 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
   };
 
   const handleNumero1Change = (event) => {
-    setNumero1(event.target.value);
+    setN(event.target.value);
     onSelectedData({
       country: selectedCountry,
       departamento: selectedDepartamento,
       municipio: selectedMunicipio,
       selectedStreet: selectedStreet,
-      numero1: event.target.value,
+      nomenclature: event.target.value,
     });
   };
 
@@ -215,7 +215,7 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
       departamento: selectedDepartamento,
       municipio: selectedMunicipio,
       selectedStreet: selectedStreet,
-      numero1: numero1,
+      nomenclature: nomenclature,
       // Agrega aquí los demás campos de dirección
     };
     onSelectedData(data);
@@ -288,9 +288,9 @@ export const AddressForm = ({ onSelectedData, addressData, clearForm }) => {
               <Input
                 icon="map signs"
                 iconPosition="left"
-                placeholder="N°"
+                placeholder="Nomenclatura"
                 onChange={handleNumero1Change}
-                value={numero1}
+                value={nomenclature}
                 
               />
             </div>

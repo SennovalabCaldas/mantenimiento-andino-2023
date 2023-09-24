@@ -5,38 +5,38 @@ export const Caseth = () => {
   return (
     <div>
       <div client-content>
-        <div class="client-card">
-          <div class="ups">
-            <div class="screw1">+</div>
-            <div class="screw2">+</div>
+        <div className="client-card">
+          <div className="ups">
+            <div className="screw1">+</div>
+            <div className="screw2">+</div>
           </div>
-          <div class="card1">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="yl">
-              <div class="roll">
-                <div class="s_wheel"></div>
-                <div class="tape"></div>
-                <div class="e_wheel"></div>
+          <div className="card1">
+            <div className="line1"></div>
+            <div className="line2"></div>
+            <div className="yl">
+              <div className="roll">
+                <div className="s_wheel"></div>
+                <div className="tape"></div>
+                <div className="e_wheel"></div>
               </div>
-              <p class="num">90</p>
+              <p className="num">90</p>
             </div>
-            <div class="or">
-              <p class="time">MANTENIMIENTO ANDINO 2×30min</p>
-            </div>
-          </div>
-          <div class="card2_main">
-            <div class="card2">
-              <div class="c1"></div>
-              <div class="t1"></div>
-              <div class="screw5">+</div>
-              <div class="t2"></div>
-              <div class="c2"></div>
+            <div className="or">
+              <p className="time">MANTENIMIENTO ANDINO 2×30min</p>
             </div>
           </div>
-          <div class="downs">
-            <div class="screw3">+</div>
-            <div class="screw4">+</div>
+          <div className="card2_main">
+            <div className="card2">
+              <div className="c1"></div>
+              <div className="t1"></div>
+              <div className="screw5">+</div>
+              <div className="t2"></div>
+              <div className="c2"></div>
+            </div>
+          </div>
+          <div className="downs">
+            <div className="screw3">+</div>
+            <div className="screw4">+</div>
           </div>
         </div>
       </div>

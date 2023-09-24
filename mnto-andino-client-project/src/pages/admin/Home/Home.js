@@ -7,6 +7,11 @@ import "./Home.scss";
 export const Home = () => {
   const cardData = [
     {
+      title: "Panel de control",
+      link: "/admin/dashboard",
+      background: `url(${image.background})`,
+    },
+    {
       title: "Usuarios registrados",
       link: "/admin/users",
       background: `url(${image.background})`,

@@ -134,34 +134,23 @@ export class Sede {
   };
 
   updateSede = async (_id, data) => {
-      
+      console.log(data);
     const accessToken = authController.getAccessToken();
-    const direccion = data.direccion;
-    const id_direccion = data.direccion._id;
-      
     const url = `${this.baseApi}/${API_ROUTES.SEDES}/${_id}`;
+    const params = {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+      
     try {
-      const updatedAddress = await addressController.updateAddressById(
-        id_direccion,
-        direccion
-      );
-        
-      const params = {
-        method: "PATCH",
-        body: JSON.stringify(data),
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
-
       const response = await fetch(url, params);
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
-        
       const result = await response.json();
         
       return result;

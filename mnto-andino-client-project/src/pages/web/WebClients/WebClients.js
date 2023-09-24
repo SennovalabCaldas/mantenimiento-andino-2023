@@ -9,16 +9,17 @@ import { useTheme } from "@mui/material/styles";
 import { image } from "../../../assets";
 import SliderMenuClients from "./SliderMenuClients";
 import { CardClient } from "./CardClient";
+import { ENV } from "../../../utils";
 
 const clientController = new Client();
 export const WebClients = ({ clients }) => {
-  const [addressList, setAddressList] = useState([]);
-  const [avatarsList, setAvatarsList] = useState([]);
+  const baseApi = ENV.BASE_PATH;
 
   const handleCategoryClick = (index) => {
     setSelectedCategory(index);
   };
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [avatarsList, setAvatarsList] = useState([]);
 
   const [menuItems] = useState([
     { text: "NACIONALES" },
@@ -26,18 +27,8 @@ export const WebClients = ({ clients }) => {
   ]);
   const theme = useTheme();
   const dispatch = useDispatch();
+  const [addressList, setAddressList] = useState([]);
 
-  // const getAddress = async (direccion) => {
-  //   try {
-  //     const address = await clientController.getAddressByDireccion(direccion);
-
-  //     return address;
-  //   } catch (error) {
-  //     console.error("Error al obtener la dirección del cliente:", error);
-  //     return "Dirección no disponible";
-  //   }
-  // };
-  // console.log(getAddress());
   useEffect(() => {
     (async () => {
       try {
@@ -87,8 +78,7 @@ export const WebClients = ({ clients }) => {
   useEffect(() => {
     // Mezcla aleatoriamente la lista de avatares de los clientes
     const shuffledAvatars = shuffleArray(
-      clients.map((client) => `http://localhost:3100/${client.avatar}`)
-      // clients.map((client) => `http://localhost:3100/${client.avatar}`)
+      clients.map((client) => `${baseApi}${client.avatar}`)
     );
     // Asegura que haya al menos tantas celdas como clientes
     const requiredCells = clients.length > 12 ? clients.length : 12;
@@ -101,7 +91,7 @@ export const WebClients = ({ clients }) => {
   }, [clients]);
 
   return (
-    <div className="clients-section">
+    <div className="content-web-section">
       <h2>Clientes</h2>
       <SliderMenuClients
         menuItems={menuItems}
@@ -124,12 +114,8 @@ export const WebClients = ({ clients }) => {
                 <>
                   {category.text === "NACIONALES" && (
                     <>
-                      {/* <div className="item-clients-section">
-                        <Mapa />
-                      </div> */}
-                      {/* <div className="item-clients-section"> */}
+                      <Mapa></Mapa>
                       <CardClient></CardClient>
-                      {/* </div> */}
                     </>
                   )}
                   {category.text === "INTERNACIONALES" && (

@@ -2,8 +2,8 @@
 
 const Client = require("../models/client");
 const Address = require("../models/address");
-const baseUrl = "http://mantenimientoandino.co:3000"
-// const baseUrl = "http://localhost:3100/";
+// const baseUrl = "http://mantenimientoandino.co:3000"
+const baseUrl = "http://localhost:3100/";
 // Crear un nuevo cliente
 async function createClient(req, res) {
   try {
@@ -26,7 +26,8 @@ async function createClient(req, res) {
       avatar: clientStored.avatar,
       joinDate: clientStored.joinDate,
       active: clientStored.active,
-      direccion: clientStored.direccion._id, // Devuelve el objeto de dirección completo
+      national: clientStored.national, 
+      state: clientStored.state, 
     });
 
     console.log(clientStored);

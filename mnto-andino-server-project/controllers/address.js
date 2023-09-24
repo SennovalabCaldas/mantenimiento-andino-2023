@@ -1,6 +1,5 @@
 const address = require("../models/address");
 const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
 // Método para crear una nueva dirección
 const createAddress = async (req, res) => {
   try {
@@ -28,59 +27,59 @@ const getAllAddresses = async (req, res) => {
   }
 };
 
-// Método para obtener una dirección por su ID
+// Método para actualizar una dirección por id
+
 const getAddressById = async (req, res) => {
   try {
     const addressId = req.params.id;
 
-    if (!ObjectId.isValid(addressId)) {
-      return res.status(400).json({ message: "ID de dirección inválido" });
+    const foundAddress = await address.findById(addressId);
+
+    if (!foundAddress) {
+      return res.status(404).json({ message: "Dirección no encontrada" });
     }
 
-    const addressFind = await address.findById(addressId);
-
-    if (!addressFind) {
-      return res.status(404).json({ message: "No se encontró la dirección" });
-    }
-
-    res.status(200).json(addressFind);
+    res.status(200).json(foundAddress);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: "Error al obtener la dirección", error });
   }
 };
-
 const updateAddressById = async (req, res) => {
   try {
     const addressId = req.params.id;
-    const updateData = req.body; // Debes asegurarte de que req.body contenga solo los campos que deseas actualizar
+    const addressDataToUpdate = req.body;
+
     const updatedAddress = await address.findByIdAndUpdate(
       addressId,
-      updateData,
-      { new: true }
+      addressDataToUpdate,
+      { new: true } // Para obtener la dirección actualizada
     );
+
     if (!updatedAddress) {
-      return res.status(404).json({ message: "No se encontró la dirección" });
+      return res.status(404).json({ message: "Dirección no encontrada" });
     }
+
     res.status(200).json(updatedAddress);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al actualizar la dirección", error });
+    console.error(error);
+    res.status(500).json({ message: "Error al actualizar la dirección", error });
   }
 };
-
-
 // Método para eliminar una dirección por su ID
 const deleteAddressById = async (req, res) => {
   try {
     const addressId = req.params.id;
-    const deletedAddress = await address.findByIdAndDelete(addressId);
+
+    const deletedAddress = await address.findByIdAndRemove(addressId);
+
     if (!deletedAddress) {
-      return res.status(404).json({ message: "No se encontró la dirección" });
+      return res.status(404).json({ message: "Dirección no encontrada" });
     }
-    res.status(200).json({ message: "Dirección eliminada correctamente" });
+
+    res.status(200).json({ message: "Dirección eliminada exitosamente" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Error al eliminar la dirección", error });
   }
 };
@@ -88,7 +87,7 @@ const deleteAddressById = async (req, res) => {
 module.exports = {
   createAddress,
   getAllAddresses,
-  getAddressById,
   updateAddressById,
+  getAddressById,
   deleteAddressById,
 };

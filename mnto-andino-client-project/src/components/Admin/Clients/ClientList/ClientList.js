@@ -1,107 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import React, { useState } from "react";
 import {
-  TextField,
-  Button,
-  Card,
-  CardContent,
-  Typography,
-  Switch,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TablePagination,
-  InputLabel,
+  Switch,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  createCategoryService,
-  deleteCategoryService,
-  getAllCategoriesService,
-  updateCategoryService,
-} from "../../../../actions/categoryServiceActions";
-import { Box } from "@mui/material";
-import { AddressForm } from "../../../GeneralLayout";
-import {
-  createClient,
   deleteClient,
   getAllClients,
   updateClient,
 } from "../../../../actions/clientActions";
+import { ENV } from "../../../../utils";
 
 export const ClientList = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const baseUrl = "http://localhost:3100/";
-
-  const [avatar, setAvatar] = useState(null);
-  const [nameCategoryService, setNameCategoryService] = useState("");
-  const [avatarPreview, setAvatarPreview] = useState(null);
-  const [direccion, setDireccion] = useState({});
-
-  const [editingClient, setEditingClient] = useState({
-    clientName: "",
-    direccion: null,
-    active: true,
-    avatar: [],
-    joinDate: null,
-  });
-
+  const baseApi = ENV.BASE_API;
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.client.clients);
-    
-
-  useEffect(() => {
-    dispatch(getAllClients());
-  }, [dispatch]);
-
-  const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const blob = new Blob([file], { type: file.type });
-      setAvatar({
-        blob,
-        image: file,
-      });
-      const imageUrl = URL.createObjectURL(file);
-      setAvatarPreview(imageUrl);
-    }
-  };
-
-  const handleEdit = async (id) => {
-      
-    const categoryToEdit = categories.find((item) => item._id === id);
-    const newActiveState = !categoryToEdit.active;
-    try {
-      await dispatch(updateClient(id, { active: newActiveState }));
-      await dispatch(getAllClients());
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleUpdateClient = async (clientId, updatedData) => {
-      
-    try {
-      await dispatch(updateClient(clientId, updatedData));
-      await dispatch(getAllClients());
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const clients = useSelector((state) => state.client.clients);
+  const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
+  const [clientToDeleteId, setClientToDeleteId] = useState(null);
 
   const handleDelete = async (id) => {
+    // Abre la ventana modal de confirmación
+    setClientToDeleteId(id);
+    setConfirmationDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    // Cierra la ventana modal de confirmación
+    setConfirmationDialogOpen(false);
     try {
-      await dispatch(deleteClient(id));
+      await dispatch(deleteClient(clientToDeleteId));
       await dispatch(getAllClients());
     } catch (error) {
-      console.error("Error al eliminar la publicación:", error);
+      console.error("Error al eliminar el cliente:", error);
     }
   };
 
+  const handleCancelDelete = () => {
+    setConfirmationDialogOpen(false);
+  };
+
+  const handleToggleActive = async (clientId, isActive) => {
+    try {
+      await dispatch(updateClient(clientId, { active: isActive }));
+      if (
+        isActive ||
+        window.confirm("¿Estás seguro de que deseas desactivar este cliente?")
+      ) {
+        await dispatch(getAllClients());
+      }
+    } catch (error) {
+      console.error("Error al actualizar el estado del cliente:", error);
+    }
+  };
+
+  const handleToggleNational = async (clientId, isNational) => {
+    try {
+      await dispatch(updateClient(clientId, { national: isNational }));
+      if (
+        isNational ||
+        window.confirm(
+          "¿Estás seguro de que deseas cambiar la ubicación del cliente?"
+        )
+      ) {
+        await dispatch(getAllClients());
+      }
+    } catch (error) {
+      console.error("Error al actualizar la ubicación del cliente:", error);
+    }
+  };
+
+  const handleEdit = async (clientId, isActive) => {
+    try {
+      await dispatch(updateClient(clientId, { active: isActive }));
+      if (
+        isActive ||
+        window.confirm("¿Estás seguro de que deseas editar este cliente?")
+      ) {
+        await dispatch(getAllClients());
+      }
+    } catch (error) {
+      console.error("Error al editar el cliente:", error);
+    }
+  };
 
   return (
     <div>
@@ -111,49 +102,85 @@ export const ClientList = () => {
           <TableHead>
             <TableRow>
               <TableCell>Nombre</TableCell>
-              <TableCell>Dirección</TableCell>
+              <TableCell>Nacional</TableCell>
               <TableCell>Imagen</TableCell>
-              <TableCell>Activa</TableCell>
+              <TableCell>Activo</TableCell>
               <TableCell>Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map((category) => (
-              <TableRow key={category._id}>
-                <TableCell>{category.clientName}</TableCell>
-                <TableCell>{category.direccion}</TableCell>
-                <TableCell>
-                  {category.avatar && (
-                    <img
-                      src={`${baseUrl}${category.avatar}`}
-                      alt="Imagen de previsualización"
-                      style={{ maxWidth: "100%", maxHeight: "200px" }}
-                    />
-                  )}
-                </TableCell>
+            {clients && clients.length > 0 ? (
+              clients.map((client) => (
+                <TableRow key={client._id}>
+                  <TableCell>{client.clientName}</TableCell>
 
-                <TableCell>
-                  <Switch
-                    checked={category.active}
-                    onChange={() =>
-                      handleEdit(category._id, {
-                        active: !category.active,
-                      })
-                    }
-                    color="primary"
-                    inputProps={{ "aria-label": "Categoría activa" }}
-                  />
-                </TableCell>
-                <TableCell>
-                  <Button onClick={() => handleDelete(category._id)}>
-                    Eliminar
-                  </Button>
-                </TableCell>
+                  <TableCell>
+                    {client.avatar && (
+                      <img
+                        src={`${baseApi}/${client.avatar}`}
+                        alt="Imagen de previsualización"
+                        style={{ maxWidth: "100%", maxHeight: "200px" }}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Switch
+                      checked={client.active}
+                      onChange={() =>
+                        handleToggleActive(client._id, !client.active)
+                      }
+                      color="primary"
+                      inputProps={{ "aria-label": "Cliente activo" }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Switch
+                      checked={client.national}
+                      onChange={() =>
+                        handleToggleNational(client._id, !client.national)
+                      }
+                      color="secondary"
+                      inputProps={{ "aria-label": "Cliente nacional" }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Button onClick={() => handleDelete(client._id)}>
+                      Eliminar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5}>No hay clientes</TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
+
+      {/* Ventana modal de confirmación */}
+      <Dialog
+        open={confirmationDialogOpen}
+        onClose={handleCancelDelete}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Confirmación</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            ¿Estás seguro de que deseas eliminar este cliente?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelDelete} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleConfirmDelete} color="primary" autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

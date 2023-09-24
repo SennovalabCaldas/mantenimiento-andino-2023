@@ -12,3 +12,8 @@ export * from "./provider";
 export * from "./ally";
 export * from "./project";
 export * from "./certification";
+export * from "./departamentos";
+export * from "./foundation";
+export * from "./makinaAndina";
+export * from "./makinaAndinaMiami";
+export * from "./glamping";

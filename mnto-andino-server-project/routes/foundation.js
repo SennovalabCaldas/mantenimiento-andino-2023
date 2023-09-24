@@ -7,20 +7,20 @@ const md_upload = multiparty({ uploadDir: "./uploads/foundations" });
 const api = express.Router();
 
 api.post(
-  "/new-foundation",
+  "/new-post",
   [md_auth.ensureAuth, md_upload],
   fundationController.createFoundation
+);
+
+api.patch(
+  "/:id",
+  [md_auth.ensureAuth, md_upload],
+  fundationController.updateFoundationById
 );
 
 api.get("/", fundationController.getAllFoundations);
 
 api.get("/:id", fundationController.getFoundationById);
-
-api.patch(
-  "/:id",
-  [md_auth.ensureAuth],
-  fundationController.updateFoundationById
-);
 
 api.delete(
   "/:id",

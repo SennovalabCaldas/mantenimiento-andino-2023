@@ -6,10 +6,12 @@ const clientSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  direccion: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",
+  national: {
+    type: Boolean,
     required: true,
+  },
+  state: {
+    type: String,
   },
   avatar: {
     type: String,

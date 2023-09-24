@@ -29,7 +29,13 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const ServiceList = () => {
   const services = useSelector((state) => state.service.services);
-
+  const categories = useSelector(
+    (state) => state.categoryService.allCategoriesService
+  );
+  const categoriesServiceActive = categories.filter(
+    (category) => category.active === true
+  );
+  console.log(categoriesServiceActive);
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -209,16 +215,16 @@ const ServiceList = () => {
           >
             <CardContent>
               <div
-                class="image"
+                className="image"
                 style={{
                   margin: "10px",
                   minHeight: "280px",
                   maxHeight: "280px",
                   display: "flex",
-                  "object-fit": "cover",
+                  objectFit: "cover",
                   alignItems: "center",
                   borderRadius: "4px",
-                  background:" rgba(0,0,0,0.01)"
+                  background: " rgba(0,0,0,0.01)",
                 }}
               >
                 {service.photos && service.photos.length > 0 && (
@@ -324,9 +330,12 @@ const ServiceList = () => {
                       });
                     }}
                   >
-                    {services.map((service) => (
-                      <MenuItem key={service._id} value={service._id}>
-                        {service.name}
+                    {categoriesServiceActive.map((categoryService) => (
+                      <MenuItem
+                        key={categoryService._id}
+                        value={categoryService._id}
+                      >
+                        {categoryService.nameCategoryService}
                       </MenuItem>
                     ))}
                   </Select>

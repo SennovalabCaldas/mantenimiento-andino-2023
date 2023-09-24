@@ -24,7 +24,7 @@ api.patch(
 
 api.delete(
   "/:id",
-  md_auth.ensureAuth,
+  [md_auth.ensureAuth],
   categoryServiceController.deleteCategoryServiceById
 );
 

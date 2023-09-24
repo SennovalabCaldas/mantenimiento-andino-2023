@@ -10,7 +10,7 @@
 
 /* Estilos de la barra de navegación */
 .webmenu-page__navbar {
-  background-color: rgb(80 80 80 / 49%);
+  background-color:rgb(46 46 46);
   height: 60px;
   // padding: 0 10px 0 10px;
   width: 100%;
@@ -19,8 +19,8 @@
   justify-content: space-around;
   align-content: center;
   img {
-    width: 50px;
-    height: 40px;
+    width: 55px;
+    height: auto;
     display: block;
     border-radius: 3px;
     transition: transform 0.3s, opacity 0.3s;
@@ -101,18 +101,15 @@
 @media (max-width: 768px) {
   .webmenu-page {
     .webmenu-page__navbar {
-      background-color: rgb(80 80 80 / 49%);
+      background-color: rgb(46 46 46);
       height: 50px;
       img {
-        width: 50px;
-        height: 40px;
+        width: 55px;
+        height: auto;
         display: block;
         border-radius: 3px;
         transition: transform 0.3s, opacity 0.3s;
         position: relative;
-
-        transition: transform 0.3s, opacity 0.3s;
-
         &:hover {
           opacity: 0.8;
           box-shadow: 0 0 10px rgba(220, 110, 96, 0.8); /* Agregamos la sombra */

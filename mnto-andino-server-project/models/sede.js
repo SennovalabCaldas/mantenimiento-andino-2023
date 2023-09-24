@@ -5,10 +5,6 @@ const SedeSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  nombre_contacto: {
-    type: String,
-    required: true,
-  },
   telefono_contacto: {
     type: String,
   },

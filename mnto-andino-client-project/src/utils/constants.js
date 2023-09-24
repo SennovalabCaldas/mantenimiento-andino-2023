@@ -1,24 +1,25 @@
-const SERVER_IP =
-  process.env.REACT_APP_ENVIROMENT === "prod"
-    ? "http://mantenimientoandino.co:3000"
-    : "http://localhost:3000";
+const SERVER_IP = "http://localhost:3500";
+// const SERVER_IP = "http://mantenimientoandino.co:3000"
 
-const API_VERSION = "v1";
+const API_VERSION = "api/v1";
 
 export const ENV = {
   BASE_PATH: SERVER_IP,
-  BASE_API: `${SERVER_IP}/api/${API_VERSION}`,
+  BASE_API: `${SERVER_IP}/${API_VERSION}`,
   API_ROUTES: {
     UPDATE_ME: "user/edit-profile",
     SUPPLIER: "admin/suppliers",
     USER: "admin/users/user",
-    CATEGORY_SERVICE:"admin/category-services",
+    CATEGORY_SERVICE: "admin/category-services",
     SUPPLIER: "admin/suppliers",
     ALLIE: "admin/allies",
     NEW_ALLIE: "admin/allies/new-ally",
     CERTIFICATION: "admin/certifications",
     PROJECTS: "admin/projects",
     FOUNDATION: "admin/foundations",
+    MAKINA_ANDINA: "admin/makina-andina",
+    MAKINA_ANDINA_MIAMI: "admin/makina-andina-miami",
+    GLAMPING: "admin/glamping",
     GET_USER: "get-user",
     REGISTER: "auth/register",
     LOGIN: "auth/login",
@@ -35,7 +36,8 @@ export const ENV = {
     CATEGORY_ROUTE: "admin/categories",
     MENU: "admin/menus",
     SERVICE: "admin/services",
-    CLIENT: "admin/clients",
+    CLIENT: "admin/clients/new-client",
+    CLIENTS: "admin/clients",
   },
   JWT: {
     ACCESS: "access",

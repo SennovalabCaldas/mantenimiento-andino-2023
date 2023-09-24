@@ -25,30 +25,37 @@ import {
   getAllSuppliers,
   updateSupplier,
 } from "../../../actions/providerActions";
+import { ENV } from "../../../utils";
 
 export const Suppliers = () => {
+  const baseApi = ENV.BASE_PATH;
+
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const baseUrl = "http://localhost:3100/";
 
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); // Identificador para el diálogo de edición
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false); // Identificador para el diálogo de detalles
 
   const [avatar, setAvatar] = useState(null);
+  const [national, setNational] = useState(true);
   const [supplierName, setSupplierName] = useState("");
   const [editSupplierName, setEditSupplierName] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const [active, setActive] = useState(true);
 
   const [newSupplier, setNewSupplier] = useState({
     supplierName: "",
     active: true,
+    national: true,
     avatar: [],
   });
 
   const [editingSupplier, setEditingSupplier] = useState({
     supplierName: "",
     active: false,
+    national: true,
     avatar: [],
   });
 
@@ -74,22 +81,43 @@ export const Suppliers = () => {
 
   const dispatch = useDispatch();
   const suppliers = useSelector((state) => state.supplier.allSuppliers);
-    
 
   useEffect(() => {
     dispatch(getAllSuppliers());
   }, [dispatch]);
 
   const handleToggleActive = (supplier) => {
-    // Actualiza el estado local
     const updatedSupplier = { ...supplier, active: !supplier.active };
     const updatedSuppliers = suppliers.map((s) =>
       s._id === supplier._id ? updatedSupplier : s
     );
     setSelectedSupplier(updatedSupplier);
-    // Envía una solicitud al servidor para actualizar el estado en la base de datos
-    dispatch(updateSupplier(supplier._id, { active: updatedSupplier.active }));
-    dispatch(getAllSuppliers()); // Actualiza la lista de proveedores después de la actualización
+    dispatch(updateSupplier(supplier._id, { active: updatedSupplier.active }))
+      .then(() => {
+        // Después de actualizar en el servidor, puedes actualizar la lista
+        dispatch(getAllSuppliers());
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el estado activo:", error);
+      });
+  };
+
+  const handleToggleNational = (supplier) => {
+    const updatedSupplier = { ...supplier, national: !supplier.national };
+    const updatedSuppliers = suppliers.map((s) =>
+      s._id === supplier._id ? updatedSupplier : s
+    );
+    setSelectedSupplier(updatedSupplier);
+    dispatch(
+      updateSupplier(supplier._id, { national: updatedSupplier.national })
+    )
+      .then(() => {
+        // Después de actualizar en el servidor, puedes actualizar la lista
+        dispatch(getAllSuppliers());
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el estado nacional:", error);
+      });
   };
 
   const handleAvatarChange = (e) => {
@@ -107,8 +135,6 @@ export const Suppliers = () => {
 
   const handleEdit = () => {
     if (selectedSupplier) {
-        
-        
       setSupplierName(selectedSupplier.supplierName);
       setIsEditDialogOpen(true);
       handleOpenEditDialog(selectedSupplier);
@@ -120,10 +146,10 @@ export const Suppliers = () => {
     const updatedData = {
       supplierName: supplierName, // Utiliza el nombre del estado para actualizar el nombre del proveedor
       active: selectedSupplier.active,
+      national: selectedSupplier.national,
       avatar: avatar,
     };
 
-      
     try {
       await dispatch(updateSupplier(supplierId, updatedData));
       await dispatch(getAllSuppliers());
@@ -147,16 +173,13 @@ export const Suppliers = () => {
       ...newSupplier,
       supplierName: supplierName,
       active: editingSupplier.active,
+      national: editingSupplier.national,
       avatar: avatar,
     };
-      
 
     if (data._id) {
-        
-        
       await dispatch(updateSupplier(data._id, data));
     } else {
-        
       await dispatch(createSupplier(data));
     }
     await dispatch(getAllSuppliers());
@@ -191,22 +214,24 @@ export const Suppliers = () => {
                 >
                   Upload Image
                 </Button>
+
                 <Switch
-                  checked={newSupplier.active}
-                  onChange={(e) =>
-                    setNewSupplier({
-                      ...newSupplier,
-                      active: e.target.checked,
-                    })
-                  }
+                  checked={active}
+                  onChange={() => setActive(!active)} // Invierte el valor cuando cambia
                   color="primary"
-                  inputProps={{ "aria-label": "Categoría activa" }}
+                  inputProps={{ "aria-label": "Proveedor activo" }}
+                />
+                <Typography>{active ? "Activo" : "Inactivo"}</Typography>
+                <Switch
+                  checked={national}
+                  onChange={() => setNational(!national)} // Invierte el valor cuando cambia
+                  color="primary"
+                  inputProps={{ "aria-label": "Proveedor nacional" }}
                 />
                 <Typography>
-                  {newSupplier.active
-                    ? "Categoría activa"
-                    : "Categoría inactiva"}
+                  {national ? "Nacional" : "Internacional"}
                 </Typography>
+
                 <Button
                   onClick={handleSave}
                   variant="contained"
@@ -240,6 +265,15 @@ export const Suppliers = () => {
                 color="primary"
                 inputProps={{ "aria-label": "Categoría activa" }}
               />
+              <Typography style={{ marginLeft: "10px" }}>
+                Nacional: {selectedSupplier.national ? "Sí" : "No"}
+              </Typography>
+              <Switch
+                checked={selectedSupplier.national}
+                onChange={() => handleToggleNational(selectedSupplier)}
+                color="primary"
+                inputProps={{ "aria-label": "Proveedor nacional" }}
+              />
             </DialogContent>
             <DialogContent>
               <label htmlFor="imageUpload">
@@ -248,7 +282,7 @@ export const Suppliers = () => {
                   {selectedSupplier.avatar && (
                     <img
                       src={
-                        avatarPreview || `${baseUrl}${selectedSupplier.avatar}`
+                        avatarPreview || `${baseApi}${selectedSupplier.avatar}`
                       } // Utiliza avatarPreview si está definido, de lo contrario, utiliza la URL existente
                       alt="Imagen de previsualización"
                       style={{
@@ -300,7 +334,7 @@ export const Suppliers = () => {
                 <TableCell>
                   {supplier.avatar && (
                     <img
-                      src={`${baseUrl}${supplier.avatar}`}
+                      src={`${baseApi}${supplier.avatar}`}
                       alt="Imagen de previsualización"
                       style={{ maxWidth: "100%", maxHeight: "200px" }}
                       onClick={() => handleOpenDetailDialog(supplier)}
@@ -313,7 +347,15 @@ export const Suppliers = () => {
                     checked={supplier.active}
                     onChange={() => handleToggleActive(supplier)}
                     color="primary"
-                    inputProps={{ "aria-label": "Categoría activa" }}
+                    inputProps={{ "aria-label": "Proveedor activo" }}
+                  />
+                </TableCell>
+                <TableCell>
+                  <Switch
+                    checked={supplier.national}
+                    onChange={() => handleToggleNational(supplier)}
+                    color="secondary"
+                    inputProps={{ "aria-label": "Proveedor nacional" }}
                   />
                 </TableCell>
                 <TableCell>
@@ -345,7 +387,7 @@ export const Suppliers = () => {
                 Imagen:{" "}
                 {selectedSupplier.avatar && (
                   <img
-                    src={`${baseUrl}${selectedSupplier.avatar}`}
+                    src={`${baseApi}${selectedSupplier.avatar}`}
                     alt="Imagen de previsualización"
                     style={{ maxWidth: "100%", maxHeight: "200px" }}
                   />

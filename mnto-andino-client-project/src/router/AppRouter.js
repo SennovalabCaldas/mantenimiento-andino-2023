@@ -3,27 +3,23 @@ import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { AdminLayout } from "../layouts";
-import { Auth, News, Services } from "../pages/admin";
+import { Auth, MakinaAndinaAdmin,News, Services } from "../pages/admin";
 import { Users, Sedes, Home, Clients } from "../pages/admin";
-import { EmployeeHome, EmployeeServices } from "../pages/employee";
 import { Providers } from "../pages/admin/Providers";
-import { EmployeeNews } from "../pages/employee/EmployeeNews";
 import Foundation from "../pages/admin/Foundation/Foundation";
 import { WebMenu } from "../components/WebMenu";
 import { Projects } from "../pages/admin/Projects/Projects";
 import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "../pages/web";
 import { Allies } from "../components/Admin/Allies";
 import { Certification } from "../pages/admin/Certification";
+import { MakinaAndinaMiamiAdmin } from "../pages/admin/MakinaAndinaMiamiAdmin";
+import { Glamping } from "../pages/admin/Glamping";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const isAdmin = user && user.role === "admin";
   const isEmployee = user && user.role === "user";
-  const [activeSection, setActiveSection] = useState("");
-
-    
-    
 
   const loadLayout = (Layout, Page) => {
     return (
@@ -47,10 +43,10 @@ export const AppRouter = () => {
         <>
           {isAdmin && (
             <>
-              <Route index  element={loadLayout(AdminLayout, Users)} />
+              <Route index element={loadLayout(AdminLayout, Users)} />
               <Route path="admin" element={<WebMenu />} />
               <Route
-                path="admin/home"
+                path="admin/dashboard"
                 element={loadLayout(AdminLayout, Home)}
               />
               <Route
@@ -92,6 +88,18 @@ export const AppRouter = () => {
               <Route
                 path="admin/allies"
                 element={loadLayout(AdminLayout, Allies)}
+              />
+              <Route
+                path="admin/makina-andina"
+                element={loadLayout(AdminLayout, MakinaAndinaAdmin)}
+              />
+              <Route
+                path="admin/makina-andina-miami"
+                element={loadLayout(AdminLayout,MakinaAndinaMiamiAdmin )}
+              />
+              <Route
+                path="admin/glamping"
+                element={loadLayout(AdminLayout, Glamping)}
               />
             </>
           )}

@@ -17,23 +17,11 @@ const AddressSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  numero1: {
+  nomenclature: {
     type: String,
     required: true,
   },
   barrio: {
-    type: String,
-  },
-  complementoDireccion: {
-    type: String,
-  },
-  nombreEdificio: {
-    type: String,
-  },
-  caracteristicasAdicionales: {
-    type: String,
-  },
-  numeroLocal: {
     type: String,
   },
 });

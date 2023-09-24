@@ -9,3 +9,4 @@ export * from "./Projects";
 export * from "./Sedes";
 export * from "./Foundation";
 export * from "./Certification";
+export * from "./MakinaAndinaAdmin";

@@ -8,13 +8,15 @@ import { PasswordRecovery } from "../PasswordRecovery";
 import { useDispatch, connect } from "react-redux";
 import { loginUser } from "../../../../actions/authActions";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LoginForm = connect()(({ onRegisterClick }) => {
   const dispatch = useDispatch();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  const [activeMenuItem, setActiveMenuItem] = useState(""); 
+  const [activeMenuItem, setActiveMenuItem] = useState("");
 
   const [showModal, setShowModal] = useState(false);
   const [showModalReset, setShowModalReset] = useState(false);
@@ -41,17 +43,12 @@ export const LoginForm = connect()(({ onRegisterClick }) => {
   };
 
   const handleSubmit = async (formValue) => {
-    try {
-      setErrorMessage("");
-      await dispatch(loginUser(formValue));
-      setSuccessMessage("Iniciando sesión");
-      setActiveMenuItem("home");
-      navigate("/admin/home");// Actualiza el menú activo cuando el usuario inicie sesión correctamente
+    await dispatch(loginUser(formValue));
+    toast.success("Bienvenido");
+    navigate("/admin/dashboard");
 
-    } catch (error) {
-      // Resto del código
-    }
   };
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),

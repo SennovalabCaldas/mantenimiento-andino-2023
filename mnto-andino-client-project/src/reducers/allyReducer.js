@@ -10,11 +10,10 @@ const initialState = {
   ally: {
     _id: null,
     allyName: null,
-    active: null,
+    active: undefined,
     avatar: [],
+    national: undefined,
   },
-  error: null,
-  loading: false,
   allAllies: [],
 };
 
@@ -24,36 +23,27 @@ const allyReducer = (state = initialState, action) => {
       return {
         ...state,
         ally: action.payload,
-        error: null,
-        loading: false,
       };
     case SET_ALL_ALLIES_SERVICE:
+      console.log("action.payload", action.payload);
       return {
         ...state,
         allAllies: action.payload,
-        error: null,
-        loading: false,
       };
     case GET_ALLY_SUCCESS:
       return {
         ...state,
         ally: action.payload,
-        error: null,
-        loading: false,
       };
     case UPDATE_ALLY_SUCCESS:
       return {
         ...state,
         ally: action.payload,
-        error: null,
-        loading: false,
       };
     case DELETE_ALLY_SUCCESS:
       return {
         ...state,
         ally: action.payload,
-        error: null,
-        loading: false,
       };
     default:
       return state;

@@ -17,10 +17,6 @@ const projectSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  client: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Client",
-  },
   joinDate: {
     type: Date,
     default: Date.now,

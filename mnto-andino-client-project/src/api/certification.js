@@ -18,8 +18,8 @@ export class Certification {
         console.error("Imagen de avatar no válida.");
         return; // Aborta la función si la imagen no es válida
       }
-      formData.append("certificationName", data.projectName);
-      formData.append("entity", data.entity);
+      formData.append("certificationName", data.certificationName);
+      formData.append("national", data.national);
       formData.append("joinDate", data.joinDate);
 
       console.log("Estos son los datos del proyecto", formData.get("avatar"));

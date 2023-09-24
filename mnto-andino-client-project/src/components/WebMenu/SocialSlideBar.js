@@ -15,7 +15,7 @@ export const SocialSlideBar = () => {
   return (
     <div className={`social-slide-bar ${isOpen ? "open" : ""}`}>
       <div className="social-icons">
-        <a
+        <a 
           href={enlaceWhatsApp}
           rel="noreferrer"
           target="_blank"

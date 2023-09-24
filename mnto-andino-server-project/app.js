@@ -1,9 +1,7 @@
 // app.js
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const app = express();
-
 /* Cargar rutas */
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -21,6 +19,7 @@ const projectRoutes = require("./routes/project");
 const foundationRoutes = require("./routes/foundation");
 const newsFoundationRoutes = require("./routes/newsFoundation");
 
+
 // Configure Body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,22 +27,6 @@ app.use(bodyParser.json());
 // Configure static folder
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
-
-const corsOptions = {
-  origin: [
-    "http://mantenimientoandino.co",
-    "http://mantenimientoandino.co:3000",
-    "https://mantenimientoandino.co",
-    "https://mantenimientoandino.co:3000",
-    "https://mantenimientoandino.co",
-    "https://mantenimientoandino.co:3000/api/v1",
-    "http://mantenimientoandino.co:3000/api/v1",
-  ], 
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
 
 app.use(`/api/v1/auth`, authRoutes);
 app.use(`/api/v1/admin/users`, userRoutes);
@@ -59,20 +42,22 @@ app.use(`/api/v1/admin/allies`, alliesRoutes);
 app.use(`/api/v1/admin/certifications`, certificationsRoutes);
 app.use(`/api/v1/admin/projects`, projectRoutes);
 app.use(`/api/v1/admin/foundations`, foundationRoutes);
-app.use(`/api/v1/admin/newsFoundation`, newsFoundationRoutes);
+app.use(`/api/v1/admin/makina-andina`, makinaAndinaRoutes);
+app.use(`/api/v1/admin/makina-andina-miami`, makinaAndinaMiamiRoutes);
+app.use(`/api/v1/admin/glamping`, glampingRoutes);
 
-function printRoutes(stack, parentPath = "") {
-  stack.forEach((layer) => {
-    if (layer.route) {
-      // Si es una ruta, imprime su método y ruta
-      console.log(
-        `Ruta: [${layer.route.stack[0].method}] ${parentPath}${layer.route.path}`
-      );
-    } else if (layer.name === "router" && layer.handle.stack) {
-      // Si es un enrutador anidado, llama a la función recursivamente
-      printRoutes(layer.handle.stack, `${parentPath}${layer.regexp.source}`);
-    }
-  });
-}
+// function printRoutes(stack, parentPath = "") {
+//   stack.forEach((layer) => {
+//     if (layer.route) {
+//       // Si es una ruta, imprime su método y ruta
+//       console.log(
+//         `Ruta: [${layer.route.stack[0].method}] ${parentPath}${layer.route.path}`
+//       );
+//     } else if (layer.name === "router" && layer.handle.stack) {
+//       // Si es un enrutador anidado, llama a la función recursivamente
+//       printRoutes(layer.handle.stack, `${parentPath}${layer.regexp.source}`);
+//     }
+//   });
+// }
 
-module.exports = { app, printRoutes };
+module.exports = { app };

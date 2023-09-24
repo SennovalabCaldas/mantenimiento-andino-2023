@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
-
 import "./Mapa.scss";
 
 export const Mapa = ({ departamentos }) => {
@@ -216,12 +215,12 @@ export const Mapa = ({ departamentos }) => {
     "#FF33E9",
     // Agrega más colores según sea necesario
   ];
+
   let colorIndex = 0;
 
   const getDepartamentoColor = (deptName) => {
-    const color = "#D7DBDD";
+    const color = 'rgba(105, 143, 147, 0.51)';
     if (deptName === hoveredDept) {
-      // Si el departamento coincide con el que se encuentra seleccionado asignar color verde (#3B732F)
       return "#70A9B0";
     } else {
       if (departamentos?.find((name) => name === deptName)) {
@@ -233,7 +232,6 @@ export const Mapa = ({ departamentos }) => {
       }
     }
   };
-
 
   // Obtener la lista de departamentos del objeto simplemaps_countrymap_mapinfo
   const departamentosMapa = Object.keys(
@@ -252,7 +250,7 @@ export const Mapa = ({ departamentos }) => {
       if (sedeExiste) {
         // Si hay sedes en el municipio, muestra la información de las sedes
         const sedesDepartamento = getSedesPorDepartamento(deptName);
-        //   
+        //
 
         if (sedesDepartamento.length > 0) {
           // Creamos un array para almacenar la información de las sedes
@@ -262,7 +260,6 @@ export const Mapa = ({ departamentos }) => {
             // Agrega aquí otras propiedades de la sede que desees mostrar
           }));
           setSedeInfo({ sedeInfoArray, existeSede: true });
-            
         } else {
           setSedeInfo({ deptName, existeSede: false });
         }
@@ -302,70 +299,32 @@ export const Mapa = ({ departamentos }) => {
 
   return (
     <>
-      <div className="mapa">
-        {sedeInfo && sedeInfo.sedeInfoArray.length > 0 && (
-          <Card variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {`Hay sede en ${sedeInfo.sedeInfoArray[0].direccion.departamento}.`}
-              </Typography>
-              {sedeInfo.sedeInfoArray.map((sede, index) => (
-                <div key={index}>
-                  <Typography variant="body1">
-                    Nombre de la sede {index + 1}: {sede.nombre}
-                  </Typography>
-                  <Typography variant="body1">
-                    Dirección: {sede.direccion.municipio},{" "}
-                    {sede.direccion.departamento}, {sede.direccion.country}
-                  </Typography>
-                  {/* Agrega aquí más información de la sede si lo deseas */}
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        )}
+      <svg viewBox="0 0 1200 1200" onMouseMove={handleMouseMove}>
+        {Object.values(simplemaps_countrymap_mapinfo.names).map((deptName) => {
+          return null;
+        })}
+        {renderDepartamentos()}
+      </svg>
 
-        {(!sedeInfo || sedeInfo.sedeInfoArray.length === 0) && (
-          <Card variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {`No hay sede en ${
-                  sedeInfo ? sedeInfo.deptName : "este departamento"
-                }.`}
-              </Typography>
-            </CardContent>
-          </Card>
-        )}
+      {hoveredDept && !isHoveringMessage && !clickedDept && (
+        <div
+          className="mensajeDepartamento"
+          style={{ top: mousePosition.y + 30, left: mousePosition.x + 100 }}
+          onMouseEnter={handleMouseEnterMessage}
+          onMouseLeave={handleMouseLeaveMessage}
+        >
+          <p>{hoveredDept}</p>
+        </div>
+      )}
 
-        <svg viewBox="0 0 1200 1200" onMouseMove={handleMouseMove}>
-          {Object.values(simplemaps_countrymap_mapinfo.names).map(
-            (deptName) => {
-              return null;
-            }
-          )}
-          {renderDepartamentos()}
-        </svg>
-
-        {hoveredDept && !isHoveringMessage && !clickedDept && (
-          <div
-            className="mensajeDepartamento"
-            style={{ top: mousePosition.y + 30, left: mousePosition.x + 100 }}
-            onMouseEnter={handleMouseEnterMessage}
-            onMouseLeave={handleMouseLeaveMessage}
-          >
-            <p>{hoveredDept}</p>
-          </div>
-        )}
-
-        {clickedDept && (
-          <div
-            className="mensajeDepartamento"
-            style={{ top: "50px", left: "50px" }}
-          >
-            <p>{clickedDept}</p>
-          </div>
-        )}
-      </div>
+      {clickedDept && (
+        <div
+          className="mensajeDepartamento"
+          style={{ top: "50px", left: "50px" }}
+        >
+          <p>{clickedDept}</p>
+        </div>
+      )}
     </>
   );
 };

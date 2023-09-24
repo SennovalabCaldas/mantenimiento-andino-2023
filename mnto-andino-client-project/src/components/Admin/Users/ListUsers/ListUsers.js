@@ -24,9 +24,9 @@ const userController = new User();
 
 const ListUsers = ({ usersActive, reload, onReload }) => {
   const classes = useStyles();
-    
+
   const users = useSelector((state) => state.user.allUsers);
-    
+
   const selectedUser = useSelector((state) => state.user.user);
   const loggedInUser = useSelector((state) => state.auth.user);
   const [searchQuery, setSearchQuery] = useState("");
@@ -69,7 +69,7 @@ const ListUsers = ({ usersActive, reload, onReload }) => {
       (user) => user._id !== loggedInUser._id && user.active === false
     );
   }
-    
+
   const handleSelectedUser = async (userId) => {
     try {
       await dispatch(getUser(userId));
@@ -102,13 +102,22 @@ const ListUsers = ({ usersActive, reload, onReload }) => {
             onChange={handleSearch}
             className={classes.input}
           />
+          <Button
+            className="show-card-btn"
+            onClick={() => setShowCard((prevState) => !prevState)}
+            style={{
+              marginTop: "8px",
+              backgroundColor: "#007bff", // Cambia el color de fondo según tus preferencias
+              color: "white", // Cambia el color del texto según tus preferencias
+              padding: "8px 16px", // Ajusta el espaciado interno
+              borderRadius: "4px", // Aplica bordes redondeados si deseas
+              border: "none", // Elimina el borde si lo prefieres
+            }}
+          >
+            {showCard ? "Ocultar información" : "Ver información"}
+          </Button>
         </div>
-        <Button
-          className="show-card-btn"
-          onClick={() => setShowCard((prevState) => !prevState)}
-        >
-          {showCard ? "Ocultar información" : "Ver información"}
-        </Button>
+
         <div>
           <div className={classes.usersList}>
             {currentUsers.map((user) => (

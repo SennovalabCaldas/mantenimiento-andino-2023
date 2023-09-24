@@ -1,10 +1,7 @@
-import React from "react";
-import "./WebProjects.scss";
+import React from 'react'
 
 export const WebProjects = () => {
   return (
-    <div className="content-section-projects">
-      <h2>Proyectos Nacionales</h2>
-    </div>
-  );
-};
+    <div className='content-web-section'>WebProjects</div>
+  )
+}

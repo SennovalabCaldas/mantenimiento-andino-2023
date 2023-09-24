@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getAllProjects } from "../../../actions/projectActions";
+import {ENV} from "../../../utils";
 
 export const ProjectsNal = ({ projects, national }) => {
   console.log("Projects:", projects);
   console.log("National:", national);
-  const baseUrl = "http://localhost:3001";
+  const baseApi = ENV.BASE_PATH;
+
   const handleDeleteProject = (projectId) => {};
   const handleEditProject = (projectId) => {};
   return (
@@ -30,7 +29,7 @@ export const ProjectsNal = ({ projects, national }) => {
               <td>{project.entity}</td>
               <td>
                 <img
-                  src={`${baseUrl}/${project.avatar}`}
+                  src={`${baseApi}/${project.avatar}`}
                   alt="Avatar"
                   width="50"
                   height="50"

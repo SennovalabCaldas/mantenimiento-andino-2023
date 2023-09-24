@@ -4,13 +4,7 @@ const Address = require("../models/address");
 const createSede = async (req, res) => {
   console.log("Request: Crear sede");
   try {
-    const {
-      nombre,
-      nombre_contacto,
-      telefono_contacto,
-      email_contacto,
-      direccion,
-    } = req.body;
+    const { nombre, telefono_contacto, email_contacto, direccion } = req.body;
 
     // Crear la dirección primero
     const newAddress = new Address(direccion);
@@ -23,7 +17,6 @@ const createSede = async (req, res) => {
     // Crear la sede con el _id de la dirección creada
     const sede = new Sede({
       nombre,
-      nombre_contacto,
       telefono_contacto,
       email_contacto,
       direccion: addressSaved._id,
@@ -157,16 +150,12 @@ const filterSedesPerMunicipio = async (req, res) => {
 const updateSede = async (req, res) => {
   try {
     const sedeId = req.params.id;
-    const {
-      nombre,
-      nombre_contacto,
-      direccion,
-    } = req.body;
-
-    // Aquí, asegúrate de que direccion sea un objeto que contenga todas las propiedades requeridas
+    const { nombre, telefono_contacto, email_contacto, direccion } = req.body;
+    console.log(direccion);
     const updatedFields = {
       nombre,
-      nombre_contacto,
+      telefono_contacto,
+      email_contacto,
       direccion: {
         ...direccion,
       },

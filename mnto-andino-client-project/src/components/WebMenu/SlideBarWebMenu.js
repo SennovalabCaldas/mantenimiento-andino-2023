@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-scroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +16,11 @@ import {
 import "./SlideBarWebMenu.scss";
 
 function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
-    
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSlideBar = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <div className="slide-bar">
       <Link
@@ -135,6 +139,9 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
           <FontAwesomeIcon icon={faPhone} />
         </div>
       </Link>
+      <div className="toggle-button" onClick={toggleSlideBar}>
+        Menú
+      </div>
     </div>
   );
 }

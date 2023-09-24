@@ -1,62 +1,140 @@
 import React, { useState } from "react";
 import {
-  Button,
-  FormControl,
-  Grid,
   TextField,
   Switch,
+  Card,
+  CardContent,
+  Typography,
   FormControlLabel,
+  Button,
+  MenuItem,
+  Select,
   InputLabel,
-  DialogActions,
-  Dialog,
-  DialogTitle,
-  DialogContent,
+  FormControl,
+  Chip,
 } from "@mui/material";
-import { AddressForm } from "../../../GeneralLayout";
-import "./ClientForm.scss";
+import { useDispatch, useSelector } from "react-redux";
 import {
   createClient,
   deleteClient,
   getAllClients,
   updateClient,
 } from "../../../../actions/clientActions";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 export const ClientForm = () => {
   const dispatch = useDispatch();
+
   const clients = useSelector((state) => state.client.allClients);
-  const [direccion, setDireccion] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [departamentos, setDepartamentos] = useState([]);
+
   const [clientName, setClientName] = useState("");
-  const [joinDate, setJoinDate] = useState("");
-
-  const [clearAddressForm, setClearAddressForm] = useState(false);
+  const [active, setActive] = useState(true);
+  const [national, setNational] = useState(true);
   const [avatar, setAvatar] = useState(null);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [pageData, setPageData] = useState([]);
-  const [avatarPreview, setAvatarPreview] = useState(null);
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
   const [openDialog, setOpenDialog] = useState(false);
-  const [editingClient, setEditingClient] = useState({
+  const [newClient, setNewClient] = useState({
     clientName: "",
-    direccion: {},
     active: false,
+    national: false,
     avatar: [],
-    joinDate: "",
+    joinDate: currentDate,
   });
+  const chipColors = [
+    "#fce4ec",
+    "#e8f5e9",
+    "#fff9c4",
+    "#bbdefb",
+    "#ffcdd2",
+    "#c8e6c9",
+  ];
+  const [editingClientId, setEditingClientId] = useState(null);
 
-  const handleAddressData = (data) => {
-    setDireccion(data);
+  const handleCreate = () => {
+    setNewClient({
+      clientName: "",
+      active: false,
+      national: false,
+      avatar: [],
+      joinDate: currentDate,
+    });
+    setOpenDialog(true);
   };
 
-  const handleClientNameChange = (e) => {
-    setClientName(e.target.value); // Actualiza el estado clientName con el nuevo valor
+  const handleChange = (event) => {
+    setSelectedOptions(event.target.value);
+  };
+  const handleRemoveChip = (departamentoToRemove) => {
+    // Crea una nueva matriz sin el departamento que se va a eliminar
+    const updatedSelectedOptions = selectedOptions.filter(
+      (departamento) => departamento !== departamentoToRemove
+    );
+
+    // Actualiza el estado con la nueva matriz de departamentos seleccionados
+    setSelectedOptions(updatedSelectedOptions);
   };
 
-  const handleJoinDate = (e) => {
-    setJoinDate(e.target.value); // Establece la fecha en el estado joinDate
+  const handleSubmit = () => {
+    console.log("Opciones seleccionadas:", selectedOptions);
   };
 
-  const handleAvatarChange = (e) => {
+  const handleEdit = (id) => {
+    const clientToEdit = clients.find((item) => item._id === id);
+    if (clientToEdit) {
+      setEditingClientId(id);
+      setClientName(clientToEdit.clientName);
+      setActive(clientToEdit.active);
+      setNational(clientToEdit.national);
+      // Otros campos que desees editar
+      setOpenDialog(true);
+    }
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await dispatch(deleteClient(postId));
+      await dispatch(getAllClients());
+      // Cerrar el diálogo de edición o creación después de eliminar
+      setOpenDialog(false);
+    } catch (error) {
+      console.error("Error al eliminar el cliente:", error);
+    }
+  };
+
+  const handleSave = async () => {
+    const data = {
+      clientName: clientName,
+      active: active,
+      national: national,
+      avatar: avatar,
+      joinDate: currentDate,
+    };
+
+    if (editingClientId) {
+      // Si se está editando, actualiza el cliente existente
+      await dispatch(updateClient(editingClientId, data));
+    } else {
+      // Si no se está editando, crea un nuevo cliente
+      await dispatch(createClient(data));
+    }
+
+    // Cierra el diálogo después de guardar
+    setOpenDialog(false);
+    // Limpia los campos del formulario
+    setClientName("");
+    setActive(true);
+    setNational(true);
+    setAvatar(null);
+    setEditingClientId(null);
+
+    // Actualiza la lista de clientes
+    await dispatch(getAllClients());
+  };
+
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const blob = new Blob([file], { type: file.type });
@@ -64,177 +142,121 @@ export const ClientForm = () => {
         blob,
         image: file,
       });
-      const imageUrl = URL.createObjectURL(file);
-      setAvatarPreview(imageUrl);
     }
   };
 
-  const handleCreate = () => {
-    setEditingClient({
-      clientName: "",
-      direccion: {},
-      active: false,
-      avatar: [],
-      joinDate: "",
-    });
-    setOpenDialog(true);
-  };
-
-  const handleEdit = (id) => {
-      
-    const clientToEdit = clients.find((item) => item._id === id);
-    setEditingClient({
-      ...clientToEdit,
-    });
-    setOpenDialog(true);
-  };
-
-  const handleDelete = async (postId) => {
+  const cargarDepartamentos = async () => {
     try {
-      await dispatch(deleteClient(postId));
-      await dispatch(getAllClients());
-      // Actualiza el  estado de las noticias después de eliminar una noticia
-      const updateClients = clients.filter((item) => item.id !== postId);
-
-      // Verificar si la página actual es mayor o igual a la cantidad de páginas disponibles
-      const totalPages = Math.ceil(updateClients.length / rowsPerPage);
-      if (page >= totalPages) {
-        setPage(Math.max(totalPages - 1, 0)); // Establecer la página actual al último índice o a 0 si no hay páginas disponibles
-      }
-    } catch (error) {
-      console.error("Error al eliminar la publicación:", error);
-    }
-  };
-
-  const handleSave = async (data) => {
-    setOpenDialog(false);
-    data.clientName = clientName;
-    data.direccion = direccion;
-    data.joinDate = joinDate;
-    data.active = editingClient.active;
-    data.avatar = avatar;
-    if (data._id) {
-      // Editing existing news
-        
-        
-      await dispatch(updateClient(data._id, data));
-      await dispatch(getAllClients());
-    } else {
-        
-      await dispatch(createClient(data));
-      await dispatch(getAllClients());
-    }
-
-  };
-
-  const handleToggleShow = async (clientId, updateData) => {
-      
-    try {
-      // Actualiza el estado "active" de la noticia en la página actual
-      const updatedPageData = pageData.map((item) =>
-        item._id === clientId ? { ...item, active: updateData.active } : item
+      const response = await axios.get(
+        "https://www.datos.gov.co/resource/xdk5-pm3f.json"
       );
-      setPageData(updatedPageData);
-        
-      await dispatch(updateClient(clientId, { active: updateData.active }));
+      const departamentos = response.data.map(
+        (departamento) => departamento.departamento
+      );
+      const departamentosUnicos = [...new Set(departamentos)];
+      setDepartamentos(departamentosUnicos);
     } catch (error) {
-      console.error("Error toggling news item:", error);
+      console.error("Error al cargar los departamentos:", error);
     }
   };
+
+  cargarDepartamentos();
 
   return (
-    <div className="client-form">
-      <Button variant="contained" color="primary" onClick={handleCreate}>
-        Crear cliente
-      </Button>
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <DialogTitle>Crear Cliente</DialogTitle>
-        <DialogContent>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <TextField
-                label="Cliente"
-                value={clientName} // Usa el estado clientName directamente
-                onChange={handleClientNameChange} // Captura el cambio en clientName
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                label="Fecha de inicio"
-                type="date"
-                value={joinDate} // Usa joinDate en lugar de editingClient.joinDate
-                onChange={handleJoinDate}
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={editingClient.active}
-                    onChange={(e) =>
-                      setEditingClient((prevData) => ({
-                        ...prevData,
-                        active: e.target.checked,
-                      }))
-                    }
-                    name="active"
+    <div>
+      <Card>
+        <CardContent>
+          <Typography variant="h5">Formulario de Cliente</Typography>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <TextField
+              label="Nombre del Cliente"
+              variant="outlined"
+              fullWidth
+              value={clientName}
+              onChange={(e) => setClientName(e.target.value)}
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={national}
+                  onChange={() => setNational(!national)}
+                  color="primary"
+                />
+              }
+              label="Cliente Nacional"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={active}
+                  onChange={() => setActive(!active)}
+                  color="primary"
+                />
+              }
+              label="Cliente Activo"
+            />
+         <FormControl>
+              <InputLabel id="multiple-select-label">
+                Departamentos donde atiendes el cliente
+              </InputLabel>
+              <div>
+                {selectedOptions.map((departamento) => (
+                  <Chip
+                    key={departamento}
+                    label={departamento}
+                    onDelete={() => handleRemoveChip(departamento)}
                     color="primary"
                   />
-                }
-                label="Activo"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <FormControl fullWidth>
-                <AddressForm
-                  onSelectedData={handleAddressData}
-                  addressData={direccion ?? {}}
-                  clearForm={clearAddressForm}
+                ))}
+              </div>
+              <Select
+                labelId="multiple-select-label"
+                id="multiple-select"
+                multiple
+                value={selectedOptions}
+                onChange={handleChange}
+                style={{ display: selectedOptions.length === 0 ? "block" : "none",  minWidth: "300px" }}
+              >
+                {departamentos.map((departamento) => (
+                  <MenuItem key={departamento} value={departamento}>
+                    {departamento}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <input
+              accept="image/*"
+              type="file"
+              id="image-input"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+            <label htmlFor="image-input">
+              <Button
+                variant="contained"
+                component="span"
+                color="primary"
+                fullWidth
+              >
+                Cargar Imagen
+              </Button>
+            </label>
+            {avatar && (
+              <div>
+                <img
+                  src={URL.createObjectURL(avatar.image)}
+                  alt="Vista Previa"
+                  style={{ maxWidth: "100%" }}
                 />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <InputLabel>Logo</InputLabel>
-                  <input type="file" onChange={handleAvatarChange} />
-                </Grid>
-                <Grid item xs={12}>
-                  {avatarPreview && (
-                    <div
-                      style={{
-                        width: "200px",
-                        height: "200px",
-                        overflow: "hidden",
-                        borderRadius: "50%",
-                      }}
-                    >
-                      <img
-                        src={avatarPreview}
-                        alt="Imagen de previsualización"
-                        style={{ maxWidth: "100%", maxHeight: "100%" }}
-                      />
-                    </div>
-                  )}
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={() => handleSave(editingClient)} color="primary">
-            Guardar
-          </Button>
-        </DialogActions>
-      </Dialog>
+              </div>
+            )}
+            <Button onClick={handleSave} variant="contained" color="primary">
+              Guardar
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 };

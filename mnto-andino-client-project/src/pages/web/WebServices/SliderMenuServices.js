@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SliderMenuServices.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHammer } from "@fortawesome/free-solid-svg-icons"; // Reemplaza "faIconName" por el nombre del icono que deseas utilizar
 
 const SliderMenuServices = ({ menuItems, setSelectedCategory }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -18,7 +20,8 @@ const SliderMenuServices = ({ menuItems, setSelectedCategory }) => {
             className={index === selectedItem ? "selected" : ""}
             onClick={() => handleItemClick(index)}
           >
-            <span className="icon-menu-services">{item.icon}</span>
+            <span className="icon-menu-services">
+            </span>{" "}
             <span className="text-menu-services">{item.text}</span>
           </li>
         ))}

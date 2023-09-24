@@ -1,5 +1,4 @@
 const Ally = require("../models/ally");
-const Address = require("../models/address");
 
 // Crear un nuevo cliente
 async function createAlly(req, res) {
@@ -22,6 +21,7 @@ async function createAlly(req, res) {
       allyName: allyStored.allyName,
       avatar: allyStored.avatar,
       active: allyStored.active,
+      national: allyStored.national,
     });
 
     console.log(allyStored);
@@ -73,6 +73,7 @@ async function getAllyById(req, res) {
 
 // Actualizar un cliente por ID
 async function updateAllyById(req, res) {
+  console.log("updateAllyById");
   try {
     const { id } = req.params;
     console.log("id", id);

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Image, Button, Icon, Confirm } from "semantic-ui-react";
 import { image } from "../../../../assets";
 import { User } from "../../../../api";
 import { BasicModal } from "../../../Shared";
@@ -8,6 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./UserItem.scss";
 import UserForm from "../UserForm/UserForm";
 import { getAllSedes } from "../../../../actions/sedesActions";
+import {
+  Button,
+  Dialog,
+  Icon,
+  IconButton,
+  ListItemAvatar,
+} from "@mui/material";
 
 const userController = new User();
 
@@ -67,7 +73,7 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
 
   const openDeleteConfirm = () => {
     setIsDelete(true);
-    setConfirmMessage(`Eliminar usuario ${user.email}`);
+    setConfirmMessage(`Eliminar usuario ${user.firstname} ${user.lastname}`);
     onOpenCloseConfirm();
   };
 
@@ -83,55 +89,85 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
 
   const userItemClass = user.active ? "user-item active" : "user-item inactive";
 
-  const UserAvatar = ({ imageUrl, isActive }) => {
-    const avatarClassName = isActive ? "active" : "inactive";
+  // const UserAvatar = ({ imageUrl, isActive }) => {
+  //   const avatarClassName = isActive ? "active" : "inactive";
 
+  //   return (
+  //     <div className={`user-item__image ${avatarClassName}`}>
+  //       <Image avatar src={imageUrl} />
+  //     </div>
+  //   );
+  // };
+
+  const UserAvatar = ({ imageUrl, isActive }) => {
     return (
-      <div className={`user-item__image ${avatarClassName}`}>
-        <Image avatar src={imageUrl} />
+      <div className="user-avatar">
+        <img src={imageUrl} alt="Avatar" className="avatar-image" />
+        {isActive && <span className="active-indicator">Activo</span>}
       </div>
     );
   };
 
   return (
     <>
-      <div className="user-flatlist" onClick={handleItemClick}>
-        <div className="user-item__info">
+      <div className={userItemClass} onClick={handleItemClick}>
+        <ListItemAvatar className="user-item__info">
           <UserAvatar
+            className="user-basic-avatar"
             imageUrl={
               user.avatar ? `${ENV.BASE_PATH}/${user.avatar}` : image.noAvatar
             }
             isActive={user.active}
           />
           <div className="user-basic-info">
-            <p className="user-item__name">
+            <p className="user-name">
               {user.firstname} {user.lastname}
             </p>
             <div className="user-item__details">
-              <p className="user-basic-info">{user.email}</p>
-              <p className="user-basic-info">
+              <p className="user-email">{user.email}</p>
+              <p className="user-sede">
                 {user.sede}- {user.role}
               </p>
             </div>
           </div>
-        </div>
 
-        <div className="user-item__buttons">
-          <Button icon onClick={openUpdateUser}>
-            <Icon className="icon-user-item" name="pencil" />
-          </Button>
-          <Button icon onClick={openDesactivateActivateConfim}>
-            <Icon
-              className="icon-user-item"
-              name={user.active ? "eye slash outline" : "eye"}
-            />
-          </Button>
-          <Button icon onClick={openDeleteConfirm}>
-            <Icon className="icon-user-item" name="trash" />
-          </Button>
-        </div>
+          <div className="user-item__buttons">
+            <Button icon onClick={openUpdateUser}>
+              <IconButton
+                className="icon-user-item"
+                name="pencil"
+                style={{
+                  fontSize: "24px", // Tamaño del icono
+                  color: "#007bff", // Color del icono
+                  // Otros estilos personalizados si los deseas
+                }}
+              />
+            </Button>
+            <Button icon onClick={openDesactivateActivateConfim}>
+              <IconButton
+                className="icon-user-item"
+                name={user.active ? "eye slash outline" : "eye"}
+                style={{
+                  fontSize: "24px", // Tamaño del icono
+                  color: "#007bff", // Color del icono
+                  // Otros estilos personalizados si los deseas
+                }}
+              />
+            </Button>
+            <Button icon onClick={openDeleteConfirm}>
+              <IconButton
+                className="icon-user-item"
+                name="trash"
+                style={{
+                  fontSize: "24px", // Tamaño del icono
+                  color: "#007bff", // Color del icono
+                  // Otros estilos personalizados si los deseas
+                }}
+              />
+            </Button>
+          </div>
+        </ListItemAvatar>
       </div>
-
       <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
         <UserForm
           close={onOpenCloseModal}
@@ -140,14 +176,25 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
           sedes={sedes}
         />
       </BasicModal>
-
-      <Confirm
+      <Dialog
         open={showConfirm}
-        onCancel={onOpenCloseConfirm}
-        onConfirm={isDelete ? onDelete : onActivateDesactivate}
-        content={confirmMessage}
-        size="mini"
-      />
+        onClose={onOpenCloseConfirm}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <div className="dialog-confirm">
+          <h2 id="alert-dialog-title">{confirmMessage}</h2>
+          <div className="dialog-confirm__buttons">
+            <Button onClick={onOpenCloseConfirm}>Cancelar</Button>
+            <Button
+              onClick={isDelete ? onDelete : onActivateDesactivate}
+              autoFocus
+            >
+              {isDelete ? "Eliminar" : "Aceptar"}
+            </Button>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 };

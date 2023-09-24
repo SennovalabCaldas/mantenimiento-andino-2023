@@ -1,22 +1,21 @@
 // clientController.js
 
 const Supplier = require("../models/supplier");
-const Address = require("../models/address");
 
 // Crear un nuevo cliente
 async function createSupplier(req, res) {
-  try {
-    const supplierData = req.body; // Obtiene los datos del suppliere incluyendo la dirección como objeto JSON
-    console.log("supplierdata", supplierData);
+  const supplierData = req.body; // Obtiene los datos del suppliere incluyendo la dirección como objeto JSON
+  console.log("supplierdata", supplierData);
 
-    if (!req.files || !req.files.avatar) {
-      return res.status(400).json({ msg: "Error al subir la imagen" });
-    } else {
-      const imagePath = req.files.avatar.path;
-      console.log("imagePath", imagePath);
-      supplierData.avatar = imagePath;
-    }
-    const supplierStored = new Supplier(supplierData);
+  if (!req.files || !req.files.avatar) {
+    return res.status(400).json({ msg: "Error al subir la imagen" });
+  } else {
+    const imagePath = req.files.avatar.path;
+    console.log("imagePath", imagePath);
+    supplierData.avatar = imagePath;
+  }
+  const supplierStored = new Supplier(supplierData);
+  try {
     await supplierStored.save();
 
     res.status(201).json({
@@ -24,6 +23,7 @@ async function createSupplier(req, res) {
       supplierName: supplierStored.supplierName,
       avatar: supplierStored.avatar,
       active: supplierStored.active,
+      national: supplierStored.national,
     });
 
     console.log(supplierStored);
@@ -103,7 +103,6 @@ async function updateSupplierById(req, res) {
     res.status(500).json({ error: "Error al actualizar el Proveedor" });
   }
 }
-
 
 module.exports = {
   createSupplier,

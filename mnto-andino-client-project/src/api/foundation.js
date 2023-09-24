@@ -9,7 +9,7 @@ const authController = new Auth();
 export class Foundation {
   baseApi = ENV.BASE_API;
 
-  async createFoundation(data) {
+  async createFoundationNew(data) {
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
@@ -19,11 +19,11 @@ export class Foundation {
         console.error("Imagen de avatar no válida.");
         return; // Aborta la función si la imagen no es válida
       }
-      formData.append("foundationName", data.foundationName);
-      formData.append("active", data.active);
+      formData.append("activityName", data.activityName);
+      formData.append("createdAt", data.createdAt);
 
       console.log("Estos son los datos de la fundación", formData.get("avatar"));
-      const url = `${this.baseApi}/${FOUNDATION}/new-foundation`;
+      const url = `${this.baseApi}/${FOUNDATION}/new-post`;
         
       const params = {
         method: "POST",
@@ -43,7 +43,7 @@ export class Foundation {
     }
   }
 
-  async getFoundations() {
+  async getFoundationsNews() {
     const url = `${this.baseApi}/${FOUNDATION}`;
     const params = {
       method: "GET",
@@ -61,7 +61,7 @@ export class Foundation {
     }
   }
 
-  async getFoundation(_id) {
+  async getFoundationNew(_id) {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {
@@ -79,9 +79,7 @@ export class Foundation {
     }
   }
 
-  async updateFoundaion(_id, updatedData) {
-      
-      
+  async updateFoundationNew(_id, updatedData) {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {
@@ -100,7 +98,7 @@ export class Foundation {
     }
   }
 
-  async deleteFoundation(_id) {
+  async deleteFoundationNew(_id) {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {

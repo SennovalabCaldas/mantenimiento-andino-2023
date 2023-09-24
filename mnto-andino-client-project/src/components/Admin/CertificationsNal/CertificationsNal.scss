@@ -1,0 +1,58 @@
+.certification-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.certification-table th,
+.certification-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.certification-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.certification-table img {
+  max-width: 50px;
+  max-height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.certification-table .edit-link,
+.certification-table .delete-link {
+  cursor: pointer;
+  color: blue;
+  margin-right: 10px;
+}
+
+.certification-table .delete-link {
+  color: red;
+}
+.certification-table img {
+  max-width: 50px;
+  max-height: 50px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer; /* Agregamos un cursor de puntero al pasar el ratón */
+}
+
+.image-preview {
+  position: absolute;
+  top: 0;
+  left: 60px; /* Ajusta la posición de la previsualización */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1; /* Asegura que esté encima de la tabla */
+}
+
+/* Estilo para ocultar la previsualización cuando no está en uso */
+.image-preview.hidden {
+  display: none;
+}

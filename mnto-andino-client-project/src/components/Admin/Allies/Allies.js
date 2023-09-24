@@ -25,30 +25,41 @@ import {
   getAllAllies,
   updateAlly,
 } from "../../../actions/allyActions";
+import { ENV } from "../../../utils";
 
 export const Allies = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const baseUrl = "http://localhost:3100/";
+  const baseApi = ENV.BASE_PATH;
+  const [previewImage, setPreviewImage] = useState(null);
 
+  // Estados para la edición de aliados
+  const [editAvatar, setEditAvatar] = useState(null);
+  const [editAvatarPreview, setEditAvatarPreview] = useState(null);
   const [selectedAlly, setSelectedAlly] = useState(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); // Identificador para el diálogo de edición
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false); // Identificador para el diálogo de detalles
 
   const [avatar, setAvatar] = useState(null);
+  const [national, setNational] = useState(true);
+  const [active, setActive] = useState(true);
   const [allyName, setAllyName] = useState("");
   const [editSupplierName, setEditAllyName] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const alliesState = useSelector((state) => state.ally.allAllies);
+  console.log(alliesState);
 
-  const [newCategory, setNewCategory] = useState({
+  const [newAlly, setNewAlly] = useState({
     allyName: "",
-    active: true,
+    active: undefined,
+    national: undefined, // Configúralo como indefinido
     avatar: [],
   });
 
   const [editingAlly, setEditingSupplier] = useState({
     allyName: "",
-    active: false,
+    active: active,
+    national: national,
     avatar: [],
   });
 
@@ -74,7 +85,6 @@ export const Allies = () => {
 
   const dispatch = useDispatch();
   const allies = useSelector((state) => state.ally.allAllies);
-    
 
   useEffect(() => {
     dispatch(getAllAllies());
@@ -100,15 +110,13 @@ export const Allies = () => {
         blob,
         image: file,
       });
+      console.log("Avatar:", avatar);
       const imageUrl = URL.createObjectURL(file);
       setAvatarPreview(imageUrl);
     }
   };
-
   const handleEdit = () => {
     if (selectedAlly) {
-        
-        
       setAllyName(selectedAlly.allyName);
       setIsEditDialogOpen(true);
       handleOpenEditDialog(selectedAlly);
@@ -120,10 +128,10 @@ export const Allies = () => {
     const updatedData = {
       allyName: allyName, // Utiliza el nombre del estado para actualizar el nombre del proveedor
       active: selectedAlly.active,
+      national: selectedAlly.national,
       avatar: avatar,
     };
 
-      
     try {
       await dispatch(updateAlly(allyId, updatedData));
       await dispatch(getAllAllies());
@@ -144,19 +152,16 @@ export const Allies = () => {
 
   const handleSave = async () => {
     const data = {
-      ...newCategory,
+      ...newAlly,
       allyName: allyName,
-      active: editingAlly.active,
+      active: active,
+      national: national,
       avatar: avatar,
     };
-      
 
     if (data._id) {
-        
-        
       await dispatch(updateAlly(data._id, data));
     } else {
-        
       await dispatch(createAlly(data));
     }
     await dispatch(getAllAllies());
@@ -164,7 +169,7 @@ export const Allies = () => {
 
   return (
     <div>
-       <h2>Aliados</h2>
+      <h2>Aliados</h2>
       <div>
         <Card>
           <CardContent>
@@ -190,23 +195,48 @@ export const Allies = () => {
                   variant="contained"
                   color="primary"
                 >
-                  Upload Image
+                  Subir Imagen
                 </Button>
+                {avatarPreview && (
+                  <img
+                    src={avatarPreview}
+                    alt="Vista previa de la imagen"
+                    style={{
+                      maxWidth: "100px",
+                      maxHeight: "100px",
+                      marginLeft: "10px",
+                    }}
+                  />
+                )}
                 <Switch
-                  checked={newCategory.active}
+                  checked={newAlly.active}
                   onChange={(e) =>
-                    setNewCategory({
-                      ...newCategory,
+                    setNewAlly({
+                      ...newAlly,
                       active: e.target.checked,
                     })
                   }
                   color="primary"
-                  inputProps={{ "aria-label": "Categoría activa" }}
+                  inputProps={{ "aria-label": "Aliado activo" }}
                 />
                 <Typography>
-                  {newCategory.active
-                    ? "Categoría activa"
-                    : "Categoría inactiva"}
+                  {newAlly.active ? "Aliado activo" : "Aliado inactivo"}
+                </Typography>
+                <Switch
+                  checked={newAlly.national}
+                  onChange={(e) =>
+                    setNewAlly({
+                      ...newAlly,
+                      national: e.target.checked,
+                    })
+                  }
+                  color="primary"
+                  inputProps={{ "aria-label": "Aliado nacional" }}
+                />
+                <Typography>
+                  {newAlly.national
+                    ? "Aliado nacional"
+                    : "Aliado internacional"}
                 </Typography>
                 <Button
                   onClick={handleSave}
@@ -239,7 +269,7 @@ export const Allies = () => {
                 checked={selectedAlly.active}
                 onChange={() => handleToggleActive(selectedAlly)}
                 color="primary"
-                inputProps={{ "aria-label": "Categoría activa" }}
+                inputProps={{ "aria-label": "Aliado activa" }}
               />
             </DialogContent>
             <DialogContent>
@@ -248,9 +278,7 @@ export const Allies = () => {
                   Imagen:
                   {selectedAlly.avatar && (
                     <img
-                      src={
-                        avatarPreview || `${baseUrl}${selectedAlly.avatar}`
-                      } // Utiliza avatarPreview si está definido, de lo contrario, utiliza la URL existente
+                      src={avatarPreview || `${baseApi}${selectedAlly.avatar}`} // Utiliza avatarPreview si está definido, de lo contrario, utiliza la URL existente
                       alt="Imagen de previsualización"
                       style={{
                         maxWidth: "100%",
@@ -299,26 +327,37 @@ export const Allies = () => {
               <TableRow key={ally._id}>
                 <TableCell>{ally.allyName}</TableCell>
                 <TableCell>
-                  {ally.avatar && (
-                    <img
-                      src={`${baseUrl}${ally.avatar}`}
-                      alt="Imagen de previsualización"
-                      style={{ maxWidth: "100%", maxHeight: "200px" }}
-                      onClick={() => handleOpenDetailDialog(ally)}
-                    />
+                  <img
+                    src={`${baseApi}/${ally.avatar}`}
+                    alt="Avatar"
+                    width="50"
+                    height="50"
+                    onMouseEnter={() => setPreviewImage(ally.avatar)} // Mostrar la previsualización al pasar el ratón
+                    onMouseLeave={() => setPreviewImage(null)} // Ocultar la previsualización al salir del ratón
+                  />
+                  {previewImage === ally.avatar && (
+                    <div className="image-preview">
+                      <img
+                        src={`${baseApi}/${ally.avatar}`}
+                        alt="Avatar Preview"
+                        width="150"
+                        height="150"
+                      />
+                    </div>
                   )}
                 </TableCell>
-
                 <TableCell>
                   <Switch
                     checked={ally.active}
                     onChange={() => handleToggleActive(ally)}
                     color="primary"
-                    inputProps={{ "aria-label": "Categoría activa" }}
+                    inputProps={{ "aria-label": "Aliado activa" }}
                   />
                 </TableCell>
                 <TableCell>
-                  <Button onClick={handleEdit}>Editar</Button>
+                  <Button onClick={() => handleOpenEditDialog(ally)}>
+                    Editar
+                  </Button>
                   <Button onClick={() => handleDelete(ally._id)}>
                     Eliminar
                   </Button>
@@ -346,7 +385,7 @@ export const Allies = () => {
                 Imagen:{" "}
                 {selectedAlly.avatar && (
                   <img
-                    src={`${baseUrl}${selectedAlly.avatar}`}
+                    src={`${baseApi}${selectedAlly.avatar}`}
                     alt="Imagen de previsualización"
                     style={{ maxWidth: "100%", maxHeight: "200px" }}
                   />

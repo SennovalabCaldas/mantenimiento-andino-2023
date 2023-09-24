@@ -1,4 +1,3 @@
-// clientModel.js
 const mongoose = require("mongoose");
 
 const allySchema = new mongoose.Schema({
@@ -10,6 +9,10 @@ const allySchema = new mongoose.Schema({
     type: String,
   },
   active: {
+    type: Boolean,
+    default: true,
+  },
+  national: {
     type: Boolean,
     default: true,
   },
