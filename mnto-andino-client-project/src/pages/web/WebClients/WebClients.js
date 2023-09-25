@@ -114,8 +114,12 @@ export const WebClients = ({ clients }) => {
                 <>
                   {category.text === "NACIONALES" && (
                     <>
-                      <Mapa></Mapa>
-                      <CardClient></CardClient>
+                      <div className="item-clients-section">
+                        <Mapa></Mapa>
+                      </div>
+                      <div className="item-clients-section">
+                        <CardClient></CardClient>
+                      </div>
                     </>
                   )}
                   {category.text === "INTERNACIONALES" && (

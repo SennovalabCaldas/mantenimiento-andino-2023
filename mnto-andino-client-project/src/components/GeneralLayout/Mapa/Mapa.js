@@ -299,7 +299,7 @@ export const Mapa = ({ departamentos }) => {
 
   return (
     <>
-      <svg viewBox="0 0 1200 1200" onMouseMove={handleMouseMove}>
+      <svg viewBox="0 0 2000 2000" onMouseMove={handleMouseMove}>
         {Object.values(simplemaps_countrymap_mapinfo.names).map((deptName) => {
           return null;
         })}

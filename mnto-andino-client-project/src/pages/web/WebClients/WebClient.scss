@@ -26,5 +26,13 @@
     border-radius: 5px;
     gap: -6px;
     width: 80%;
+    .item-clients-section{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
   }
 }

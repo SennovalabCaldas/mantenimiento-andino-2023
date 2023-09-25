@@ -1,4 +1,4 @@
-.fundation-section {
+.content-section-services {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,4 +12,14 @@
   background-attachment: fixed;
   width: 100%;
   height: 100%;
+  .wrapper {
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
 }
