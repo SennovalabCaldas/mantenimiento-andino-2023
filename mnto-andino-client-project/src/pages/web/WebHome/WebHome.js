@@ -2,95 +2,75 @@ import React, { useEffect, useRef, useState } from "react";
 import "./WebHome.scss";
 import { useSelector } from "react-redux";
 import { ENV } from "../../../utils/constants";
+import Slider from "react-slick";
+import { image } from "../../../assets";
+
 const basePath = ENV.BASE_PATH;
 
-const Slide = ({ post, isActive }) => {
-  console.log(`${basePath}/${post.avatar}`);
+const NextArrow = (props) => (
+  <button
+    className="slick-next"
+    onClick={props.onClick}
+    style={{ right: "-30px" }}
+  >
+    {">"}
+  </button>
+);
+const PrevArrow = (props) => (
+  <button
+    className="slick-prev"
+    onClick={props.onClick}
+    style={{ left: "-30px" }}
+  >
+    {"<"}
+  </button>
+);
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  prevArrow: <PrevArrow />, // Componente de flecha anterior
+  nextArrow: <NextArrow />, // Componente de flecha siguiente
+  // autoplay: true, // Reproducción automática
+  autoplaySpeed: 2000, // Velocidad de reproducción automática en milisegundos (opcional)
+};
+
+export const WebHome = () => {
+  const news = useSelector((state) => state.post.allPosts);
 
   return (
-    <div className={`fnc-slider__slides ${isActive ? "m--active-slide" : ""}`}>
-      <div className="fnc-slide m--blend-green">
-        <div className="fnc-slide__inner">
-          <div className="fnc-slide__mask">
-            <div className="fnc-slide__mask-inner"></div>
-          </div>
-          <div className="fnc-slide__content">
-            <h2 className="fnc-slide__heading">
-              <div className="fnc-slide__heading-line">
-                <span> {post.titulo}</span>
-              </div>
-              <div className="fnc-slide__heading-line">
-                <span> {post.subtitulo}</span>
-              </div>
-              <div>
-                <p>{post.descripcion}</p>
-              </div>
+    <div class="section-bg news">
+      <Slider {...settings} className="sliderStyle slider">
+        {news.map((post, index) => (
+          <div className="slide" key={index}>
+            <div className="slide-content">
               <div>
                 <img
                   src={`${basePath}/${post.avatar}`}
                   alt={post.fecha_creacion}
                 />
               </div>
-            </h2>
-            <button type="button" className="fnc-slide__action-btn">
-              Ver más
-            </button>
+              <div className="slide-text">
+                <h2> {post.titulo}</h2>
+                <div className="slide-subtitle">{post.subtitulo}</div>
+                <div dangerouslySetInnerHTML={{ __html: post?.descripcion }} />
+              </div>
+
+              <div className="slide-logo">
+              <img
+                src={image.logoH}
+                alt="Imagen 1"
+                style={{  height: "70px" }}
+              />
+            </div>
+            </div>
+            
           </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export const WebHome = () => {
-  const news = useSelector((state) => state.post.allPosts);
-  console.log(news);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
-  const timeoutRef = useRef(null);
-
-  useEffect(() => {
-    if (isAutoPlay) {
-      timeoutRef.current = setTimeout(() => {
-        nextSlide();
-      }, 4000);
-    }
-
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
-  }, [currentSlide, isAutoPlay]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % news.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? news.length - 1 : prevSlide - 1
-    );
-  };
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlay(!isAutoPlay);
-  };
-
-  return (
-    <div>
-      <div className="demo-cont">
-        <div className="fnc-slider example-slider">
-          {news.map((post, index) => (
-            <Slide key={index} post={post} isActive={index === currentSlide} />
-          ))}
-        </div>
-      </div>
-      <div className="slider-controls">
-        <button onClick={prevSlide}>Anterior</button>
-        <button onClick={nextSlide}>Siguiente</button>
-        <button onClick={toggleAutoPlay}>
-          {isAutoPlay ? "Pausar" : "Reproducir"}
-        </button>
-      </div>
+        ))}
+      </Slider>
     </div>
   );
 };

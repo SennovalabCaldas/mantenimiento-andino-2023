@@ -4,6 +4,7 @@ import noAvatar from "./png/no-avatar.png";
 import icon1 from "./png/icons/icon1.png";
 import icon2 from "./png/icons/icon2.png";
 import icon3 from "./png/icons/icon3.png";
+import logoH from "./png/logo-h.png";
 
 import authBg from "./jpg/auth-bg.jpg";
 import background from "./jpg/bg-image.jpg";
@@ -69,6 +70,7 @@ const image = {
   cuatro,
   email,
   whatsApp,
+  logoH,
   location,
   facebook,
   instagram,
