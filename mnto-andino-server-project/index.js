@@ -8,9 +8,9 @@ let PORT = 3300;
 // let uri =
 //   process.env.MONGODB_URI;
 // let uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
-const uri = "mongodb://127.0.0.1:27017/mnto-andino-db";
+// const uri = "mongodb://127.0.0.1:27017/mnto-andino-db";
 
-// let uri = `mongodb://prueba2:prueba2@72.167.135.41:27017/mnto-andino-db`;
+let uri = `mongodb://prueba2:prueba2@72.167.135.41:27017/mnto-andino-db`;
 
 // Conexión a la base de datos
 mongoose
