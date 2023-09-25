@@ -11,7 +11,7 @@ const NextArrow = (props) => (
   <button
     className="slick-next"
     onClick={props.onClick}
-    style={{ right: "-30px" }}
+    style={{ right: "10px" }}
   >
     {">"}
   </button>
@@ -20,7 +20,7 @@ const PrevArrow = (props) => (
   <button
     className="slick-prev"
     onClick={props.onClick}
-    style={{ left: "-30px" }}
+    style={{ left: "10px" }}
   >
     {"<"}
   </button>
@@ -34,8 +34,8 @@ const settings = {
   slidesToScroll: 1,
   prevArrow: <PrevArrow />, // Componente de flecha anterior
   nextArrow: <NextArrow />, // Componente de flecha siguiente
-  // autoplay: true, // Reproducción automática
-  autoplaySpeed: 2000, // Velocidad de reproducción automática en milisegundos (opcional)
+  autoplay: true, // Reproducción automática
+  autoplaySpeed: 5000, // Velocidad de reproducción automática en milisegundos (opcional)
 };
 
 export const WebHome = () => {
