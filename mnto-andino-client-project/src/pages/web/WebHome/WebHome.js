@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./WebHome.scss";
 import { useSelector } from "react-redux";
+import { ENV } from "../../../utils/constants";
+const basePath = ENV.BASE_PATH;
 
 const Slide = ({ post, isActive }) => {
+  console.log(`${basePath}/${post.avatar}`);
+
   return (
     <div className={`fnc-slider__slides ${isActive ? "m--active-slide" : ""}`}>
       <div className="fnc-slide m--blend-green">
@@ -18,10 +22,18 @@ const Slide = ({ post, isActive }) => {
               <div className="fnc-slide__heading-line">
                 <span> {post.subtitulo}</span>
               </div>
+              <div>
+                <p>{post.descripcion}</p>
+              </div>
+              <div>
+                <img
+                  src={`${basePath}/${post.avatar}`}
+                  alt={post.fecha_creacion}
+                />
+              </div>
             </h2>
             <button type="button" className="fnc-slide__action-btn">
               Ver más
-              <span data-text="Credits">Ver más</span>
             </button>
           </div>
         </div>
@@ -32,6 +44,7 @@ const Slide = ({ post, isActive }) => {
 
 export const WebHome = () => {
   const news = useSelector((state) => state.post.allPosts);
+  console.log(news);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const timeoutRef = useRef(null);
@@ -40,7 +53,7 @@ export const WebHome = () => {
     if (isAutoPlay) {
       timeoutRef.current = setTimeout(() => {
         nextSlide();
-      }, 4000); 
+      }, 4000);
     }
 
     return () => {

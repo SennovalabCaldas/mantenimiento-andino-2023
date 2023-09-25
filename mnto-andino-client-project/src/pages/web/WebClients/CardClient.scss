@@ -21,4 +21,17 @@
   border-radius: 5px;
 
 }
-
+.division {
+  display: flex;
+  background-color: #0000003b;
+  align-items: center;
+  position: relative;
+  top: 15px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  border-radius: 5px;
+  gap: -6px;
+  width: 80%;
+}
