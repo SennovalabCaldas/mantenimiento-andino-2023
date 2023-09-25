@@ -15,12 +15,9 @@ const initialState = {
     descripcion: null,
     avatar: [],
     active: null,
-    creador: null,
     fecha_creacion: null,
     categorias: [],
   },
-  error: null,
-  loading: false,
   allPosts: [],
 };
 

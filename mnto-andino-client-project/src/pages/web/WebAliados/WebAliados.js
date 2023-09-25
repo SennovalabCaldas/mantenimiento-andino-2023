@@ -5,10 +5,10 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { image } from "../../../assets";
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { ENV } from "../../../utils/constants";
 
 export const WebAliados = ({ allies }) => {
-  console.log(allies);
+  const baseApi = ENV.BASE_PATH;
   const [rating, setRating] = useState(0);
   return (
     <div className="content-section-aliados">
@@ -17,13 +17,13 @@ export const WebAliados = ({ allies }) => {
         {allies.map((ally) => (
           <div className="card">
             <div className="poster">
-              <img src={image.fondo1} alt="Location Unknown" />
+              <img src={`${baseApi}/${ally.avatar}`} alt="Location Unknown" />
             </div>
             <div className="details">
               <h1>{ally.allyName}</h1>
               <h2>2023</h2>
 
-              <div className="rating">
+              {/* <div className="rating">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FontAwesomeIcon
                     key={star}
@@ -32,7 +32,7 @@ export const WebAliados = ({ allies }) => {
                   />
                 ))}
                 <span>{rating}/5</span>
-              </div>
+              </div> */}
               <div className="tags">
                 <span className="tag">
                   {ally.national ? "Nacional" : "Internacional"}
@@ -46,7 +46,7 @@ export const WebAliados = ({ allies }) => {
                 <ul>
                   <li>
                     <img
-                      src={ally.avatar}
+                      src={`${baseApi}/${ally.avatar}`}
                       alt={ally.allyName}
                       title={ally.allyName}
                     />

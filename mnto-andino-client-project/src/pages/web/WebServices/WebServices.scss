@@ -1,25 +1,50 @@
 .content-section-services {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  // margin-top: 2em;
   background-image: url("../../../assets/jpg/auth-bg.jpg");
-  // margin-bottom: 2em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   width: 100%;
   height: 100%;
-  .wrapper {
-    top: 20px;
-    width: 100%;
-    height: 100%;
+  .card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+
+  .card img {
+    max-width: 100%;
+  }
+
+  .big-card {
     display: flex;
-    align-content: center;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+
+  .big-card .card {
+    flex: 1;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  .big-card .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .big-card .card p {
+    font-size: 14px;
   }
 }

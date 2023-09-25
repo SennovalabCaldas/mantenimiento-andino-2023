@@ -70,10 +70,10 @@ export class Post {
     try {
       console.log(
         "Esta es la url",
-        `${this.baseApi}/${POST_ROUTE}/edit/${_id}`
+        `${this.baseApi}/${POST_ROUTE}/${_id}`
       );
       const response = await fetch(
-        `${this.baseApi}/${POST_ROUTE}/edit/${_id}`,
+        `${this.baseApi}/${POST_ROUTE}/${_id}`,
         {
           method: "PATCH",
           body: JSON.stringify(updatedData),
@@ -156,7 +156,7 @@ export class Post {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
-        `${this.baseApi}/${POST_ROUTE}/delete/${id}`,
+        `${this.baseApi}/${POST_ROUTE}/${id}`,
         {
           method: "DELETE",
           headers: {

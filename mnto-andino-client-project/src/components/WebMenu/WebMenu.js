@@ -30,6 +30,7 @@ import { getAllClients } from "../../actions/clientActions";
 import { getAllProjects } from "../../actions/projectActions";
 import { getAllSuppliers } from "../../actions/providerActions";
 import { getServices } from "../../actions/serviceActions";
+import { getAllCategoriesService } from "../../actions/categoryServiceActions";
 
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
@@ -231,20 +232,23 @@ function Section1() {
   );
 }
 
-
 function Section2() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getAllCategoriesService());
     dispatch(getServices());
   }, [dispatch]);
+  const categoryServices = useSelector(
+    (state) => state.categoryService.allCategoriesService
+  );
+  console.log(categoryServices);
   const services = useSelector((state) => state.service.services);
   return (
     <div className="section" id="section2">
-      <WebServices services={services}/>
+      <WebServices categoryServices={categoryServices} services={services} />
     </div>
   );
 }
-
 
 function Section3() {
   const dispatch = useDispatch();
@@ -259,7 +263,6 @@ function Section3() {
   );
 }
 
-
 function Section4() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -268,11 +271,10 @@ function Section4() {
   const suppliers = useSelector((state) => state.supplier.allSuppliers);
   return (
     <div className="section" id="section4">
-      <WebSuppliers suppliers={suppliers}/>
+      <WebSuppliers suppliers={suppliers} />
     </div>
   );
 }
-
 
 function Section5() {
   const dispatch = useDispatch();
@@ -288,7 +290,7 @@ function Section5() {
 }
 
 function Section6() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCertifications());
   }, [dispatch]);
@@ -297,7 +299,7 @@ function Section6() {
   );
   return (
     <div className="section" id="section6">
-      <WebCertifications certifications={certifications}/>
+      <WebCertifications certifications={certifications} />
     </div>
   );
 }
@@ -310,7 +312,7 @@ function Section7() {
   const projects = useSelector((state) => state.project.allProjects);
   return (
     <div className="section" id="section7">
-      <WebProjects projects={projects}/>
+      <WebProjects projects={projects} />
     </div>
   );
 }
@@ -323,7 +325,7 @@ function Section8() {
   const foundation = useSelector((state) => state.foundation.allFoundations);
   return (
     <div className="section" id="section8">
-      <WebFundation foundation={foundation}/>
+      <WebFundation foundation={foundation} />
     </div>
   );
 }

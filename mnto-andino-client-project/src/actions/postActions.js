@@ -6,7 +6,6 @@ import {
   UPDATE_POST_SUCCESS,
   UPDATE_POST_STATE_SUCCESS,
   DELETE_POST_SUCCESS,
-  
 } from "./types";
 
 // Importa el controlador de publicaciones (post)
@@ -16,7 +15,6 @@ const postController = new Post();
 const authController = new Auth();
 
 export const createPost = (formData) => {
-    
   return async (dispatch, getState) => {
     try {
       const post = await postController.createPost(formData);
@@ -27,13 +25,12 @@ export const createPost = (formData) => {
   };
 };
 
-
 export const getAllPosts = () => {
-  //   
+  //
   return async (dispatch, getState) => {
     try {
       const posts = await postController.getPosts();
-      //   
+      //
       dispatch(setAllPosts(posts));
     } catch (error) {
       console.error(error);
@@ -42,7 +39,6 @@ export const getAllPosts = () => {
 };
 
 export const getPost = (_id) => {
-    
   return async (dispatch, getState) => {
     try {
       const post = await postController.getPost(_id);
@@ -54,6 +50,7 @@ export const getPost = (_id) => {
 };
 
 export const updatePost = (_id, updatedData) => {
+  console.log("Estos son los datos del post", updatedData);
   return async (dispatch, getState) => {
     try {
       const updatedPost = await postController.updatePost(_id, updatedData);
@@ -65,7 +62,6 @@ export const updatePost = (_id, updatedData) => {
 };
 
 export const updatePostState = (_id, mostrar) => {
-    
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
@@ -98,8 +94,8 @@ export const createPostSuccess = (post) => {
 };
 
 export const setAllPosts = (posts) => {
-  //   
-  //   
+  //
+  //
   return {
     type: SET_ALL_POSTS,
     payload: posts,
@@ -107,7 +103,6 @@ export const setAllPosts = (posts) => {
 };
 
 export const getPostSuccess = (post) => {
-    
   return {
     type: GET_POST_SUCCESS,
     payload: post,
@@ -115,7 +110,6 @@ export const getPostSuccess = (post) => {
 };
 
 export const updatePostStateSuccess = (post) => {
-    
   return {
     type: UPDATE_POST_STATE_SUCCESS, // Define este tipo de acción según tus necesidades
     payload: post,
@@ -128,7 +122,6 @@ export const updatePostSuccess = (updatedData) => {
     payload: updatedData,
   };
 };
-
 
 export const deletePostSuccess = (_id) => {
   return {

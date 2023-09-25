@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./WebClient.scss";
-import { Loading } from "../../../components/Shared";
 import { useDispatch, useSelector } from "react-redux";
 import { Mapa } from "../../../components/GeneralLayout";
 import { getAllClients } from "../../../actions/clientActions";
-import { Client } from "../../../api";
 import { useTheme } from "@mui/material/styles";
-import { image } from "../../../assets";
 import SliderMenuClients from "./SliderMenuClients";
 import { CardClient } from "./CardClient";
 import { ENV } from "../../../utils";
 
-const clientController = new Client();
 export const WebClients = ({ clients }) => {
   const baseApi = ENV.BASE_PATH;
 
@@ -76,13 +72,10 @@ export const WebClients = ({ clients }) => {
   }, [clients]);
 
   useEffect(() => {
-    // Mezcla aleatoriamente la lista de avatares de los clientes
     const shuffledAvatars = shuffleArray(
-      clients.map((client) => `${baseApi}${client.avatar}`)
+      clients.map((client) => `${baseApi}/${client.avatar}`)
     );
-    // Asegura que haya al menos tantas celdas como clientes
     const requiredCells = clients.length > 12 ? clients.length : 12;
-    // Llena el array de avatares para coincidir con las celdas
     const filledAvatars = [...shuffledAvatars];
     while (filledAvatars.length < requiredCells) {
       filledAvatars.push(shuffledAvatars.pop());
@@ -91,13 +84,13 @@ export const WebClients = ({ clients }) => {
   }, [clients]);
 
   return (
-    <div className="content-web-section">
+    <div className="content-client-section">
       <h2>Clientes</h2>
       <SliderMenuClients
         menuItems={menuItems}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
-      ></SliderMenuClients>
+      />
       <div className="content-service">
         {menuItems.map((category, index) => (
           <div key={index}>
@@ -118,17 +111,24 @@ export const WebClients = ({ clients }) => {
                         <Mapa></Mapa>
                       </div>
                       <div className="item-clients-section">
-                        <CardClient></CardClient>
+                        {/* Filtrar clientes nacionales */}
+                        <CardClient
+                          clients={clients.filter(
+                            (client) => client.national === true
+                          )}
+                        />
                       </div>
                     </>
                   )}
                   {category.text === "INTERNACIONALES" && (
                     <>
                       <div className="item-clients-section">
-                        <img
-                          src={image.mapamundo}
-                          style={{ width: "500px" }}
-                        ></img>
+                        {/* Filtrar clientes internacionales */}
+                        <CardClient
+                          clients={clients.filter(
+                            (client) => client.national === false
+                          )}
+                        />
                       </div>
                     </>
                   )}
@@ -141,6 +141,7 @@ export const WebClients = ({ clients }) => {
     </div>
   );
 };
+
 // Función para mezclar aleatoriamente un array (Fisher-Yates Shuffle)
 function shuffleArray(array) {
   let currentIndex = array.length,

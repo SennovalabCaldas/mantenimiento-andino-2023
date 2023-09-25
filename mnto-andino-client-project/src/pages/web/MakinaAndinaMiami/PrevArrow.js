@@ -4,9 +4,9 @@ export const PrevArrow = (props) => (
     <button
       className="slick-prev"
       onClick={props.onClick}
-      style={{ left: "-30px" }} // Personaliza la posición si es necesario
+      style={{ left: "-30px" }} 
     >
-      {"<"} {/* Puedes utilizar un ícono de flecha aquí */}
+      {"<"} 
     </button>
   );
   

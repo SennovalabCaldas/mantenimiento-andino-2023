@@ -1,8 +1,9 @@
 import React from "react";
 import "./WebSuppliers.scss";
-import { image } from "../../../assets";
+import { ENV } from "../../../utils/constants";
 
 const WebSuppliers = ({ suppliers }) => {
+  const baseApi = ENV.BASE_PATH;
   console.log(suppliers);
   const nationalSuppliers = suppliers.filter(
     (supplier) => supplier.national === true
@@ -21,12 +22,20 @@ const WebSuppliers = ({ suppliers }) => {
         </div>
         <div className="division__item">
           {nationalSuppliers.map((supplier) => (
-            <img src={supplier.avatar} alt="Imagen 1" className="image" />
+            <img
+              src={`${baseApi}/${supplier.avatar}`}
+              alt="Imagen 1"
+              className="image"
+            />
           ))}
         </div>
         <div className="division__item">
           {internationalSuppliers.map((supplier, index) => (
-           <img src={supplier.avatar} alt="Imagen 1" className="image" />
+            <img
+              src={`${baseApi}/${supplier.avatar}`}
+              alt="Imagen 1"
+              className="image"
+            />
           ))}
         </div>
       </div>

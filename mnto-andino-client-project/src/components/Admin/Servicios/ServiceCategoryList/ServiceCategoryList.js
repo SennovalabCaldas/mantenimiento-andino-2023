@@ -6,7 +6,6 @@ export const ServiceCategoryList = ({ categories, services }) => {
   console.log(categories);
   console.log(services);
 
-  // Obtener un mapa que asocie los IDs de categoría con sus nombres correspondientes
   const categoryMap = categories.reduce((map, category) => {
     map[category._id] = category.nameCategoryService;
     return map;
