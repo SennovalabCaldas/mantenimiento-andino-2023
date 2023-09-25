@@ -17,7 +17,7 @@ const alliesRoutes = require("./routes/ally");
 const certificationsRoutes = require("./routes/certification");
 const projectRoutes = require("./routes/project");
 const foundationRoutes = require("./routes/foundation");
-const newsFoundationRoutes = require("./routes/newsFoundation");
+// const newsFoundationRoutes = require("./routes/newsFoundation");
 
 
 // Configure Body Parser
