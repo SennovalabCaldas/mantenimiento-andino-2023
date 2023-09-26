@@ -20,7 +20,7 @@ const PrevArrow = (props) => (
   <button
     className="slick-prev"
     onClick={props.onClick}
-    style={{ left: "10px" }}
+    style={{ left: "10px", zIndex:1 }}
   >
     {"<"}
   </button>

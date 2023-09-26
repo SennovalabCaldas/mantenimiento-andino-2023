@@ -17,7 +17,7 @@ const alliesRoutes = require("./routes/ally");
 const certificationsRoutes = require("./routes/certification");
 const projectRoutes = require("./routes/project");
 const foundationRoutes = require("./routes/foundation");
-const newsFoundationRoutes = require("./routes/newsFoundation");
+// const newsFoundationRoutes = require("./routes/newsFoundation");
 
 
 // Configure Body Parser
@@ -42,9 +42,9 @@ app.use(`/api/v1/admin/allies`, alliesRoutes);
 app.use(`/api/v1/admin/certifications`, certificationsRoutes);
 app.use(`/api/v1/admin/projects`, projectRoutes);
 app.use(`/api/v1/admin/foundations`, foundationRoutes);
-app.use(`/api/v1/admin/makina-andina`, makinaAndinaRoutes);
-app.use(`/api/v1/admin/makina-andina-miami`, makinaAndinaMiamiRoutes);
-app.use(`/api/v1/admin/glamping`, glampingRoutes);
+// app.use(`/api/v1/admin/makina-andina`, makinaAndinaRoutes);
+// app.use(`/api/v1/admin/makina-andina-miami`, makinaAndinaMiamiRoutes);
+// app.use(`/api/v1/admin/glamping`, glampingRoutes);
 
 // function printRoutes(stack, parentPath = "") {
 //   stack.forEach((layer) => {
