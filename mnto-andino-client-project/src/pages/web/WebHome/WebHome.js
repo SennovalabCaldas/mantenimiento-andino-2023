@@ -38,13 +38,30 @@ const settings = {
   autoplaySpeed: 5000, // Velocidad de reproducción automática en milisegundos (opcional)
 };
 
-export const WebHome = () => {
-  const news = useSelector((state) => state.post.allPosts);
-
+export const WebHome = ({ posts }) => {
+  console.log("posts", posts);
+  if (!posts || posts.length === 0) {
+    return (
+      <div className="section-bg news">
+        <div className="video-container">
+          <video autoPlay controls width="100%" height="auto">
+            <source src={image.video1} type="video/mp4" />
+          </video>
+          <div className="video-overlay">
+            <img
+              src={image.logomnbg}
+              alt="Logo de la Empresa"
+              className="logo-superpuesto"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div class="section-bg news">
       <Slider {...settings} className="sliderStyle slider">
-        {news.map((post, index) => (
+        {posts.map((post, index) => (
           <div className="slide" key={index}>
             <div className="slide-content">
               <div>
@@ -60,14 +77,13 @@ export const WebHome = () => {
               </div>
 
               <div className="slide-logo">
-              <img
-                src={image.logoH}
-                alt="Imagen 1"
-                style={{  height: "70px" }}
-              />
+                <img
+                  src={image.logoH}
+                  alt="Imagen 1"
+                  style={{ height: "70px" }}
+                />
+              </div>
             </div>
-            </div>
-            
           </div>
         ))}
       </Slider>

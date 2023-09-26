@@ -11,6 +11,10 @@
   display: inline-block;
 }
 
+.container-con-margin {
+  margin: 0; /* Elimina todos los márgenes */
+  padding: 0; /* Elimina el espacio de relleno */
+}
 /* Media Queries para dispositivos pequeños */
 @media (max-width: 768px) {
   .mapa {

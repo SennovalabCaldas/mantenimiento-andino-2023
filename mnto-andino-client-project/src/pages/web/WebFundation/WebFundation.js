@@ -1,33 +1,47 @@
-import React, { useEffect } from "react";
-import { Caseth, SocialCard } from "../../../components/Client";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { getAllPosts } from "../../../actions/postActions";
+import React from "react";
+import { ENV } from "../../../utils/constants";
+import { Loading } from "../../../components/Shared/Loading/Loading";
 import "./WebFundation.scss";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 
-export const WebFundation = () => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.allPosts);
+export const WebFundation = ({ foundation }) => {
+  console.log("foundation", foundation);
+  const baseApi = ENV.BASE_PATH;
 
-  // Se ejecutará cada vez que dispatch cambie
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await dispatch(getAllPosts());
-      } catch (error) {
-        console.error("Error al obtener las sedes:", error);
-      }
-    };
-    fetchData();
-  }, [dispatch]);
-
-  // Verifica si sedes es undefined antes de mapear
-  if (posts === undefined) {
-    return <div>Cargando</div>; // Muestra un mensaje de carga mientras esperas los datos
+  if (foundation === undefined) {
+    return <Loading />;
   }
+
   return (
+    <>
     <div className="fundation-section">
-    
-    </div>
+        <Carousel autoPlay={true} interval={3000} showThumbs={true} thumbWidth={100}>
+          {foundation.map((item) => (
+            <Card className="foundation-card" key={item.id}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={`${baseApi}/${item.avatar}`}
+                  alt={item.activityName}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {item.activityName}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {item.createdAt}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+              </CardActions>
+            </Card>
+          ))}
+        </Carousel>
+      </div>
+    </>
   );
 };

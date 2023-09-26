@@ -9,17 +9,30 @@
   background-attachment: fixed;
   width: 100%;
   height: 100%;
-  .card {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    background-color: #f9f9f9;
+  .column{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: nowrap;
+    .card {
+   
+      border: 3px solid #70684fa3;
+      width: 240px;
+      height: auto;
+      padding: 20px;
+      margin: 10px;
+      text-align: center;
+      background-color: rgba(111, 157, 163, 0.3294117647);
   }
-
-  .card img {
-    max-width: 100%;
+  
+    .card img {
+      width: 200px;
+    height: 300px;
+    }
   }
+ 
 
   .big-card {
     display: flex;
@@ -27,17 +40,25 @@
     align-items: center;
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    border: 3px solid #6a93a0;
+    background-color: #f9f9f936;
+    border-radius: 5px;
   }
 
   .big-card .card {
-    flex: 1;
+    display: flex;
+    flex: 1 1;
     margin: 10px;
     padding: 15px;
     border: 1px solid #ccc;
     background-color: #fff;
-  }
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+  
 
   .big-card .card h3 {
     font-size: 18px;

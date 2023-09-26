@@ -35,6 +35,7 @@ import triangle2 from "./svg/triangle2.svg";
 import mapamundo from "./svg/mapamundi.svg";
 
 import video1 from "./video/mp4/bg-video.mp4";
+import slide1 from "./video/mp4/slide1.mp4";
 import carulla from "./clients/carulla.png";
 import consorcio from "./clients/consorcio.png";
 import exito from "./clients/exito.png";
@@ -50,6 +51,7 @@ import fondo2 from "./jpg/2.jpg";
 import fondo3 from "./jpg/3.jpg";
 import fondo4 from "./jpg/4.jpg";
 import fondo5 from "./jpg/5.jpg";
+import logomnbg from "./jpg/image-removebg-preview.png";
 
 const image = {
   authBg,
@@ -101,6 +103,8 @@ const image = {
   fondo5,
   img1,
   img2,
-  section
+  section,
+  slide1,
+  logomnbg
 };
 export { image };

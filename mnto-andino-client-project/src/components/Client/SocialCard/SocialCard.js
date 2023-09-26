@@ -3,7 +3,6 @@ import "./SocialCard.scss";
 export const SocialCard = () => {
   return (
     <div>
-      <h1>Noticias</h1>
       <div className="card">
         <div className="imge">
           <div className="Usericon"></div>

@@ -31,6 +31,7 @@ import { getAllProjects } from "../../actions/projectActions";
 import { getAllSuppliers } from "../../actions/providerActions";
 import { getServices } from "../../actions/serviceActions";
 import { getAllCategoriesService } from "../../actions/categoryServiceActions";
+import { getAllPosts } from "../../actions/postActions";
 
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
@@ -224,6 +225,10 @@ export function WebMenu() {
 }
 
 function Section1() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
   const posts = useSelector((state) => state.post.allPosts);
   return (
     <div className="section" id="section1">

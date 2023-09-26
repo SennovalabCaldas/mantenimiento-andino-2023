@@ -219,7 +219,7 @@ export const Mapa = ({ departamentos }) => {
   let colorIndex = 0;
 
   const getDepartamentoColor = (deptName) => {
-    const color = 'rgba(105, 143, 147, 0.51)';
+    const color = "rgba(105, 143, 147, 0.51)";
     if (deptName === hoveredDept) {
       return "#70A9B0";
     } else {
@@ -299,13 +299,16 @@ export const Mapa = ({ departamentos }) => {
 
   return (
     <>
-      <svg viewBox="0 0 2000 2000" onMouseMove={handleMouseMove}>
-        {Object.values(simplemaps_countrymap_mapinfo.names).map((deptName) => {
-          return null;
-        })}
-        {renderDepartamentos()}
-      </svg>
-
+      <div className="container-con-margin">
+        <svg viewBox="0 0 2000 2000" onMouseMove={handleMouseMove}>
+          {Object.values(simplemaps_countrymap_mapinfo.names).map(
+            (deptName) => {
+              return null;
+            }
+          )}
+          {renderDepartamentos()}
+        </svg>
+      </div>
       {hoveredDept && !isHoveringMessage && !clickedDept && (
         <div
           className="mensajeDepartamento"
