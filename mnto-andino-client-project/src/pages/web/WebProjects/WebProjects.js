@@ -1,11 +1,8 @@
 import React from "react";
 import { ENV } from "../../../utils/constants";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import "./WebProjects.scss"; // Importa tu archivo de estilos personalizados
+
+import "./WebProjects.scss";
+import { ImageList, ImageListItem } from "@mui/material";
 
 export const WebProjects = ({ projects }) => {
   const baseApi = ENV.BASE_PATH;
@@ -18,46 +15,38 @@ export const WebProjects = ({ projects }) => {
     return `${month} ${year}`;
   };
 
+  const srcset = (image, size, rows = 1, cols = 1) => {
+    const imageUrl = `${baseApi}/${image}`; // Agrega la ruta base de API
+    return {
+      src: `${imageUrl}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${imageUrl}?w=${size * cols}&h=${
+        size * rows
+      }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  };
+
   return (
     <div className="content-web-section">
-      {projects.map((project, index) => (
-        <div key={project.id}>
-          <ListItem
-            alignItems="flex-start"
-            className={
-              project.national ? "national-project" : "international-project"
-            }
+      <ImageList
+        sx={{ width: 500, height: 450 }}
+        variant="quilted"
+        cols={4}
+        rowHeight={121}
+      >
+        {projects.map((item) => (
+          <ImageListItem
+            key={item.img}
+            cols={item.cols || 1}
+            rows={item.rows || 1}
           >
-            <ListItemAvatar>
-              <Avatar
-                alt={project.projectName}
-                src={`${baseApi}/${project.avatar}`}
-              />
-            </ListItemAvatar>
-            <ListItemText
-              primary={project.projectName}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Entidad: {project.entity}
-                  </Typography>
-                  <Typography>
-                    {project.national}
-                    Fecha: {extractYearAndMonth(project.joinDate)}
-                  </Typography>
-                </React.Fragment>
-              }
+            <img
+              {...srcset(item.avatar, 121, item.rows, item.cols)}
+              alt={item.projectName}
+              loading="lazy"
             />
-          </ListItem>
-          {/* Aplica estilos personalizados para la línea */}
-          {index !== projects.length - 1 && <hr className="custom-divider" />}
-        </div>
-      ))}
+          </ImageListItem>
+        ))}
+      </ImageList>
     </div>
   );
 };
