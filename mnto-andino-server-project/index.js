@@ -11,7 +11,7 @@ const {
 } = require("./constants");
 
 
-let PORT = 3500;
+let PORT = process.env.NODE_ENV === "production" ? 3000: 3500;
 let uri = process.env.NODE_ENV === "production"
 ? `mongodb://72.167.135.41:27017/mnto-andino-db`
 : `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
