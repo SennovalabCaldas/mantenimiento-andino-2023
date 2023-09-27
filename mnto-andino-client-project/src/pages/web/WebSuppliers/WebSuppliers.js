@@ -39,6 +39,29 @@ const WebSuppliers = ({ suppliers }) => {
           ))}
         </div>
       </div>
+      <div className="division">
+        <div className="division-title-section">
+          <h1>Aliados</h1>
+        </div>
+        <div className="division__item">
+          {nationalSuppliers.map((supplier) => (
+            <img
+              src={`${baseApi}/${supplier.avatar}`}
+              alt="Imagen 1"
+              className="image"
+            />
+          ))}
+        </div>
+        <div className="division__item">
+          {internationalSuppliers.map((supplier, index) => (
+            <img
+              src={`${baseApi}/${supplier.avatar}`}
+              alt="Imagen 1"
+              className="image"
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

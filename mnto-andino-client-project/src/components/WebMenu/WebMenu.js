@@ -215,7 +215,6 @@ export function WebMenu() {
         <Section6 />
         <Section7 />
         <Section8 />
-        <Section9 />
       </div>
       <CubeWithImages></CubeWithImages>
       <SocialSlideBar></SocialSlideBar>
@@ -248,6 +247,7 @@ function Section2() {
   );
   console.log(categoryServices);
   const services = useSelector((state) => state.service.services);
+  console.log(services);
   return (
     <div className="section" id="section2">
       <WebServices categoryServices={categoryServices} services={services} />
@@ -272,29 +272,19 @@ function Section4() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllSuppliers());
+    dispatch(getAllAllies());
   }, [dispatch]);
   const suppliers = useSelector((state) => state.supplier.allSuppliers);
+  const allies = useSelector((state) => state.ally.allAllies);
+
   return (
     <div className="section" id="section4">
-      <WebSuppliers suppliers={suppliers} />
+      <WebSuppliers suppliers={suppliers} allies={allies} />
     </div>
   );
 }
 
 function Section5() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllAllies());
-  }, [dispatch]);
-  const allies = useSelector((state) => state.ally.allAllies);
-  return (
-    <div className="section" id="section5">
-      <WebAliados allies={allies} />
-    </div>
-  );
-}
-
-function Section6() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCertifications());
@@ -303,8 +293,21 @@ function Section6() {
     (state) => state.certification.allCertification
   );
   return (
-    <div className="section" id="section6">
+    <div className="section" id="section5">
       <WebCertifications certifications={certifications} />
+    </div>
+  );
+}
+
+function Section6() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProjects());
+  }, [dispatch]);
+  const projects = useSelector((state) => state.project.allProjects);
+  return (
+    <div className="section" id="section6">
+      <WebProjects projects={projects} />
     </div>
   );
 }
@@ -312,32 +315,19 @@ function Section6() {
 function Section7() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProjects());
-  }, [dispatch]);
-  const projects = useSelector((state) => state.project.allProjects);
-  return (
-    <div className="section" id="section7">
-      <WebProjects projects={projects} />
-    </div>
-  );
-}
-
-function Section8() {
-  const dispatch = useDispatch();
-  useEffect(() => {
     dispatch(getAllFoundationsNews());
   }, [dispatch]);
   const foundation = useSelector((state) => state.foundation.allFoundations);
   return (
-    <div className="section" id="section8">
+    <div className="section" id="section7">
       <WebFundation foundation={foundation} />
     </div>
   );
 }
 
-function Section9() {
+function Section8() {
   return (
-    <div className="section" id="section9">
+    <div className="section" id="section8">
       <WebContactUs />
     </div>
   );

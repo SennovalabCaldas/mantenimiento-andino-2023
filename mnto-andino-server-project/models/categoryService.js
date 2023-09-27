@@ -5,6 +5,10 @@ const categoryServiceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  descriptionCategoryService: {
+    type: String,
+    required: true,
+  },
   active: {
     type: Boolean,
     default: true,

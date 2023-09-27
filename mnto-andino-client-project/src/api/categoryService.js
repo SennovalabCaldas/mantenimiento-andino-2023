@@ -20,6 +20,7 @@ export class CategoryService {
       return; // Aborta la función si la imagen no es válida
     }
     formData.append("nameCategoryService", data.nameCategoryService);
+    formData.append("descriptionCategoryService", data.descriptionCategoryService);
     formData.append("active", data.active);
     console.log("Estos son los datos de la categoría", formData.get("avatar"));
     const params = {

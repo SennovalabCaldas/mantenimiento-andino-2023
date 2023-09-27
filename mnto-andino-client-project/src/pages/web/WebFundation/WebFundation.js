@@ -1,46 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { ENV } from "../../../utils/constants";
 import { Loading } from "../../../components/Shared/Loading/Loading";
 import "./WebFundation.scss";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 
 export const WebFundation = ({ foundation }) => {
-  console.log("foundation", foundation);
   const baseApi = ENV.BASE_PATH;
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  if (foundation === undefined) {
+  if (!foundation || foundation.length === 0) {
     return <Loading />;
   }
 
+  const handleSlideChange = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <>
-    <div className="fundation-section">
-        <Carousel autoPlay={true} interval={3000} showThumbs={true} thumbWidth={100}>
-          {foundation.map((item) => (
-            <Card className="foundation-card" key={item.id}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={`${baseApi}/${item.avatar}`}
-                  alt={item.activityName}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {item.activityName}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.createdAt}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-              </CardActions>
-            </Card>
-          ))}
-        </Carousel>
+      <div className="fundation-section">
+        <div className="fundation-title">
+          <h1>Fundación</h1>
+        </div>
+        <div className="fundation-container">
+          <ul className="fundation-slides">
+            {foundation.map((item, index) => (
+              <li
+                id={`slide${index + 1}`}
+                key={`slide${index}`}
+                className={index === currentSlide ? "active" : ""}
+              >
+                <img src={`${baseApi}/${item.avatar}`} alt="" className="large-image"/>
+              </li>
+            ))}
+          </ul>
+
+          <ul className="thumbnails">
+            {foundation.map((item, index) => (
+              <li key={`thumbnail${index}`}>
+                <a
+                  href={`#slide${index + 1}`}
+                  onClick={() => handleSlideChange(index)}
+                >
+                  <img src={`${baseApi}/${item.avatar}`} alt="" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );

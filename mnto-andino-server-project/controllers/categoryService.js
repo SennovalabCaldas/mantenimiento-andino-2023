@@ -1,6 +1,4 @@
 const CategoryService = require("../models/categoryService");
-// const baseUrl = "http://mantenimientoandino.co:3000"
-const baseUrl = "http://localhost:3100/";
 
 async function createCategoryService(req, res) {
   try {
@@ -20,6 +18,7 @@ async function createCategoryService(req, res) {
     res.status(201).json({
       _id: categoryServiceStored._id,
       nameCategoryService: categoryServiceStored.nameCategoryService,
+      descriptionCategoryService: categoryServiceStored.descriptionCategoryService,
       avatar: categoryServiceStored.avatar,
       active: categoryServiceStored.ative,
     });

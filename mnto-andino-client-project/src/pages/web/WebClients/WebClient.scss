@@ -9,18 +9,17 @@
   background-position: center;
   background-attachment: fixed;
   width: 100%;
+
   height: auto;
   h1 {
     color: white;
   }
-  .content-service {
-    .item-clients-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+  .item-clients-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
   }
 }

@@ -5,6 +5,7 @@ import { Auth } from "../../../../api";
 import { initialValues, validationSchema } from "./ResetPassword.form";
 import { useFormik } from "formik";
 import "./ResetPassword.scss";
+
 const authController = new Auth();
 
 export const ResetPassword = (props) => {
@@ -31,10 +32,8 @@ export const ResetPassword = (props) => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (formValue) => {
-        
       try {
         const response = await authController.resetPassword(formValue);
-          
       } catch (error) {
         console.error(error);
       }

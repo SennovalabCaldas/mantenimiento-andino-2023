@@ -1,52 +1,80 @@
 import React from "react";
 import { ENV } from "../../../utils/constants";
-
 import "./WebProjects.scss";
-import { ImageList, ImageListItem } from "@mui/material";
+import {
+  Avatar,
+  Chip,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  Stack,
+} from "@mui/material";
+import { image } from "../../../assets";
+
+const baseApi = ENV.BASE_PATH;
 
 export const WebProjects = ({ projects }) => {
-  const baseApi = ENV.BASE_PATH;
-  console.log("projects", projects);
-
-  const extractYearAndMonth = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = date.toLocaleString("default", { month: "long" }); // Mes en formato de cadena, por ejemplo, "enero"
-    return `${month} ${year}`;
-  };
-
-  const srcset = (image, size, rows = 1, cols = 1) => {
-    const imageUrl = `${baseApi}/${image}`; // Agrega la ruta base de API
-    return {
-      src: `${imageUrl}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${imageUrl}?w=${size * cols}&h=${
-        size * rows
-      }&fit=crop&auto=format&dpr=2 2x`,
-    };
-  };
+  const image_route = image.fondo1;
+  const nationalProjects = projects.filter((item) => item.national === true);
+  const internationalProjects = projects.filter(
+    (item) => item.national === false
+  );
 
   return (
-    <div className="content-web-section">
-      <ImageList
-        sx={{ width: 500, height: 450 }}
-        variant="quilted"
-        cols={4}
-        rowHeight={121}
-      >
-        {projects.map((item) => (
-          <ImageListItem
-            key={item.img}
-            cols={item.cols || 1}
-            rows={item.rows || 1}
-          >
-            <img
-              {...srcset(item.avatar, 121, item.rows, item.cols)}
-              alt={item.projectName}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+    <div className="projects-section">
+      <div className="all-projects">
+        <h2>Proyectos Nacionales</h2>
+    
+        <ImageList
+          className="national-projects"
+          variant="woven"
+          cols={3}
+          gap={8}
+        >
+          {nationalProjects.map((item) => {
+            const imageUrl = `${baseApi}/${item.avatar}?w=161&fit=crop&auto=format`;
+
+            return (
+              <ImageListItem key={item.img}>
+                <img
+                  srcSet={`${imageUrl}&dpr=2 2x`}
+                  src={imageUrl}
+                  alt={item.title}
+                  loading="lazy"
+                />
+                <ImageListItemBar title={item.projectName} position="below" />
+                <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
+              </ImageListItem>
+            );
+          })}
+        </ImageList>
+
+        <h2>Proyectos Internationales</h2>
+     
+        <ImageList
+          className="international-projects"
+          variant="woven"
+          cols={3}
+          gap={8}
+        >
+          {internationalProjects.map((item) => {
+            const imageUrl = `${baseApi}/${item.avatar}?w=161&fit=crop&auto=format`;
+
+            return (
+              <ImageListItem key={item.img}>
+                <img
+                  srcSet={`${imageUrl}&dpr=2 2x`}
+                  src={imageUrl}
+                  alt={item.title}
+                  loading="lazy"
+                />
+                <ImageListItemBar title={item.projectName} position="below" />
+                <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
+              </ImageListItem>
+            );
+          })}
+        </ImageList>
+      </div>
     </div>
   );
 };

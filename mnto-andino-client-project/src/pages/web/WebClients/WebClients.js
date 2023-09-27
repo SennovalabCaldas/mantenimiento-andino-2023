@@ -107,16 +107,15 @@ export const WebClients = ({ clients }) => {
                 <>
                   {category.text === "NACIONALES" && (
                     <>
+                      <Mapa />
                       <div className="item-clients-section">
-                        <Mapa></Mapa>
-                      </div>
-                      <div className="item-clients-section">
-                        {/* Filtrar clientes nacionales */}
-                        <CardClient
-                          clients={clients.filter(
-                            (client) => client.national === true
-                          )}
-                        />
+                        <div>
+                          <CardClient
+                            clients={clients.filter(
+                              (client) => client.national === true
+                            )}
+                          />
+                        </div>
                       </div>
                     </>
                   )}

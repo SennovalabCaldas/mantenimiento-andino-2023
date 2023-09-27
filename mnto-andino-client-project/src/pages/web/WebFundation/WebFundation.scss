@@ -3,9 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // margin-top: 2em;
   background-image: url("../../../assets/jpg/auth-bg.jpg");
-  // margin-bottom: 2em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -13,9 +11,70 @@
   width: 100%;
   height: 100%;
 
-  .foundation-card{
-    background-color: #41898580;
-    border-radius: 3px;
-    margin-bottom: 2em;
+  .fundation-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .thumbnails {
+    display: flex;
+    flex-direction: column;
+    line-height: 0;
+    list-style: none;
+    padding: 0;
+
+    .large-image {
+      display: block;
+      margin: 0 auto; /* Centra la imagen horizontalmente */
+    }
+    li {
+      flex: auto;
+    }
+
+    a {
+      display: block;
+    }
+
+    img {
+      width: 30vmin;
+      height: 20vmin;
+      object-fit: cover;
+      object-position: top;
+      border: #90a2ad94 dashed;
+      border: #ffffff 5px solid;
+      transition: filter 0.3s;
+    }
+    img:hover {
+      filter: grayscale(100%);
+    }
+  }
+
+  .fundation-slides {
+    overflow: hidden;
+    width: 75vmin;
+    height: 100vmin;
+    position: relative;
+
+    li {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      &.active {
+        opacity: 1;
+        z-index: 2;
+      }
+    }
+
+    img {
+      height: 700px;
+      width: 600px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 3px;
+      border: #ffffff 15px solid;
+    }
   }
 }

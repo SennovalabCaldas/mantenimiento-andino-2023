@@ -1,14 +1,27 @@
 import React from "react";
 import { ENV } from "../../../utils";
 import "./CertificationsNal.scss";
+import {
+  deleteCertification,
+  getAllCertifications,
+} from "../../../actions/certificationActions";
+import { useDispatch } from "react-redux";
 
 export const CertificationsNal = ({ certifications, national }) => {
   console.log("Certificaciones:", certifications);
   console.log("National:", national);
-
+  const dispatch = useDispatch();
   const baseApi = ENV.BASE_PATH;
 
-  const handleDeleteProject = (certificationId) => {};
+  const handleDeleteProject = async (certificationId) => {
+    console.log("Eliminar certificación:", certificationId);
+    try {
+      await dispatch(deleteCertification(certificationId));
+      await dispatch(getAllCertifications());
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const handleEditProject = (certificationId) => {};
   return (
     <div>
@@ -43,7 +56,7 @@ export const CertificationsNal = ({ certifications, national }) => {
                 </span>
                 <span
                   className="delete-link"
-                  onClick={() => handleDeleteProject(certification.id)}
+                  onClick={() => handleDeleteProject(certification._id)}
                 >
                   Eliminar
                 </span>

@@ -3,6 +3,8 @@ import { Carousel } from "react-responsive-carousel";
 import { image } from "../../../assets";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importa los estilos del carrusel
 import { ENV } from "../../../utils";
+import { Avatar, Stack } from "@mui/material";
+import { Mapa } from "../../../components/GeneralLayout";
 
 export const CardClient = ({ clients }) => {
   console.log(clients);
@@ -15,18 +17,6 @@ export const CardClient = ({ clients }) => {
 
   return (
     <div className="division">
-      <Carousel
-        showArrows={false}
-        showStatus={false}
-        showThumbs={true}
-        infiniteLoop={true}
-        autoPlay={true}
-        interval={3000}
-        stopOnHover={false}
-        emulateTouch={true}
-        useKeyboardArrows={true}
-        swipeable={true}
-      >
         {clients.map((client, index) => {
           // Imprime la ruta de la imagen en la consola
           console.log("Ruta de la imagen:", `${baseApi}/${client.avatar}`);
@@ -40,7 +30,6 @@ export const CardClient = ({ clients }) => {
             </div>
           );
         })}
-      </Carousel>
     </div>
   );
 };

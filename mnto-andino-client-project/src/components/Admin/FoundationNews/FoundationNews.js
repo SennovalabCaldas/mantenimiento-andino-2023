@@ -158,10 +158,9 @@ export const FoundationNews = () => {
         image: file,
       });
       const imageUrl = URL.createObjectURL(file);
-      setEditAvatarPreview(imageUrl); 
+      setEditAvatarPreview(imageUrl);
     }
   };
-  
 
   const handleUpdateFoundationNew = async () => {
     const data = {
@@ -197,62 +196,44 @@ export const FoundationNews = () => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 <TextField
                   label="Nombre"
-                  value={newFoundationNews.activityName} // Utiliza newFoundationNews.activityName
-                  onChange={(e) =>
-                    setNewFoundationNews({
-                      ...newFoundationNews,
-                      activityName: e.target.value,
-                    })
-                  }
+                  value={activityName}
+                  onChange={(e) => setActivityName(e.target.value)}
                 />
+                <label htmlFor="imageUpload">
+                  <Typography>
+                    Imagen:
+                    {avatarPreview && (
+                      <img
+                        src={avatarPreview}
+                        alt="Imagen de previsualización"
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "200px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => document.getElementById("imageUpload")}
+                      />
+                    )}
+                  </Typography>
+                </label>
                 <input
                   type="file"
                   id="imageUpload"
                   style={{ display: "none" }}
                   onChange={handleAvatarChange}
                 />
-                {/* Button to trigger file input */}
-                <Button
-                  onClick={() => document.getElementById("imageUpload").click()}
-                  variant="contained"
-                  color="primary"
-                >
-                  Subir Imagen
-                </Button>
-                {avatarPreview && (
-                  <img
-                    src={avatarPreview}
-                    alt="Vista previa de la imagen"
-                    style={{
-                      maxWidth: "100px",
-                      maxHeight: "100px",
-                      marginLeft: "10px",
-                    }}
-                  />
-                )}
                 <Switch
-                  checked={newFoundationNews.active}
-                  onChange={(e) =>
-                    setNewFoundationNews({
-                      ...newFoundationNews,
-                      active: e.target.checked,
-                    })
-                  }
+                  checked={active}
+                  onChange={() => setActive(!active)}
                   color="primary"
                   inputProps={{ "aria-label": "Publicación visible" }}
                 />
-                <Typography>
-                  {newFoundationNews.active
-                    ? "Publicación visible"
-                    : "Publicación oculta"}
-                </Typography>
-
                 <Button
-                  onClick={handleSave}
                   variant="contained"
                   color="primary"
+                  onClick={handleSave}
                 >
-                  Crear
+                  Guardar
                 </Button>
               </div>
             </form>
@@ -265,9 +246,14 @@ export const FoundationNews = () => {
             <DialogTitle>Editar publicación de la fundación</DialogTitle>
             <DialogContent>
               <TextField
-                label="Publicación"
-                value={activityName}
-                onChange={(e) => setActivityName(e.target.value)}
+                label="Nombre"
+                value={newFoundationNews.activityName}
+                onChange={(e) =>
+                  setNewFoundationNews({
+                    ...newFoundationNews,
+                    activityName: e.target.value,
+                  })
+                }
               />
 
               <Typography style={{ marginLeft: "10px" }}>

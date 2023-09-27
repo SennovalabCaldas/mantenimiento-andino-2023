@@ -63,7 +63,7 @@ export const updateCertification = (_id, updatedData) => {
 export const deleteCertification = (_id) => {
   return async (dispatch, getState) => {
     try {
-      await certificationController.deleteCategory(_id);
+      await certificationController.deleteCertification(_id);
       dispatch(deleteCertificationSuccess(_id));
     } catch (error) {
       console.error(error);

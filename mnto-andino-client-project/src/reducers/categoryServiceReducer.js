@@ -10,6 +10,7 @@ const initialState = {
   categoryService: {
     _id: null,
     nameCategoryService: null,
+    descriptionCategoryService: null,
     active: null,
     avatar: [],
   },

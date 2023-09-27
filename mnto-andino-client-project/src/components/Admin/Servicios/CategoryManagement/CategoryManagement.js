@@ -36,16 +36,19 @@ export const CategoryManagement = ({ categories }) => {
 
   const [avatar, setAvatar] = useState(null);
   const [nameCategoryService, setNameCategoryService] = useState("");
+  const [descriptionCategoryService, setDescriptionCategoryService] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(null);
 
   const [newCategory, setNewCategory] = useState({
     nameCategoryService: "",
+    descriptionCategoryService: "",
     active: true,
     avatar: [],
   });
 
   const [editingCategory, setEditingCategory] = useState({
     nameCategoryService: "",
+    descriptionCategoryService: "",
     active: false,
     avatar: [],
   });
@@ -102,6 +105,7 @@ export const CategoryManagement = ({ categories }) => {
     const data = {
       ...newCategory,
       nameCategoryService: nameCategoryService,
+      descriptionCategoryService: descriptionCategoryService,
       active: editingCategory.active,
       avatar: avatar,
     };
@@ -117,7 +121,6 @@ export const CategoryManagement = ({ categories }) => {
   return (
     <div>
       <h2>Categorías de servicios</h2>
-
       <div>
         <Card>
           <CardContent>
@@ -130,6 +133,11 @@ export const CategoryManagement = ({ categories }) => {
                   label="Nombre"
                   value={nameCategoryService}
                   onChange={(e) => setNameCategoryService(e.target.value)}
+                />
+                <TextField
+                  label="Descripción"
+                  value={descriptionCategoryService}
+                  onChange={(e) => setDescriptionCategoryService(e.target.value)}
                 />
                 <input
                   type="file"

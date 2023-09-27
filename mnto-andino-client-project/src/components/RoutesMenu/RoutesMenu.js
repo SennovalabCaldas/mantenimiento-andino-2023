@@ -71,13 +71,13 @@ const menuItems = [
     roles: ["admin"],
   },
   {
-    path: "/admin/makina-andina",
+    path: "/admin/makinandina",
     icon: "university",
     text: "Makina Andina",
     roles: ["admin"],
   },
   {
-    path: "/admin/makina-andina-miami",
+    path: "/admin/makinandinamiami",
     icon: "university",
     text: "Makina Andina Miami",
     roles: ["admin"],
