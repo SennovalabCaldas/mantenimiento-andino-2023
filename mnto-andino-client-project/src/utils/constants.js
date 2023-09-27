@@ -1,5 +1,7 @@
-// const SERVER_IP = "http://localhost:3500";
-const SERVER_IP = "http://mantenimientoandino.co:3000"
+const SERVER_IP =
+  process.env.NODE_ENV !== "production"
+    ?  "http://localhost:3500"
+    : "http://mantenimientoandino.co:3000";
 
 const API_VERSION = "api/v1";
 

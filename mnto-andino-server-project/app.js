@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const cors = require("cors");
 /* Cargar rutas */
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -18,6 +19,8 @@ const certificationsRoutes = require("./routes/certification");
 const projectRoutes = require("./routes/project");
 const foundationRoutes = require("./routes/foundation");
 // const newsFoundationRoutes = require("./routes/newsFoundation");
+
+app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
 
 
 // Configure Body Parser
