@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactPhoneInput from "react-phone-input-2";
-import "../../../../node_modules/react-phone-input-2/lib/style.css";
+import "./style.css";
 import "./WebContactUs.scss";
 import {
   FormControl,
