@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import "./WebServices.scss";
-import Rating from "@mui/material/Rating";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Skeleton from "@mui/material/Skeleton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import StarIcon from "@mui/icons-material/Star";
+// import Rating from "@mui/material/Rating";
+// import Card from "@mui/material/Card";
+// import CardHeader from "@mui/material/CardHeader";
+// import CardContent from "@mui/material/CardContent";
+// import CardMedia from "@mui/material/CardMedia";
+// import Avatar from "@mui/material/Avatar";
+// import Typography from "@mui/material/Typography";
+// import IconButton from "@mui/material/IconButton";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import Skeleton from "@mui/material/Skeleton";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faFacebook,
+//   faInstagram,
+//   faLinkedin,
+//   faTwitter,
+// } from "@fortawesome/free-brands-svg-icons";
+// import StarIcon from "@mui/icons-material/Star";
 import { ENV } from "../../../utils/constants";
 import { Box } from "@mui/material";
 import { Services } from "./Services";
@@ -29,75 +29,75 @@ export const WebServices = ({ categoryServices, services }) => {
   const [shareUrl, setShareUrl] = useState(
     "https://www.mantenimientoandino.co"
   );
-  const [showShareOptions, setShowShareOptions] = useState(false);
-  const [hover, setHover] = useState(-1);
-  console.log("services", services);
-  console.log("categoryServices", categoryServices);
+  // const [showShareOptions, setShowShareOptions] = useState(false);
+  // const [hover, setHover] = useState(-1);
+  // console.log("services", services);
+  // console.log("categoryServices", categoryServices);
 
-  const loading = services.length === 0;
-  const [mostrarServiciosAdicionales, setMostrarServiciosAdicionales] =
-    useState(false);
-  const [serviciosRelacionados, setServiciosRelacionados] = useState({});
+  // const loading = services.length === 0;
+  // const [mostrarServiciosAdicionales, setMostrarServiciosAdicionales] =
+  //   useState(false);
+  // const [serviciosRelacionados, setServiciosRelacionados] = useState({});
 
-  const categoryMap = categoryServices.reduce((map, category) => {
-    map[category._id] = category.nameCategoryService;
-    return map;
-  }, {});
+  // const categoryMap = categoryServices.reduce((map, category) => {
+  //   map[category._id] = category.nameCategoryService;
+  //   return map;
+  // }, {});
 
-  const toggleMostrarServicios = (categoryId) => {
-    const serviciosFiltrados = services.filter(
-      (servicio) => servicio.categoryService === categoryId
-    );
-    setServiciosRelacionados(serviciosFiltrados);
-    setMostrarServiciosAdicionales(true);
-  };
+  // const toggleMostrarServicios = (categoryId) => {
+  //   const serviciosFiltrados = services.filter(
+  //     (servicio) => servicio.categoryService === categoryId
+  //   );
+  //   setServiciosRelacionados(serviciosFiltrados);
+  //   setMostrarServiciosAdicionales(true);
+  // };
 
-  const handleFacebookShare = () => {
-    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      shareUrl
-    )}`;
-    window.open(facebookShareUrl, "_blank");
-  };
+  // const handleFacebookShare = () => {
+  //   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+  //     shareUrl
+  //   )}`;
+  //   window.open(facebookShareUrl, "_blank");
+  // };
 
-  const handleTwitterShare = () => {
-    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      shareUrl
-    )}`;
-    window.open(twitterShareUrl, "_blank");
-  };
+  // const handleTwitterShare = () => {
+  //   const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+  //     shareUrl
+  //   )}`;
+  //   window.open(twitterShareUrl, "_blank");
+  // };
 
-  const handleLinkedInShare = () => {
-    const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      shareUrl
-    )}`;
-    window.open(linkedInShareUrl, "_blank");
-  };
+  // const handleLinkedInShare = () => {
+  //   const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+  //     shareUrl
+  //   )}`;
+  //   window.open(linkedInShareUrl, "_blank");
+  // };
 
-  const labels = {
-    0.5: "Useless",
-    1: "Useless+",
-    1.5: "Poor",
-    2: "Poor+",
-    2.5: "Ok",
-    3: "Ok+",
-    3.5: "Good",
-    4: "Good+",
-    4.5: "Excellent",
-    5: "Excellent+",
-  };
+  // const labels = {
+  //   0.5: "Useless",
+  //   1: "Useless+",
+  //   1.5: "Poor",
+  //   2: "Poor+",
+  //   2.5: "Ok",
+  //   3: "Ok+",
+  //   3.5: "Good",
+  //   4: "Good+",
+  //   4.5: "Excellent",
+  //   5: "Excellent+",
+  // };
 
-  function getLabelText(serviceId) {
-    const rating = selectedServiceRating[serviceId] || 0;
-    return `${rating} Star${rating !== 1 ? "s" : ""}, ${labels[rating]}`;
-  }
+  // function getLabelText(serviceId) {
+  //   const rating = selectedServiceRating[serviceId] || 0;
+  //   return `${rating} Star${rating !== 1 ? "s" : ""}, ${labels[rating]}`;
+  // }
 
-  const handleRatingChange = (serviceId, newValue) => {
-    // Actualiza el rating solo para el servicio en el que se hizo clic
-    setServiceRatings((prevRatings) => ({
-      ...prevRatings,
-      [serviceId]: newValue,
-    }));
-  };
+  // const handleRatingChange = (serviceId, newValue) => {
+  //   // Actualiza el rating solo para el servicio en el que se hizo clic
+  //   setServiceRatings((prevRatings) => ({
+  //     ...prevRatings,
+  //     [serviceId]: newValue,
+  //   }));
+  // };
 
   return (
     // <div className="content-section-services">
