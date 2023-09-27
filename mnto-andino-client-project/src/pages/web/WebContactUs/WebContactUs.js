@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import ReactPhoneInput from "react-phone-input-2";
 import "./style.css";
 import "./WebContactUs.scss";
 import {
@@ -110,22 +109,7 @@ const WebContactUs = () => {
             label="Permitir contacto en el futuro"
           />
 
-          {formData.allowContact && (
-            <FormControl>
-              <label>Número de teléfono</label>
-              <ReactPhoneInput
-                defaultCountry="us" // Establece el país predeterminado (puedes cambiarlo según tus necesidades)
-                value={formData.phoneNumber}
-                onChange={(value, country, e, formattedValue) => {
-                  setFormData({
-                    ...formData,
-                    phoneNumber: formattedValue, // Guarda el número de teléfono con formato
-                  });
-                }}
-              />
-            </FormControl>
-          )}
-
+      
           <Button
             type="submit"
             variant="contained"
