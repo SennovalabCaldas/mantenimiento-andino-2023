@@ -32,14 +32,11 @@ import { getAllSuppliers } from "../../actions/providerActions";
 import { getServices } from "../../actions/serviceActions";
 import { getAllCategoriesService } from "../../actions/categoryServiceActions";
 import { getAllPosts } from "../../actions/postActions";
-import { useTranslation } from "react-i18next";
 
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
   const [showToggleButton, setShowToggleButton] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t, i18n } = useTranslation();
-  const dispatch = useDispatch();
 
   const menuIcon = isMenuOpen ? faTimes : faBars;
 
@@ -90,18 +87,7 @@ export function WebMenu() {
         }`}
       >
         <ul onClick={closeMenu} className={isMenuOpen ? "horizontal" : ""}>
-          {/* <li>
-            <ScrollLink
-              to="section1"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section1")}
-            >
-              Actualidad
-            </ScrollLink>
-          </li> */}
+
           <li>
             <ScrollLink
               to="section2"
