@@ -18,7 +18,7 @@ import SlideBarWebMenu from "./SlideBarWebMenu";
 import { CubeWithImages } from "../Client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { image } from "../../assets";
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import { SocialSlideBar } from "./SocialSlideBar";
@@ -32,11 +32,13 @@ import { getAllSuppliers } from "../../actions/providerActions";
 import { getServices } from "../../actions/serviceActions";
 import { getAllCategoriesService } from "../../actions/categoryServiceActions";
 import { getAllPosts } from "../../actions/postActions";
+import { useTranslation } from "react-i18next";
 
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
   const [showToggleButton, setShowToggleButton] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
   const menuIcon = isMenuOpen ? faTimes : faBars;
@@ -53,7 +55,9 @@ export function WebMenu() {
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
-
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -79,19 +83,14 @@ export function WebMenu() {
           <FontAwesomeIcon icon={menuIcon} />
         </button>
       )}
-
+ 
       <nav
         className={`webmenu-page__navbar ${
           isMenuOpen ? "menu-open" : "menu-closed"
         }`}
       >
-        <div className="webmenu-page__navbar__logo">
-          <Link to="/login">
-            <img src={image.logomn} alt="Logo" />
-          </Link>
-        </div>
         <ul onClick={closeMenu} className={isMenuOpen ? "horizontal" : ""}>
-          <li>
+          {/* <li>
             <ScrollLink
               to="section1"
               spy={true}
@@ -102,7 +101,7 @@ export function WebMenu() {
             >
               Actualidad
             </ScrollLink>
-          </li>
+          </li> */}
           <li>
             <ScrollLink
               to="section2"
@@ -112,7 +111,7 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section2")}
             >
-              Servicios
+              SERVICIOS
             </ScrollLink>
           </li>
           <li>
@@ -124,7 +123,7 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section3")}
             >
-              Clientes
+              CLIENTES
             </ScrollLink>
           </li>
           <li>
@@ -136,7 +135,7 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section4")}
             >
-              Proveedores
+              PROVEEDORES Y ALIADOS
             </ScrollLink>
           </li>
           <li>
@@ -148,7 +147,7 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section5")}
             >
-              Aliados
+              CERTIFICACIONES
             </ScrollLink>
           </li>
           <li>
@@ -160,7 +159,7 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section6")}
             >
-              Certificaciones
+              PROYECTOS
             </ScrollLink>
           </li>
           <li>
@@ -172,7 +171,7 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section7")}
             >
-              Proyectos
+              FUNDACIÓN
             </ScrollLink>
           </li>
           <li>
@@ -184,28 +183,18 @@ export function WebMenu() {
               duration={500}
               onSetActive={() => handleSetActiveSection("section8")}
             >
-              Fundación
+              CONTÁCTANOS
             </ScrollLink>
           </li>
-          <li>
-            <ScrollLink
-              to="section9"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section9")}
-            >
-              Contactanos
-            </ScrollLink>
-          </li>
+      
           <li className="li-login-anchor">
-            <Link to="/login" className="btn">
-              <span>INGRESAR</span>
-            </Link>
+          <Link to="/login" className="btn">
+    <FontAwesomeIcon icon={faSignInAlt} />
+  </Link>
           </li>
         </ul>
       </nav>
+      
       <div className="home">
         <Section1 />
         <Section2 />

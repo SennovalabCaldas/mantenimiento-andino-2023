@@ -68,7 +68,7 @@ export const Services = ({ categoryServices, services }) => {
         description: "Descripción del Servicio Predeterminado 1",
         active: true,
         categoryService: "default2",
-        photos: [image.service1, image.service1, image.service1],
+        photos: [image.service1],
       },
       {
         _id: "servicedefault3",
@@ -94,7 +94,7 @@ export const Services = ({ categoryServices, services }) => {
         description: "Descripción del Servicio Predeterminado 1",
         active: true,
         categoryService: "default3",
-        photos: [image.service1, image.service1, image.service1],
+        photos: [image.service1],
       },
       {
         _id: "servicedefault6",
@@ -112,7 +112,7 @@ export const Services = ({ categoryServices, services }) => {
         description: "Descripción del Servicio Predeterminado 1",
         active: true,
         categoryService: "default4",
-        photos: [image.service1, image.service1],
+        photos: [image.service1],
       },
       {
         _id: "servicedefault8",

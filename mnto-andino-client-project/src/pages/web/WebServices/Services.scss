@@ -1,7 +1,4 @@
-$backgroundGradients: (
-  linear-gradient(45deg, #FF5733, #FFBD33), // Ejemplo de gradiente 1
-  linear-gradient(135deg, #33FF57, #33FFBD), 
-);
+
 .service-section {
   font-family: "Roboto Condensed", sans-serif;
   color: #fff;
@@ -190,10 +187,10 @@ $backgroundGradients: (
 }
 
 .codigo-qr {
-  max-width: 100px; /* Ajusta el ancho máximo de la imagen */
-  max-height: 100px; /* Ajusta la altura máxima de la imagen */
-  width: auto; /* Permite que la imagen se ajuste automáticamente al ancho máximo */
-  height: auto; /* Permite que la imagen se ajuste automáticamente a la altura máxima */
+  max-width: 100px; 
+  max-height: 100px; 
+  width: auto; 
+  height: auto;
 }
 
 #section2 > div > ul > li.artist-item.active > div > div > div > div > div > div > button > div > div{

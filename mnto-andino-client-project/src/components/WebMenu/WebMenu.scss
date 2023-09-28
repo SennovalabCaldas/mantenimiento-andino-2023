@@ -10,14 +10,21 @@
 
 /* Estilos de la barra de navegación */
 .webmenu-page__navbar {
-  background-color:rgb(46 46 46);
-  height: 60px;
-  // padding: 0 10px 0 10px;
-  width: 100%;
+  top: 10px;
+  position: absolute;
+  background-color: #1b1c1dcf;
+  height: 50px;
+  border-radius: 20px;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   align-content: center;
+  flex-wrap: wrap;
+  z-index: 2;
+  flex-direction: row;
+  backdrop-filter: blur(10px) brightness(0.8);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   img {
     width: 55px;
     height: auto;
@@ -45,6 +52,8 @@
     margin: 0;
     justify-content: flex-start;
     flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
 
     li {
       padding-left: 10px;
@@ -56,31 +65,14 @@
         padding: 15px 10px;
         text-decoration: none;
         transition: background-color 0.3s ease;
-        border-radius: 3px;
-        &:hover {
-          color: #d6a9a9;
-          border-bottom: #894848 2px solid;
-          background-color: #03192890; /* Cambiamos el fondo en hover */
-        }
-      }
-    }
-    .li-login-anchor {
-      display: flex;
-      justify-content: flex-end;
-      margin-left: 150px;
-      a {
-        color: #f2bb91;
-        border-bottom: #711f1f 2px solid;
-        background-color: #03192890;
-        &:hover {
-          color: #d1c6c6;
-          font-weight: 500;
-          border-bottom: #df990e 2px solid;
-          background-color: #06446e90; /* Cambiamos el fondo en hover */
-        }
-      }
 
-      /* Resto de estilos para el enlace "Ingresar" */
+        &:hover {
+          color: #ffffff;
+          font-weight: 500 ;
+          border-bottom: #ffffff 2px solid;
+          background-color: #9c9a6374; /* Cambiamos el fondo en hover */
+        }
+      }
     }
   }
 }
@@ -93,13 +85,12 @@
     background-color: #f0f0f0;
     overflow: hidden;
     text-align: center;
-    // min-height: calc(100vh - 100px);
   }
 }
 
 // ------------------------------------------------------------
 // Pantalla pequeña
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .webmenu-page {
     .webmenu-page__navbar {
       background-color: rgb(46 46 46);

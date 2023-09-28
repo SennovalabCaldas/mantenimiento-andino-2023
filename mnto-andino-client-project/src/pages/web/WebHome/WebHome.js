@@ -20,7 +20,7 @@ const PrevArrow = (props) => (
   <button
     className="slick-prev"
     onClick={props.onClick}
-    style={{ left: "10px", zIndex:1 }}
+    style={{ left: "10px", zIndex: 1 }}
   >
     {"<"}
   </button>
@@ -35,7 +35,7 @@ const settings = {
   prevArrow: <PrevArrow />, // Componente de flecha anterior
   nextArrow: <NextArrow />, // Componente de flecha siguiente
   autoplay: true, // Reproducción automática
-  autoplaySpeed: 5000, // Velocidad de reproducción automática en milisegundos (opcional)
+  autoplaySpeed: 3000, // Velocidad de reproducción automática en milisegundos (opcional)
 };
 
 export const WebHome = ({ posts }) => {
@@ -48,11 +48,19 @@ export const WebHome = ({ posts }) => {
             <source src={image.video1} type="video/mp4" />
           </video>
           <div className="video-overlay">
-            <img
-              src={image.logomnbg}
-              alt="Logo de la Empresa"
-              className="logo-superpuesto"
-            />
+            <div className="titulo-video-overlay">
+              <h2>MANTENIMIENTO ANDINO SAS</h2>
+            </div>
+            <div className="imagen-video-overlay">
+              <img
+                src={image.logomn}
+                alt="Logo de la Empresa"
+                className="logo-superpuesto"
+              />
+            </div>
+            <div className="subtitulo-video-overlay">
+              <p>Conoce todo lo que tenemos para ofrecerte.</p>
+            </div>
           </div>
         </div>
       </div>
