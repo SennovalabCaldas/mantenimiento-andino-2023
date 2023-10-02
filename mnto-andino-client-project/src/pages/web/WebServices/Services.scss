@@ -1,55 +1,63 @@
-
 .service-section {
   font-family: "Roboto Condensed", sans-serif;
   color: #fff;
   line-height: 24px;
   font-size: 16px;
   width: 90%;
-
-  .section-content {
-    position: relative;
-    z-index: 999;
-    opacity: 0;
-    align-self: flex-end;
-    width: 100%;
-    transition: all 0.35s 0.1s ease-out;
-
-    &.active {
-      opacity: 1;
+  .artists-list {
+    .artist-item {
+      &.active {
+        h3 {
+          display: none;
+        }
+      }
     }
-
-    .inner {
-      position: absolute;
-      display: grid;
-      grid-auto-flow: row;
-      grid-template-columns: 1fr;
-      grid-column-gap: 20px;
-      align-items: flex-end;
-      left: 0;
-      bottom: 0;
-      padding: 20px;
-      opacity: 1;
-      transition: opacity 0.25s ease-out;
-
-      @media only screen and (min-width: 614px) {
-        grid-auto-flow: column;
-        grid-template-columns: calc(100% - 340px) 300px;
-        grid-column-gap: 40px;
-        padding: 40px;
-      }
-
-      @media only screen and (min-width: 1024px) {
-        grid-auto-flow: column;
-        grid-template-columns: 460px 200px;
-        grid-column-gap: 40px;
-        padding: 40px;
-      }
+    .section-content {
+      position: relative;
+      z-index: 999;
+      opacity: 0;
+      align-self: flex-end;
+      width: 100%;
+      transition: all 0.35s 0.1s ease-out;
 
       &.active {
         opacity: 1;
       }
+
+      .inner {
+        position: absolute;
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        grid-column-gap: 20px;
+        align-items: flex-end;
+        left: 0;
+        bottom: 0;
+        padding: 20px;
+        opacity: 1;
+        transition: opacity 0.25s ease-out;
+
+        @media only screen and (min-width: 614px) {
+          grid-auto-flow: column;
+          grid-template-columns: calc(100% - 340px) 300px;
+          grid-column-gap: 40px;
+          padding: 40px;
+        }
+
+        @media only screen and (min-width: 1024px) {
+          grid-auto-flow: column;
+          grid-template-columns: 460px 200px;
+          grid-column-gap: 40px;
+          padding: 40px;
+        }
+
+        &.active {
+          opacity: 1;
+        }
+      }
     }
   }
+
   .bio {
     display: grid;
     grid-auto-flow: row;
@@ -95,7 +103,7 @@
         height: 100%;
         background: rgba(80, 101, 118, 0.349);
         color: #000;
-        h3{
+        h3 {
           display: none;
         }
       }
@@ -193,20 +201,32 @@
 }
 
 .codigo-qr {
-  max-width: 100px; 
-  max-height: 100px; 
-  width: auto; 
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
   height: auto;
 }
 
-#section2 > div > ul > li.artist-item.active > div > div > div > div > div > div > button > div > div{
+#section2
+  > div
+  > ul
+  > li.artist-item.active
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div
+  > button
+  > div
+  > div {
   margin: 0;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.334;
-    letter-spacing: 0em;
-    margin-bottom: 0.35em;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  margin-bottom: 0.35em;
 }
 .imagen-redonda {
   width: 100px; /* Ancho de la imagen */
