@@ -1,0 +1,62 @@
+.section-bg {
+  // Estilos para el fondo y disposición de la sección
+  background-image: url("../../../assets/jpg/auth-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+}
+
+.clientes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clientes-nacionales,
+.clientes-internacionales {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px; // Ancho máximo para los contenedores de clientes
+}
+
+.clientes-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.cliente-item {
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  width: 200px;
+}
+
+.cliente-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.cliente-nombre {
+  font-weight: bold;
+}
+
+// Estilos para la clase 'nacional'
+.nacional {
+  border-color: #4caf50;
+}
+
+// Estilos para la clase 'internacional'
+.internacional {
+  border-color: #ff9800;
+}

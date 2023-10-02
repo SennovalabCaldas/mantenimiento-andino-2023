@@ -18,7 +18,7 @@ import SlideBarWebMenu from "./SlideBarWebMenu";
 import { CubeWithImages } from "../Client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import { SocialSlideBar } from "./SocialSlideBar";
@@ -32,7 +32,6 @@ import { getAllSuppliers } from "../../actions/providerActions";
 import { getServices } from "../../actions/serviceActions";
 import { getAllCategoriesService } from "../../actions/categoryServiceActions";
 import { getAllPosts } from "../../actions/postActions";
-
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
   const [showToggleButton, setShowToggleButton] = useState(true);
@@ -80,14 +79,13 @@ export function WebMenu() {
           <FontAwesomeIcon icon={menuIcon} />
         </button>
       )}
- 
+
       <nav
         className={`webmenu-page__navbar ${
           isMenuOpen ? "menu-open" : "menu-closed"
         }`}
       >
         <ul onClick={closeMenu} className={isMenuOpen ? "horizontal" : ""}>
-
           <li>
             <ScrollLink
               to="section2"
@@ -172,15 +170,15 @@ export function WebMenu() {
               CONTÁCTANOS
             </ScrollLink>
           </li>
-      
+
           <li className="li-login-anchor">
-          <Link to="/login" className="btn">
-    <FontAwesomeIcon icon={faSignInAlt} />
-  </Link>
+            <Link to="/login" className="btn">
+              <FontAwesomeIcon icon={faSignInAlt} />
+            </Link>
           </li>
         </ul>
       </nav>
-      
+
       <div className="home">
         <Section1 />
         <Section2 />
@@ -269,7 +267,7 @@ function Section5() {
   );
   return (
     <div className="section" id="section5">
-      <WebCertifications certifications={certifications} />
+     <WebCertifications certifications={certifications} />
     </div>
   );
 }

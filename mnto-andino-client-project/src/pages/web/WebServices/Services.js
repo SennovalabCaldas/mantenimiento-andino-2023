@@ -1,12 +1,10 @@
 import { useState } from "react";
 import "./Services.scss";
 import { ENV } from "../../../utils/constants";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+
 import { image } from "../../../assets";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import { Close as CloseIcon } from "@mui/icons-material";
 
 export const Services = ({ categoryServices, services }) => {
   const [showQRCode, setShowQRCode] = useState(false);
@@ -14,8 +12,9 @@ export const Services = ({ categoryServices, services }) => {
     useState(false);
   const [serviciosRelacionados, setServiciosRelacionados] = useState({});
   const baseApi = ENV.BASE_PATH;
-
+  const [openModal, setOpenModal] = useState(false);
   const [active, setActive] = useState(0);
+
   if (categoryServices.length === 0) {
     categoryServices = [
       {
@@ -48,6 +47,14 @@ export const Services = ({ categoryServices, services }) => {
       },
     ];
   }
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const defaultServicesMap = {
     default1: [
@@ -176,8 +183,10 @@ export const Services = ({ categoryServices, services }) => {
             <div className={`section-content ${active === i ? "active" : ""}`}>
               <div className="inner">
                 <div className="bio">
-                  <h2>{artist.name}</h2>
-                  <p>{artist.description}</p>
+                  <div>
+                    <h2>{artist.name}</h2>
+                  </div>
+
                   <div>
                     {showQRCode && (
                       <img
@@ -192,62 +201,48 @@ export const Services = ({ categoryServices, services }) => {
                           ? // Si categoryServices está vacío, muestra servicios predeterminados
                             defaultServicesMap[artist._id].map(
                               (servicio, index) => (
-                                <Card sx={{ maxWidth: 200 }} key={index}>
-                                  <CardActionArea>
-                                    {servicio.photos.map(
-                                      (photo, photoIndex) => (
-                                        <CardMedia
-                                          component="img"
-                                          height="140"
-                                          image={photo}
-                                          alt="green iguana"
-                                          key={photoIndex}
-                                        />
-                                      )
-                                    )}
-                                    <CardContent>
-                                      <Typography
-                                        gutterBottom
-                                        variant="h5"
-                                        component="div"
-                                        className="service-name-typography"
-                                      >
-                                        {servicio.name}
-                                      </Typography>
-                                    </CardContent>
-                                  </CardActionArea>
-                                </Card>
+                                // <Card sx={{ maxWidth: 200 }} key={index}>
+                                //   <CardActionArea>
+                                //     {servicio.photos.map(
+                                //       (photo, photoIndex) => (
+                                //         <CardMedia
+                                //           component="img"
+                                //           height="140"
+                                //           image={photo}
+                                //           alt="green iguana"
+                                //           key={photoIndex}
+                                //         />
+                                //       )
+                                //     )}
+                                //     <CardContent>
+                                //       <Typography
+                                //         gutterBottom
+                                //         variant="h5"
+                                //         component="div"
+                                //         className="service-name-typography"
+                                //       >
+                                //         {servicio.name}
+                                //       </Typography>
+                                //     </CardContent>
+                                //   </CardActionArea>
+                                // </Card>
+                                <img
+                                  src={servicio.photos[0]} // Aquí asumo que solo muestras una foto redonda por servicio
+                                  alt={servicio.name}
+                                  className="imagen-redonda"
+                                  onClick={handleOpenModal}
+                                  key={index}
+                                />
                               )
                             )
                           : serviciosRelacionados.map((servicio, index) => (
-                              <Card sx={{ maxWidth: 345 }} key={index}>
-                                <CardActionArea>
-                                  {servicio.photos.map((photo, photoIndex) => (
-                                    <CardMedia
-                                      component="img"
-                                      height="140"
-                                      image={`${baseApi}/${photo}`}
-                                      alt="green iguana"
-                                      key={photoIndex}
-                                    />
-                                  ))}
-                                  <CardContent>
-                                    <Typography
-                                      gutterBottom
-                                      variant="h5"
-                                      component="div"
-                                    >
-                                      {servicio.name}
-                                    </Typography>
-                                    <Typography
-                                      variant="body2"
-                                      color="text.secondary"
-                                    >
-                                      {servicio.description}
-                                    </Typography>
-                                  </CardContent>
-                                </CardActionArea>
-                              </Card>
+                              <img
+                                src={`${baseApi}/${servicio.photos[0]}`}
+                                alt={servicio.name}
+                                className="imagen-redonda"
+                                key={index}
+                                onClick={handleOpenModal} // Abre el modal al hacer clic en la imagen
+                              />
                             ))}
                       </div>
                     )}
@@ -266,6 +261,37 @@ export const Services = ({ categoryServices, services }) => {
           Siguiente
         </button>
       </div>
+      <Dialog
+        open={openModal}
+        onClose={handleCloseModal}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle>
+          <IconButton
+            edge="end"
+            color="inherit"
+            onClick={handleCloseModal}
+            aria-label="close"
+            sx={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          {/* Aquí puedes colocar el contenido del modal, como detalles adicionales de la imagen */}
+          <img
+            src={image.service1} // Reemplaza con la imagen correspondiente
+            alt="Detalles del servicio"
+            style={{ width: "100%", height: "auto" }}
+          />
+          {/* También puedes agregar otros detalles del servicio */}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

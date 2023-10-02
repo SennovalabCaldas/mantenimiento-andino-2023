@@ -7,9 +7,8 @@ export const BackToMntoAndino = () => {
   return (
     <div className="back-to">
       <Link to="/">
-        <img src={image.logo}></img>
+        <img src={image.logomn}></img>
       </Link>
-
       <Link to="/">
         <button className="btn-back-to">Volver atrás</button>
       </Link>

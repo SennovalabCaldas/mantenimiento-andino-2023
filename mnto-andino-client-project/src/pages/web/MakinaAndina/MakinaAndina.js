@@ -1,106 +1,120 @@
 import React from "react";
-import Slider from "react-slick";
-import { Grid, Typography, Paper } from "@mui/material";
+import "./MakinaAndina.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BackToMntoAndino } from "../../../components/Client/BackToMntoAndino/BackToMntoAndino";
 import { image } from "../../../assets";
 import Footer from "../../../components/Shared/Footer/Footer";
-import { PrevArrow } from "./PrevArrow";
-import { NextArrow } from "./NextArrow";
+import { ProductList } from "./ProductList";
+import "./MakinaAndina.scss";
+import { CubeOtherCompany } from "../LaMartina/CubeOtherCompany";
+import { Divider, Grid, Paper } from "@mui/material";
 
 export const MakinaAndina = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    prevArrow: <PrevArrow />, // Componente de flecha anterior
-    nextArrow: <NextArrow />, // Componente de flecha siguiente
-    autoplay: true, // Reproducción automática
-    autoplaySpeed: 2000, // Velocidad de reproducción automática en milisegundos (opcional)
-  };
-
-  const images = [image.video1, image.video1, image.video1];
-
+  const products_makina_andina = [
+    {
+      id: 1,
+      name: "Conexiones hidráulicas",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 2,
+      name: "Grafadora hidraulica",
+      cover: image.product1MakinaAndina,
+      status: false,
+    },
+    {
+      id: 3,
+      name: "Comprensores para refrigeración",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 4,
+      name: "Mangueras hidraulicas",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 5,
+      name: "Adaptadores hidraulicas",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 6,
+      name: "Todo tipo de repuestos para linea de refrigeración",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 7,
+      name: "Correas y bandas",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 8,
+      name: "Linea de refrigeración",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+    {
+      id: 9,
+      name: "Todo tipo de repuesto para linea de procesamiento y sistemas de ventilación, aires acondicionados",
+      cover: image.product1MakinaAndina,
+      status: true,
+    },
+  ];
   return (
     <>
-      <div className="container">
-        <Slider {...settings} className="sliderStyle">
-          {images.map((item, index) => (
-            <div key={index}>
-              {item.endsWith(".mp4") ? (
-                // Si el elemento es un video
-                <video controls width="100%" height="auto">
-                  <source src={item} type="video/mp4" />
-                  {/* Agrega más fuentes de video si es necesario */}
-                </video>
-              ) : (
-                // Si el elemento es una imagen
-                <img src={item} alt={`Slide ${index}`} />
-              )}
-            </div>
-          ))}
-        </Slider>
-
-        <div className="content">
-          <Grid container spacing={3} style={{ padding: "20px" }}>
-            <Typography variant="h4">
-              ¡CONÓCE ESTE ESPACIO DE CONFORT EN LA NATURALEZA!
-            </Typography>
-            {/* Columna izquierda */}
-            <Grid item xs={12} md={6}>
-              <Paper elevation={3} style={{ padding: "20px" }}>
-                <Typography variant="h4">Ubicación</Typography>
-
-                <Typography>
-                  Ubicada en Palestina.
-                  <br />
-                  En un área de hermosos paisajes y naturaleza pura que rodea la
-                  elegancia y confort de su construcción, la finca La Martina
-                  aguarda por ti y tu seres queridos, para que vivas una
-                  experiencia única.
-                </Typography>
-              </Paper>
-            </Grid>
-
-            {/* Columna derecha */}
-            <Grid item xs={12} md={6}>
-              <Paper elevation={3} style={{ padding: "20px" }}>
-                <Typography variant="h4">Caracteristicas</Typography>
-                <ul>
-                  <li>16 camas disponibles</li>
-                  <li>3 baños</li>
-                  <li>6 cuartos</li>
-                  <li>Piscina</li>
-                  <li>Zonas verdes</li>
-                </ul>
-              </Paper>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3} style={{ padding: "20px" }}>
-            <Grid item xs={12} md={12}>
-              <Paper elevation={3} style={{ padding: "20px 20px 20px 50px" }}>
-                <Typography variant="h4">Disponible para</Typography>
-                <ul>
-                  <li>Eventos de todo tipo</li>
-                  <li>Reuniones familiares</li>
-                  <li>Fiestas Recreación</li>
-                </ul>
-              </Paper>
-            </Grid>
-          </Grid>
-        </div>
-
-        <div className="back-to-mnto">
-          <BackToMntoAndino
-            thumbnailSrc={image.logo} // Ruta de la miniatura de la imagen
-            fullSrc={image.logoSennovalabNoC} // Ruta de la imagen completa
-          />
-        </div>
+      <div className="title-makina-andina">
+        <img src={image.logo4} alt="Logo Makina Andina" className="logo" />
+        <h1>Makina Andina Ingeniería SAS</h1>
       </div>
-
+      <Divider />
+      <Grid
+        container
+        spacing={3}
+        style={{ padding: "20px", justifyContent: "center" }}
+      >
+        <Grid item xs={6} md={6}>
+          <Paper
+            elevation={3}
+            style={{ padding: "20px 20px 20px 50px", textAlign: "center" }}
+          >
+            <p>
+              Makina Andina Ingeniería SAS. Sociedad por Acciones Simplificada.
+            </p>
+            <p>
+              <strong>Dirección: </strong>Calle 76A # 21 - 8. Manizales, Caldas.{" "}
+              <strong>Correo contacto:</strong> makinaandinasas@gmail.com
+            </p>
+          </Paper>
+        </Grid>
+        <Grid item xs={3} md={3}>
+          <Paper
+            elevation={5}
+            style={{ padding: "20px 20px 20px 50px", textAlign: "center" }}
+          >
+            <p>
+              <strong>Descarga el portafolio de servicios </strong>
+              <button className="buttonDownload">Download</button>
+            </p>
+          </Paper>
+        </Grid>
+      </Grid>
+      <div className="back-to-mnto">
+        <BackToMntoAndino
+          thumbnailSrc={image.logomnbg} // Ruta de la miniatura de la imagen
+          fullSrc={image.logoSennovalabNoC} // Ruta de la imagen completa
+        />
+      </div>
+      <ProductList
+        products_makina_andina={products_makina_andina}
+      ></ProductList>
+      <CubeOtherCompany></CubeOtherCompany>
       <Footer></Footer>
     </>
   );

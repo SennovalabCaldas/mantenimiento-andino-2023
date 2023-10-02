@@ -1,0 +1,259 @@
+.back-to-mnto {
+  position: fixed; /* Para que el botón sea fijo en la pantalla */
+  top: 20px; /* Posición desde la parte inferior */
+  left: 20px; /* Posición desde la derecha */
+  background-color: #1a1539bf; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Relleno del botón */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cursor de puntero al pasar por encima */
+  z-index: 999; /* Capa superior para que esté por encima del contenido */
+  transition: background-color 0.3s, transform 0.3s; /* Efectos de transición */
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #075161b7; /* Color de fondo al pasar el mouse */
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+.title-makina-andina {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #093f4b;
+  }
+}
+.productlist-makina-andina {
+  .productlist-search {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    input {
+      padding: 10px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      align-content: center;
+      align-items: center;
+      width: 60%;
+      &:focus {
+        border-color: #007bff; /* Cambia el color del borde al enfocar el input */
+      }
+    }
+  }
+
+  .MuiGrid-container {
+    display: flex;
+    margin-top: 20px;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    .MuiGrid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      &:hover {
+        transform: scale(
+          1.05
+        ); /* Aumenta el tamaño del producto al pasar el mouse */
+        box-shadow: 0px 0px 20px 0px rgba(106, 89, 214, 0.2); /* Aumenta la sombra al pasar el mouse */
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        color: #888;
+      }
+      .contact-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        width: 115px;
+        right: 10px;
+        position: absolute;
+
+        .whatsapp-button {
+          margin-right: 5px;
+          width: 40px; /* Ajusta el ancho del botón */
+          height: 40px; /* Ajusta la altura del botón */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translateX(-50%);
+          background-color: #25d366; // Color de fondo del botón de WhatsApp
+          color: white;
+          border-radius: 25px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, opacity 0.3s ease;
+          &:hover {
+            background-color: #128c7e; // Cambia el color de fondo en el hover
+          }
+          i.material-icons {
+            font-size: 24px; /* Tamaño del ícono */
+            color: #fff; /* Color del ícono */
+            cursor: pointer; /* Cambia el cursor al pasar el mouse */
+          }
+        }
+        .email-button {
+          width: 40px; /* Ajusta el ancho del botón */
+          height: 40px; /* Ajusta la altura del botón */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translateX(-50%);
+          background-color: #1266db; // Color de fondo del botón de WhatsApp
+          color: white;
+          border-radius: 25px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, opacity 0.3s ease;
+          &:hover {
+            background-color: #128c7e; // Cambia el color de fondo en el hover
+          }
+          i.material-icons {
+            font-size: 24px; /* Tamaño del ícono */
+            color: #fff; /* Color del ícono */
+            cursor: pointer; /* Cambia el cursor al pasar el mouse */
+          }
+        }
+      }
+      .status-avatar {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .available {
+        background-color: #4caf50; /* Color de fondo para Disponible */
+      }
+
+      .unavailable {
+        background-color: #f44336; /* Color de fondo para No Disponible */
+      }
+    }
+  }
+}
+
+.buttonDownload {
+  display: inline-block;
+  position: relative;
+  padding: 10px 25px;
+  background-color: #4cc713;
+  color: white;
+  font-family: sans-serif;
+  text-decoration: none;
+  font-size: 0.9em;
+  text-align: center;
+  text-indent: 15px;
+  border: none;
+}
+
+.buttonDownload:hover {
+  background-color: #45a21a;
+  color: white;
+}
+
+.buttonDownload:before,
+.buttonDownload:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 15px;
+  top: 52%;
+}
+
+.buttonDownload:before {
+  width: 10px;
+  height: 2px;
+  border-style: solid;
+  border-width: 0 2px 2px;
+}
+
+.buttonDownload:after {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  margin-top: -7px;
+  border-style: solid;
+  border-width: 4px 4px 0 4px;
+  border-color: transparent;
+  border-top-color: inherit;
+  animation: downloadArrow 1s linear infinite;
+  animation-play-state: paused;
+}
+
+.buttonDownload:hover:before {
+  border-color: #cdefbd;
+}
+
+.buttonDownload:hover:after {
+  border-top-color: #cdefbd;
+  animation-play-state: running;
+}
+
+@keyframes downloadArrow {
+  0% {
+    margin-top: -7px;
+    opacity: 1;
+  }
+
+  0.001% {
+    margin-top: -15px;
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    margin-top: 0;
+    opacity: 0.4;
+  }
+}

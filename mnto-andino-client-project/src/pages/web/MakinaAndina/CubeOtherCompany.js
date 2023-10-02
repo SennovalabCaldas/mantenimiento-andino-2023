@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CubeOtherCompany.scss";
-import { Link } from "react-router-dom";
+
 import { image } from "../../../assets";
 
 export const CubeOtherCompany = () => {

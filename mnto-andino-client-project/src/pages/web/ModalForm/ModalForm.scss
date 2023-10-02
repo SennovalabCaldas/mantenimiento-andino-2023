@@ -1,0 +1,67 @@
+.modal-container {
+  width: 600px;
+  max-width: 80%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  .ver-snackbar {
+    z-index: 9999;
+  }
+  h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .radio-group-tipo-cliente {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+
+    .MuiFormControl-root {
+      width: 100%;
+    }
+
+    .MuiButton-root {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .textarea {
+      width: 100%;
+      resize: vertical;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+
+      &:focus {
+        border-color: #007bff;
+      }
+    }
+  }
+}
+
+/* Estilos para el fondo oscuro detrás de la ventana modal */
+.MuiModal-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para el fondo oscuro detrás de la ventana modal cuando está abierta */
+.MuiBackdrop-root {
+  opacity: 0.8;
+}

@@ -56,7 +56,6 @@
     flex-wrap: wrap;
 
     li {
-      padding-left: 10px;
       cursor: pointer;
       height: 100%;
 
@@ -68,7 +67,7 @@
 
         &:hover {
           color: #ffffff;
-          font-weight: 500 ;
+          font-weight: 500;
           border-bottom: #ffffff 2px solid;
           background-color: #9c9a6374; /* Cambiamos el fondo en hover */
         }
@@ -91,23 +90,41 @@
 // ------------------------------------------------------------
 // Pantalla pequeña
 @media (max-width: 780px) {
+  .menu-closed .webmenu-page__navbar {
+    display: none;
+  }
   .webmenu-page {
-    .webmenu-page__navbar {
-      background-color: rgb(46 46 46);
-      height: 50px;
-      img {
-        width: 55px;
-        height: auto;
-        display: block;
-        border-radius: 3px;
-        transition: transform 0.3s, opacity 0.3s;
-        position: relative;
-        &:hover {
-          opacity: 0.8;
-          box-shadow: 0 0 10px rgba(220, 110, 96, 0.8); /* Agregamos la sombra */
-          filter: brightness(0.7) saturate(40%);
-          -webkit-filter: grayscale(rgba(171, 25, 6, 0.8));
-        }
+    .menu-closed {
+
+      .menu-toggle {
+        display: flex;
+        justify-content: flex-start;
+      }
+      ul {
+        display: none;
+      }
+    }
+    // .webmenu-page__navbar {
+    //   display: none;
+    //   img {
+    //     width: 55px;
+    //     height: auto;
+    //     display: block;
+    //     border-radius: 3px;
+    //     transition: transform 0.3s, opacity 0.3s;
+    //     position: relative;
+    //     &:hover {
+    //       opacity: 0.8;
+    //       box-shadow: 0 0 10px rgba(220, 110, 96, 0.8); /* Agregamos la sombra */
+    //       filter: brightness(0.7) saturate(40%);
+    //       -webkit-filter: grayscale(rgba(171, 25, 6, 0.8));
+    //     }
+    //   }
+    // }
+    .home {
+      width: 100%;
+      #section1 {
+        margin-top: 70px;
       }
     }
     .menu-toggle {
@@ -115,7 +132,7 @@
       top: 5px;
       position: fixed;
       cursor: pointer;
-      background-color: transparent;
+      background-color: #212121;
       border: 1px solid rgba(2, 11, 44, 0.79);
       color: #fff;
       padding: 10px 10px;
@@ -125,15 +142,6 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-    }
-    .menu-closed {
-      .menu-toggle {
-        display: flex;
-        justify-content: flex-start;
-      }
-      ul {
-        display: none;
-      }
     }
 
     .menu-open {

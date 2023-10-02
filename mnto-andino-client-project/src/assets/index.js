@@ -9,7 +9,7 @@ import logo4 from "./jpg/logo4.jpg";
 // import contact from "./jpg/contact.jpg";
 import video2 from "./video/mp4/video1.mp4";
 import video3 from "./video/mp4/video2.mp4";
-import contact from './video/mp4/contact.mp4';
+import contact from "./video/mp4/contact.mp4";
 import img1 from "./png/img1.png";
 import img2 from "./png/img2.png";
 import section from "./png/section.jpeg";
@@ -33,12 +33,15 @@ import ani from "./clients/ani.png";
 import ara from "./clients/ara.svg";
 import Mercaldas from "./clients/Mercaldas.png";
 import Rational from "./clients/Rational.png";
+import unox from "./clients/unox.png";
 import superinter from "./clients/superinter.png";
 import superal from "./clients/superal.png";
 import logomnbg from "./jpg/image-removebg-preview.png";
-import qrServices from './png/qrServices.png';
+import qrServices from "./png/qrServices.png";
 
-import service1 from './services/service1.jpg'
+import product1MakinaAndina from "./images/products/product_1.jpg";
+
+import service1 from "./services/service1.jpg";
 
 const image = {
   authBg,
@@ -77,6 +80,8 @@ const image = {
   slide1,
   logomnbg,
   qrServices,
-  service1
+  service1,
+  product1MakinaAndina,
+  unox
 };
 export { image };

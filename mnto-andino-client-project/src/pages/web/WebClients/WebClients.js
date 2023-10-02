@@ -1,157 +1,132 @@
-import React, { useEffect, useState } from "react";
-import "./WebClient.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { Mapa } from "../../../components/GeneralLayout";
-import { getAllClients } from "../../../actions/clientActions";
-import { useTheme } from "@mui/material/styles";
-import SliderMenuClients from "./SliderMenuClients";
-import { CardClient } from "./CardClient";
-import { ENV } from "../../../utils";
+import React from "react";
+import "./WebClients.scss";
+import { image } from "../../../assets";
 
 export const WebClients = ({ clients }) => {
-  const baseApi = ENV.BASE_PATH;
+  const defaultClientesNacionales = [
+    {
+      clientName: "Consorcio Farallones",
+      avatar: image.consorcio,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Grupo éxito",
+      avatar: image.exito,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "ANI",
+      avatar: image.ani,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Super inter",
+      avatar: image.superinter,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Carulla",
+      avatar: image.carulla,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Mercaldas",
+      avatar: image.Mercaldas,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Juan Valdéz",
+      avatar: image.juanvaldez,
+      national: true,
+      active: true,
+    },
+  ];
 
-  const handleCategoryClick = (index) => {
-    setSelectedCategory(index);
-  };
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [avatarsList, setAvatarsList] = useState([]);
+  const defaultClientesInternacionales = [
+    {
+      clientName: "UNOX",
+      avatar: image.unox,
+      national: false,
+      active: true,
+    },
+    {
+      clientName: "ara",
+      avatar: image.ara,
+      national: false,
+      active: true,
+    },
+    {
+      clientName: "Súper",
+      avatar: image.superal,
+      national: false,
+      active: true,
+    },
+    {
+      clientName: "Rational",
+      avatar: image.Rational,
+      national: false,
+      active: true,
+    },
+  ];
 
-  const [menuItems] = useState([
-    { text: "NACIONALES" },
-    { text: "INTERNACIONALES" },
-  ]);
-  const theme = useTheme();
-  const dispatch = useDispatch();
-  const [addressList, setAddressList] = useState([]);
+  const mergedClientes = [
+    ...new Map(
+      [
+        ...defaultClientesNacionales,
+        ...defaultClientesInternacionales,
+        ...(clients || []),
+      ].map((item) => [item.clientName, item])
+    ).values(),
+  ];
 
-  useEffect(() => {
-    (async () => {
-      try {
-        await dispatch(getAllClients());
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [dispatch]);
-
-  useEffect(() => {
-    const initialCategoryIndex = menuItems.findIndex(
-      (item) => item.text === "NACIONALES"
-    );
-    setSelectedCategory(initialCategoryIndex);
-  }, []);
-
-  useEffect(() => {
-    [].slice
-      .call(document.querySelectorAll('a[href="#"'))
-      .forEach(function (el) {
-        el.addEventListener("click", function (ev) {
-          ev.preventDefault();
-        });
-      });
-  }, []);
-
-  useEffect(() => {
-    const fetchAddresses = async () => {
-      const addresses = await Promise.all(
-        clients.map(async (client) => {
-          try {
-            // const result = await getAddress(client.direccion);
-            // return result;
-          } catch (error) {
-            console.error("Error al obtener la dirección del cliente:", error);
-            return "Dirección no disponible";
-          }
-        })
-      );
-      setAddressList(addresses);
-    };
-
-    fetchAddresses();
-  }, [clients]);
-
-  useEffect(() => {
-    const shuffledAvatars = shuffleArray(
-      clients.map((client) => `${baseApi}/${client.avatar}`)
-    );
-    const requiredCells = clients.length > 12 ? clients.length : 12;
-    const filledAvatars = [...shuffledAvatars];
-    while (filledAvatars.length < requiredCells) {
-      filledAvatars.push(shuffledAvatars.pop());
-    }
-    setAvatarsList(filledAvatars);
-  }, [clients]);
-
-  return (
-    <div className="content-client-section">
-      <h2>Clientes</h2>
-      <SliderMenuClients
-        menuItems={menuItems}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <div className="content-service">
-        {menuItems.map((category, index) => (
-          <div key={index}>
-            <h2
-              className={index === selectedCategory ? "selected" : "hidden"}
-              onClick={() => setSelectedCategory(index)}
-            ></h2>
-            <div
-              className={`grid ${
-                index === selectedCategory ? "visible" : "hidden"
-              }`}
-            >
-              {index === selectedCategory && (
-                <>
-                  {category.text === "NACIONALES" && (
-                    <>
-                      <Mapa />
-                      <div className="item-clients-section">
-                        <div>
-                          <CardClient
-                            clients={clients.filter(
-                              (client) => client.national === true
-                            )}
-                          />
-                        </div>
-                      </div>
-                    </>
-                  )}
-                  {category.text === "INTERNACIONALES" && (
-                    <>
-                      <div className="item-clients-section">
-                        {/* Filtrar clientes internacionales */}
-                        <CardClient
-                          clients={clients.filter(
-                            (client) => client.national === false
-                          )}
-                        />
-                      </div>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
+  const renderClientes = (clientes) => {
+    return (
+      <div className="clientes-row">
+        {clientes.map((cliente, index) => (
+          <div
+            key={index}
+            className={`cliente-item ${
+              cliente.national ? "nacional" : "internacional"
+            }`}
+          >
+            <img
+              src={cliente.avatar}
+              alt={`Logo de ${cliente.clientName}`}
+              className="cliente-logo"
+            />
+            <span className="cliente-nombre">{cliente.clientName}</span>
           </div>
         ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="section-bg">
+      <div className="clientes-container">
+        <div className="clientes-nacionales">
+          <h2>Clientes Nacionales</h2>
+          {renderClientes(
+            mergedClientes.filter(
+              (cliente) => cliente.active && cliente.national
+            )
+          )}
+        </div>
+        <div className="clientes-internacionales">
+          <h2>Clientes Internacionales</h2>
+          {renderClientes(
+            mergedClientes.filter(
+              (cliente) => cliente.active && !cliente.national
+            )
+          )}
+        </div>
       </div>
     </div>
   );
 };
-
-// Función para mezclar aleatoriamente un array (Fisher-Yates Shuffle)
-function shuffleArray(array) {
-  let currentIndex = array.length,
-    randomIndex,
-    temporaryValue;
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-}
