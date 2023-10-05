@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 
 import "./Mapa.scss";
+import { Alert } from "@mui/material";
 
 export const Mapa = ({ departamentos }) => {
   const [hoveredDept, setHoveredDept] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringMessage, setIsHoveringMessage] = useState(false);
-  const [clickedDept, setClickedDept] = useState(null);
-  const [sedeInfo, setSedeInfo] = React.useState(null);
-  const dispatch = useDispatch();
-  const sedesData = useSelector((state) => state.sede.allSedes);
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
+  const [departamentoClickeado, setDepartamentoClickeado] = useState("");
+
+  const mostrarPrimerClienteMensaje = (nombreDepartamento) => {
+    setDepartamentoClickeado(nombreDepartamento); // Guarda el nombre del departamento clickeado
+    setMostrarMensaje(true);
+
+    setTimeout(() => {
+      setMostrarMensaje(false);
+      setDepartamentoClickeado(""); // Restablece el nombre del departamento clickeado
+    }, 3000); // Ocultar el mensaje después de 3 segundos (3000 milisegundos)
+  };
 
   const handleMouseEnter = (deptName) => {
     setHoveredDept(deptName);
@@ -21,24 +28,10 @@ export const Mapa = ({ departamentos }) => {
     setHoveredDept(null);
   };
 
-  const handleMouseEnterMessage = () => {
-    setIsHoveringMessage(true);
-  };
-
-  const handleMouseLeaveMessage = () => {
-    setIsHoveringMessage(false);
-  };
-
   const handleMouseMove = (event) => {
     setMousePosition({ x: event.clientX, y: event.clientY });
   };
 
-  // Función que permite obtener todas las sedes de un departamento
-  const getSedesPorDepartamento = (deptName) => {
-    return sedesData.sedes.filter(
-      (sede) => sede.direccion.departamento === deptName
-    );
-  };
   var simplemaps_countrymap_mapinfo = {
     map_name: "country",
     state_bbox_array: {
@@ -207,7 +200,7 @@ export const Mapa = ({ departamentos }) => {
       y: 0.99,
     },
   };
-
+  const departamentosDestacados = ["Caldas", "Quindío"];
   const coloresDepartamentos = [
     "#FF5733",
     "#33FF57",
@@ -221,15 +214,12 @@ export const Mapa = ({ departamentos }) => {
   const getDepartamentoColor = (deptName) => {
     const color = "rgba(105, 143, 147, 0.51)";
     if (deptName === hoveredDept) {
-      return "#70A9B0";
+      return "#70A9B0"; // Color cuando el departamento está siendo señalado
+    } else if (departamentosDestacados.includes(deptName)) {
+      // Asigna un color diferente a los departamentos en el array departamentosDestacados
+      return "#FF5733"; // Por ejemplo, el color naranja para Caldas y Quindío
     } else {
-      if (departamentos?.find((name) => name === deptName)) {
-        const colorSeleccionado = coloresDepartamentos[colorIndex];
-        colorIndex = (colorIndex + 1) % coloresDepartamentos.length; // Avanza al siguiente color circularmente
-        return colorSeleccionado;
-      } else {
-        return color;
-      }
+      return color; // Otros departamentos conservan el color original
     }
   };
 
@@ -240,32 +230,6 @@ export const Mapa = ({ departamentos }) => {
     nombre: simplemaps_countrymap_mapinfo.names[indice],
     indice,
   }));
-
-  const handleDeptClick = (deptName) => {
-    // Verificar si el nombre del departamento existe en el objeto "names"
-    if (Object.values(simplemaps_countrymap_mapinfo.names).includes(deptName)) {
-      // Verificar si el departamento tiene sede
-      const sedeExiste = departamentos.includes(deptName);
-
-      if (sedeExiste) {
-        // Si hay sedes en el municipio, muestra la información de las sedes
-        const sedesDepartamento = getSedesPorDepartamento(deptName);
-        //
-
-        if (sedesDepartamento.length > 0) {
-          // Creamos un array para almacenar la información de las sedes
-          const sedeInfoArray = sedesDepartamento.map((sede) => ({
-            nombre: sede.nombre,
-            direccion: sede.direccion,
-            // Agrega aquí otras propiedades de la sede que desees mostrar
-          }));
-          setSedeInfo({ sedeInfoArray, existeSede: true });
-        } else {
-          setSedeInfo({ deptName, existeSede: false });
-        }
-      }
-    }
-  };
 
   // Crear una función para generar los elementos <path>
   const renderDepartamentos = () => {
@@ -280,7 +244,7 @@ export const Mapa = ({ departamentos }) => {
         stroke="#000"
         strokeOpacity="0.5"
         filter="url(#shadow)"
-        onClick={() => handleDeptClick(dept.nombre)}
+        onClick={() => mostrarPrimerClienteMensaje(dept.nombre)}
       />
     ));
   };
@@ -299,35 +263,37 @@ export const Mapa = ({ departamentos }) => {
 
   return (
     <>
-      <div className="container-con-margin">
-        <svg viewBox="0 0 2000 2000" onMouseMove={handleMouseMove}>
-          {Object.values(simplemaps_countrymap_mapinfo.names).map(
-            (deptName) => {
-              return null;
-            }
-          )}
-          {renderDepartamentos()}
-        </svg>
+      <div className="mapa-section">
+        <div className="card mt-3">
+          <div className="card-body">
+            <h5 className="card-title">
+              Tenemos clientes en diferentes departamentos de Colombia:
+            </h5>
+            <ul className="list-group">
+              {departamentosDestacados.map((departamento, index) => (
+                <li key={index} className="list-group-item">
+                  {departamento}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        {mostrarMensaje && (
+        <Alert severity="info">
+          ¡Puedes ser nuestro primer cliente en la región de {departamentoClickeado}!
+        </Alert>
+      )}
+        <div className="card-map">
+          <svg viewBox="0 0 1200 1200">
+            {Object.values(simplemaps_countrymap_mapinfo.names).map(
+              (deptName) => {
+                return null;
+              }
+            )}
+            {renderDepartamentos()}
+          </svg>
+        </div>
       </div>
-      {hoveredDept && !isHoveringMessage && !clickedDept && (
-        <div
-          className="mensajeDepartamento"
-          style={{ top: mousePosition.y + 30, left: mousePosition.x + 100 }}
-          onMouseEnter={handleMouseEnterMessage}
-          onMouseLeave={handleMouseLeaveMessage}
-        >
-          <p>{hoveredDept}</p>
-        </div>
-      )}
-
-      {clickedDept && (
-        <div
-          className="mensajeDepartamento"
-          style={{ top: "50px", left: "50px" }}
-        >
-          <p>{clickedDept}</p>
-        </div>
-      )}
     </>
   );
 };

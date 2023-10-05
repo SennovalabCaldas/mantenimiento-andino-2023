@@ -1,44 +1,57 @@
-/* Estilos base */
-.mensajeDepartamento {
-  position: absolute;
-  top: 10%;
-  transform: translateX(0%)translateY(0%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  display: inline-block;
-}
-
-.container-con-margin {
-  margin: 0; /* Elimina todos los márgenes */
-  padding: 0; /* Elimina el espacio de relleno */
-}
-/* Media Queries para dispositivos pequeños */
-@media (max-width: 768px) {
-  .mapa {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .mensajeDepartamento {
-    // position: static;
-    transform: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    right: auto;
-    left: auto;
-  }
-
-  svg {
+.mapa-section {
+  .card-map{
     width: 100%;
+    height: auto;
+    padding: 16px;
+    margin: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    border-radius: 8px;
   }
-}
+  .card {
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    background-color: #6da4a280;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
 
-.icono-ubicacion {
-  margin-right: 5px; /* Espacio entre el icono y el nombre de la ciudad */
-  font-size: 16px; /* Tamaño del icono */
-  color: #ffffff; /* Color del icono */
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Cambia la sombra al pasar el mouse sobre el card */
+  }
+
+  .card-title {
+    font-size: 1.25rem; /* Tamaño del título */
+    margin-bottom: 1rem; /* Margen inferior del título */
+  }
+
+  .list-group-item {
+    font-size: 1rem; /* Tamaño del texto de la lista */
+    border: none; /* Elimina el borde de los elementos de la lista */
+  }
+
+  /* Estilo para la lista de departamentos */
+  .list-group {
+    margin-bottom: 0; /* Elimina el margen inferior de la lista */
+  }
+
+  @media (max-width: 768px) {
+    .mapa {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    svg {
+      width: 100%;
+    }
+  }
 }
