@@ -46,6 +46,24 @@ export const WebClients = ({ clients }) => {
       national: true,
       active: true,
     },
+    {
+      clientName: "Concesión la Pintada",
+      avatar: image.concesionpintada,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Multidrogas",
+      avatar: image.multidrogas,
+      national: true,
+      active: true,
+    },
+    {
+      clientName: "Cafam",
+      avatar: image.cafam,
+      national: true,
+      active: true,
+    },
   ];
 
   const defaultClientesInternacionales = [
@@ -75,6 +93,56 @@ export const WebClients = ({ clients }) => {
     },
   ];
 
+  const testimonios = [
+    {
+      cliente: "Cliente 1",
+      cargo: "Director de Operaciones",
+      avatar: image.cliente1Avatar,
+      comentario: "Excelente servicio, muy profesionales.",
+      evaluacion: 5,
+    },
+    {
+      cliente: "Cliente 2",
+      cargo: "Gerente de Producción",
+      avatar: image.cliente2Avatar,
+      comentario: "Trabajo excepcional, los recomiendo totalmente.",
+      evaluacion: 4,
+    },
+    {
+      cliente: "Cliente 3",
+      cargo: "Gerente de Producción",
+      avatar: image.cliente2Avatar,
+      comentario: "Trabajo excepcional, los recomiendo totalmente.",
+      evaluacion: 5,
+    },
+    // Agrega más testimonios según sea necesario
+  ];
+
+  const renderTestimonios = () => {
+    return (
+      <div className="testimonios-container">
+        {testimonios.map((testimonio, index) => (
+          <div key={index} className="testimonio-item">
+            <img
+              src={testimonio.avatar}
+              alt={`Avatar de ${testimonio.cliente}`}
+              className="testimonio-avatar"
+            />
+            <h3 className="testimonio-cliente">{testimonio.cliente}</h3>
+            <p className="testimonio-cargo">{testimonio.cargo}</p>
+            <div className="testimonio-stars">
+              {[...Array(testimonio.evaluacion)].map((_, i) => (
+                <span key={i} className="star">
+                  &#9733;
+                </span>
+              ))}
+            </div>
+            <p className="testimonio-comentario">{testimonio.comentario}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
   const mergedClientes = [
     ...new Map(
       [
@@ -100,7 +168,6 @@ export const WebClients = ({ clients }) => {
               alt={`Logo de ${cliente.clientName}`}
               className="cliente-logo"
             />
-            <span className="cliente-nombre">{cliente.clientName}</span>
           </div>
         ))}
       </div>
@@ -108,7 +175,38 @@ export const WebClients = ({ clients }) => {
   };
 
   return (
-    <div className="section-bg">
+    <div className="section-clients">
+       <a className="title-mnto-andino" href="#">
+          <span className="smaller-text">nuestros</span>clientes
+        </a>
+      <div className="video-client-section">
+        <div className="video-container">
+          <video
+            className="video-style"
+            autoPlay
+            controls
+            width="100%"
+            height="auto"
+          >
+            <source src={image.contact} type="video/mp4" />
+          </video>
+          <div className="video-overlay">
+            <div className="titulo-video-overlay">
+              <h2>MANTENIMIENTO ANDINO SAS</h2>
+            </div>
+          </div>
+          <div className="imagen-video-overlay">
+            <img
+              src={image.logomn}
+              alt="Logo de la Empresa"
+              className="logo-superpuesto"
+            />
+          </div>
+          <div className="subtitulo-video-overlay">
+            <p>Conoce todo lo que tenemos para ofrecerte.</p>
+          </div>
+        </div>
+      </div>
       <div className="clientes-container">
         <div className="clientes-nacionales">
           <h2>Clientes Nacionales</h2>
@@ -127,6 +225,7 @@ export const WebClients = ({ clients }) => {
           )}
         </div>
       </div>
+      {renderTestimonios()}
     </div>
   );
 };

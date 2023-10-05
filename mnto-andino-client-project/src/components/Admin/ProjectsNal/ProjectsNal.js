@@ -1,12 +1,24 @@
 import React, { useEffect } from "react";
-import {ENV} from "../../../utils";
+import { ENV } from "../../../utils";
+import { useDispatch } from "react-redux";
+import { deleteProject, getAllProjects } from "../../../actions/projectActions";
 
 export const ProjectsNal = ({ projects, national }) => {
   console.log("Projects:", projects);
   console.log("National:", national);
   const baseApi = ENV.BASE_PATH;
+  const dispatch = useDispatch();
 
-  const handleDeleteProject = (projectId) => {};
+  const handleDeleteProject = async (projectId) => {
+    console.log("Eliminar proyecto:", projectId);
+    try {
+      await dispatch(deleteProject(projectId));
+      await dispatch(getAllProjects());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleEditProject = (projectId) => {};
   return (
     <div>
@@ -47,7 +59,7 @@ export const ProjectsNal = ({ projects, national }) => {
                 </span>
                 <span
                   className="delete-link"
-                  onClick={() => handleDeleteProject(project.id)}
+                  onClick={() => handleDeleteProject(project._id)}
                 >
                   Eliminar
                 </span>

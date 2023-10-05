@@ -75,6 +75,8 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
         </div>
       </Link>
 
+
+
       <Link
         to="section5"
         spy={true}
@@ -84,7 +86,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
         onClick={() => handleSetActiveSection("section5")}
       >
         <div className={`icon ${activeSection === "section5" && "active"}`}>
-          <FontAwesomeIcon icon={faHandshake} />
+          <FontAwesomeIcon icon={faRocket} />
         </div>
       </Link>
 
@@ -97,7 +99,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
         onClick={() => handleSetActiveSection("section6")}
       >
         <div className={`icon ${activeSection === "section6" && "active"}`}>
-          <FontAwesomeIcon icon={faRocket} />
+          <FontAwesomeIcon icon={faHandHoldingHeart} />
         </div>
       </Link>
 
@@ -110,19 +112,6 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
         onClick={() => handleSetActiveSection("section7")}
       >
         <div className={`icon ${activeSection === "section7" && "active"}`}>
-          <FontAwesomeIcon icon={faHandHoldingHeart} />
-        </div>
-      </Link>
-
-      <Link
-        to="section8"
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-        onClick={() => handleSetActiveSection("section8")}
-      >
-        <div className={`icon ${activeSection === "section8" && "active"}`}>
           <FontAwesomeIcon icon={faPhone} />
         </div>
       </Link>

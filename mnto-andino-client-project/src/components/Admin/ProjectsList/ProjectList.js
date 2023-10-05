@@ -192,29 +192,6 @@ export const ProjectList = () => {
                 value={entity}
                 onChange={(e) => setEntity(e.target.value)}
               />
-              <FormControl fullWidth margin="normal">
-                <InputLabel id="service-label">
-                  Selecciona un cliente
-                </InputLabel>
-                <Select
-                  labelId="service-label"
-                  id="service-select"
-                  value={client}
-                  onChange={(e) => {
-                    setClient(e.target.value);
-                    setEditingProject({
-                      ...editingProject,
-                      client: e.target.value,
-                    });
-                  }}
-                >
-                  {clients.map((cli) => (
-                    <MenuItem key={cli._id} value={cli._id}>
-                      {cli.clientName}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
               <Switch
                 checked={national}
                 onChange={(e) => setNational(e.target.checked)}

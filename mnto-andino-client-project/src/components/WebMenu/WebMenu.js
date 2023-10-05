@@ -10,7 +10,7 @@ import {
 } from "../../pages/web";
 import { WebCertifications } from "../../pages/web/WebCertifications/WebCertifications";
 import WebSuppliers from "../../pages/web/WebSuppliers/WebSuppliers";
-import WebContactUs from "../../pages/web/WebContactUs/WebContactUs";
+import {WebContactUs} from "../../pages/web/WebContactUs/WebContactUs";
 import { Link as ScrollLink } from "react-scroll";
 import { useSelector } from "react-redux";
 import "./WebMenu.scss";
@@ -32,9 +32,10 @@ import { getAllSuppliers } from "../../actions/providerActions";
 import { getServices } from "../../actions/serviceActions";
 import { getAllCategoriesService } from "../../actions/categoryServiceActions";
 import { getAllPosts } from "../../actions/postActions";
+import { image } from "../../assets";
 export function WebMenu() {
   const [activeSection, setActiveSection] = useState("section1");
-  const [showToggleButton, setShowToggleButton] = useState(true);
+  const [showToggleButton, setShowToggleButton] = useState(false); // Inicializar en falso
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuIcon = isMenuOpen ? faTimes : faBars;
@@ -42,52 +43,37 @@ export function WebMenu() {
   const handleSetActiveSection = (section) => {
     setActiveSection(section);
     if (section !== "section1") {
-      setShowToggleButton(false);
+      setShowToggleButton(true); // Mostrar el botón de menú cuando no está en la sección 1
     } else {
-      setShowToggleButton(true);
+      setShowToggleButton(false); // Ocultar el botón de menú cuando está en la sección 1
     }
   };
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
   const showSlideBar = activeSection !== "section1";
-
+  console.log(activeSection);
   return (
     <div className="webmenu-page">
-      {showSlideBar && (
+      {showToggleButton && (
         <SlideBarWebMenu
           activeSection={activeSection}
           handleSetActiveSection={handleSetActiveSection}
         />
       )}
-      {showToggleButton && (
-        <button
-          className={`menu-toggle ${isMenuOpen ? "menu-open" : "menu-closed"}`}
-          onClick={(event) => {
-            event.stopPropagation();
-            toggleMenu();
-          }}
-          aria-label="Toggle Menu"
-        >
-          <FontAwesomeIcon icon={menuIcon} />
-        </button>
-      )}
-
-      <nav
-        className={`webmenu-page__navbar ${
-          isMenuOpen ? "menu-open" : "menu-closed"
-        }`}
-      >
-        <ul onClick={closeMenu} className={isMenuOpen ? "horizontal" : ""}>
+      <nav className="mask">
+        <a className="title-mnto-andino" href="#">
+          <span className="smaller-text">Mantenimiento</span> Andino
+        </a>
+        <ul onClick={closeMenu} className="list">
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section2"
               spy={true}
               smooth={true}
@@ -100,6 +86,7 @@ export function WebMenu() {
           </li>
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section3"
               spy={true}
               smooth={true}
@@ -112,6 +99,7 @@ export function WebMenu() {
           </li>
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section4"
               spy={true}
               smooth={true}
@@ -124,6 +112,7 @@ export function WebMenu() {
           </li>
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section5"
               spy={true}
               smooth={true}
@@ -136,6 +125,7 @@ export function WebMenu() {
           </li>
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section6"
               spy={true}
               smooth={true}
@@ -148,6 +138,7 @@ export function WebMenu() {
           </li>
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section7"
               spy={true}
               smooth={true}
@@ -160,6 +151,7 @@ export function WebMenu() {
           </li>
           <li>
             <ScrollLink
+              className="a-scrollink"
               to="section8"
               spy={true}
               smooth={true}
@@ -173,12 +165,13 @@ export function WebMenu() {
 
           <li className="li-login-anchor">
             <Link to="/login" className="btn">
-              <FontAwesomeIcon icon={faSignInAlt} />
+              <span>INGRESAR</span>
             </Link>
           </li>
         </ul>
+        <button class="menu">Menu</button>
       </nav>
-
+   
       <div className="home">
         <Section1 />
         <Section2 />
@@ -267,7 +260,7 @@ function Section5() {
   );
   return (
     <div className="section" id="section5">
-     <WebCertifications certifications={certifications} />
+      <WebCertifications certifications={certifications} />
     </div>
   );
 }
