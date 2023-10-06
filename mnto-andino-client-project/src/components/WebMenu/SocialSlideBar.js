@@ -37,7 +37,7 @@ export const SocialSlideBar = () => {
           <img src={image.facebook} className="footer__icon-img-large" />
         </a>
         <a
-          href="https://www.instagram.com/mantenimiento_andino/"
+          href="https://www.instagram.com/mntoandino/"
           rel="noreferrer"
           target="_blank"
           className="transition text-grey hover:hover:text-blue-500"

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.scss"; // Estilo CSS para el footer
 import { image } from "../../../assets";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const numeroDeTelefono = "+57310833591"; // Reemplaza esto con el número de teléfono deseado
   const enlaceWhatsApp = `https://wa.me/${numeroDeTelefono}`;
@@ -42,44 +43,36 @@ const Footer = () => {
         </a>
       </div>
       <div className="footer__item">
-        <h3>Dirección</h3>
+        <h3>Privacy Policy</h3>
 
-        <a
-          href="https://goo.gl/maps/9JvQ1J1Z1Z1Z1Z1Z1"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link to="/privacypolicy" className="btn">
           <p>
-            Cl 76a # 21-85, Milan.
+            Consulta
             <br />
-            <strong> Manizales, Caldas, Colombia.</strong>
+            <strong> Politica de privacidad Mantenimiento Andino.</strong>
           </p>
-          <p>
-            <strong>Horario de atención:</strong> <br />
-            Lunes a Viernes de 8:00 am a 5:00 pm
-          </p>
-        </a>
+        </Link>
       </div>
       <div className="footer__item">
         <ul>
-            <div className="footer__item-sennovalab">
-              <div className="footer__item-img">
-                <a
-                  href="http://sennovalab.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={image.logoSennovalabNoC} />
-                </a>
-              </div>
+          <div className="footer__item-sennovalab">
+            <div className="footer__item-img">
               <a
                 href="http://sennovalab.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h3>© Copyright 2023 SENNOVALAB</h3>
+                <img src={image.logoSennovalabNoC} />
               </a>
             </div>
+            <a
+              href="http://sennovalab.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h3>© Copyright 2023 SENNOVALAB</h3>
+            </a>
+          </div>
         </ul>
       </div>
     </footer>

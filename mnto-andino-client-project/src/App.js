@@ -6,6 +6,7 @@ import { authenticateUser } from "./actions/authActions";
 import { Auth } from "./pages/admin";
 import { Loading, WebMenu } from "./components/Shared";
 import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "./pages/web";
+import { PrivacyPolicy } from "./components/Shared/Footer/PrivacyPolicy";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -68,6 +69,7 @@ const App = () => {
             <Route path="/makinandina" element={<MakinaAndina />} />
             <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
             <Route path="/lamartina" element={<LaMartina />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           </Routes>
         )}
       </BrowserRouter>

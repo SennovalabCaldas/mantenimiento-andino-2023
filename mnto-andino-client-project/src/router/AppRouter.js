@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { AdminLayout } from "../layouts";
-import { Auth, MakinaAndinaAdmin,News, Services } from "../pages/admin";
+import { Auth, MakinaAndinaAdmin, News, Services } from "../pages/admin";
 import { Users, Sedes, Home, Clients } from "../pages/admin";
 import { Providers } from "../pages/admin/Providers";
 import Foundation from "../pages/admin/Foundation/Foundation";
@@ -14,6 +14,7 @@ import { Allies } from "../components/Admin/Allies";
 import { Certification } from "../pages/admin/Certification";
 import { MakinaAndinaMiamiAdmin } from "../pages/admin/MakinaAndinaMiamiAdmin";
 import { Glamping } from "../pages/admin/Glamping";
+import { PrivacyPolicy } from "../components/Shared/Footer/PrivacyPolicy";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
@@ -38,6 +39,7 @@ export const AppRouter = () => {
           <Route path="/makinandina" element={<MakinaAndina />} />
           <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
           <Route path="/lamartina" element={<LaMartina />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         </>
       ) : (
         <>
@@ -95,7 +97,7 @@ export const AppRouter = () => {
               />
               <Route
                 path="admin/makinandinamiami"
-                element={loadLayout(AdminLayout,MakinaAndinaMiamiAdmin )}
+                element={loadLayout(AdminLayout, MakinaAndinaMiamiAdmin)}
               />
               <Route
                 path="admin/glamping"

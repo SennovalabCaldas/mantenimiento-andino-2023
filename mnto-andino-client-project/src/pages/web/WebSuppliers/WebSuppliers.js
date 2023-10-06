@@ -45,11 +45,7 @@ const WebSuppliers = ({ suppliers, allies }) => {
             component="p"
             className="division__description-item__text"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            imperdiet ut quam sit amet vehicula. Donec vel nunc eget dolor
-            vestibulum ultricies. Sed euismod, est nec ornare ultrices, urna
-            magna consectetur nunc, eu ultricies nunc dolor ac nisi. Nulla
-            facilisi. Nulla facilisi. Morbi eget nunc non enim semper
+            Lorem 
           </Typography>
         </div>
       </div>
@@ -67,11 +63,7 @@ const WebSuppliers = ({ suppliers, allies }) => {
             component="p"
             className="division__description-item__text"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            imperdiet ut quam sit amet vehicula. Donec vel nunc eget dolor
-            vestibulum ultricies. Sed euismod, est nec ornare ultrices, urna
-            magna consectetur nunc, eu ultricies nunc dolor ac nisi. Nulla
-            facilisi. Nulla facilisi. Morbi eget nunc non enim semper
+            Lorem 
           </Typography>
         </div>
         <div className="division__item">
