@@ -86,6 +86,11 @@ const defaultServicesMap = {
   ],
 };
 
+const handleDownloadClick = () => {
+  const pdfUrl = image.portafolio;
+  window.open(pdfUrl, "_blank");
+};
+
 export const ProductList = ({ categoryServices, services }) => {
   console.log(categoryServices);
   const allServicesCategory = {
@@ -206,7 +211,12 @@ export const ProductList = ({ categoryServices, services }) => {
                 </p>
               </div>
               <div>
-                <button className="buttonDownload">Descargar</button>
+                <button
+                  className="buttonDownload"
+                  onClick={handleDownloadClick}
+                >
+                  Descargar
+                </button>
               </div>
             </div>
             <div className="download-portfolio">

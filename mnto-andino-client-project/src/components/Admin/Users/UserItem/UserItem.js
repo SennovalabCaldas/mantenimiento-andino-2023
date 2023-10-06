@@ -89,16 +89,6 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
 
   const userItemClass = user.active ? "user-item active" : "user-item inactive";
 
-  // const UserAvatar = ({ imageUrl, isActive }) => {
-  //   const avatarClassName = isActive ? "active" : "inactive";
-
-  //   return (
-  //     <div className={`user-item__image ${avatarClassName}`}>
-  //       <Image avatar src={imageUrl} />
-  //     </div>
-  //   );
-  // };
-
   const UserAvatar = ({ imageUrl, isActive }) => {
     return (
       <div className="user-avatar">
@@ -115,7 +105,7 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
           <UserAvatar
             className="user-basic-avatar"
             imageUrl={
-              user.avatar ? `${ENV.BASE_PATH}/${user.avatar}` : image.noAvatar
+              user.avatar ? `${ENV.BASE_PATH}/${user.avatar}` : image.logomn
             }
             isActive={user.active}
           />

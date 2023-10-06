@@ -40,7 +40,7 @@ const SedeList = ({ sedes }) => {
   // Función para abrir el modal de edición
   const handleOpenEditModal = (sede) => {
     setSelectedSede(sede);
-      console.log(sede);
+    console.log(sede);
     setShowEditModal(true);
   };
 
@@ -108,7 +108,7 @@ const SedeList = ({ sedes }) => {
       await dispatch(getAllSedes());
       // Actualiza el estado de las sedes después de eliminar la sede
       const updatedSedes = sedes.filter((sede) => sede._id !== sedeId);
-        console.log(updatedSedes);
+      console.log(updatedSedes);
     } catch (error) {
       console.error("Error al eliminar la sede:", error);
     }
@@ -120,31 +120,24 @@ const SedeList = ({ sedes }) => {
   };
   return (
     <>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+      <Paper sx={{ width: "100%", mb: 2, paddingTop: "20px" }}>
         <form className="input_group">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: "10px",
-            }}
-          >
+          <div style={{ marginBottom: "20px" }}>
             <TextField
-              style={{ width: "100%", height: "18px", marginBottom: "40px" }}
+              style={{ marginRight: "10px" }}
               className="search-field"
               label="Buscar por Nombre"
               value={searchTerm.name}
               onChange={(e) => handleSearch(e, "name")}
             />
             <TextField
-              style={{ width: "100%", height: "18px", marginBottom: "40px" }}
+              style={{ marginRight: "10px" }}
               className="search-field"
               label="Buscar por Departamento"
               value={searchTerm.department}
               onChange={(e) => handleSearch(e, "department")}
             />
             <TextField
-              style={{ width: "100%", height: "18px", marginBottom: "40px" }}
               className="search-field"
               label="Buscar por Municipio"
               value={searchTerm.municipality}
@@ -159,7 +152,6 @@ const SedeList = ({ sedes }) => {
           <TableHead>
             <TableRow>
               <TableCell>Nombre</TableCell>
-              <TableCell>Contacto</TableCell>
               <TableCell>Departamento</TableCell>
               <TableCell>Dirección</TableCell>
               <TableCell>Acciones</TableCell>
@@ -176,7 +168,7 @@ const SedeList = ({ sedes }) => {
                   <TableCell component="th" scope="row">
                     {sede.nombre}
                   </TableCell>
-                  <TableCell>{sede.telefono_contacto}{" "}{sede.correo_contacto}</TableCell>
+
                   <TableCell>
                     <p>
                       <strong>País:</strong> {sede.direccion.country}
@@ -199,9 +191,6 @@ const SedeList = ({ sedes }) => {
                     </p>
                   </TableCell>
                   <TableCell>
-                    <Button onClick={() => handleOpenEditModal(sede)}>
-                      <EditIcon /> {/* Icono de Editar */}
-                    </Button>
                     <Button onClick={() => handleDeleteSede(sede._id)}>
                       <DeleteIcon /> {/* Icono de Eliminar */}
                     </Button>

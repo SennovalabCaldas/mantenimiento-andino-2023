@@ -323,8 +323,8 @@ export const Suppliers = () => {
             <TableRow>
               <TableCell>Nombre</TableCell>
               <TableCell>Imagen</TableCell>
-              <TableCell>Activa</TableCell>
-              <TableCell>Acciones</TableCell>
+              <TableCell>Activo</TableCell>
+              <TableCell>Nacional</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

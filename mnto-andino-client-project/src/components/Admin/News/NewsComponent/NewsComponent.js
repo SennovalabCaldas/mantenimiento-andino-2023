@@ -319,9 +319,7 @@ const NewsComponent = () => {
                     <TableCell>{item.descripcion}</TableCell>
                     <TableCell>{item.fecha_creacion}</TableCell>
                     <TableCell>
-                      <Button onClick={() => handleEdit(item._id)}>
-                        <EditIcon />
-                      </Button>
+                     
                       <Button onClick={() => handleDelete(item._id)}>
                         <DeleteIcon />
                       </Button>

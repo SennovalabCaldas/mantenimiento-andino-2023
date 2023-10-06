@@ -11,8 +11,6 @@ const initialState = {
   sede: {
     _id: null,
     nombre: null,
-    telefono_contacto: null,
-    email_contacto: null,
     direccion: {
       _id: null,
       country: null,

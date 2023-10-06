@@ -22,6 +22,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   TextField,
   Typography,
@@ -34,9 +35,26 @@ export const FoundationNews = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const baseApi = ENV.BASE_PATH;
   const [previewImage, setPreviewImage] = useState(null);
+  const dispatch = useDispatch();
+  const foundationNews = useSelector(
+    (state) => state.foundation.allFoundations
+  );
+  const indexOfLastFoundationNew = (page + 1) * rowsPerPage;
+  const indexOfFirstFoundationNew = indexOfLastFoundationNew - rowsPerPage;
+  const currentFoundationNews = foundationNews.slice(
+    indexOfFirstFoundationNew,
+    indexOfLastFoundationNew
+  );
 
-  // Estados para la edición de aliados
-  const [editAvatar, setEditAvatar] = useState(null);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // Vuelve a la primera página al cambiar el número de filas por página
+  };
+
   const [editAvatarPreview, setEditAvatarPreview] = useState(null);
   const [selectedFoundationNew, setSelectedFoundationNew] = useState(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); // Identificador para el diálogo de edición
@@ -86,7 +104,6 @@ export const FoundationNews = () => {
     setIsDetailDialogOpen(false);
   };
 
-  const dispatch = useDispatch();
   const fundationNews = useSelector((state) => state.foundation.allFoundations);
   console.log("Noticias de la fundación:", fundationNews);
   useEffect(() => {
@@ -193,28 +210,55 @@ export const FoundationNews = () => {
               Publicar noticia de la fundación
             </Typography>
             <form encType="multipart/form-data">
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <TextField
                   label="Nombre"
                   value={activityName}
                   onChange={(e) => setActivityName(e.target.value)}
                 />
-                <label htmlFor="imageUpload">
-                  <Typography>
-                    Imagen:
-                    {avatarPreview && (
-                      <img
-                        src={avatarPreview}
-                        alt="Imagen de previsualización"
-                        style={{
-                          maxWidth: "100%",
-                          maxHeight: "200px",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => document.getElementById("imageUpload")}
-                      />
+                <label htmlFor="imageUpload" style={{ marginTop: "20px" }}>
+                  <Typography>Imagen:</Typography>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {avatarPreview ? (
+                      <>
+                        <img
+                          src={avatarPreview}
+                          alt="Imagen de previsualización"
+                          style={{
+                            maxWidth: "100%",
+                            maxHeight: "200px",
+                            cursor: "pointer",
+                          }}
+                          onClick={() =>
+                            document.getElementById("imageUpload").click()
+                          }
+                        />
+                        <Typography variant="caption">
+                          Haz clic en la imagen para cambiarla
+                        </Typography>
+                      </>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        component="span"
+                        color="primary"
+                      >
+                        Cargar Imagen
+                      </Button>
                     )}
-                  </Typography>
+                  </div>
                 </label>
                 <input
                   type="file"
@@ -232,6 +276,7 @@ export const FoundationNews = () => {
                   variant="contained"
                   color="primary"
                   onClick={handleSave}
+                  style={{ marginTop: "20px" }}
                 >
                   Guardar
                 </Button>
@@ -268,27 +313,16 @@ export const FoundationNews = () => {
             </DialogContent>
             <DialogContent>
               <label htmlFor="imageUpload">
-                <Typography>
-                  Imagen:
-                  {selectedFoundationNew.avatar && (
-                    <img
-                      src={
-                        editAvatarPreview || // Utiliza editAvatarPreview en lugar de avatarPreview
-                        `${baseApi}${selectedFoundationNew.avatar}`
-                      }
-                      alt="Imagen de previsualización"
-                      style={{
-                        maxWidth: "100%",
-                        maxHeight: "200px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() =>
-                        document.getElementById("imageUpload").click()
-                      }
-                    />
-                  )}
-                </Typography>
+                <Button variant="contained" component="span" color="primary">
+                  Subir Imagen
+                </Button>
               </label>
+              <input
+                type="file"
+                id="imageUpload"
+                style={{ display: "none" }}
+                onChange={handleAvatarChange}
+              />
               <input
                 type="file"
                 id="imageUpload"
@@ -320,7 +354,7 @@ export const FoundationNews = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {fundationNews.map((foundationNew) => (
+            {currentFoundationNews.map((foundationNew) => (
               <TableRow key={foundationNew._id}>
                 <TableCell>{foundationNew.activityName}</TableCell>
                 <TableCell>
@@ -329,8 +363,8 @@ export const FoundationNews = () => {
                     alt="Avatar"
                     width="50"
                     height="50"
-                    onMouseEnter={() => setPreviewImage(foundationNew.avatar)} // Mostrar la previsualización al pasar el ratón
-                    onMouseLeave={() => setPreviewImage(null)} // Ocultar la previsualización al salir del ratón
+                    onMouseEnter={() => setPreviewImage(foundationNew.avatar)}
+                    onMouseLeave={() => setPreviewImage(null)}
                   />
                   {previewImage === foundationNew.avatar && (
                     <div className="image-preview">
@@ -359,10 +393,6 @@ export const FoundationNews = () => {
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => handleOpenEditDialog(foundationNew)}>
-                    Editar
-                  </Button>
-
                   <Button onClick={() => handleDelete(foundationNew._id)}>
                     Eliminar
                   </Button>
@@ -407,15 +437,15 @@ export const FoundationNews = () => {
           </>
         )}
       </Dialog>
-      {/* <TablePagination
+      <TablePagination
         rowsPerPageOptions={[5, 10, 15]}
         component="div"
-        count={categories.length}
+        count={foundationNews.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-      /> */}
+      />
     </div>
   );
 };

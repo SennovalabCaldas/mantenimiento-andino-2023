@@ -130,7 +130,7 @@ export class Category {
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
-        `${this.baseApi}/${CATEGORY_ROUTE}/delete/${_id}`,
+        `${this.baseApi}/${CATEGORY_ROUTE}/${_id}`,
         {
           method: "DELETE",
           headers: {

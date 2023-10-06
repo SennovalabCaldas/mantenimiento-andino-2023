@@ -355,9 +355,6 @@ export const Allies = () => {
                   />
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => handleOpenEditDialog(ally)}>
-                    Editar
-                  </Button>
                   <Button onClick={() => handleDelete(ally._id)}>
                     Eliminar
                   </Button>

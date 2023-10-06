@@ -5,12 +5,7 @@ const SedeSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  telefono_contacto: {
-    type: String,
-  },
-  email_contacto: {
-    type: String,
-  },
+
   direccion: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Address",

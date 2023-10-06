@@ -1,50 +1,43 @@
+.title-mnto-andino {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: black;
+}
 .projects-section {
-  align-items: center;
   display: flex;
-  justify-content: center;
   width: 100%;
-  height: 100%;
-  padding-bottom: 30px;
-  padding-top: 30px;
 
-  .project-list {
-    width: 60%;
-    .project-card {
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 16px;
+  .title-mnto-andino .smaller-text {
+    font-size: 18px;
+    display: block;
+  }
+  .section-project-list {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    .project-list {
+      background-color: aquamarine;
       display: flex;
-      align-items: center;
-
-      .project-image {
-        width: 20%;
-        height: 80px;
-        border-radius: 50%;
-        margin-right: 16px;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+      .national img {
+        width: 300px;
       }
-      .project-details {
-        width: 30%;
-        .project-name {
-          font-size: 1.2rem;
-          margin-bottom: 8px;
-        }
-
-        .project-type {
-          font-weight: bold;
-        }
-      }
-      .project-info {
-        width: 400px;
-        padding: 16px;
-        margin-left: 20px;
-        background-color: #f1f1f1;
+      .international img {
+        width: 300px;
       }
     }
   }
-
   .collage-project-list {
-    width: 40%;
+    width: 50%;
+    background-color: blue;
   }
 }

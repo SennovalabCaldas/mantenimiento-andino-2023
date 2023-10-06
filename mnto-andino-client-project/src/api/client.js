@@ -12,26 +12,19 @@ export class Client {
   baseApi = ENV.BASE_API;
 
   async createClient(data) {
+    const url = `${this.baseApi}/${CLIENTS_ROUTE}/new-client`;
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
-
-      // Verifica si data.avatar.image es un Blob o File válido
+      formData.append("clientName", data.clientName);
+      formData.append("active", data.active);
+      formData.append("national", data.national);
       if (data.avatar && data.avatar.image instanceof Blob) {
         formData.append("avatar", data.avatar.image);
       } else {
         console.error("Imagen de avatar no válida.");
-        return; // Aborta la función si la imagen no es válida
+        return;
       }
-      // Ahora puedes utilizar addressResult._id al crear el cliente
-      formData.append("clientName", data.clientName);
-      formData.append("national", data.national);
-      formData.append("active", data.active);
-      formData.append("joinDate", data.joinDate);
-
-      console.log("Estos son los datos del cliente", formData.get("avatar"));
-      const url = `${this.baseApi}/${CLIENT_ROUTE}`;
-
       const params = {
         method: "POST",
         headers: {
@@ -39,9 +32,7 @@ export class Client {
         },
         body: formData,
       };
-
       const response = await fetch(url, params);
-
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {
@@ -52,20 +43,18 @@ export class Client {
 
   async getClients() {
     const url = `${this.baseApi}/${CLIENTS_ROUTE}`;
-    console.log("URL:", url);
     const params = {
       method: "GET",
       headers: {
         "Content-Type": CONTENT_TYPE_JSON,
       },
     };
-    console.log("Params:", params);
     try {
       const response = await fetch(url, params);
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Error al obtener los clientes:", error);
+      console.error("Error al obtener los aliados:", error);
       throw error;
     }
   }

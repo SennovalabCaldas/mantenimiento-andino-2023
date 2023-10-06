@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { ENV } from "../../../utils";
 import { useDispatch } from "react-redux";
 import { deleteProject, getAllProjects } from "../../../actions/projectActions";
+import "./ProjectsNal.scss";
 
 export const ProjectsNal = ({ projects, national }) => {
-  console.log("Projects:", projects);
-  console.log("National:", national);
   const baseApi = ENV.BASE_PATH;
   const dispatch = useDispatch();
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleDeleteProject = async (projectId) => {
     console.log("Eliminar proyecto:", projectId);
@@ -19,7 +20,16 @@ export const ProjectsNal = ({ projects, national }) => {
     }
   };
 
-  const handleEditProject = (projectId) => {};
+  const handleEditProject = (projectId) => {
+    // Implementa la lógica para editar el proyecto aquí
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProjects = projects.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <table className="project-table">
@@ -35,7 +45,7 @@ export const ProjectsNal = ({ projects, national }) => {
           </tr>
         </thead>
         <tbody>
-          {projects.map((project) => (
+          {currentProjects.map((project) => (
             <tr key={project.id}>
               <td>{project.projectName}</td>
               <td>{project.entity}</td>
@@ -52,12 +62,6 @@ export const ProjectsNal = ({ projects, national }) => {
               <td>{new Date(project.joinDate).toLocaleDateString()}</td>
               <td>
                 <span
-                  className="edit-link"
-                  onClick={() => handleEditProject(project.id)}
-                >
-                  Editar
-                </span>
-                <span
                   className="delete-link"
                   onClick={() => handleDeleteProject(project._id)}
                 >
@@ -68,6 +72,15 @@ export const ProjectsNal = ({ projects, national }) => {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {[...Array(Math.ceil(projects.length / itemsPerPage)).keys()].map(
+          (number) => (
+            <span key={number + 1} onClick={() => paginate(number + 1)}>
+              {number + 1}
+            </span>
+          )
+        )}
+      </div>
     </div>
   );
 };

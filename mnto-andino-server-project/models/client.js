@@ -10,20 +10,13 @@ const clientSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  state: {
-    type: String,
-  },
   avatar: {
     type: String,
   },
   active: {
     type: Boolean,
     default: true,
-  },
-  joinDate: {
-    type: Date,
-    default: Date.now,
-  },
+  }
 });
 
 const Client = mongoose.model("Client", clientSchema);

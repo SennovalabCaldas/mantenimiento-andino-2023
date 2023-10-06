@@ -11,35 +11,53 @@
         border-radius: 50%;
         object-fit: cover;
         border: dashed 1px #000000;
+        cursor: pointer; /* Cambio el cursor para indicar que la imagen es clickeable */
       }
     }
   }
+
   .personal-details-section {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width: 100%;
-    align-content: center;
     flex-wrap: wrap;
-    flex-direction: row;
     .input-register-field {
-      width: 50%;
+      width: 45%; /* Disminuyo el ancho para que haya más espacio entre los campos */
       margin-bottom: 20px;
       .MuiFormControl-root {
         width: 100%;
       }
     }
   }
+
   .input-email-field {
     width: 100%;
     margin-bottom: 20px;
   }
-  .select-sede {
-    width: 70%;
+
+  .select-sede,
+  .select-role {
+    width: 45%; /* Cambio el ancho para que ambos campos tengan el mismo tamaño */
     margin-bottom: 20px;
   }
-  .select-role {
-    width: 30%;
-    margin-bottom: 20px;
+
+  .inline-fields {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .MuiFormControl-root {
+      width: 100%;
+    }
+    .password-icon {
+      color: #6b6b6b;
+    }
+  }
+
+  .MuiFormControl-root {
+    width: 100%;
+  }
+
+  .MuiButton-root {
+    margin-top: 20px; /* Agrego margen superior al botón para separarlo del resto de los campos */
   }
 }

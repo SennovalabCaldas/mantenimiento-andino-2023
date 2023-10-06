@@ -140,36 +140,39 @@ export const WebProjects = ({ projects }) => {
 
   return (
     <>
+      <a className="title-mnto-andino" href="#">
+        <span className="smaller-text">proyectos</span>de éxito
+      </a>
       <div className="projects-section">
-        <h2>Proyectos</h2>
-        <div className="project-list">
+        <div className="section-project-list">
           <h2>Proyectos Nacionales</h2>
           <ProjectList projects={proyectosNacionales} />
 
           <h2>Proyectos Internacionales</h2>
           <ProjectList projects={proyectosInternacionales} />
-        </div>
-        <div className="collage-project-list">
-          <ImageList
-            sx={{ width: 500, height: 650 }}
-            variant="quilted"
-            cols={4}
-            rowHeight={121}
-          >
-            {imagesScroll.map((item) => (
-              <ImageListItem
-                key={item.img}
-                cols={item.cols || 1}
-                rows={item.rows || 1}
-              >
-                <img
-                  {...srcset(item.img, 121, item.rows, item.cols)}
-                  alt={item.title}
-                  loading="lazy"
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
+
+          <div className="collage-project-list">
+            <ImageList
+              sx={{ width: 500, height: 650 }}
+              variant="quilted"
+              cols={4}
+              rowHeight={121}
+            >
+              {imagesScroll.map((item) => (
+                <ImageListItem
+                  key={item.img}
+                  cols={item.cols || 1}
+                  rows={item.rows || 1}
+                >
+                  <img
+                    {...srcset(item.img, 121, item.rows, item.cols)}
+                    alt={item.title}
+                    loading="lazy"
+                  />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </div>
         </div>
       </div>
     </>

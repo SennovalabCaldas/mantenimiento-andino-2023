@@ -90,11 +90,11 @@ export const AppRouter = () => {
                 element={loadLayout(AdminLayout, Allies)}
               />
               <Route
-                path="admin/makina-andina"
+                path="admin/makinandina"
                 element={loadLayout(AdminLayout, MakinaAndinaAdmin)}
               />
               <Route
-                path="admin/makina-andina-miami"
+                path="admin/makinandinamiami"
                 element={loadLayout(AdminLayout,MakinaAndinaMiamiAdmin )}
               />
               <Route

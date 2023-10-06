@@ -18,19 +18,19 @@ const slides = [
   {
     title: "Visita nuestras",
     subtitle: "redes sociales",
-    description: "A piece of heaven",
+    description: "Ver más",
     image: image.post3,
   },
   {
-    title: "Four",
-    subtitle: "Australia",
-    description: "A piece of heaven",
+    title: "Conoce",
+    subtitle: "nuestros servicios",
+    description: "Ver más",
     image: image.img1services,
   },
   {
-    title: "Five",
-    subtitle: "Australia",
-    description: "A piece of heaven",
+    title: "Qué hacemos",
+    subtitle: "desde la fundación",
+    description: "Conoce nuestras actividades recientes",
     image:
       "https://images.unsplash.com/photo-1579130781921-76e18892b57b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
   },

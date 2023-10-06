@@ -20,8 +20,8 @@ export class Sede {
         Authorization: `Bearer ${accessToken}`,
       },
     };
-      
-    //  
+
+    //
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -37,17 +37,17 @@ export class Sede {
 
   getAllSedes = async () => {
     const url = `${this.baseApi}/admin/sedes`;
-      
+
     const params = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     };
-      
+
     try {
       const response = await fetch(url, params);
-        
+
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
@@ -61,21 +61,21 @@ export class Sede {
 
   getSede = async (_id) => {
     const url = `${this.baseApi}/${API_ROUTES.SEDES}/${_id}`;
-      
+
     const params = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     };
-      
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-        
+
       return result;
     } catch (error) {
       console.error(error);
@@ -84,10 +84,9 @@ export class Sede {
   };
 
   filterSedesPerMunicipio = async (parametro) => {
-      
     /* http://localhost:3200/api/v1/sedes/municipio?municipio= */
     const url = `${this.baseApi}/${API_ROUTES.SEDESPERDPTO}${parametro}`;
-      
+
     const params = {
       method: "GET",
       headers: {
@@ -101,7 +100,7 @@ export class Sede {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-        
+
       return result;
     } catch (error) {
       console.error(error);
@@ -111,7 +110,7 @@ export class Sede {
 
   searchSedes = async (nombre, departamento, municipio) => {
     const url = `${this.baseApi}/${API_ROUTES.SEARCH_SEDES}?nombre=${nombre}&departamento=${departamento}&municipio=${municipio}`;
-      
+
     const params = {
       method: "GET",
       headers: {
@@ -125,7 +124,7 @@ export class Sede {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-        
+
       return result;
     } catch (error) {
       console.error(error);
@@ -134,7 +133,7 @@ export class Sede {
   };
 
   updateSede = async (_id, data) => {
-      console.log(data);
+    console.log(data);
     const accessToken = authController.getAccessToken();
     const url = `${this.baseApi}/${API_ROUTES.SEDES}/${_id}`;
     const params = {
@@ -145,14 +144,14 @@ export class Sede {
         Authorization: `Bearer ${accessToken}`,
       },
     };
-      
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
       }
       const result = await response.json();
-        
+
       return result;
     } catch (error) {
       console.error(error);
@@ -161,10 +160,7 @@ export class Sede {
   };
 
   deleteSede = async (idSede) => {
-    console.log(
-      "Entre en deleteSede",
-      `${this.baseApi}/${ENV.API_ROUTES.SEDES}/${idSede}`
-    );
+    const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
         `${this.baseApi}/${ENV.API_ROUTES.SEDES}/${idSede}`,
@@ -172,10 +168,11 @@ export class Sede {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
-        
+
       const data = await response.json();
       return data;
     } catch (error) {

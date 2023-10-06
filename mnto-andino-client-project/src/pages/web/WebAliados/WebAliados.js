@@ -1,61 +1,93 @@
 import React from "react";
 import "./WebAliados.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { Modal, Typography } from "@mui/material";
 import { image } from "../../../assets";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ENV } from "../../../utils/constants";
 
 export const WebAliados = ({ allies }) => {
   const baseApi = ENV.BASE_PATH;
-  const [rating, setRating] = useState(0);
+  const uniqueAllyNames = new Set();
+  const [selectedAlly, setSelectedAlly] = useState({});
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const defaultAllies = [
+    {
+      avatar: image.unox,
+      allyName: "UNOX",
+      national: true,
+    },
+    {
+      avatar: image.Rational,
+      allyName: "Rational",
+      national: true,
+    },
+    {
+      avatar: image.ally1,
+      allyName: "Katcher",
+      national: true,
+    },
+  ];
+  defaultAllies.forEach((ally) => {
+    uniqueAllyNames.add(ally.allyName);
+  });
+  allies.forEach((ally) => {
+    uniqueAllyNames.add(ally.allyName);
+  });
+  const mergedAllies = Array.from(uniqueAllyNames).map((allyName) => {
+    const foundAlly =
+      defaultAllies.find((ally) => ally.allyName === allyName) ||
+      allies.find((ally) => ally.allyName === allyName);
+
+    return foundAlly;
+  });
+
+  const openModal = (ally) => {
+    setSelectedAlly(ally);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedAlly({});
+    setModalIsOpen(false);
+  };
+  console.log(mergedAllies);
   return (
-    <div className="content-section-aliados">
-      <h2>Aliados</h2>
-      <div className="wrapper">
-        {allies.map((ally) => (
-          <div className="card">
-            <div className="poster">
-              <img src={`${baseApi}/${ally.avatar}`} alt="Location Unknown" />
+    <div className="ally-division">
+      <a className="title-mnto-andino" href="#">
+        <span className="smaller-text">conoce quienes son nuestros</span>aliados
+      </a>
+      <div className="ally-list">
+        <div className="main">
+          {mergedAllies.map((ally, index) => (
+            <div
+              key={index}
+              className="card"
+              onMouseOver={() => openModal(ally)} // Abre el modal cuando el mouse pasa sobre el aliado
+            >
+              <img
+                src={
+                  allies.find((a) => a.allyName === ally.allyName)
+                    ? `${baseApi}/${ally.avatar}`
+                    : ally.avatar
+                }
+                alt={ally.allyName}
+                style={{ width: "90px", height: "100px" }}
+              />
             </div>
-            <div className="details">
-              <h1>{ally.allyName}</h1>
-              <h2>2023</h2>
+          ))}
+        </div>
+        <Modal
+          open={modalIsOpen}
+          onClose={closeModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <div className="modal-content-allies ">
+            <h2>Certificaciones</h2>
 
-              {/* <div className="rating">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <FontAwesomeIcon
-                    key={star}
-                    icon={star <= rating ? solidStar : regularStar}
-                    onClick={() => setRating(star)} // Actualiza la calificación al hacer clic
-                  />
-                ))}
-                <span>{rating}/5</span>
-              </div> */}
-              <div className="tags">
-                <span className="tag">
-                  {ally.national ? "Nacional" : "Internacional"}
-                </span>
-                <span className="tag">
-                  {ally.active ? "Activo" : "Inactivo"}
-                </span>
-              </div>
-
-              <div className="cast">
-                <ul>
-                  <li>
-                    <img
-                      src={`${baseApi}/${ally.avatar}`}
-                      alt={ally.allyName}
-                      title={ally.allyName}
-                    />
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <Typography>{selectedAlly.allyName}</Typography>
           </div>
-        ))}
+        </Modal>
       </div>
     </div>
   );

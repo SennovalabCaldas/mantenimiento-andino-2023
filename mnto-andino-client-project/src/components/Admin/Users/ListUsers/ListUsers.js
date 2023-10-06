@@ -137,7 +137,7 @@ const ListUsers = ({ usersActive, reload, onReload }) => {
                 src={
                   selectedUser.avatar
                     ? `${ENV.BASE_PATH}/${selectedUser.avatar}`
-                    : image.noAvatar
+                    : image.logomn
                 }
                 alt="User Avatar"
                 className={classes.avatar}

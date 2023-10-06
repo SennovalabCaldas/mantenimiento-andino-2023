@@ -11,6 +11,7 @@ import {
 const clientController = new Client();
 
 export const createClient = (clientData) => { 
+  console.log("Estos son los datos del cliente", clientData);
   return async (dispatch, getState) => {
     try {
       const client = await clientController.createClient(clientData);

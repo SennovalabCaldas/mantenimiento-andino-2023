@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ENV } from "../../../utils";
 import "./CertificationsNal.scss";
 import {
@@ -8,12 +8,13 @@ import {
 import { useDispatch } from "react-redux";
 
 export const CertificationsNal = ({ certifications, national }) => {
-  console.log("Certificaciones:", certifications);
-  console.log("National:", national);
   const dispatch = useDispatch();
   const baseApi = ENV.BASE_PATH;
+  const certificationsPerPage = 5;
+  const totalPages = Math.ceil(certifications.length / certificationsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handleDeleteProject = async (certificationId) => {
+  const handleDeleteCertification = async (certificationId) => {
     console.log("Eliminar certificación:", certificationId);
     try {
       await dispatch(deleteCertification(certificationId));
@@ -22,7 +23,16 @@ export const CertificationsNal = ({ certifications, national }) => {
       console.error(error);
     }
   };
-  const handleEditProject = (certificationId) => {};
+
+  const indexOfLastCertification = currentPage * certificationsPerPage;
+  const indexOfFirstCertification = indexOfLastCertification - certificationsPerPage;
+  const currentCertifications = certifications.slice(
+    indexOfFirstCertification,
+    indexOfLastCertification
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <table className="certification-table">
@@ -35,7 +45,7 @@ export const CertificationsNal = ({ certifications, national }) => {
           </tr>
         </thead>
         <tbody>
-          {certifications.map((certification) => (
+          {currentCertifications.map((certification) => (
             <tr key={certification.id}>
               <td>{certification.certificationName}</td>
               <td>
@@ -49,14 +59,8 @@ export const CertificationsNal = ({ certifications, national }) => {
               <td>{new Date(certification.joinDate).toLocaleDateString()}</td>
               <td>
                 <span
-                  className="edit-link"
-                  onClick={() => handleEditProject(certification.id)}
-                >
-                  Editar
-                </span>
-                <span
                   className="delete-link"
-                  onClick={() => handleDeleteProject(certification._id)}
+                  onClick={() => handleDeleteCertification(certification._id)}
                 >
                   Eliminar
                 </span>
@@ -65,6 +69,17 @@ export const CertificationsNal = ({ certifications, national }) => {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+          <span
+            key={pageNumber}
+            className={pageNumber === currentPage ? "active" : ""}
+            onClick={() => paginate(pageNumber)}
+          >
+            {pageNumber}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

@@ -62,6 +62,8 @@ import project17 from "./project/ca2.jpg";
 import project18 from "./project/ca3.jpg";
 import project19 from "./project/ca4.png";
 import pacifico from "./project/pacifico3.jpg";
+import portafolio from "./pdf/Portafolio_de_Servicios.pdf";
+import ally1 from "./allies/katcher.png";
 
 const image = {
   authBg,
@@ -124,6 +126,8 @@ const image = {
   multidrogas,
   concesionpintada,
   cafam,
-  contactImg
+  contactImg,
+  portafolio,
+  ally1,
 };
 export { image };

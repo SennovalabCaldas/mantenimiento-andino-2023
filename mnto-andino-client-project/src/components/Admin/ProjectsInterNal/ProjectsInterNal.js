@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { ENV } from "../../../utils";
 import { useDispatch } from "react-redux";
 import { deleteProject, getAllProjects } from "../../../actions/projectActions";
+import "../ProjectsNal/ProjectsNal.scss";
 
 export const ProjectsInterNal = ({ projects, national }) => {
   console.log("Projects:", projects);
   console.log("National:", national);
   const dispatch = useDispatch();
-
+  const projectsPerPage = 5;
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
   const baseApi = ENV.BASE_PATH;
 
   const handleDeleteProject = async (projectId) => {
@@ -19,7 +22,14 @@ export const ProjectsInterNal = ({ projects, national }) => {
       console.error(error);
     }
   };
-  const handleEditProject = (projectId) => {};
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projects.slice(
+    indexOfFirstProject,
+    indexOfLastProject
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <div>
       <table className="project-table">
@@ -35,7 +45,7 @@ export const ProjectsInterNal = ({ projects, national }) => {
           </tr>
         </thead>
         <tbody>
-          {projects.map((project) => (
+          {currentProjects.map((project) => (
             <tr key={project.id}>
               <td>{project.projectName}</td>
               <td>{project.entity}</td>
@@ -52,12 +62,6 @@ export const ProjectsInterNal = ({ projects, national }) => {
               <td>{new Date(project.joinDate).toLocaleDateString()}</td>
               <td>
                 <span
-                  className="edit-link"
-                  onClick={() => handleEditProject(project.id)}
-                >
-                  Editar
-                </span>
-                <span
                   className="delete-link"
                   onClick={() => handleDeleteProject(project._id)}
                 >
@@ -68,6 +72,19 @@ export const ProjectsInterNal = ({ projects, national }) => {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (pageNumber) => (
+            <span
+              key={pageNumber}
+              className={pageNumber === currentPage ? "active" : ""}
+              onClick={() => paginate(pageNumber)}
+            >
+              {pageNumber}
+            </span>
+          )
+        )}
+      </div>
     </div>
   );
 };

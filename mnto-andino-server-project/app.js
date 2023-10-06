@@ -18,10 +18,11 @@ const alliesRoutes = require("./routes/ally");
 const certificationsRoutes = require("./routes/certification");
 const projectRoutes = require("./routes/project");
 const foundationRoutes = require("./routes/foundation");
-// const newsFoundationRoutes = require("./routes/newsFoundation");
+const makinaAndinaRoutes = require("./routes/makinaAndina");
+const makinaAndinaMiamiRoutes = require("./routes/makinaAndinaMiami");
+const glampingRoutes = require("./routes/glamping");
 
 app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
-
 
 // Configure Body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,9 +46,9 @@ app.use(`/api/v1/admin/allies`, alliesRoutes);
 app.use(`/api/v1/admin/certifications`, certificationsRoutes);
 app.use(`/api/v1/admin/projects`, projectRoutes);
 app.use(`/api/v1/admin/foundations`, foundationRoutes);
-// app.use(`/api/v1/admin/makina-andina`, makinaAndinaRoutes);
-// app.use(`/api/v1/admin/makina-andina-miami`, makinaAndinaMiamiRoutes);
-// app.use(`/api/v1/admin/glamping`, glampingRoutes);
+app.use(`/api/v1/admin/makinandina`, makinaAndinaRoutes);
+app.use(`/api/v1/admin/makinandinamiami`, makinaAndinaMiamiRoutes);
+app.use(`/api/v1/admin/glamping`, glampingRoutes);
 
 // function printRoutes(stack, parentPath = "") {
 //   stack.forEach((layer) => {

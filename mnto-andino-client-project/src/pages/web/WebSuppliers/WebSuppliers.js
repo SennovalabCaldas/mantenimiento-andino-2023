@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./WebSuppliers.scss";
 import { ENV } from "../../../utils/constants";
-import { Typography } from "@mui/material";
+import { Modal, Typography } from "@mui/material";
+import { image } from "../../../assets";
+import { WebAliados } from "../WebAliados/WebAliados";
 
 const WebSuppliers = ({ suppliers, allies }) => {
-  console.log(allies);
+
   const baseApi = ENV.BASE_PATH;
-  console.log(suppliers);
   const nationalSuppliers = suppliers.filter(
     (supplier) => supplier.national === true
   );
   const internationalSuppliers = suppliers.filter(
     (supplier) => supplier.national === false
   );
-  console.log(nationalSuppliers);
-  console.log(internationalSuppliers);
 
   return (
     <div className="content-web-supplier">
+      <a className="title-mnto-andino" href="#">
+        <span className="smaller-text">proveedores</span>nacionales e internacionales
+      </a>
       <div className="division">
         <div className="division__item">
           {internationalSuppliers.map((supplier, index) => (
@@ -92,17 +94,8 @@ const WebSuppliers = ({ suppliers, allies }) => {
           ))}
         </div>
       </div>
-      <div className="ally-division">
-        <h2>Aliados</h2>
-        <div className="ally-list">
-          <div className="main">
-            {allies.map((ally, index) => (
-              <div key={index} className="card">
-                <img src={`${baseApi}/${ally.avatar}`} alt={ally.allyName} style={{width:"90px", height:"100px"}}/>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="division">
+        <WebAliados allies={allies}></WebAliados>
       </div>
     </div>
   );

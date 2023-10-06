@@ -24,10 +24,8 @@ async function createClient(req, res) {
       _id: clientStored._id,
       clientName: clientStored.clientName,
       avatar: clientStored.avatar,
-      joinDate: clientStored.joinDate,
       active: clientStored.active,
       national: clientStored.national, 
-      state: clientStored.state, 
     });
 
     console.log(clientStored);

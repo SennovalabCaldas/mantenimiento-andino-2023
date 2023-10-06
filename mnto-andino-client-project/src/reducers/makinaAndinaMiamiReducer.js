@@ -1,14 +1,9 @@
 import {
   CREATE_MAKINA_ANDINA_MIAMI_SUCCESS,
-  CREATE_MAKINA_ANDINA_MIAMI_FAILURE,
   UPDATE_MAKINA_ANDINA_MIAMI_SUCCESS,
-  UPDATE_MAKINA_ANDINA_MIAMI_FAILURE,
   GET_MAKINA_ANDINA_MIAMI_SUCCESS,
-  GET_MAKINA_ANDINA_MIAMI_FAILURE,
   DELETE_MAKINA_ANDINA_MIAMI_SUCCESS,
-  DELETE_MAKINA_ANDINA_MIAMI_FAILURE,
 } from "../actions/types";
-
 
 const initialState = {
   makinaAndinaMiami: {
@@ -27,25 +22,18 @@ const makinaAndinaMiamiReducer = (state = initialState, action) => {
     case CREATE_MAKINA_ANDINA_MIAMI_SUCCESS:
       return {
         ...state,
-        makinaAndinaMiami: action.payload,
-      };
-    case CREATE_MAKINA_ANDINA_MIAMI_FAILURE:
-      return {
-        ...state,
         makinaAndinaMiami: {
-          error: action.payload,
+          ...state.makinaAndinaMiami,
+          ...action.payload,
         },
       };
+
     case UPDATE_MAKINA_ANDINA_MIAMI_SUCCESS:
       return {
         ...state,
-        makinaAndinaMiami: action.payload,
-      };
-    case UPDATE_MAKINA_ANDINA_MIAMI_FAILURE:
-      return {
-        ...state,
         makinaAndinaMiami: {
-          error: action.payload,
+          ...state.makinaAndinaMiami,
+          ...action.payload,
         },
       };
     case GET_MAKINA_ANDINA_MIAMI_SUCCESS:
@@ -53,30 +41,17 @@ const makinaAndinaMiamiReducer = (state = initialState, action) => {
         ...state,
         makinaAndinaMiamiServices: action.payload,
       };
-    case GET_MAKINA_ANDINA_MIAMI_FAILURE:
-      return {
-        ...state,
-        makinaAndinaMiamiServices: {
-          error: action.payload,
-        },
-      };
     case DELETE_MAKINA_ANDINA_MIAMI_SUCCESS:
       return {
         ...state,
-        makinaAndinaMiamiServices: state.makinaAndinaMiamiServices.filter(
-          (service) => service._id !== action.payload
-        ),
-      };
-    case DELETE_MAKINA_ANDINA_MIAMI_FAILURE:
-      return {
-        ...state,
-        makinaAndinaMiamiServices: {
-          error: action.payload,
+        makinaAndinaMiami: {
+          ...state.makinaAndinaMiami,
+          ...action.payload,
         },
       };
     default:
       return state;
   }
-}
+};
 
 export default makinaAndinaMiamiReducer;

@@ -42,6 +42,7 @@ export const Sedes = () => {
           onClick={handleCreateSedeClick}
           variant="contained"
           className="sedes_add"
+          
         >
           Crear Sede
         </Button>

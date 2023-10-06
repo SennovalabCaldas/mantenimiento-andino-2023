@@ -1,6 +1,8 @@
 import React from "react";
 import "./WebClients.scss";
 import { image } from "../../../assets";
+import { Avatar, Badge } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const WebClients = ({ clients }) => {
   const defaultClientesNacionales = [
@@ -152,49 +154,72 @@ export const WebClients = ({ clients }) => {
       ].map((item) => [item.clientName, item])
     ).values(),
   ];
-
-  const renderClientes = (clientes) => {
-    return (
-      <div className="clientes-row">
-        {clientes.map((cliente, index) => (
-          <div
-            key={index}
-            className={`cliente-item ${
-              cliente.national ? "nacional" : "internacional"
-            }`}
-          >
-            <img
-              src={cliente.avatar}
-              alt={`Logo de ${cliente.clientName}`}
-              className="cliente-logo"
-            />
-          </div>
-        ))}
-      </div>
-    );
-  };
-
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      backgroundColor: "#44b700",
+      color: "#44b700",
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      "&::after": {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        animation: "ripple 1.2s infinite ease-in-out",
+        border: "1px solid currentColor",
+        content: '""',
+      },
+    },
+    "@keyframes ripple": {
+      "0%": {
+        transform: "scale(.8)",
+        opacity: 1,
+      },
+      "100%": {
+        transform: "scale(2.4)",
+        opacity: 0,
+      },
+    },
+  }));
+  const StyledBadgeInternational = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      backgroundColor: "#a300b5",
+      color: "#a300b5",
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      "&::after": {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        animation: "ripple 1.2s infinite ease-in-out",
+        border: "1px solid currentColor",
+        content: '""',
+      },
+    },
+    "@keyframes ripple": {
+      "0%": {
+        transform: "scale(.8)",
+        opacity: 1,
+      },
+      "100%": {
+        transform: "scale(2.4)",
+        opacity: 0,
+      },
+    },
+  }));
   return (
     <div className="section-clients">
-       <a className="title-mnto-andino" href="#">
-          <span className="smaller-text">nuestros</span>clientes
-        </a>
+      <a className="title-mnto-andino" href="#">
+        <span className="smaller-text">nuestros</span>clientes
+      </a>
       <div className="video-client-section">
         <div className="video-container">
-          <video
-            className="video-style"
-            autoPlay
-            controls
-            width="100%"
-            height="auto"
-          >
+          <video className="video-style" controls width="70%" height="auto">
             <source src={image.contact} type="video/mp4" />
           </video>
-          <div className="video-overlay">
-            <div className="titulo-video-overlay">
-              <h2>MANTENIMIENTO ANDINO SAS</h2>
-            </div>
-          </div>
           <div className="imagen-video-overlay">
             <img
               src={image.logomn}
@@ -202,27 +227,50 @@ export const WebClients = ({ clients }) => {
               className="logo-superpuesto"
             />
           </div>
-          <div className="subtitulo-video-overlay">
-            <p>Conoce todo lo que tenemos para ofrecerte.</p>
-          </div>
         </div>
       </div>
       <div className="clientes-container">
+        <h2>Clientes Nacionales</h2>
+
         <div className="clientes-nacionales">
-          <h2>Clientes Nacionales</h2>
-          {renderClientes(
-            mergedClientes.filter(
-              (cliente) => cliente.active && cliente.national
-            )
-          )}
+          {mergedClientes
+            .filter((cliente) => cliente.active && cliente.national)
+            .map((cliente, index) => (
+              <StyledBadge
+                key={index}
+                overlap="circular"
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                variant="dot"
+                className="avatar-cliente"
+              >
+                <Avatar
+                  className="avatar-img-client"
+                  alt={cliente.clientName}
+                  src={cliente.avatar}
+                />
+              </StyledBadge>
+            ))}
         </div>
+        <h2>Clientes Internacionales</h2>
+
         <div className="clientes-internacionales">
-          <h2>Clientes Internacionales</h2>
-          {renderClientes(
-            mergedClientes.filter(
-              (cliente) => cliente.active && !cliente.national
-            )
-          )}
+          {mergedClientes
+            .filter((cliente) => cliente.active && cliente.national === false)
+            .map((cliente, index) => (
+              <StyledBadgeInternational
+                key={index}
+                overlap="circular"
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                variant="dot"
+                className="avatar-cliente"
+              >
+                <Avatar
+                  className="avatar-img-client"
+                  alt={cliente.clientName}
+                  src={cliente.avatar}
+                />
+              </StyledBadgeInternational>
+            ))}
         </div>
       </div>
       {renderTestimonios()}

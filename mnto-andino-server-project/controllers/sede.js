@@ -17,8 +17,6 @@ const createSede = async (req, res) => {
     // Crear la sede con el _id de la dirección creada
     const sede = new Sede({
       nombre,
-      telefono_contacto,
-      email_contacto,
       direccion: addressSaved._id,
     });
 
@@ -154,8 +152,6 @@ const updateSede = async (req, res) => {
     console.log(direccion);
     const updatedFields = {
       nombre,
-      telefono_contacto,
-      email_contacto,
       direccion: {
         ...direccion,
       },
