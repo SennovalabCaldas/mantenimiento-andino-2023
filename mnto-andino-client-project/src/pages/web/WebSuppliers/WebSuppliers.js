@@ -6,7 +6,6 @@ import { image } from "../../../assets";
 import { WebAliados } from "../WebAliados/WebAliados";
 
 const WebSuppliers = ({ suppliers, allies }) => {
-
   const baseApi = ENV.BASE_PATH;
   const nationalSuppliers = suppliers.filter(
     (supplier) => supplier.national === true
@@ -18,7 +17,8 @@ const WebSuppliers = ({ suppliers, allies }) => {
   return (
     <div className="content-web-supplier">
       <a className="title-mnto-andino" href="#">
-        <span className="smaller-text">proveedores</span>nacionales e internacionales
+        <span className="smaller-text">proveedores</span>nacionales e
+        internacionales
       </a>
       <div className="division">
         <div className="division__item">
@@ -26,13 +26,9 @@ const WebSuppliers = ({ suppliers, allies }) => {
             <article>
               <header
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1520808663317-647b476a81b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80')`,
+                  backgroundImage: `url(${image.logomn})`,
                 }}
-              >
-                <div className="lower-header">
-                  <h1 className="title">{supplier.supplierName}</h1>
-                </div>
-              </header>
+              ></header>
             </article>
           ))}
         </div>
@@ -83,13 +79,9 @@ const WebSuppliers = ({ suppliers, allies }) => {
             <article>
               <header
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1520808663317-647b476a81b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80')`,
+                  backgroundImage: `url(${image.logomn})`,
                 }}
-              >
-                <div className="lower-header">
-                  <h1 className="title">{supplier.supplierName}</h1>
-                </div>
-              </header>
+              ></header>
             </article>
           ))}
         </div>

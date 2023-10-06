@@ -22,13 +22,12 @@ const makinaAndinaRoutes = require("./routes/makinaAndina");
 const makinaAndinaMiamiRoutes = require("./routes/makinaAndinaMiami");
 const glampingRoutes = require("./routes/glamping");
 
-app.use(cors()); // Esto permitirá solicitudes desde cualquier origen, puedes ajustarlo según tus necesidades
+app.use(cors());
 
-// Configure Body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Configure static folder
+
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 

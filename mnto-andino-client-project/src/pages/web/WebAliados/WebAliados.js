@@ -62,7 +62,7 @@ export const WebAliados = ({ allies }) => {
             <div
               key={index}
               className="card"
-              onMouseOver={() => openModal(ally)} // Abre el modal cuando el mouse pasa sobre el aliado
+              onClick={() => openModal(ally)} // Abre el modal cuando el mouse pasa sobre el aliado
             >
               <img
                 src={

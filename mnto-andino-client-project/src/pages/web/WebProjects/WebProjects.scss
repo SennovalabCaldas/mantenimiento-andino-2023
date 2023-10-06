@@ -1,43 +1,52 @@
-.title-mnto-andino {
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-  color: black;
-}
 .projects-section {
-  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  background-color: #f5f5f5;
 
   .title-mnto-andino .smaller-text {
     font-size: 18px;
     display: block;
+    margin-bottom: 10px;
+
   }
-  .section-project-list {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: center;
-    .project-list {
-      background-color: aquamarine;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: center;
-      justify-content: center;
-      flex-direction: column;
-      .national img {
-        width: 300px;
-      }
-      .international img {
-        width: 300px;
-      }
-    }
+}
+
+.project-card {
+  width: 80%;
+  
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-details {
+  padding: 16px;
+  background-color: #00000024;
+}
+
+.project-card {
+  width: 100%;
+  height: auto;
+  img {
+    width: 100%;
+    height: auto;
+    border: 5px solid #fff;
+    border-radius: 5px;
   }
-  .collage-project-list {
-    width: 50%;
-    background-color: blue;
-  }
+}
+
+.project-card h3 {
+  margin-top: 0;
+}
+
+.project-description {
+  color: #555;
 }

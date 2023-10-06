@@ -1,32 +1,54 @@
 import React from "react";
 import "./WebProjects.scss";
 import { image } from "../../../assets";
-import { ProjectList } from "./ProjectList";
-import { ImageList, ImageListItem } from "@mui/material";
-
+import { Box, Grid, ImageList, ImageListItem, Paper } from "@mui/material";
+import { ENV } from "../../../utils";
+import { styled } from "@mui/material/styles";
 const proyectosBase = [
   {
-    projectName: "Proyecto Unoooo",
+    projectName:
+      "Centro de control y operaciones. Autopista Conexión Pacífico II.",
     national: true,
-    avatar: "URL_de_la_imagen_1",
+    avatar: image.concesion,
     joinDate: "2021-10-10",
   },
   {
-    projectName: "Proyecto Dooooss",
+    projectName: "Edificaciones Túnel Telasia.",
     national: true,
-    avatar: "URL_de_la_imagen_2",
+    avatar: image.telacia,
+    joinDate: "2021-10-10",
+  },
+  {
+    projectName: "Área de servicios II. Autopista Conexión Pacífico II.",
+    national: true,
+    avatar: image.servicio3,
+    joinDate: "2021-10-10",
+  },
+  {
+    projectName:
+      "Muro de cerramiento Proyecto ampliación a tercer carril vía Bogotá - Girardot.",
+    national: true,
+    avatar: image.cerramiento,
+    joinDate: "2021-10-10",
+  },
+  {
+    projectName: "Centro vacacional Melgar CAFAM - Remodelación de cabañas.",
+    national: true,
+    avatar: image.cabañas,
     joinDate: "2021-10-10",
   },
 ];
-function srcset(image, size, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${size * cols}&h=${
-      size * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 export const WebProjects = ({ projects }) => {
+  const baseApi = ENV.BASE_PATH;
   console.log(projects);
 
   const combinedProjects = [
@@ -39,141 +61,75 @@ export const WebProjects = ({ projects }) => {
     ),
   ];
 
-  const imagesScroll = [
-    {
-      img: image.project1,
-      title: "Breakfast",
-      rows: 2,
-      cols: 2,
-    },
-    {
-      img: image.project2,
-      title: "Burger",
-    },
-    {
-      img: image.project3,
-      title: "Camera",
-    },
-    {
-      img: image.project4,
-      title: "Coffee",
-      cols: 2,
-    },
-    {
-      img: image.project5,
-      title: "Hats",
-      cols: 2,
-    },
-    {
-      img: image.project6,
-      title: "Honey",
-      author: "@arwinneil",
-      rows: 2,
-      cols: 2,
-    },
-    {
-      img: image.project7,
-      title: "Basketball",
-    },
-    {
-      img: image.project8,
-      title: "Fern",
-    },
-    {
-      img: image.project9,
-      title: "Mushrooms",
-      rows: 2,
-      cols: 2,
-    },
-    {
-      img: image.project10,
-      title: "Tomato basil",
-    },
-    {
-      img: image.project11,
-      title: "Sea star",
-    },
-    {
-      img: image.project12,
-      title: "Bike",
-      cols: 2,
-    },
-    {
-      img: image.project13,
-      title: "Coffee",
-      cols: 2,
-    },
-    {
-      img: image.project14,
-      title: "Hats",
-      cols: 2,
-    },
-    {
-      img: image.project15,
-      title: "Breakfast",
-      rows: 2,
-      cols: 2,
-    },
-    {
-      img: image.project16,
-      title: "Burger",
-    },
-    {
-      img: image.project17,
-      title: "Camera",
-    },
-    {
-      img: image.project18,
-      title: "Coffee",
-      cols: 2,
-    },
-  ];
-
   const proyectosNacionales = combinedProjects.filter(
     (project) => project.national === true
   );
 
-  // Filtra los proyectos internacionales
   const proyectosInternacionales = combinedProjects.filter(
     (project) => project.national === false
   );
-
+  const getAvatarUrl = (project) => {
+    if (
+      proyectosBase.some(
+        (baseProject) => baseProject.projectName === project.projectName
+      )
+    ) {
+      return project.avatar;
+    } else {
+      return `${baseApi}/${project.avatar}`;
+    }
+  };
   return (
     <>
-      <a className="title-mnto-andino" href="#">
-        <span className="smaller-text">proyectos</span>de éxito
-      </a>
       <div className="projects-section">
-        <div className="section-project-list">
-          <h2>Proyectos Nacionales</h2>
-          <ProjectList projects={proyectosNacionales} />
-
-          <h2>Proyectos Internacionales</h2>
-          <ProjectList projects={proyectosInternacionales} />
-
-          <div className="collage-project-list">
-            <ImageList
-              sx={{ width: 500, height: 650 }}
-              variant="quilted"
-              cols={4}
-              rowHeight={121}
-            >
-              {imagesScroll.map((item) => (
-                <ImageListItem
-                  key={item.img}
-                  cols={item.cols || 1}
-                  rows={item.rows || 1}
+        <a className="title-mnto-andino" href="#">
+          <span className="smaller-text">enterate de nuestros proyectos
+          de gran éxito </span> nacional
+        </a>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {proyectosNacionales.map((project, index) => (
+            <Grid item xs={2} sm={4} md={4} key={index}>
+              <Item>
+                <div
+                  className={`project-card ${
+                    project.national ? "national" : "international"
+                  }`}
                 >
-                  <img
-                    {...srcset(item.img, 121, item.rows, item.cols)}
-                    alt={item.title}
-                    loading="lazy"
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
-          </div>
-        </div>
+                  <img src={getAvatarUrl(project)} alt={project.projectName} />
+                  <div className="project-details">
+                    <h4 className="project-name">{project.projectName}</h4>
+                  </div>
+                </div>
+              </Item>
+            </Grid>
+          ))}
+        </Grid>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {proyectosInternacionales.map((project, index) => (
+            <Grid item xs={2} sm={4} md={4} key={index}>
+              <Item>
+                <div
+                  className={`project-card ${
+                    project.national ? "national" : "international"
+                  }`}
+                >
+                  <img src={getAvatarUrl(project)} alt={project.projectName} />
+                  <div className="project-details">
+                    <h4 className="project-name">{project.projectName}</h4>
+                  </div>
+                </div>
+              </Item>
+            </Grid>
+          ))}
+        </Grid>
       </div>
     </>
   );

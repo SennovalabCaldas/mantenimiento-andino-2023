@@ -126,7 +126,7 @@ export const WebClients = ({ clients }) => {
         {testimonios.map((testimonio, index) => (
           <div key={index} className="testimonio-item">
             <img
-              src={testimonio.avatar}
+              src={image.logomn}
               alt={`Avatar de ${testimonio.cliente}`}
               className="testimonio-avatar"
             />
@@ -220,59 +220,60 @@ export const WebClients = ({ clients }) => {
           <video className="video-style" controls width="70%" height="auto">
             <source src={image.contact} type="video/mp4" />
           </video>
-          <div className="imagen-video-overlay">
-            <img
-              src={image.logomn}
-              alt="Logo de la Empresa"
-              className="logo-superpuesto"
-            />
+        </div>
+      </div>
+      <div className="imagen-video-overlay">
+        <img
+          src={image.logomn}
+          alt="Logo de la Empresa"
+          className="logo-superpuesto"
+        />
+        <div className="clientes-container">
+          <h2>Clientes Nacionales</h2>
+
+          <div className="clientes-nacionales">
+            {mergedClientes
+              .filter((cliente) => cliente.active && cliente.national)
+              .map((cliente, index) => (
+                <StyledBadge
+                  key={index}
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  variant="dot"
+                  className="avatar-cliente"
+                >
+                  <Avatar
+                    className="avatar-img-client"
+                    alt={cliente.clientName}
+                    src={cliente.avatar}
+                  />
+                </StyledBadge>
+              ))}
+          </div>
+          <h2>Clientes Internacionales</h2>
+
+          <div className="clientes-internacionales">
+            {mergedClientes
+              .filter((cliente) => cliente.active && cliente.national === false)
+              .map((cliente, index) => (
+                <StyledBadgeInternational
+                  key={index}
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  variant="dot"
+                  className="avatar-cliente"
+                >
+                  <Avatar
+                    className="avatar-img-client"
+                    alt={cliente.clientName}
+                    src={cliente.avatar}
+                  />
+                </StyledBadgeInternational>
+              ))}
           </div>
         </div>
       </div>
-      <div className="clientes-container">
-        <h2>Clientes Nacionales</h2>
 
-        <div className="clientes-nacionales">
-          {mergedClientes
-            .filter((cliente) => cliente.active && cliente.national)
-            .map((cliente, index) => (
-              <StyledBadge
-                key={index}
-                overlap="circular"
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                variant="dot"
-                className="avatar-cliente"
-              >
-                <Avatar
-                  className="avatar-img-client"
-                  alt={cliente.clientName}
-                  src={cliente.avatar}
-                />
-              </StyledBadge>
-            ))}
-        </div>
-        <h2>Clientes Internacionales</h2>
-
-        <div className="clientes-internacionales">
-          {mergedClientes
-            .filter((cliente) => cliente.active && cliente.national === false)
-            .map((cliente, index) => (
-              <StyledBadgeInternational
-                key={index}
-                overlap="circular"
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                variant="dot"
-                className="avatar-cliente"
-              >
-                <Avatar
-                  className="avatar-img-client"
-                  alt={cliente.clientName}
-                  src={cliente.avatar}
-                />
-              </StyledBadgeInternational>
-            ))}
-        </div>
-      </div>
       {renderTestimonios()}
     </div>
   );

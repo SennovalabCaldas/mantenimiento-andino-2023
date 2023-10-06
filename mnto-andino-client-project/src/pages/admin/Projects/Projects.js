@@ -19,10 +19,6 @@ export const Projects = () => {
   }, [dispatch]);
 
   const projects = useSelector((state) => state.project.allProjects) || [];
-  
-  return (
-    <div>
-      <ProjectList />
-    </div>
-  );
+
+  return <ProjectList />;
 };

@@ -61,7 +61,11 @@ import project16 from "./project/ca1.png";
 import project17 from "./project/ca2.jpg";
 import project18 from "./project/ca3.jpg";
 import project19 from "./project/ca4.png";
-import pacifico from "./project/pacifico3.jpg";
+import concesion from "./project/concesion.jpg";
+import telacia from "./project/telacia.jpg";
+import servicio3 from "./project/servicio3.jpg";
+import cerramiento from "./project/cerramiento.jpeg";
+import cabañas from "./project/cabañas.jpg";
 import portafolio from "./pdf/Portafolio_de_Servicios.pdf";
 import ally1 from "./allies/katcher.png";
 
@@ -119,7 +123,7 @@ const image = {
   project17,
   project18,
   project19,
-  pacifico,
+  concesion,
   post2,
   post3,
   contact,
@@ -129,5 +133,9 @@ const image = {
   contactImg,
   portafolio,
   ally1,
+  telacia,
+  servicio3,
+  cerramiento,
+  cabañas
 };
 export { image };
