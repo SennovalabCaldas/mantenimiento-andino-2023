@@ -1,18 +1,30 @@
 const express = require("express");
 const categoryServiceController = require("../controllers/categoryService");
-const multiparty = require("connect-multiparty");
+
 const md_auth = require("../middlewares/authenticated");
 
-const md_upload = multiparty({ uploadDir: "./uploads/categoryServices" });
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads/categoryServices"); 
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname); 
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const api = express.Router();
 
 api.post(
   "/new-category",
-  [md_auth.ensureAuth, md_upload],
+  [md_auth.ensureAuth, upload.single("avatar")],
   categoryServiceController.createCategoryService
 );
 
-api.get("/", categoryServiceController.getAllCategoryServices);
+// api.get("/", categoryServiceController.getAllCategoryServices);
 
 api.get("/:id", categoryServiceController.getCategoryServiceById);
 

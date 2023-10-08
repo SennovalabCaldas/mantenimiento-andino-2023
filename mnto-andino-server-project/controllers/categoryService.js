@@ -1,45 +1,78 @@
 const CategoryService = require("../models/categoryService");
 
+// async function createCategoryService(req, res) {
+//   console.log("POST /api/v1/admin/category-services/new-category");
+//   try {
+//     const categoryServiceData = req.body; // Obtiene los datos del allye incluyendo la dirección como objeto JSON
+//     console.log("categoryServiceData", categoryServiceData);
+//     const avatar = req.files.avatar;
+//     if (!req.files || !avatar) {
+//       return res.status(400).json({ msg: "Error al subir la imagen" });
+//     } else {
+//       const imagePath = req.files.avatar.path;
+//       console.log("imagePath", imagePath);
+//       categoryServiceData.avatar = imagePath;
+//     }
+//     const categoryServiceStored = new CategoryService(categoryServiceData);
+//     await categoryServiceStored.save();
+
+//     res.status(201).json({
+//       _id: categoryServiceStored._id,
+//       nameCategoryService: categoryServiceStored.nameCategoryService,
+//       descriptionCategoryService:
+//         categoryServiceStored.descriptionCategoryService,
+//       avatar: categoryServiceStored.avatar,
+//       active: categoryServiceStored.ative,
+//     });
+
+//     console.log(categoryServiceStored);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).json({ msg: "Error al crear la categoría de servicio" });
+//   }
+// }
+
+// async function getAllCategoryServices(req, res) {
+//   try {
+//     const categories = await CategoryService.find();
+//     res.json(categories);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "Error al obtener las categorías de servicios" });
+//   }
+// }
+
 async function createCategoryService(req, res) {
   console.log("POST /api/v1/admin/category-services/new-category");
   try {
-    const categoryServiceData = req.body; // Obtiene los datos del allye incluyendo la dirección como objeto JSON
+    const categoryServiceData = req.body; // Obtiene los datos de la categoría de servicio desde el cuerpo de la solicitud
     console.log("categoryServiceData", categoryServiceData);
 
-    if (!req.files || !req.files.avatar) {
-      return res.status(400).json({ msg: "Error al subir la imagen" });
-    } else {
-      const imagePath = req.files.avatar.path;
-      console.log("imagePath", imagePath);
-      categoryServiceData.avatar = imagePath;
+    if (!req.file) {
+      return res.status(400).json({ msg: "Error: Debes subir una imagen." });
     }
-    const categoryServiceStored = new CategoryService(categoryServiceData);
-    await categoryServiceStored.save();
+
+    const imagePath = req.file.path;
+    console.log("imagePath", imagePath);
+    categoryServiceData.avatar = imagePath; // Establece la ruta de la imagen en los datos de la categoría de servicio
+
+    const categoryServiceStored = new CategoryService(categoryServiceData); // Crea una nueva instancia del modelo de la categoría de servicio
+    await categoryServiceStored.save(); // Guarda la categoría de servicio en la base de datos
 
     res.status(201).json({
       _id: categoryServiceStored._id,
       nameCategoryService: categoryServiceStored.nameCategoryService,
-      descriptionCategoryService: categoryServiceStored.descriptionCategoryService,
+      descriptionCategoryService:
+        categoryServiceStored.descriptionCategoryService,
       avatar: categoryServiceStored.avatar,
-      active: categoryServiceStored.ative,
+      active: categoryServiceStored.active, // Asegúrate de usar 'active' en lugar de 'ative' para evitar errores tipográficos
     });
 
     console.log(categoryServiceStored);
   } catch (error) {
     console.error(error);
     res.status(400).json({ msg: "Error al crear la categoría de servicio" });
-  }
-}
-
-async function getAllCategoryServices(req, res) {
-  try {
-    
-    const categories = await CategoryService.find();
-    res.json(categories);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error al obtener las categorías de servicios" });
   }
 }
 
@@ -96,8 +129,8 @@ async function updateCategoryServiceById(req, res) {
 
 module.exports = {
   createCategoryService,
-  getAllCategoryServices,
   deleteCategoryServiceById,
   getCategoryServiceById,
   updateCategoryServiceById,
+  
 };
