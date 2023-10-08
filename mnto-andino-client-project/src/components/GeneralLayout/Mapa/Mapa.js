@@ -200,7 +200,7 @@ export const Mapa = ({ departamentos }) => {
       y: 0.99,
     },
   };
-  const departamentosDestacados = ["Caldas", "Quindío"];
+  const departamentosDestacados = ["Caldas", "Quindío", "Cundinamarca", "Antioquia", "Valle del Cauca", "Cauca"];
   const coloresDepartamentos = [
     "#FF5733",
     "#33FF57",

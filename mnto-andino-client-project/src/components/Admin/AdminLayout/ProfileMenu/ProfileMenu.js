@@ -14,7 +14,7 @@ const ProfileMenu = connect()(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userState = useSelector((state) => state.auth.user);
-  
+
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
   const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
@@ -26,11 +26,11 @@ const ProfileMenu = connect()(() => {
     }
   };
 
-  const handleLogout = async () => {
-    await dispatch(logoutUser());
+  const handleLogout = () => {
+    dispatch(logoutUser());
     navigate("/");
-  };
 
+  };
 
   const dropdownOptions = [
     {

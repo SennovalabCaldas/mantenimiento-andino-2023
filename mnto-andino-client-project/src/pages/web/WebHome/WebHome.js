@@ -40,7 +40,7 @@ const settings = {
 };
 
 export const WebHome = ({ posts }) => {
-  console.clear();
+
   // console.log("posts", posts);
   // if (!posts || posts.length === 0) {
   //   return (

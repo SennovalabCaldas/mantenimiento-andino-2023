@@ -38,18 +38,24 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log({ user, token });
   useEffect(() => {
     const handleLoggedIn = async () => {
+      console.log("token", token);
+      console.log("isLoggedIn", isLoggedIn);
       if (token && !isLoggedIn) {
         await dispatch(authenticateUser());
         setIsLoggedIn(true);
+      }
+      if (!token) {
+        setIsLoggedIn(false);
       }
       setIsLoading(false); // Ocultar componente de carga
     };
     handleLoggedIn();
   }, [dispatch, token, isLoggedIn, user]);
+  console.log("=>", isLoggedIn);
 
-    
   return (
     <ErrorBoundary>
       <BrowserRouter>
@@ -59,7 +65,7 @@ const App = () => {
           <Routes>
             {isLoggedIn ? (
               <Route
-                path="/*"
+                path="*"
                 element={<AppRouter isLoggedIn={isLoggedIn} />}
               />
             ) : (

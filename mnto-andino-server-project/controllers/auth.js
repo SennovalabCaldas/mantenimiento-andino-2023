@@ -121,7 +121,7 @@ const refreshAccessToken = async (req, res) => {
     if (!token) {
       return res.status(400).send({ msg: "Token requerido" });
     }
-    const { user_id } = jwt.verify(token); 
+    const { user_id } = jwt.verify(token);
     console.log(user_id);
     const userStorage = await User.findOne({ _id: user_id });
     // Generar un nuevo token de acceso
@@ -133,7 +133,6 @@ const refreshAccessToken = async (req, res) => {
     return res.status(500).send({ msg: "Error del servidor" });
   }
 };
-
 
 const passwordRecovery = async (req, res) => {
   const { email } = req.body;

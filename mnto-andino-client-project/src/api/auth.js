@@ -1,11 +1,11 @@
 import { ENV } from "../utils";
 
 const { BASE_API, API_ROUTES } = ENV;
-
 export class Auth {
-  register = async (data) => {
-    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.REGISTER}`;
+  baseApi = BASE_API;
 
+  register = async (data) => {
+    const url = `${this.baseApi}/${API_ROUTES.REGISTER}`;
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -28,8 +28,7 @@ export class Auth {
   };
 
   login = async (data) => {
-    const url = `${ENV.BASE_API}/${ENV.API_ROUTES.LOGIN}`;
-    console.log(url);
+    const url = `${this.baseApi}/${API_ROUTES.LOGIN}`;
     const params = {
       method: "POST",
       body: JSON.stringify(data),
@@ -37,23 +36,26 @@ export class Auth {
         "Content-Type": "application/json",
       },
     };
+
     try {
       const response = await fetch(url, params);
-      const result = await response.json();
       if (!response.ok) {
-        if (result?.msg) {
-          throw new Error(result.msg);
-        } else {
-          throw new Error("Error en la solicitud: " + response.status);
-        }
+        throw new Error("Error en la solicitud: " + response.status);
       }
-      this.setAccessToken(result.access);
-      this.setRefreshToken(result.refresh);
-      return result;
+
+      const result = await response.json();
+      if (result && result.access) {
+        this.setAccessToken(result.access);
+      }
     } catch (error) {
       console.error(error);
       throw error;
     }
+  };
+
+  logout = async() => {
+    localStorage.clear();
+    // this.props.history.push("/");
   };
 
   resetPassword = async (data) => {
@@ -135,24 +137,19 @@ export class Auth {
     }
   };
 
-  setAccessToken = (token) => {
-    localStorage.setItem(ENV.JWT.ACCESS, token);
-  };
-
-  setRefreshToken = (token) => {
-    localStorage.setItem(ENV.JWT.REFRESH, token);
+  setAccessToken = (accessToken) => {
+    localStorage.setItem("access", accessToken);
   };
 
   getAccessToken = () => {
-    return localStorage.getItem(ENV.JWT.ACCESS);
+    return localStorage.getItem("access");
+  };
+
+  setRefreshToken = (refreshToken) => {
+    localStorage.setItem("refresh", refreshToken);
   };
 
   getRefreshToken = () => {
-    return localStorage.getItem(ENV.JWT.REFRESH);
-  };
-
-  removeTokens = () => {
-    localStorage.removeItem(ENV.JWT.ACCESS);
-    localStorage.removeItem(ENV.JWT.REFRESH);
+    return localStorage.getItem("refresh");
   };
 }

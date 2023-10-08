@@ -4,11 +4,9 @@ const image = require("../utils/image");
 
 // Obtener datos del usuario autenticado
 async function getMe(req, res) {
-  console.log("Estoy en getMe");
   try {
     const { user_id } = req.user; // Obtener el ID de usuario desde el token de acceso
     const response = await User.findById(user_id);
-
     if (!response) {
       return res.status(400).send({ msg: "No se ha encontrado usuario" });
     }
@@ -19,6 +17,7 @@ async function getMe(req, res) {
     res.status(500).send({ msg: "Error del servidor" });
   }
 }
+
 
 async function getUser(req, res) {
   try {
@@ -116,22 +115,22 @@ async function updateUser(req, res) {
   try {
     const { id } = req.params;
     const userData = req.body;
-
-    if (userData.password) {
+    let imagePath = null;
+    if (userData.current_password) {
       const salt = bcrypt.genSaltSync(10);
-      const hashPassword = bcrypt.hashSync(userData.password, salt);
-      userData.password = hashPassword;
+      const hashPassword = bcrypt.hashSync(userData.current_password, salt);
+      userData.current_password = hashPassword;
     } else {
-      delete userData.password;
+      delete userData.current_password;
     }
 
-    if (req.files.avatar) {
-      const imagePath = image.getFilePath(req.files.avatar);
+    if (req.files && req.files.avatar) {
+      imagePath = image.getFilePath(req.files.avatar);
       userData.avatar = imagePath;
     }
-
+    
     await User.findByIdAndUpdate(id, userData);
-    res.status(200).send({ msg: "Actualización correcta" });
+    res.status(200).send({ msg: "Actualización correcta", avatar: imagePath });
   } catch (error) {
     console.error(error);
     res.status(400).send({ msg: "Error al actualizar el usuario" });

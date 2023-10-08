@@ -1,6 +1,7 @@
 const CategoryService = require("../models/categoryService");
 
 async function createCategoryService(req, res) {
+  console.log("POST /api/v1/admin/category-services/new-category");
   try {
     const categoryServiceData = req.body; // Obtiene los datos del allye incluyendo la dirección como objeto JSON
     console.log("categoryServiceData", categoryServiceData);

@@ -3,10 +3,10 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
- 
 } from "./types";
 import { Auth, User } from "../api";
 import jwt from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const userController = new User();
 const authController = new Auth();
@@ -32,23 +32,18 @@ export const authenticateUser = () => {
       const userData = await userController.getMe(accessToken);
       dispatch(loginSuccess(userData));
     } catch (error) {
-      dispatch(loginFailure(error.message)); // Despacha la acción de fallo de inicio de sesión con el mensaje de error
+      dispatch(loginFailure(error.message)); 
     }
   };
 };
 
-
 export const logoutUser = () => {
   return (dispatch) => {
     try {
-      // Realiza las tareas necesarias para cerrar sesión, como limpiar el token de acceso
-      localStorage.removeItem("access");
-      localStorage.removeItem("refresh");
-
-      // Despacha la acción de logout exitoso
+      authController.logout();
+      console.log("deslogueando");
       dispatch(logoutSuccess());
     } catch (error) {
-      // Maneja cualquier error que pueda ocurrir durante el proceso de logout
       dispatch(logoutFailure(error));
     }
   };
@@ -68,7 +63,6 @@ export const getMe = () => {
 
 /* ############################################################### */
 /* ############################################################### */
-
 
 export const loginSuccess = (userData) => {
   return {
@@ -96,5 +90,3 @@ export const logoutFailure = (error) => {
     payload: error,
   };
 };
-
-

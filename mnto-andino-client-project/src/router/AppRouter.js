@@ -48,6 +48,10 @@ export const AppRouter = () => {
               <Route index element={loadLayout(AdminLayout, Users)} />
               <Route path="admin" element={<WebMenu />} />
               <Route
+                path="*"
+                element={loadLayout(AdminLayout, Home)}
+              />
+              <Route
                 path="admin/dashboard"
                 element={loadLayout(AdminLayout, Home)}
               />
