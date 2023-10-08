@@ -24,7 +24,7 @@ api.post(
   categoryServiceController.createCategoryService
 );
 
-// api.get("/", categoryServiceController.getAllCategoryServices);
+api.get("/", categoryServiceController.getAllCategoryServices);
 
 api.get("/:id", categoryServiceController.getCategoryServiceById);
 

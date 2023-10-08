@@ -26,8 +26,10 @@ import {
 } from "../../../../actions/serviceActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { ENV } from "../../../../utils";
 
 const ServiceList = () => {
+  const baseApi = ENV.BASE_PATH;
   const services = useSelector((state) => state.service.services);
   const categories = useSelector(
     (state) => state.categoryService.allCategoriesService
@@ -229,7 +231,7 @@ const ServiceList = () => {
               >
                 {service.photos && service.photos.length > 0 && (
                   <img
-                    src={service.photos[0]} // Use the stored URL directly
+                    src={`${baseApi}/${service.photos[0]}`} // Use the stored URL directly
                     alt={`Foto principal`}
                     style={{ width: "100%", height: "auto" }}
                   />
@@ -245,7 +247,7 @@ const ServiceList = () => {
                   service.photos.map((photo, index) => (
                     <img
                       key={index}
-                      src={photo} // Use the stored URL directly
+                      src={`${baseApi}/${photo}`} // Use the stored URL directly
                       alt={`Foto ${index}`}
                       style={{ width: "40px", height: "40px", margin: "2px" }}
                     />

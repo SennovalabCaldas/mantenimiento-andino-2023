@@ -204,15 +204,6 @@ const NewsComponent = () => {
     setOpenDialog(true);
   };
 
-  const handleEdit = (id) => {
-      
-    const newsToEdit = news.find((item) => item._id === id);
-    setEditingNews({
-      ...newsToEdit,
-    });
-    setOpenDialog(true);
-  };
-
   const handleDelete = async (postId) => {
     try {
       await dispatch(deletePost(postId));
@@ -236,11 +227,9 @@ const NewsComponent = () => {
     data.fecha_creacion = new Date(data.fecha_creacion);
     data.creador = nombreCompleto;
     data.active = editingNews.active;
+    data.categorias = editingNews.categorias;
     data.avatar = avatar;
     if (data._id) {
-      // Editing existing news
-        
-        
       await dispatch(updatePost(data._id, data));
     } else {
         

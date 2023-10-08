@@ -119,6 +119,7 @@ export const CategoryManagement = ({ categories }) => {
   };
 
   return (
+   
     <div>
       <h2>Categorías de servicios</h2>
       <div>
@@ -195,13 +196,14 @@ export const CategoryManagement = ({ categories }) => {
           </TableHead>
           <TableBody>
             {categories.map((category) => (
+              
               <TableRow key={category._id}>
                 <TableCell>{category.nameCategoryService}</TableCell>
                 <TableCell>
                   {category.avatar && (
                     <img
-                      src={`${baseApi}${category.avatar}`}
-                      alt="Imagen de previsualización"
+                    src={`${baseApi}/${category.avatar}`}
+                      alt={`${baseApi}/${category.avatar}`}
                       style={{ maxWidth: "100%", maxHeight: "200px" }}
                     />
                   )}

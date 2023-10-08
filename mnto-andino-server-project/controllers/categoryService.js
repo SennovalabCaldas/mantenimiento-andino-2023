@@ -1,48 +1,5 @@
 const CategoryService = require("../models/categoryService");
 
-// async function createCategoryService(req, res) {
-//   console.log("POST /api/v1/admin/category-services/new-category");
-//   try {
-//     const categoryServiceData = req.body; // Obtiene los datos del allye incluyendo la dirección como objeto JSON
-//     console.log("categoryServiceData", categoryServiceData);
-//     const avatar = req.files.avatar;
-//     if (!req.files || !avatar) {
-//       return res.status(400).json({ msg: "Error al subir la imagen" });
-//     } else {
-//       const imagePath = req.files.avatar.path;
-//       console.log("imagePath", imagePath);
-//       categoryServiceData.avatar = imagePath;
-//     }
-//     const categoryServiceStored = new CategoryService(categoryServiceData);
-//     await categoryServiceStored.save();
-
-//     res.status(201).json({
-//       _id: categoryServiceStored._id,
-//       nameCategoryService: categoryServiceStored.nameCategoryService,
-//       descriptionCategoryService:
-//         categoryServiceStored.descriptionCategoryService,
-//       avatar: categoryServiceStored.avatar,
-//       active: categoryServiceStored.ative,
-//     });
-
-//     console.log(categoryServiceStored);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).json({ msg: "Error al crear la categoría de servicio" });
-//   }
-// }
-
-// async function getAllCategoryServices(req, res) {
-//   try {
-//     const categories = await CategoryService.find();
-//     res.json(categories);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ error: "Error al obtener las categorías de servicios" });
-//   }
-// }
-
 async function createCategoryService(req, res) {
   console.log("POST /api/v1/admin/category-services/new-category");
   try {
@@ -127,10 +84,19 @@ async function updateCategoryServiceById(req, res) {
   }
 }
 
+async function getAllCategoryServices(req, res) {
+  try {
+    const categoryServices = await CategoryService.find();
+    res.json(categoryServices);
+  } catch (error) {
+    res.status(500).json({ error: "Error al obtener los Categorías" });
+  }
+}
+
 module.exports = {
   createCategoryService,
   deleteCategoryServiceById,
   getCategoryServiceById,
   updateCategoryServiceById,
-  
+  getAllCategoryServices
 };

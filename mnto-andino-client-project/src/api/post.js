@@ -45,7 +45,6 @@ export class Post {
       formData.append("active", data.active);
       formData.append("fecha_creacion", data.fecha_creacion);
 
-      console.log("Estos son los datos del post", formData.get("avatar"));
       const url = `${this.baseApi}/${POST_ROUTE}/new-post`;
       const params = {
         method: "POST",
@@ -56,6 +55,7 @@ export class Post {
       };
         
       const response = await fetch(url, params);
+      console.log(response);
       const result = await response.json();
       if (response.status !== 201) throw result;
     } catch (error) {

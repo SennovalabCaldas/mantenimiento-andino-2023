@@ -3,8 +3,19 @@ const image = require("../utils/image");
 const Categoria = require("../models/category");
 
 const createNew = async (req, res) => {
+  console.log("Contenido de req.body:", req.body);
+
   try {
     const { categorias, ...postData } = req.body;
+    const allCategories = await Categoria.find();
+    console.log("Tipo de datos de categorias:", typeof categorias);
+
+    const categoriasFilter = allCategories.filter((categoria) =>
+      categorias.includes(categoria._id)
+    );
+
+
+    console.log("categoriasFilter", categoriasFilter);
     console.log("categorias", categorias);
     console.log(req.files.avatar);
 
@@ -26,7 +37,7 @@ const createNew = async (req, res) => {
       avatar: postStored.avatar,
       fecha_creacion: postStored.fecha_creacion,
       active: postStored.active,
-      categorias: postStored.categorias,
+      categorias: categoriasFilter.map((categoria) => categoria.nombre),
     });
     console.log(postStored);
   } catch (error) {
