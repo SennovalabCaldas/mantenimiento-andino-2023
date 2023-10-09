@@ -19,6 +19,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ENV } from "../../../../utils";
 
 export const Services = () => {
   const makinaAndinaServices = useSelector(
@@ -29,6 +30,7 @@ export const Services = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [uploadError, setUploadError] = useState(false);
+  const baseApi = ENV.BASE_PATH;
   const [isCreatingService, setIsCreatingService] = useState(false);
   const [editingService, setEditingService] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -148,7 +150,7 @@ export const Services = () => {
               >
                 {service.photos && service.photos.length > 0 && (
                   <img
-                    src={service.photos[0]} // Use the stored URL directly
+                    src={`${baseApi}/${service.photos[0]}`} // Use the stored URL directly
                     alt={`Foto principal`}
                     style={{ width: "100%", height: "auto" }}
                   />
@@ -163,7 +165,7 @@ export const Services = () => {
                   service.photos.map((photo, index) => (
                     <img
                       key={index}
-                      src={photo} // Use the stored URL directly
+                      src={`${baseApi}/${photo}`} // Use the stored URL directly
                       alt={`Foto ${index}`}
                       style={{ width: "40px", height: "40px", margin: "2px" }}
                     />
@@ -259,7 +261,7 @@ export const Services = () => {
 
             {editedService.imageUrls && editedService.imageUrls.length > 0 && (
               <img
-                src={editedService.imageUrls[0]}
+                src={`${baseApi}/${editedService.imageUrls[0]}`}
                 alt={`Foto principal`}
                 style={{
                   width: "200px",
@@ -274,7 +276,7 @@ export const Services = () => {
                 editedService.imageUrls.map((imageUrl, index) => (
                   <img
                     key={index}
-                    src={imageUrl}
+                    src={`${baseApi}/${imageUrl}`}
                     alt={`Foto ${index}`}
                     style={{
                       width: "80px",

@@ -39,7 +39,6 @@ export const ProjectsNal = ({ projects, national }) => {
             <th>Entidad</th>
             <th>Foto</th>
             <th>Nacional</th>
-            <th>Cliente</th>
             <th>Fecha de inicio</th>
             <th>Acciones</th>
           </tr>
@@ -58,7 +57,6 @@ export const ProjectsNal = ({ projects, national }) => {
                 />
               </td>
               <td>{project.national ? "Sí" : "No"}</td>
-              <td>{project.client}</td>
               <td>{new Date(project.joinDate).toLocaleDateString()}</td>
               <td>
                 <span

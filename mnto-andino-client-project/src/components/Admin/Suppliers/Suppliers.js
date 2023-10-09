@@ -334,7 +334,7 @@ export const Suppliers = () => {
                 <TableCell>
                   {supplier.avatar && (
                     <img
-                      src={`${baseApi}${supplier.avatar}`}
+                      src={`${baseApi}/${supplier.avatar}`}
                       alt="Imagen de previsualización"
                       style={{ maxWidth: "100%", maxHeight: "200px" }}
                       onClick={() => handleOpenDetailDialog(supplier)}
@@ -387,7 +387,7 @@ export const Suppliers = () => {
                 Imagen:{" "}
                 {selectedSupplier.avatar && (
                   <img
-                    src={`${baseApi}${selectedSupplier.avatar}`}
+                    src={`${baseApi}/${selectedSupplier.avatar}`}
                     alt="Imagen de previsualización"
                     style={{ maxWidth: "100%", maxHeight: "200px" }}
                   />

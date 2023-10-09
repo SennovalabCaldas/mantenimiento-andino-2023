@@ -240,7 +240,7 @@ export const ClientList = () => {
                 <TableCell>
                   {client.avatar && (
                     <img
-                      src={`${baseApi}${client.avatar}`}
+                      src={`${baseApi}/${client.avatar}`}
                       alt="Imagen de previsualización"
                       style={{ maxWidth: "100%", maxHeight: "200px" }}
                     />
@@ -294,7 +294,7 @@ export const ClientList = () => {
                 Imagen:{" "}
                 {selectedClient.avatar && (
                   <img
-                    src={`${baseApi}${selectedClient.avatar}`}
+                    src={`${baseApi}/${selectedClient.avatar}`}
                     alt="Imagen de previsualización"
                     style={{ maxWidth: "100%", maxHeight: "200px" }}
                   />
