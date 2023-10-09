@@ -28,7 +28,7 @@ const ProfileMenu = connect()(() => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    navigate("/");
+    // navigate("/");
 
   };
 

@@ -41,8 +41,6 @@ const App = () => {
   console.log({ user, token });
   useEffect(() => {
     const handleLoggedIn = async () => {
-      console.log("token", token);
-      console.log("isLoggedIn", isLoggedIn);
       if (token && !isLoggedIn) {
         await dispatch(authenticateUser());
         setIsLoggedIn(true);

@@ -40,9 +40,9 @@ export const authenticateUser = () => {
 export const logoutUser = () => {
   return (dispatch) => {
     try {
-      authController.logout();
       console.log("deslogueando");
       dispatch(logoutSuccess());
+      authController.logout();
     } catch (error) {
       dispatch(logoutFailure(error));
     }

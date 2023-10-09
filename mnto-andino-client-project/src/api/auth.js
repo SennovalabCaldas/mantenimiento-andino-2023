@@ -55,7 +55,8 @@ export class Auth {
 
   logout = async() => {
     localStorage.clear();
-    // this.props.history.push("/");
+    if (!localStorage.getItem("token"))
+      window.location.href="/"
   };
 
   resetPassword = async (data) => {
