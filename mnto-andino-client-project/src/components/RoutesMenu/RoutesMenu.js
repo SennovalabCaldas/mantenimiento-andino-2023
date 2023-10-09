@@ -131,12 +131,12 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
         ))}
       </Menu>
 
-      <SlideBarWebMenuPanel
+      {/* <SlideBarWebMenuPanel
         handleSetActiveSection={handleSetActiveSection}
         activeMenuItem={activeMenuItem}
         className="admin-menu"
         show={menuVisible}
-      />
+      /> */}
     </div>
   );
 };
