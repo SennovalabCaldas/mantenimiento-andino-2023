@@ -12,7 +12,8 @@ async function createCategoryService(req, res) {
 
     const imagePath = req.file.path;
     console.log("imagePath", imagePath);
-    categoryServiceData.avatar = imagePath; // Establece la ruta de la imagen en los datos de la categoría de servicio
+    console.log("imagePath", imagePath.url);
+    categoryServiceData.avatar = imagePath.url; // Establece la ruta de la imagen en los datos de la categoría de servicio
 
     const categoryServiceStored = new CategoryService(categoryServiceData); // Crea una nueva instancia del modelo de la categoría de servicio
     await categoryServiceStored.save(); // Guarda la categoría de servicio en la base de datos
