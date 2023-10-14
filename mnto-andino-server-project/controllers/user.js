@@ -5,7 +5,8 @@ const image = require("../utils/image");
 // Obtener datos del usuario autenticado
 async function getMe(req, res) {
   try {
-    const { user_id } = req.user; // Obtener el ID de usuario desde el token de acceso
+    // Obtener el ID de usuario desde el token de acceso
+    const { user_id } = req.user; 
     const response = await User.findById(user_id);
     if (!response) {
       return res.status(400).send({ msg: "No se ha encontrado usuario" });

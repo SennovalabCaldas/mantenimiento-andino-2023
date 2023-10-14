@@ -127,9 +127,8 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
                 className="icon-user-item"
                 name="pencil"
                 style={{
-                  fontSize: "24px", // Tamaño del icono
-                  color: "#007bff", // Color del icono
-                  // Otros estilos personalizados si los deseas
+                  fontSize: "24px", 
+                  color: "#007bff", 
                 }}
               />
             </Button>

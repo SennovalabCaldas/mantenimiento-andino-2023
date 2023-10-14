@@ -1,8 +1,9 @@
 import React from "react";
 import "./WebClients.scss";
 import { image } from "../../../assets";
-import { Avatar, Badge } from "@mui/material";
+import { Avatar, Badge, Divider, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 
 export const WebClients = ({ clients }) => {
   const defaultClientesNacionales = [
@@ -212,67 +213,63 @@ export const WebClients = ({ clients }) => {
   }));
   return (
     <div className="section-clients">
-      <a className="title-mnto-andino" href="#">
-        <span className="smaller-text">nuestros</span>clientes
-      </a>
-      <div className="video-client-section">
-        <div className="video-container">
-          <video className="video-style" controls width="70%" height="auto">
-            <source src={image.contact} type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      <div className="imagen-video-overlay">
-        <img
-          src={image.logomn}
-          alt="Logo de la Empresa"
-          className="logo-superpuesto"
-        />
-        <div className="clientes-container">
-          <h2>Clientes Nacionales</h2>
-
-          <div className="clientes-nacionales">
-            {mergedClientes
-              .filter((cliente) => cliente.active && cliente.national)
-              .map((cliente, index) => (
-                <StyledBadge
-                  key={index}
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  variant="dot"
-                  className="avatar-cliente"
-                >
-                  <Avatar
-                    className="avatar-img-client"
-                    alt={cliente.clientName}
-                    src={cliente.avatar}
-                  />
-                </StyledBadge>
-              ))}
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <a className="title-mnto-andino" href="#">
+            <span className="smaller-text">nuestros</span>clientes
+          </a>
+          <div className="video-client-section">
+            <div className="video-container">
+              <video className="video-style" controls width="70%" height="auto">
+                <source src={image.contact} type="video/mp4" />
+              </video>
+            </div>
           </div>
-          <h2>Clientes Internacionales</h2>
+        </Grid>
+        <Grid item xs={8}>
+          <div className="client-logos-container">
 
-          <div className="clientes-internacionales">
-            {mergedClientes
-              .filter((cliente) => cliente.active && cliente.national === false)
-              .map((cliente, index) => (
-                <StyledBadgeInternational
-                  key={index}
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  variant="dot"
-                  className="avatar-cliente"
-                >
-                  <Avatar
-                    className="avatar-img-client"
-                    alt={cliente.clientName}
-                    src={cliente.avatar}
-                  />
-                </StyledBadgeInternational>
-              ))}
+            <div className="clientes-container">
+              <h2>Clientes Nacionales</h2>
+
+              <Divider sx={{ my: 6 }} />
+              <Grid container spacing={3} justifyContent="center">
+                {mergedClientes
+                  .filter((cliente) => cliente.active && cliente.national)
+                  .map((cliente, index) => (
+                    <Grid item xs={6} md={4} lg={2}>
+                      <Box
+                        component="img"
+                        src={cliente.avatar}
+                        alt={cliente.clientName}
+                        width="100%"
+                        opacity={0.6}
+                      />
+                    </Grid>
+                  ))}
+              </Grid>
+              <h2>Clientes Internacionales</h2>
+
+              <Divider sx={{ my: 6 }} />
+              <Grid container spacing={3} justifyContent="center">
+                {mergedClientes
+                  .filter((cliente) => cliente.active && !cliente.national)
+                  .map((cliente, index) => (
+                    <Grid item xs={6} md={4} lg={2}>
+                      <Box
+                        component="img"
+                        src={cliente.avatar}
+                        alt={cliente.clientName}
+                        width="100%"
+                        opacity={0.6}
+                      />
+                    </Grid>
+                  ))}
+              </Grid>
+            </div>
           </div>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
 
       {renderTestimonios()}
     </div>

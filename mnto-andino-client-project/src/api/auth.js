@@ -44,6 +44,7 @@ export class Auth {
       }
 
       const result = await response.json();
+      
       if (result && result.access) {
         this.setAccessToken(result.access);
       }

@@ -1,164 +1,97 @@
-import React from "react";
-import "./Carrousel.scss";
+import React, { useEffect, useState } from "react";
+import "./Carrousel.scss"; // Asegúrate de tener un archivo CSS para los estilos del carrusel
 import { image } from "../../../assets";
-// console.clear();
+import { Grid } from "@mui/material";
 
-const slides = [
+const slidesData = [
   {
-    title: "ACTUALIDAD",
-    subtitle: "Mantenimiento Andino",
+    titulo: "Título 1",
+    subtitulo: "Subtítulo 1",
     image: image.post3,
   },
   {
-    title: "TE INTERESARÍA",
-    subtitle: "TRABAJAR CON NOSOTROS",
-    description: "Conoce los perfiles que buscamos",
-    image: image.service1,
+    titulo: "Título 2",
+    subtitulo: "Subtítulo 2",
+    image: image.post2,
   },
-  {
-    title: "Visita nuestras",
-    subtitle: "redes sociales",
-    description: "Ver más",
-    image: image.post3,
-  },
-  {
-    title: "Conoce",
-    subtitle: "nuestros servicios",
-    description: "Ver más",
-    image: image.img1services,
-  },
-  {
-    title: "Qué hacemos",
-    subtitle: "desde la fundación",
-    description: "Conoce nuestras actividades recientes",
-    image:
-      "https://images.unsplash.com/photo-1579130781921-76e18892b57b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-  },
+  // Agrega más objetos para más slides
 ];
 
-function useTilt(active) {
-  const ref = React.useRef(null);
+export const Carrousel = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  React.useEffect(() => {
-    if (!ref.current || !active) {
-      return;
-    }
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
+  };
 
-    const state = {
-      rect: undefined,
-      mouseX: undefined,
-      mouseY: undefined,
-    };
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + slidesData.length) % slidesData.length
+    );
+  };
 
-    let el = ref.current;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
+    }, 5000); // Cambia 5000 por la cantidad de milisegundos que deseas para el intervalo entre slides
 
-    const handleMouseMove = (e) => {
-      if (!el) {
-        return;
-      }
-      if (!state.rect) {
-        state.rect = el.getBoundingClientRect();
-      }
-      state.mouseX = e.clientX;
-      state.mouseY = e.clientY;
-      const px = (state.mouseX - state.rect.left) / state.rect.width;
-      const py = (state.mouseY - state.rect.top) / state.rect.height;
-
-      el.style.setProperty("--px", px);
-      el.style.setProperty("--py", py);
-    };
-
-    el.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      el.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [active]);
-
-  return ref;
-}
-
-const initialState = {
-  slideIndex: 0,
-};
-
-const slidesReducer = (state, event) => {
-  if (event.type === "NEXT") {
-    return {
-      ...state,
-      slideIndex: (state.slideIndex + 1) % slides.length,
-    };
-  }
-  if (event.type === "PREV") {
-    return {
-      ...state,
-      slideIndex:
-        state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1,
-    };
-  }
-};
-
-function Slide({ slide, offset }) {
-  const active = offset === 0 ? true : null;
-  const ref = useTilt(active);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div
-      ref={ref}
-      className="slide"
-      data-active={active}
-      style={{
-        "--offset": offset,
-        "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1,
-      }}
-    >
+    <div className="carrousel-container">
       <div
-        className="slideBackground"
+        className="slide"
         style={{
-          backgroundImage: `url('${slide.image}')`,
-        }}
-      />
-
-      <div
-        className="slideContent"
-        style={{
-          backgroundImage: `url('${slide.image}')`,
+          backgroundImage: `url(${slidesData[currentSlide].image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+            boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)", 
         }}
       >
-        <div className="slideContentInner">
-          <div className="item-img-slideContentInner">
-            <div className="imagen-video-overlay">
-              <img
-                src={image.logomn}
-                alt="Logo de la Empresa"
-                className="logo-superpuesto"
-              />
-            </div>
-          </div>
-          <div className="item-slideContentInner">
-            <h2 className="slideTitle">{slide.title}</h2>
-            <h3 className="slideSubtitle">{slide.subtitle}</h3>
-            <p className="slideDescription">{slide.description}</p>
-          </div>
+        <div className="slide-content">
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <div>
+                <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <img
+                      src={image.logomn}
+                      alt="Logo de la Empresa"
+                      className="logo-superpuesto"
+                    />
+
+                  </Grid>
+                  <Grid item xs={8} className="title">
+                    <div>
+                      <h1>¡Bienvenido a</h1>
+                      <h1>la Empresa!</h1>
+                    </div>
+                    <h2>{slidesData[currentSlide].titulo}</h2>
+                  </Grid>
+                </Grid>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <h3>{slidesData[currentSlide].subtitulo}</h3>
+            </Grid>
+          </Grid>
         </div>
       </div>
-    </div>
-  );
-}
-
-export const Carrousel = ({ posts }) => {
-  console.log(posts);
-  const [state, dispatch] = React.useReducer(slidesReducer, initialState);
-
-  return (
-    <div className="slides">
-      <button onClick={() => dispatch({ type: "PREV" })}>‹</button>
-
-      {[...slides, ...slides, ...slides].map((slide, i) => {
-        let offset = slides.length + (state.slideIndex - i);
-        return <Slide slide={slide} offset={offset} key={i} />;
-      })}
-      <button onClick={() => dispatch({ type: "NEXT" })}>›</button>
+      <button className="prev-button" onClick={prevSlide}>
+        ‹
+      </button>
+      <button className="next-button" onClick={nextSlide}>
+        ›
+      </button>
+      <div className="indicators">
+        {slidesData.map((_, index) => (
+          <div
+            key={index}
+            className={`indicator ${index === currentSlide ? "active" : ""}`}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };

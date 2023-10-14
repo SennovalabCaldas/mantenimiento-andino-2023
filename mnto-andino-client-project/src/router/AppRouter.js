@@ -15,6 +15,7 @@ import { Certification } from "../pages/admin/Certification";
 import { MakinaAndinaMiamiAdmin } from "../pages/admin/MakinaAndinaMiamiAdmin";
 import { Glamping } from "../pages/admin/Glamping";
 import { PrivacyPolicy } from "../components/Shared/Footer/PrivacyPolicy";
+import { NotFound } from "../components";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
@@ -40,6 +41,7 @@ export const AppRouter = () => {
           <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
           <Route path="/lamartina" element={<LaMartina />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="*" element={<NotFound />} />
         </>
       ) : (
         <>
@@ -47,10 +49,7 @@ export const AppRouter = () => {
             <>
               <Route index element={loadLayout(AdminLayout, Users)} />
               <Route path="admin" element={<WebMenu />} />
-              <Route
-                path="*"
-                element={loadLayout(AdminLayout, Home)}
-              />
+              <Route path="*" element={loadLayout(AdminLayout, Home)} />
               <Route
                 path="admin/dashboard"
                 element={loadLayout(AdminLayout, Home)}
@@ -107,6 +106,7 @@ export const AppRouter = () => {
                 path="admin/glamping"
                 element={loadLayout(AdminLayout, Glamping)}
               />
+              <Route path="*" element={<NotFound />} />
             </>
           )}
         </>

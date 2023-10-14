@@ -7,10 +7,10 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/categoryServices"); 
+    cb(null, "./uploads"); // Directorio donde se guardarán las imágenes
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname); 
+    cb(null, Date.now() + "-" + file.originalname); // Nombre del archivo
   },
 });
 

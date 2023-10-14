@@ -1,6 +1,7 @@
 const CategoryService = require("../models/categoryService");
 
 async function createCategoryService(req, res) {
+  console.log("Contenido de req.body:", req.body);
   try {
     const categoryServiceData = req.body; // Obtiene los datos de la categoría de servicio desde el cuerpo de la solicitud
     console.log("categoryServiceData", categoryServiceData);

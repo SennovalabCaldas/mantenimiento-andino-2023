@@ -68,6 +68,19 @@ import cerramiento from "./project/cerramiento.jpeg";
 import cabañas from "./project/cabañas.jpg";
 import portafolio from "./pdf/Portafolio_de_Servicios.pdf";
 import ally1 from "./allies/katcher.png";
+import errorPage from "./jpg/404.jpg";
+
+import menu1 from './homeMenu/img1.jpg'
+import menu2 from './homeMenu/img2.jpg'
+import menu3 from './homeMenu/img3.jpg'
+import menu4 from './homeMenu/img4.jpg'
+import menu5 from './homeMenu/img5.jpg'
+import menu6 from './homeMenu/img6.jpg'
+import menu7 from './homeMenu/img7.jpg'
+import menu8 from './homeMenu/img8.jpg'
+import menu9 from './homeMenu/img9.jpg'
+
+import mapa from './jpg/mapa.jpg'
 
 const image = {
   authBg,
@@ -132,10 +145,21 @@ const image = {
   cafam,
   contactImg,
   portafolio,
-  ally1,
+  errorPage,
   telacia,
   servicio3,
   cerramiento,
-  cabañas
+  cabañas,
+  ally1,
+  menu1,
+  menu2,
+  menu3,
+  menu4,
+  menu5,
+  menu6,
+  menu7,
+  menu8,
+  menu9,
+  mapa
 };
 export { image };

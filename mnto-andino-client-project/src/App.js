@@ -7,6 +7,7 @@ import { Auth } from "./pages/admin";
 import { Loading, WebMenu } from "./components/Shared";
 import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "./pages/web";
 import { PrivacyPolicy } from "./components/Shared/Footer/PrivacyPolicy";
+import { NotFound } from "./components/Shared/NotFound";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Ha ocurrido un error.</h1>;
+      return <NotFound />;
     }
 
     return this.props.children;
@@ -62,10 +63,7 @@ const App = () => {
         ) : (
           <Routes>
             {isLoggedIn ? (
-              <Route
-                path="*"
-                element={<AppRouter isLoggedIn={isLoggedIn} />}
-              />
+              <Route path="*" element={<AppRouter isLoggedIn={isLoggedIn} />} />
             ) : (
               <Route path="/" element={<WebMenu />} />
             )}
@@ -74,6 +72,7 @@ const App = () => {
             <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
             <Route path="/lamartina" element={<LaMartina />} />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         )}
       </BrowserRouter>
