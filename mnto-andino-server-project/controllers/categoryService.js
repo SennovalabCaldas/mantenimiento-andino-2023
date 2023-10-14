@@ -1,80 +1,33 @@
 const CategoryService = require("../models/categoryService");
-
-// async function createCategoryService(req, res) {
-//   console.log("Contenido de req.body:", req.body);
-//   try {
-//     const categoryServiceData = req.body; // Obtiene los datos de la categoría de servicio desde el cuerpo de la solicitud
-//     console.log("categoryServiceData", categoryServiceData);
-
-//     if (!req.file) {
-//       return res.status(400).json({ msg: "Error: Debes subir una imagen." });
-//     }
-
-//     // Sube la imagen al servidor
-//     const imagePath = await upload.single("avatar")(req, res, (err) => {
-//       if (err) {
-//         console.error(err);
-//         return res.status(400).json({ msg: "Error al subir la imagen" });
-//       }
-//     });
-//     console.log("imagePath", imagePath);
-//     console.log("imagePath", imagePath.url);
-//     categoryServiceData.avatar = imagePath.url; // Establece la ruta de la imagen en los datos de la categoría de servicio
-
-//     const categoryServiceStored = new CategoryService(categoryServiceData); // Crea una nueva instancia del modelo de la categoría de servicio
-//     await categoryServiceStored.save(); // Guarda la categoría de servicio en la base de datos
-
-//     res.status(201).json({
-//       _id: categoryServiceStored._id,
-//       nameCategoryService: categoryServiceStored.nameCategoryService,
-//       descriptionCategoryService:
-//         categoryServiceStored.descriptionCategoryService,
-//       avatar: categoryServiceStored.avatar,
-//       active: categoryServiceStored.active, // Asegúrate de usar 'active' en lugar de 'ative' para evitar errores tipográficos
-//     });
-
-//     console.log(categoryServiceStored);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).json({ msg: "Error al crear la categoría de servicio" });
-//   }
-// }
-
 async function createCategoryService(req, res) {
   console.log("Contenido de req.body:", req.body);
   try {
-    const categoryServiceData = req.body; // Obtiene los datos de la categoría de servicio desde el cuerpo de la solicitud
+    const categoryServiceData = req.body; // Obtén los datos de la categoría de servicio desde el cuerpo de la solicitud
     console.log("categoryServiceData", categoryServiceData);
 
     if (!req.file) {
       return res.status(400).json({ msg: "Error: Debes subir una imagen." });
     }
 
-    // Sube la imagen al servidor
-    const imagePath = await upload.single("avatar")(req, res, (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(400).json({ msg: "Error al subir la imagen" });
-      }
-    });
-    console.log("imagePath", imagePath);
-    console.log("imagePath", imagePath.url);
-    categoryServiceData.avatar = imagePath.url; // Establece la ruta de la imagen en los datos de la categoría de servicio
+    categoryServiceData.avatar = await req.file.path; // Consigue la ruta de la imagen almacenada en el servidor
+
+    // Crea una nueva categoría de servicio en base a los datos recibidos
+    const newCategoryService = new CategoryService({ ...categoryServiceData });
+    console.log("newCategoryService", newCategoryService);
 
     // Guarda la categoría de servicio en la base de datos
-    const categoryServiceStored = new CategoryService(categoryServiceData);
-    await categoryServiceStored.save();
+    const savedCategoryService = await newCategoryService.save();
+    console.log("savedCategoryService", savedCategoryService);
 
+    // Devuelve una respuesta exitosa
     res.status(201).json({
-      _id: categoryServiceStored._id,
-      nameCategoryService: categoryServiceStored.nameCategoryService,
+      _id: savedCategoryService._id,
+      nameCategoryService: savedCategoryService.nameCategoryService,
       descriptionCategoryService:
-        categoryServiceStored.descriptionCategoryService,
-      avatar: categoryServiceStored.avatar,
-      active: categoryServiceStored.active, // Asegúrate de usar 'active' en lugar de 'ative' para evitar errores tipográficos
+        savedCategoryService.descriptionCategoryService,
+      avatar: savedCategoryService.avatar,
+      active: savedCategoryService.active,
     });
-
-    console.log(categoryServiceStored);
   } catch (error) {
     console.error(error);
     res.status(400).json({ msg: "Error al crear la categoría de servicio" });

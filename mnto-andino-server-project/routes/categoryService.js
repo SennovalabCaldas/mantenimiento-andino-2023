@@ -1,8 +1,6 @@
 const express = require("express");
 const categoryServiceController = require("../controllers/categoryService");
-
 const md_auth = require("../middlewares/authenticated");
-
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -15,7 +13,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
 const api = express.Router();
 
 api.post(
