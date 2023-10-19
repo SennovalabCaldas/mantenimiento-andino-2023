@@ -1,7 +1,7 @@
 .cubeContainer {
   bottom: 160px;
   right: 100px;
-  position: fixed;
+  position: absolute;
   z-index: 999;
   .cube {
     width: 70px;
@@ -9,7 +9,6 @@
     transform-style: preserve-3d;
     animation: spin 8s infinite linear;
     position: fixed;
-
     div {
       position: absolute;
       width: 70px;

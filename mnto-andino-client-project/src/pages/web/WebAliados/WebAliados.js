@@ -27,6 +27,17 @@ export const WebAliados = ({ allies }) => {
       national: true,
     },
   ];
+
+  const defaultCertification = [
+    {
+      name: "Instalación y mantenimiento preventivo y correctivo de hornos",
+      avatar: [image.unox, image.Rational],
+    },
+    {
+      name: "Certificación en fallas y mantenimiento en equipos de limpieza industrial",
+      avatar: [image.ally1],
+    },
+  ];
   defaultAllies.forEach((ally) => {
     uniqueAllyNames.add(ally.allyName);
   });
@@ -52,42 +63,51 @@ export const WebAliados = ({ allies }) => {
   };
   console.log(mergedAllies);
   return (
-    <div className="ally-division">
-      <a className="title-mnto-andino" href="#">
-        <span className="smaller-text">conoce quienes son nuestros</span>aliados
-      </a>
-      <div className="ally-list">
-        <div className="main">
-          {mergedAllies.map((ally, index) => (
-            <div
-              key={index}
-              className="card"
-              onClick={() => openModal(ally)} // Abre el modal cuando el mouse pasa sobre el aliado
-            >
-              <img
-                src={
-                  allies.find((a) => a.allyName === ally.allyName)
-                    ? `${baseApi}/${ally.avatar}`
-                    : ally.avatar
-                }
-                alt={ally.allyName}
-                style={{ width: "90px", height: "100px" }}
-              />
-            </div>
-          ))}
-        </div>
-        <Modal
-          open={modalIsOpen}
-          onClose={closeModal}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <div className="modal-content-allies ">
-            <h2>Certificaciones</h2>
-
-            <Typography>{selectedAlly.allyName}</Typography>
+    <div className="content-allies">
+      <div className="gallery gallery-cards">
+        <div className="content panel">
+          <div className="slide" data-order="1">
+            <h2>
+              <span className="no-select">
+                Nos sentimos agradecidos por contar con{" "}
+              </span>
+            </h2>
+            <h1>
+              {" "}
+              <span className="no-select-g">aliados</span>
+            </h1>
+            <h2>
+              <span className="no-select">tan comprometidos y dedicados.</span>
+            </h2>
+            <h3>
+              Su apoyo constante ha sido fundamental para el éxito de nuestros
+              proyectos.
+            </h3>
           </div>
-        </Modal>
+          <div className="images panel">
+            <div className="certification-img">
+              {defaultCertification.map((cert, index) => (
+                <div key={index}>
+                  <div className="column-item-cert">
+                    <h1>
+                      <span className="no-select">{cert.name}</span>
+                    </h1>
+                    <div className="column-item">
+                      {cert.avatar.map((image, imageIndex) => (
+                        <img
+                          src={image}
+                          alt={`${cert.name} ${imageIndex}`}
+                          className="certification"
+                          key={imageIndex}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -50,10 +50,8 @@
   transform: scale(1.2); /* Efecto de escala al pasar el mouse */
 }
 
-
-/* Estilos para el botón de mostrar/ocultar */
-.social-slide-bar.open {
-  right: 0;
+@media (max-width: 768px) {
+  .social-slide-bar {
+    display: none; /* Ocultar la barra lateral en dispositivos móviles */
+  }
 }
-
-/* Agrega estilos adicionales según sea necesario */

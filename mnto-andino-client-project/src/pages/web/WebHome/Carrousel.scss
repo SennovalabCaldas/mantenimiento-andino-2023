@@ -1,89 +1,276 @@
+/* Carrousel.scss */
+
 .carrousel-container {
   position: relative;
   width: 100%;
-  margin: 0 auto;
+  height: 500px; /* Ajusta la altura según tus necesidades */
   overflow: hidden;
-.slide-content{
-  .logo-superpuesto{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    height: 150px;
-    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
-    transition: 0.5s;
-    z-index: 1;
-  }
-  .title{
-    font-size: 30px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
-  }
+  border: 1px solid #ccc; /* Borde opcional para el carrusel */
 }
-  .slide {
+
+.slide {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+}
+
+.slide-content {
+  color: #ffffff;
+  text-align: center;
+  /* padding: 20px; */
+  background: rgb(60 75 79 / 55%);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.logo-superpuesto {
+  width: 80px; /* Ajusta el tamaño del logo según tus necesidades */
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.container-img-superpuesto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 90%;
+  border-radius: 5px;
+  top: 5px;
+  bottom: 10px;
+  position: absolute;
+  .img-superpuesto {
+    display: contents;
+    height: 70%;
+    width: 100%;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+
+  .card {
+    width: 15%;
+    height: 40%;
+    background-image: linear-gradient(to top, #b8b1a4 0%, #2b1f18 100%);
+    padding: 1rem 0.5rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border-radius: 10px;
+  }
+
+  .card-info {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 500px;
-
-    padding: 20px;
-    background-color: #f2f2f2; /* Color de fondo del slide */
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
-  .slide img {
-    width: 100%; /* La imagen se ajustará al ancho del contenedor */
-    height: 500px;
-    margin-top: 10px;
-  }
-
-  .prev-button,
-  .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    background-color: #007bff; /* Color de fondo de los botones */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .prev-button:hover,
-  .next-button:hover {
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse sobre los botones */
-  }
-
-  .prev-button {
-    left: 10px;
-  }
-
-  .next-button {
-    right: 10px;
-  }
-
-  .indicators {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  .indicator {
-    width: 10px;
-    height: 10px;
+  /*Image*/
+  .card-avatar {
+    --size: 60px;
+    background: linear-gradient(to top, #f1e1c1 0%, #fcbc97 100%);
+    width: var(--size);
+    height: var(--size);
     border-radius: 50%;
-    background-color: gray;
-    margin: 0 5px;
+    transition: transform 0.2s ease;
+    margin-bottom: 1rem;
   }
 
-  .indicator.active {
-    background-color: blue; /* Cambia el color para el indicador activo */
+  /*Card footer*/
+  .card-social {
+    transform: translateY(200%);
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .card-social__item {
+    list-style: none;
+  }
+
+  .card-social__item svg {
+    display: block;
+    height: 18px;
+    width: 18px;
+    fill: #fff;
+    cursor: pointer;
+    transition: fill 0.2s ease, transform 0.2s ease;
+  }
+
+  /*Text*/
+  .card-title {
+    color: rgba(224, 224, 224, 0.9803921569);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  .card-subtitle {
+    color: #d4dfe5;
+    font-size: 10px;
+  }
+
+  /*Hover*/
+  .card:hover {
+    box-shadow: 0 8px 50px #23232333;
+  }
+
+  .card:hover .card-info {
+    transform: translateY(-5%);
+  }
+
+  .card:hover .card-social {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+
+  .card-social__item svg:hover {
+    fill: #232323;
+    transform: scale(1.1);
+  }
+
+  .card-avatar:hover {
+    transform: scale(1.1);
+  }
+}
+
+.title h1 {
+  font-size: 25px;
+  margin: 20px;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #fff;
+  font-size: 13px;
+  margin: 10px 0;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+
+h3 {
+  color: black;
+
+  font-size: 12px;
+  margin: 10px 0;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  margin: 0 5px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.indicator.active {
+  background: #fff;
+}
+
+// carrusel de imagenes en pantalla pequeña
+@media (max-width: 768px) {
+  .carrousel-container {
+    .webmenu-page .home .section {
+      width: 100%;
+      top: 30px;
+      background-color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+  }
+
+  .logo-superpuesto {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  .title h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 10px 0;
+    font-family: sans-serif;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+.img-slide {
+  width: 70%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 5px;
+  .img-slide-test {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 5px;
+  
+  }
+  &:hover {
+    transform: scale(1.1);
+    border: 1px solid #ccc;
   }
 }

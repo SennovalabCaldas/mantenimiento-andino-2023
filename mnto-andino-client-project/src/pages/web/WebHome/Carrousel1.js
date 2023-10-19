@@ -168,6 +168,7 @@ function Slide({ slide, offset }) {
 
 export const Carrousel = ({ posts }) => {
   const combinedSlides = [...slides, ...posts];
+  console.log("combined=>", combinedSlides);
 
   const sortedSlides = combinedSlides
     .sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion))

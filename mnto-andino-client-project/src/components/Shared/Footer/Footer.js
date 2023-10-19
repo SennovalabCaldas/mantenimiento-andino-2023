@@ -69,6 +69,7 @@ const Footer = () => {
               href="http://sennovalab.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="footer__item-copyright"
             >
               <h3>© Copyright 2023 SENNOVALAB</h3>
             </a>

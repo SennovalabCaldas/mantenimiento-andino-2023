@@ -9,169 +9,146 @@ import {
   WebServices,
 } from "../../pages/web";
 import { WebCertifications } from "../../pages/web/WebCertifications/WebCertifications";
-import WebSuppliers from "../../pages/web/WebSuppliers/WebSuppliers";
-import {WebContactUs} from "../../pages/web/WebContactUs/WebContactUs";
-import { Link as ScrollLink } from "react-scroll";
-import { useSelector } from "react-redux";
-import "./WebMenu.scss";
-import SlideBarWebMenu from "./SlideBarWebMenu";
-import { CubeWithImages } from "../Client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import Footer from "../Shared/Footer/Footer";
-import { SocialSlideBar } from "./SocialSlideBar";
-import { useDispatch } from "react-redux";
-import { getAllAllies } from "../../actions/allyActions";
-import { getAllFoundationsNews } from "../../actions/foundationNewsActions";
-import { getAllCertifications } from "../../actions/certificationActions";
-import { getAllClients } from "../../actions/clientActions";
-import { getAllProjects } from "../../actions/projectActions";
-import { getAllSuppliers } from "../../actions/providerActions";
-import { getServices } from "../../actions/serviceActions";
-import { getAllCategoriesService } from "../../actions/categoryServiceActions";
+import { WebContactUs } from "../../pages/web/WebContactUs/WebContactUs";
+import { useSelector, useDispatch } from "react-redux";
 import { getAllPosts } from "../../actions/postActions";
-import { image } from "../../assets";
-export function WebMenu() {
-  const [activeSection, setActiveSection] = useState("section1");
-  const [showToggleButton, setShowToggleButton] = useState(false); // Inicializar en falso
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+import { getAllCategoriesService } from "../../actions/categoryServiceActions";
+import { getServices } from "../../actions/serviceActions";
+import { getAllClients } from "../../actions/clientActions";
+import { getAllAllies } from "../../actions/allyActions";
+import { getAllCertifications } from "../../actions/certificationActions";
+import { getAllProjects } from "../../actions/projectActions";
+import { getAllFoundationsNews } from "../../actions/foundationNewsActions";
 
-  const menuIcon = isMenuOpen ? faTimes : faBars;
+import { CubeWithImages } from "../Client";
+import { image } from "../../assets";
+import SlideBarWebMenu from "./SlideBarWebMenu";
+import { SocialSlideBar } from "./SocialSlideBar";
+import Footer from "../Shared/Footer/Footer";
+import "./WebMenu.scss";
+import { Link } from "react-router-dom";
+
+export const WebMenu = () => {
+  const dispatch = useDispatch();
+  const [activeSection, setActiveSection] = useState("section1");
+  const [showToggleButton, setShowToggleButton] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+    dispatch(getAllCategoriesService());
+    dispatch(getServices());
+    dispatch(getAllClients());
+    dispatch(getAllAllies());
+    dispatch(getAllCertifications());
+    dispatch(getAllProjects());
+    dispatch(getAllFoundationsNews());
+  }, [dispatch]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleSetActiveSection = (section) => {
     setActiveSection(section);
-    if (section !== "section1") {
-      setShowToggleButton(true); // Mostrar el botón de menú cuando no está en la sección 1
-    } else {
-      setShowToggleButton(false); // Ocultar el botón de menú cuando está en la sección 1
-    }
-  };
+    setShowToggleButton(section !== "section1");
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prevState) => !prevState);
+    // Renderizar los componentes SlideBarWebMenu y SocialSlideBar
+    if (section !== "section1") {
+      return (
+        <>
+          <SlideBarWebMenu />
+          <SocialSlideBar />
+        </>
+      );
+    } else {
+      return null; // Si la sección es "section1", no renderizar los componentes
+    }
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-  const showSlideBar = activeSection !== "section1";
-  console.log(activeSection);
+
+  const services = useSelector((state) => state.service.services);
+  const categoryServices = useSelector(
+    (state) => state.categoryService.allCategoriesService
+  );
+
+  const filteredServices = services.filter((service) =>
+    service.nameService.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+    setIsMenuOpen(false); // Cierra el menú después de hacer clic en un enlace
+  };
+
   return (
     <div className="webmenu-page">
-      {showToggleButton && (
-        <SlideBarWebMenu
-          activeSection={activeSection}
-          handleSetActiveSection={handleSetActiveSection}
-        />
-      )}
-      <nav className="mask">
-        <a className="title-mnto-andino" href="#">
-          <span className="smaller-text">Mantenimiento</span> Andino
-        </a>
-        <ul onClick={closeMenu} className="list">
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section2"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section2")}
-            >
-              SERVICIOS
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section3"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section3")}
-            >
-              CLIENTES
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section4"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section4")}
-            >
-              PROVEEDORES Y ALIADOS
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section5"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section5")}
-            >
-              CERTIFICACIONES
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section6"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section6")}
-            >
-              PROYECTOS
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section7"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section7")}
-            >
-              FUNDACIÓN
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              className="a-scrollink"
-              to="section8"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              onSetActive={() => handleSetActiveSection("section8")}
-            >
-              CONTÁCTANOS
-            </ScrollLink>
-          </li>
+      <div className="header">
+        <div id="topbarMenu" className="topbarMenu">
+          <div className="social-icons">
+            <img src={image.linkedin} alt="facebook" />
+            <img src={image.whatsApp} alt="facebook" />
+            <img src={image.location} alt="facebook" />
+            <img src={image.email} alt="facebook" />
+          </div>
+          <div className="search-bar">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Buscar..."
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+        <div id="menuBar" className="menuBar">
+          <div className="logo">
+            <img src={image.logomnbg} alt="logo" />
+          </div>
+          <nav className={`navbar ${isMenuOpen ? "open" : ""}`}>
+            <div className="navbar-toggle" onClick={toggleMenu}>
+              ☰
+            </div>
+            <div className="navbar-options">
+              <a href="#home" onClick={() => scrollToSection("section1")}>
+                Inicio
+              </a>
+              <a href="#services" onClick={() => scrollToSection("section2")}>
+                Servicios
+              </a>
+              <a href="#clients" onClick={() => scrollToSection("section3")}>
+                Clientes
+              </a>
+              <a href="#projects" onClick={() => scrollToSection("section4")}>
+              Aliados
+              </a>
+              <a href="#allies" onClick={() => scrollToSection("section5")}>
+                Proyectos
+              </a>
+              <a
+                href="#foundations"
+                onClick={() => scrollToSection("section7")}
+              >
+                Fundaciones
+              </a>
+              <a href="#contact" onClick={() => scrollToSection("section8")}>
+                Contacto
+              </a>
+              {/* INiciar sesión */}
+              <Link to="/login">Iniciar sesión</Link>
+            </div>
+          </nav>
+        </div>
+      </div>
 
-          <li className="li-login-anchor">
-            <Link to="/login" className="btn">
-              <span>INGRESAR</span>
-            </Link>
-          </li>
-        </ul>
-        <button class="menu">Menu</button>
-      </nav>
-   
       <div className="home">
         <Section1 />
         <Section2 />
@@ -182,12 +159,13 @@ export function WebMenu() {
         <Section7 />
         <Section8 />
       </div>
-      <CubeWithImages></CubeWithImages>
-      <SocialSlideBar></SocialSlideBar>
+      <SocialSlideBar />
+      <SlideBarWebMenu />
+      <CubeWithImages />
       <Footer />
     </div>
   );
-}
+};
 
 function Section1() {
   const dispatch = useDispatch();
@@ -201,22 +179,34 @@ function Section1() {
     </div>
   );
 }
-
 function Section2() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategoriesService());
     dispatch(getServices());
   }, [dispatch]);
+
   const categoryServices = useSelector(
     (state) => state.categoryService.allCategoriesService
   );
-  console.log(categoryServices);
+
   const services = useSelector((state) => state.service.services);
-  console.log(services);
+  const filteredServices = services.filter((service) => {
+    if (searchTerm === "") {
+      return service;
+    } else if (
+      service.nameService.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      return service;
+    }
+  });
+
   return (
     <div className="section" id="section2">
-      <WebServices categoryServices={categoryServices} services={services} />
+      <WebServices
+        categoryServices={categoryServices}
+        services={filteredServices}
+      />
     </div>
   );
 }
@@ -237,15 +227,13 @@ function Section3() {
 function Section4() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllSuppliers());
     dispatch(getAllAllies());
   }, [dispatch]);
-  const suppliers = useSelector((state) => state.supplier.allSuppliers);
   const allies = useSelector((state) => state.ally.allAllies);
 
   return (
     <div className="section" id="section4">
-      <WebSuppliers suppliers={suppliers} allies={allies} />
+      <WebAliados allies={allies} />
     </div>
   );
 }

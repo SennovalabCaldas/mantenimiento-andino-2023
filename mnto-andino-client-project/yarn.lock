@@ -2446,6 +2446,11 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
+"@tawk.to/tawk-messenger-react@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@tawk.to/tawk-messenger-react/-/tawk-messenger-react-2.0.2.tgz#0992524dcfc530abb3a684724ee6d6a285bd560b"
+  integrity sha512-Nl3JMMIrQiyveSSuP8qYWEu1u+coqz4WCA7TfSjOMDcpyWEiORvOdnMWTsSlhz8rae57HWsCAGLzE507fKtzXA==
+
 "@testing-library/dom@^8.5.0":
   version "8.20.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.0.tgz"
@@ -11162,6 +11167,11 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
   resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
+
+tawkto-react@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/tawkto-react/-/tawkto-react-3.0.1.tgz#e9436d5d9adc09190c1bc52d2d42cfd20d899671"
+  integrity sha512-iuv3LgT8nNVPuqONgzQnuJkjwGNjMvkXx1Tkb3I6+3LEIyX7rahAXHSkpVc80BvPG6FAK0FW/77dDVfc2idilQ==
 
 temp-dir@^2.0.0:
   version "2.0.0"

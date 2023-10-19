@@ -2,6 +2,7 @@ import logoSennovalabNoC from "./png/logo-sennovalab-nocolor.png";
 import logoH from "./png/logo-h.png";
 
 import authBg from "./jpg/auth-bg.jpg";
+import fondoSlide from "./jpg/fondo-slide.jpeg";
 import background from "./jpg/bg-image.jpg";
 import logo2 from "./jpg/logo2.jpg";
 import logo3 from "./jpg/logo3.jpg";
@@ -21,8 +22,10 @@ import instagram from "./svg/instagram.svg";
 import facebook from "./svg/facebook.svg";
 import tiktok from "./svg/tiktok.svg";
 import linkedin from "./svg/linkedin.svg";
+import star from "./svg/star.svg";
 
 import carulla from "./clients/carulla.png";
+import cert1 from "./clients/cert1.png";
 import consorcio from "./clients/consorcio.png";
 import exito from "./clients/exito.png";
 import juanvaldez from "./clients/juanvaldez.jpg";
@@ -36,8 +39,12 @@ import superal from "./clients/superal.png";
 import concesionpintada from "./clients/concesionpintada.png";
 import multidrogas from "./clients/multidrogas.png";
 import cafam from "./clients/cafam.png";
-import logomnbg from "./jpg/image-removebg-preview.png";
+import logomnbg from "./jpg/image-removebg-preview.jpg";
 import qrServices from "./png/qrServices.png";
+import a1 from "./png/a1.png";
+import a2 from "./png/a2.png";
+import a3 from "./png/a3.png";
+import a4 from "./png/a4.png";
 
 import service1 from "./services/service1.jpg";
 import img1services from "./services/img1.jpeg";
@@ -79,6 +86,7 @@ import menu6 from './homeMenu/img6.jpg'
 import menu7 from './homeMenu/img7.jpg'
 import menu8 from './homeMenu/img8.jpg'
 import menu9 from './homeMenu/img9.jpg'
+import img1Foundation from './homeMenu/img11.png'
 
 import mapa from './jpg/mapa.jpg'
 
@@ -160,6 +168,14 @@ const image = {
   menu7,
   menu8,
   menu9,
-  mapa
+  mapa,
+  img1Foundation,
+  fondoSlide,
+  star,
+  cert1,
+  a1,
+  a2,
+  a3,
+  a4,
 };
 export { image };

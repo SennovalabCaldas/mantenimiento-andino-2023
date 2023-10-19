@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Grid,
   Paper,
@@ -7,9 +7,23 @@ import {
   Box,
   Tabs,
   Tab,
+  Avatar,
+  Modal,
+  AvatarGroup,
+  Select,
+  MenuItem,
+  ToggleButtonGroup,
+  ToggleButton,
+  ButtonGroup,
+  Button,
 } from "@mui/material";
 import "./WebServices.scss";
 import { image } from "../../../assets";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import EmailIcon from "@mui/icons-material/Email";
+import Chip from "@mui/material/Chip";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 const defaultServicesMap = {
   default1: [
@@ -86,34 +100,36 @@ const defaultServicesMap = {
   ],
 };
 
-const handleDownloadClick = () => {
-  const pdfUrl = image.portafolio;
-  window.open(pdfUrl, "_blank");
+const handleWhatsAppClick = (serviceName) => {
+  const mensaje = encodeURIComponent(
+    `¡Hola! Estás en contacto con Mantenimiento Andino SAS. Estamos encantados de que estés interesado en nuestros servicios. Si deseas conocer más acerca de nuestro servicio *${serviceName}*, por favor, no dudes en comunicarte con nosotros. Estamos aquí para ayudarte en lo que necesites. ¡Esperamos tu mensaje!`
+  );
+  const whatsappLink = `https://wa.me/573103833591?text=${mensaje}`;
+  window.open(whatsappLink, "_blank");
+};
+
+const handleEmailClick = (serviceNameP) => {
+  const serviceName = serviceNameP; // Reemplaza esto con el nombre real del servicio
+  window.location.href = `mailto:mantenimientoandino@mantenimientoandino.co?subject=Consulta%20de%20Servicio:%20${serviceName}`;
 };
 
 export const ProductList = ({ categoryServices, services }) => {
+  const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [value, setValue] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("todos");
   console.log(categoryServices);
+
   const allServicesCategory = {
     _id: "todos",
     nameCategoryService: "Todos los Servicios",
   };
   const updatedCategoryServices = [allServicesCategory, ...categoryServices];
 
-  const [value, setValue] = useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-
-  const filteredProductsByCategory = categoryServices.filter(
-    (categoryService) =>
-      categoryService.nameCategoryService
-        .toLowerCase()
-        .includes(selectedCategory.toLowerCase())
-  );
 
   const mergedServices = [
     ...(services.length === 0 ? [] : services),
@@ -124,54 +140,54 @@ export const ProductList = ({ categoryServices, services }) => {
   ];
 
   const filteredServices = mergedServices.filter((service) =>
-    selectedCategory
-      ? service.categoryService === selectedCategory &&
+    selectedCategory === "todos"
+      ? service.name.toLowerCase().includes(searchTerm.toLowerCase())
+      : service.categoryService === selectedCategory &&
         service.name.toLowerCase().includes(searchTerm.toLowerCase())
-      : service.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const showCategoryChip = selectedCategory === "todos";
+  const handleServiceClick = (service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedService(null);
+    setIsModalOpen(false);
+  };
 
   const handleCategoryClick = (categoryId) => {
     setSelectedCategory(categoryId);
   };
-  return (
-    <div className="product-list-container">
-      <div className="productlist-mnto-adino">
-        <a className="title-mnto-andino" href="#">
-          <span className="smaller-text">portafolio</span>de servicios
-        </a>
-        <div className="item-tabs-horizontal">
-          <Box
-            sx={{ bgcolor: "background.paper", width: "100%" }}
-            className="box-tabs-container"
-          >
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="secondary"
-              textColor="inherit"
-              variant="fullWidth"
-              aria-label="full width tabs example"
-              className="tabs-horizontal"
-            >
-              {updatedCategoryServices.map((categoryService, index) => (
-                <Tab
-                  key={categoryService._id}
-                  label={categoryService.nameCategoryService}
-                  onClick={() => {
-                    if (categoryService._id === "todos") {
-                      setSelectedCategory("");
-                    } else {
-                      handleCategoryClick(categoryService._id);
-                    }
-                  }}
-                />
-              ))}
-            </Tabs>
-          </Box>
-        </div>
 
-        <div className="services-list-bycategory-section">
-          <div className="services-list-bycategory-section-1">
+  return (
+    <>
+      <div className="product-list-container">
+        <div className="product-list">
+          <div className="category-tabs">
+            {/* <ButtonGroup
+              value={value}
+              variant="contained"
+              aria-label="outlined primary button group"
+              onChange={handleChange}
+              className="category-toggle-buttons" // Aplicando estilos elegantes
+              color="primary" // Cambia el color de los botones según tus necesidades
+              exclusive
+            >
+              {updatedCategoryServices.map((category) => (
+                <Button
+                  key={category._id}
+                  value={category._id}
+                  className="toggle-button" // Aplicando estilos elegantes
+                >
+                  {category.nameCategoryService}
+                </Button>
+              ))}
+            </ButtonGroup> */}
+          </div>
+
+          <div className="product-cards">
             <Grid container spacing={3}>
               {filteredServices.map((service) => (
                 <Grid
@@ -179,59 +195,36 @@ export const ProductList = ({ categoryServices, services }) => {
                   item
                   xs={12}
                   sm={6}
-                  md={3}
+                  md={4}
                   className="product-item"
                 >
-                  <img src={service.photos[0]} alt={service.name} />
-                  <div
-                    className={`status-avatar ${
-                      service.active ? "available" : "unavailable"
-                    }`}
-                  >
-                    {service.active ? "Disponible" : "No Disponible"}
+                  <div class="notificationCard">
+                    <div
+                      class="notificationCardOverlay"
+                    >
+                      <div className="info-product">
+                        <p class="notificationHeading">{service.name}</p>
+                        <div className="download-portfolio">
+                          <img
+                            src={image.qrServices}
+                            alt="QR"
+                            style={{ width: "50px" }}
+                          />
+                          <p class="notificationPara">{service.description}</p>
+                        </div>
+                      </div>
+                      <div class="buttonContainer">
+                        <button class="AllowBtn">VER MÁS</button>
+                        <button class="NotnowBtn">CONTACTAR</button>
+                      </div>
+                    </div>
                   </div>
-                  <h3>{service.name}</h3>
                 </Grid>
               ))}
             </Grid>
           </div>
-          <div className="services-list-bycategory-section-2">
-            <div className="productlist-search">
-              <input
-                type="text"
-                placeholder="Buscar servicio por nombre"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <div className="download-portfolio">
-              <div>
-                <p>
-                  <strong>Portafolio de servicios</strong>
-                </p>
-              </div>
-              <div>
-                <button
-                  className="buttonDownload"
-                  onClick={handleDownloadClick}
-                >
-                  Descargar
-                </button>
-              </div>
-            </div>
-            <div className="download-portfolio">
-              <img src={image.qrServices} alt="QR" style={{ width: "100px" }} />
-            </div>
-            <div className="download-portfolio">
-              <img
-                src={image.img1services}
-                alt="Logo"
-                style={{ width: "100%" }}
-              />
-            </div>
-          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

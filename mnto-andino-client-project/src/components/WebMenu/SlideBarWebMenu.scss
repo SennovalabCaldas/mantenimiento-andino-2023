@@ -42,3 +42,9 @@
     user-select: none;
   }
 }
+
+@media (max-width: 768px) {
+  .slide-bar {
+    display: none; /* Ocultar la barra lateral en dispositivos móviles */
+  }
+}

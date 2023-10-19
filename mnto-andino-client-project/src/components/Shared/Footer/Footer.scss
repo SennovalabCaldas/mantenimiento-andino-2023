@@ -104,3 +104,9 @@
     }
   }
 }
+// ocultar en pantallas pequeñas
+@media (max-width: 768px) {
+  .footer__item-copyright {
+    display: none;
+  }
+}

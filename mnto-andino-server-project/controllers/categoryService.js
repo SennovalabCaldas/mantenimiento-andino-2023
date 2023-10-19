@@ -1,17 +1,16 @@
 const CategoryService = require("../models/categoryService");
+
 async function createCategoryService(req, res) {
   console.log("Contenido de req.body:", req.body);
   try {
-    const categoryServiceData = req.body; // Obtén los datos de la categoría de servicio desde el cuerpo de la solicitud
+    const categoryServiceData = req.body; 
     console.log("categoryServiceData", categoryServiceData);
 
     if (!req.file) {
       return res.status(400).json({ msg: "Error: Debes subir una imagen." });
     }
 
-    categoryServiceData.avatar = await req.file.path; // Consigue la ruta de la imagen almacenada en el servidor
-
-    // Crea una nueva categoría de servicio en base a los datos recibidos
+    categoryServiceData.avatar = await req.file.path; 
     const newCategoryService = new CategoryService({ ...categoryServiceData });
     console.log("newCategoryService", newCategoryService);
 

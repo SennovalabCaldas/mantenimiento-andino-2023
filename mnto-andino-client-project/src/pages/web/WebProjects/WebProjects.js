@@ -1,7 +1,18 @@
 import React from "react";
 import "./WebProjects.scss";
 import { image } from "../../../assets";
-import { Box, Grid, ImageList, ImageListItem, Paper } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  ImageList,
+  ImageListItem,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { ENV } from "../../../utils";
 import { styled } from "@mui/material/styles";
 const proyectosBase = [
@@ -13,7 +24,7 @@ const proyectosBase = [
     joinDate: "2021-10-10",
   },
   {
-    projectName: "Edificaciones Túnel Telasia.",
+    projectName: "Edificaciones Túnel Tesalia.",
     national: true,
     avatar: image.telacia,
     joinDate: "2021-10-10",
@@ -82,54 +93,88 @@ export const WebProjects = ({ projects }) => {
   return (
     <>
       <div className="projects-section">
-        <a className="title-mnto-andino" href="#">
-          <span className="smaller-text">enterate de nuestros proyectos
-          de gran éxito </span> nacional
-        </a>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {proyectosNacionales.map((project, index) => (
-            <Grid item xs={2} sm={4} md={4} key={index}>
-              <Item>
-                <div
-                  className={`project-card ${
-                    project.national ? "national" : "international"
-                  }`}
-                >
-                  <img src={getAvatarUrl(project)} alt={project.projectName} />
-                  <div className="project-details">
-                    <h4 className="project-name">{project.projectName}</h4>
+        <div className="gallery gallery-cards">
+          <div className="content panel">
+            <div className="slide" data-order="1">
+              <h2>
+                <span className="no-select">Proyectos nacionales</span>
+              </h2>
+              <a className="button" href="#">
+                <span className="no-select">Get Started</span>
+              </a>
+            </div>
+            <div className="images panel">
+              {proyectosNacionales.length === 0 ? (
+                <>
+                  <div class="container">
+                  <div class="loader"></div>
                   </div>
-                </div>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {proyectosInternacionales.map((project, index) => (
-            <Grid item xs={2} sm={4} md={4} key={index}>
-              <Item>
-                <div
-                  className={`project-card ${
-                    project.national ? "national" : "international"
-                  }`}
-                >
-                  <img src={getAvatarUrl(project)} alt={project.projectName} />
-                  <div className="project-details">
-                    <h4 className="project-name">{project.projectName}</h4>
+                </>
+              ) : (
+                proyectosNacionales.map((project, index) => (
+                  <div class="myCard">
+                    <div class="innerCard">
+                      <div class="frontSide">
+                        <img src={getAvatarUrl(project)} alt="" />
+                        <p>{project.projectName}</p>
+                      </div>
+                      <div
+                        class="backSide"
+                        style={{
+                          backgroundImage: `url(${getAvatarUrl(project)})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
                   </div>
-                </div>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="gallery gallery-cards">
+          <div className="content panel">
+            <div className="images panel">
+              {proyectosInternacionales.length === 0 ? (
+                  <>
+                  <div class="container">
+                  <div class="loader"></div>
+                  </div>
+                </>
+              ) : (
+                proyectosInternacionales.map((project, index) => (
+                  <div class="myCard">
+                    <div class="innerCard">
+                      <div class="frontSide">
+                        <img src={getAvatarUrl(project)} alt="" />
+                        <p>{project.projectName}</p>
+                      </div>
+                      <div
+                        class="backSide"
+                        style={{
+                          backgroundImage: `url(${getAvatarUrl(project)})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+            <div className="slide" data-order="1">
+              <h2>
+                <span className="no-select">Proyectos internacionales</span>
+              </h2>
+              <a className="button" href="#">
+                <span className="no-select">Estamos trabajando en ello.</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -83,12 +83,6 @@ export const WebContactUs = () => {
     setSelectedChips(updatedChips);
   };
 
-  useEffect(() => {
-    const sinceData = document.getElementById("sinceData");
-    const date = new Date();
-    const year = date.getFullYear();
-    sinceData.innerHTML = year;
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -232,7 +226,7 @@ export const WebContactUs = () => {
                   variant="standard"
                 />
               </div>
-              <button class="comic-button">Enviar!</button>
+              <button className="comic-button">Enviar!</button>
             </div>
           </header>
         </article>

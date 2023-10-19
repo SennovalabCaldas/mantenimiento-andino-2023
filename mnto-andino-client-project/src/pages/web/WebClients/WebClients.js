@@ -1,7 +1,7 @@
 import React from "react";
 import "./WebClients.scss";
 import { image } from "../../../assets";
-import { Avatar, Badge, Divider, Grid } from "@mui/material";
+import { Avatar, Badge, Divider, Grid, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 
@@ -100,21 +100,28 @@ export const WebClients = ({ clients }) => {
     {
       cliente: "Cliente 1",
       cargo: "Director de Operaciones",
-      avatar: image.cliente1Avatar,
+      avatar: image.a1,
       comentario: "Excelente servicio, muy profesionales.",
       evaluacion: 5,
     },
     {
       cliente: "Cliente 2",
       cargo: "Gerente de Producción",
-      avatar: image.cliente2Avatar,
+      avatar: image.a2,
       comentario: "Trabajo excepcional, los recomiendo totalmente.",
       evaluacion: 4,
     },
     {
       cliente: "Cliente 3",
       cargo: "Gerente de Producción",
-      avatar: image.cliente2Avatar,
+      avatar: image.a3,
+      comentario: "Trabajo excepcional, los recomiendo totalmente.",
+      evaluacion: 5,
+    },
+    {
+      cliente: "Cliente 3",
+      cargo: "Gerente de Producción",
+      avatar: image.a4,
       comentario: "Trabajo excepcional, los recomiendo totalmente.",
       evaluacion: 5,
     },
@@ -124,26 +131,41 @@ export const WebClients = ({ clients }) => {
   const renderTestimonios = () => {
     return (
       <div className="testimonios-container">
-        {testimonios.map((testimonio, index) => (
-          <div key={index} className="testimonio-item">
+      {testimonios.map((testimonio, index) => (
+        <div className="e-card playing" key={index}>
+          <div className="image"></div>
+    
+          <div className="wave"></div>
+          <div className="wave"></div>
+          <div className="wave"></div>
+    
+          <div className="infotop">
             <img
-              src={image.logomn}
-              alt={`Avatar de ${testimonio.cliente}`}
-              className="testimonio-avatar"
+              src={testimonio.avatar}
+              alt={testimonio.cliente}
+              className="client-avatar"
             />
-            <h3 className="testimonio-cliente">{testimonio.cliente}</h3>
-            <p className="testimonio-cargo">{testimonio.cargo}</p>
-            <div className="testimonio-stars">
-              {[...Array(testimonio.evaluacion)].map((_, i) => (
-                <span key={i} className="star">
-                  &#9733;
-                </span>
+            <br />
+            {testimonio.cliente}
+            <div className="name">{testimonio.cargo}</div>
+    
+            <br />
+            <div className="name">{testimonio.comentario}</div>
+            <div className="name">
+              {[...Array(testimonio.evaluacion)].map((star, index) => (
+                <img
+                  src={image.star}
+                  alt="star"
+                  className="star"
+                  key={index}
+                />
               ))}
             </div>
-            <p className="testimonio-comentario">{testimonio.comentario}</p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
+    
     );
   };
   const mergedClientes = [
@@ -155,123 +177,46 @@ export const WebClients = ({ clients }) => {
       ].map((item) => [item.clientName, item])
     ).values(),
   ];
-  const StyledBadge = styled(Badge)(({ theme }) => ({
-    "& .MuiBadge-badge": {
-      backgroundColor: "#44b700",
-      color: "#44b700",
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      "&::after": {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "50%",
-        animation: "ripple 1.2s infinite ease-in-out",
-        border: "1px solid currentColor",
-        content: '""',
-      },
-    },
-    "@keyframes ripple": {
-      "0%": {
-        transform: "scale(.8)",
-        opacity: 1,
-      },
-      "100%": {
-        transform: "scale(2.4)",
-        opacity: 0,
-      },
-    },
-  }));
-  const StyledBadgeInternational = styled(Badge)(({ theme }) => ({
-    "& .MuiBadge-badge": {
-      backgroundColor: "#a300b5",
-      color: "#a300b5",
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      "&::after": {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "50%",
-        animation: "ripple 1.2s infinite ease-in-out",
-        border: "1px solid currentColor",
-        content: '""',
-      },
-    },
-    "@keyframes ripple": {
-      "0%": {
-        transform: "scale(.8)",
-        opacity: 1,
-      },
-      "100%": {
-        transform: "scale(2.4)",
-        opacity: 0,
-      },
-    },
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
   }));
   return (
-    <div className="section-clients">
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <a className="title-mnto-andino" href="#">
-            <span className="smaller-text">nuestros</span>clientes
-          </a>
-          <div className="video-client-section">
-            <div className="video-container">
-              <video className="video-style" controls width="70%" height="auto">
-                <source src={image.contact} type="video/mp4" />
-              </video>
+    <>
+      <div className="section-clients">
+        <div className="gallery gallery-cards">
+          <div className="content panel">
+            <div className="images panel">
+              <div className="column">
+                {mergedClientes.map((client, index) => (
+                  <div className="column-item" key={index}>
+                    <img
+                      src={client.avatar}
+                      alt={client.clientName}
+                      className="client-avatar"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="slide" data-order="1">
+              <h2>
+                <span className="no-select">NUESTROS </span>
+              </h2>
+              <h1>
+                <span className="no-select-2">CLIENTES</span>
+              </h1>
             </div>
           </div>
-        </Grid>
-        <Grid item xs={8}>
-          <div className="client-logos-container">
-
-            <div className="clientes-container">
-              <h2>Clientes Nacionales</h2>
-
-              <Divider sx={{ my: 6 }} />
-              <Grid container spacing={3} justifyContent="center">
-                {mergedClientes
-                  .filter((cliente) => cliente.active && cliente.national)
-                  .map((cliente, index) => (
-                    <Grid item xs={6} md={4} lg={2}>
-                      <Box
-                        component="img"
-                        src={cliente.avatar}
-                        alt={cliente.clientName}
-                        width="100%"
-                        opacity={0.6}
-                      />
-                    </Grid>
-                  ))}
-              </Grid>
-              <h2>Clientes Internacionales</h2>
-
-              <Divider sx={{ my: 6 }} />
-              <Grid container spacing={3} justifyContent="center">
-                {mergedClientes
-                  .filter((cliente) => cliente.active && !cliente.national)
-                  .map((cliente, index) => (
-                    <Grid item xs={6} md={4} lg={2}>
-                      <Box
-                        component="img"
-                        src={cliente.avatar}
-                        alt={cliente.clientName}
-                        width="100%"
-                        opacity={0.6}
-                      />
-                    </Grid>
-                  ))}
-              </Grid>
-            </div>
+          <div className="content panel">
+          {renderTestimonios()}
           </div>
-        </Grid>
-      </Grid>
-
-      {renderTestimonios()}
-    </div>
+        </div>
+      </div>
+    </>
   );
 };
