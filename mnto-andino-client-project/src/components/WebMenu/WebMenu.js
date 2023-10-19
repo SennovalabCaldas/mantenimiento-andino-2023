@@ -128,7 +128,7 @@ export const WebMenu = () => {
                 Clientes
               </a>
               <a href="#projects" onClick={() => scrollToSection("section4")}>
-              Aliados
+                Aliados
               </a>
               <a href="#allies" onClick={() => scrollToSection("section5")}>
                 Proyectos
@@ -160,7 +160,10 @@ export const WebMenu = () => {
         <Section8 />
       </div>
       <SocialSlideBar />
-      <SlideBarWebMenu />
+      <SlideBarWebMenu
+        activeSection={activeSection}
+        handleSetActiveSection={handleSetActiveSection}
+      />
       <CubeWithImages />
       <Footer />
     </div>

@@ -82,7 +82,7 @@ export const WebServices = ({ categoryServices, services }) => {
               </span>
             </h2>
             <a className="button" href="#">
-              <span className="no-select">Get Started</span>
+              <span className="no-select">ESCANEA EL CÓDIGO QR</span>
             </a>
           </div>
           <div className="images panel">

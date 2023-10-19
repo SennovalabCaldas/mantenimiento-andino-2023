@@ -48,11 +48,11 @@
 }
 .options {
   display: none;
-  position: absolute;
+  position: fixed;
   transform: translate(-35%, -130%);
 
   .option {
-    background-color: rgba(255, 255, 255, 0.818);
+    background-color: rgb(10 35 36 / 72%);
 
     border-radius: 3px;
     .btn {
@@ -61,7 +61,7 @@
       margin-top: 2px;
       height: 30px;
       padding-bottom: 5px;
-      color: #000000;
+      color: #d0d0d0;
       cursor: pointer;
       border-bottom: 2px #c93f3fa6 solid;
       overflow: hidden;

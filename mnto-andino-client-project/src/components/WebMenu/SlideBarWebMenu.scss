@@ -2,8 +2,8 @@
 
 .slide-bar {
   position: fixed;
-  margin-left: 10px;
-  top: 50%;
+  margin-left: 5px;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
   background-color: rgba(105, 143, 147, 0.51);
@@ -17,16 +17,24 @@
   border-radius: 7px;
 
   .icon {
-    font-size: 20px; /* Tamaño de icono */
-    color: #000000; /* Color de icono */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el icono (opcional) */
-    transition: background-color 0.3s; /* Agrega una transición suave al cambio de color de fondo (opcional) */
-    padding: 10px; /* Espaciado interior del icono (opcional) */
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 5px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px;
   }
 
   .icon.active {
-    background-color: #9c9a6374;  /* Cambia el color de fondo cuando está activo (opcional) */
-    border-right: 4px solid #fff; /* Añade un indicador visual cuando está activo (opcional) */
+    background-color: rgba(156, 154, 99, 0.4549019608);
+    border-right: 4px solid #fff;
+ 
   }
   .toggle-button {
     cursor: pointer;
@@ -40,11 +48,5 @@
     text-align: center;
     border-bottom: #ffffffcf 2px solid;
     user-select: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .slide-bar {
-    display: none; /* Ocultar la barra lateral en dispositivos móviles */
   }
 }

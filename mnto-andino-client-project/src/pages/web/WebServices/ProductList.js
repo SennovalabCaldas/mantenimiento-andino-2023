@@ -1,26 +1,7 @@
 import React, { useRef, useState } from "react";
-import {
-  Grid,
-  Paper,
-  Typography,
-  TextField,
-  Box,
-  Tabs,
-  Tab,
-  Avatar,
-  Modal,
-  AvatarGroup,
-  Select,
-  MenuItem,
-  ToggleButtonGroup,
-  ToggleButton,
-  ButtonGroup,
-  Button,
-} from "@mui/material";
+import { Grid, Paper, Typography, Modal, Button } from "@mui/material";
 import "./WebServices.scss";
 import { image } from "../../../assets";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import EmailIcon from "@mui/icons-material/Email";
 import Chip from "@mui/material/Chip";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
@@ -33,7 +14,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default1",
-      photos: [image.service1],
+      photos: [image.service1, image.service2, image.service3],
     },
   ],
   default2: [
@@ -43,7 +24,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default2",
-      photos: [image.service1],
+      photos: [image.service1, image.service2],
     },
     {
       _id: "servicedefault3",
@@ -51,7 +32,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default2",
-      photos: [image.service1],
+      photos: [image.service1, image.service2, image.service3],
     },
   ],
   default3: [
@@ -61,7 +42,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default3",
-      photos: [image.service1],
+      photos: [image.service1, image.service2, image.service3],
     },
     {
       _id: "servicedefault5",
@@ -69,7 +50,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default3",
-      photos: [image.service1],
+      photos: [image.service1, image.service2],
     },
     {
       _id: "servicedefault6",
@@ -77,7 +58,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default3",
-      photos: [image.service1],
+      photos: [image.service1, image.service2, image.service3],
     },
   ],
   default4: [
@@ -87,7 +68,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default4",
-      photos: [image.service1],
+      photos: [image.service1, image.service2, image.service3],
     },
     {
       _id: "servicedefault8",
@@ -95,7 +76,7 @@ const defaultServicesMap = {
       description: "Descripción del Servicio Predeterminado 1",
       active: true,
       categoryService: "default4",
-      photos: [image.service1],
+      photos: [image.service1, image.service2, image.service3],
     },
   ],
 };
@@ -199,23 +180,48 @@ export const ProductList = ({ categoryServices, services }) => {
                   className="product-item"
                 >
                   <div class="notificationCard">
-                    <div
-                      class="notificationCardOverlay"
-                    >
+                    <div class="notificationCardOverlay">
                       <div className="info-product">
                         <p class="notificationHeading">{service.name}</p>
                         <div className="download-portfolio">
                           <img
                             src={image.qrServices}
                             alt="QR"
-                            style={{ width: "50px" }}
+                            style={{ width: "50px", height: "50px" }}
                           />
-                          <p class="notificationPara">{service.description}</p>
                         </div>
                       </div>
-                      <div class="buttonContainer">
-                        <button class="AllowBtn">VER MÁS</button>
-                        <button class="NotnowBtn">CONTACTAR</button>
+                      <div
+                        class="buttonContainer"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          width: "100%",
+                          marginTop: "20px",
+                        }}
+                      >
+                        <button
+                          class="AllowBtn"
+                          onClick={() => handleServiceClick(service)}
+                        >
+                          VER MÁS
+                        </button>
+                        <img
+                          src={image.whatsApp}
+                          alt="arrow"
+                          className="contact-icon-card"
+                          onClick={() => handleWhatsAppClick(service.name)}
+                          style={{ width: "25px", marginRight: "10px" }}
+                        />
+                        <img
+                          src={image.email}
+                          alt="arrow"
+                          className="contact-icon-card"
+                          onClick={() => handleEmailClick(service.name)}
+                          style={{ width: "25px", marginRight: "10px" }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -223,6 +229,53 @@ export const ProductList = ({ categoryServices, services }) => {
               ))}
             </Grid>
           </div>
+          <Modal open={isModalOpen} onClose={closeModal}>
+            <div className="modal-container">
+              <Paper className="modal-content">
+                {selectedService && (
+                  <>
+                    <Typography variant="h5">
+                      Servicio: {selectedService.name}
+                    </Typography>
+
+                    <div className="images-container">
+                      {selectedService.photos.map((photo, index) => (
+                        <img
+                          src={photo}
+                          alt={`Imagen ${index + 1}`}
+                          style={
+                            selectedService.photos.length === 1
+                              ? { width: "80%" }
+                              : { width: "50%" }
+                          }
+                        />
+                      ))}
+                    </div>
+                    <Typography variant="body1">
+                      Descripción: {selectedService.description}
+                    </Typography>
+                    <Typography variant="body1">
+                      Estado:{" "}
+                      {selectedService.active ? (
+                        <Chip
+                          icon={<CheckCircleOutlineIcon />}
+                          label="Activo"
+                          color="success"
+                        />
+                      ) : (
+                        <Chip
+                          icon={<CancelOutlinedIcon />}
+                          label="Inactivo"
+                          color="error"
+                        />
+                      )}
+                    </Typography>
+                  </>
+                )}
+                <Button onClick={closeModal}>Cerrar</Button>
+              </Paper>
+            </div>
+          </Modal>
         </div>
       </div>
     </>

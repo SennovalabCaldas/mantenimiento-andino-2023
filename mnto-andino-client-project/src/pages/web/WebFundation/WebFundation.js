@@ -1,114 +1,38 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./WebFundation.scss";
-import {
-  ButtonBase,
-  Grid,
-  ImageList,
-  ImageListItem,
-  Paper,
-  Typography,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { image } from "../../../assets";
+
 const imagesScroll = [
-  {
-    img: image.project1,
-    title: "Breakfast",
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: image.project2,
-    title: "Burger",
-  },
-  {
-    img: image.project3,
-    title: "Camera",
-  },
-  {
-    img: image.project4,
-    title: "Coffee",
-    cols: 2,
-  },
-  {
-    img: image.project5,
-    title: "Hats",
-    cols: 2,
-  },
-  {
-    img: image.project6,
-    title: "Honey",
-    author: "@arwinneil",
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: image.project7,
-    title: "Basketball",
-  },
-  {
-    img: image.project8,
-    title: "Fern",
-  },
-  {
-    img: image.project9,
-    title: "Mushrooms",
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: image.project10,
-    title: "Tomato basil",
-  },
-  {
-    img: image.project11,
-    title: "Sea star",
-  },
-  {
-    img: image.project12,
-    title: "Bike",
-    cols: 2,
-  },
-  {
-    img: image.project13,
-    title: "Coffee",
-    cols: 2,
-  },
-  {
-    img: image.project14,
-    title: "Hats",
-    cols: 2,
-  },
-  {
-    img: image.project15,
-    title: "Breakfast",
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: image.project16,
-    title: "Burger",
-  },
-  {
-    img: image.project17,
-    title: "Camera",
-  },
-  {
-    img: image.project18,
-    title: "Coffee",
-    cols: 2,
-  },
+  image.service1,
+  image.service2,
+  image.service3,
+  image.service4,
+  image.service5,
+  image.service6,
 ];
 
-
 export const WebFundation = () => {
- 
+  const imageStyles = {
+    backgroundImage: `url(${image.service1})`, // Coloca aquí la URL de la imagen que desees mostrar inicialmente
+  };
+
   return (
     <div className="fundation-section">
-      <Grid container spacing={2}>
-        
-
-      </Grid>
+      <div className="contenedor">
+        <div className="carrusel">
+          {imagesScroll.map((imageUrl, index) => (
+            <div key={index} className="imagenes-transformables" style={{ backgroundImage: `url(${imageUrl})` }}>
+              {index === 1 || index === 2 ? (
+                <div className="fade">
+                  <a href="http://google.cl" target="_blank" className="border-text">
+                    Haz click para ver este post
+                  </a>
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

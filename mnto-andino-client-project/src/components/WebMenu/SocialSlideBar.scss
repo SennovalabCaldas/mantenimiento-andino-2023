@@ -50,8 +50,3 @@
   transform: scale(1.2); /* Efecto de escala al pasar el mouse */
 }
 
-@media (max-width: 768px) {
-  .social-slide-bar {
-    display: none; /* Ocultar la barra lateral en dispositivos móviles */
-  }
-}

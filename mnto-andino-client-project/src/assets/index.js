@@ -46,7 +46,12 @@ import a2 from "./png/a2.png";
 import a3 from "./png/a3.png";
 import a4 from "./png/a4.png";
 
-import service1 from "./services/service1.jpg";
+import service1 from "./services/service1.jpeg";
+import service2 from "./services/service1.jpeg";
+import service3 from "./services/service1.jpeg";
+import service4 from "./services/service1.jpeg";
+import service5 from "./services/service1.jpeg";
+import service6 from "./services/service1.jpeg";
 import img1services from "./services/img1.jpeg";
 
 import project1 from "./project/1.png";
@@ -123,6 +128,11 @@ const image = {
   logomnbg,
   qrServices,
   service1,
+  service2,
+  service3,
+  service4,
+  service5,
+  service6,
   img1services,
   unox,
   project1,
