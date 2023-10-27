@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { image } from "../../../assets";
 import "./WebFundation.scss";
-import Swiper from "swiper";
 
 export const WebFundation = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -34,11 +33,6 @@ export const WebFundation = () => {
     },
     // Agrega más objetos para más slides
   ];
-  const handleTabChange = (index) => {
-    setActiveTab(index);
-  };
-
-
 
   const [selectedNews, setSelectedNews] = useState(0);
 
