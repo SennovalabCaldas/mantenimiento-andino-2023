@@ -40,6 +40,8 @@
 div.ui.segment.active.tab {
     display: block;
     border: none;
+    width: auto;
+    height: auto;
 }
 
 @media screen and (min-width: 768px) {

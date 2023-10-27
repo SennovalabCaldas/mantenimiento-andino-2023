@@ -63,7 +63,9 @@ const App = () => {
         ) : (
           <Routes>
             {isLoggedIn ? (
+              <>
               <Route path="*" element={<AppRouter isLoggedIn={isLoggedIn} />} />
+              </>
             ) : (
               <Route path="/" element={<WebMenu />} />
             )}
@@ -72,7 +74,7 @@ const App = () => {
             <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
             <Route path="/lamartina" element={<LaMartina />} />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-            <Route path="*" element={<NotFound />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         )}
       </BrowserRouter>

@@ -44,7 +44,7 @@ export class Auth {
       }
 
       const result = await response.json();
-      
+
       if (result && result.access) {
         this.setAccessToken(result.access);
       }
@@ -59,6 +59,12 @@ export class Auth {
     if (!localStorage.getItem("token"))
       window.location.href="/"
   };
+
+  // logout = () => {
+  //   sessionStorage.removeItem("access");
+  //   sessionStorage.removeItem("refresh");
+  //   window.location.href = "/";
+  // };
 
   resetPassword = async (data) => {
     const url = `${this.baseApi}/${API_ROUTES.RESET_PASSWORD}`;
@@ -154,4 +160,8 @@ export class Auth {
   getRefreshToken = () => {
     return localStorage.getItem("refresh");
   };
+
+
+  
+
 }

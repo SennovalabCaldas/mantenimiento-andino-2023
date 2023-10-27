@@ -7,6 +7,16 @@
   justify-content: center;
   background-color: #fff;
   border-radius: 10px;
+  .slide {
+    width: 50%;
+    height: auto;
+    /* height: 500px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+  }
   .column-item {
     margin-bottom: 10px;
   }
@@ -19,6 +29,7 @@
     font-size: 11px;
     color: #392e2e;
     padding: 10px;
+    margin: 0;
   }
   .no-select {
     user-select: none;
@@ -48,20 +59,22 @@
     display: flex;
     width: 100%; /* Ocupa todo el ancho del contenedor padre */
     flex-direction: column; /* Alinea los elementos verticalmente en dispositivos móviles */
-    background-image: url("../../../assets/clients/mapa.jpg");
+    // background-image: url("../../../assets/clients/mapa.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
   }
 
-  .gallery .slide {
-    width: 40%;
+  .content-allies .gallery .slide {
+    width: 65%;
+    padding: 20px;
+    height: auto;
     display: flex;
     margin: 10px;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     align-content: center;
   }
@@ -72,7 +85,7 @@
 
   .gallery-cards .content {
     color: #000000;
-    background-color: rgb(230 230 230 / 84%);
+    // background-color: rgb(230 230 230 / 84%);
     text-align: center;
     width: 100%;
     box-sizing: border-box;
@@ -81,13 +94,16 @@
   .gallery-cards .images {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     padding: 20px;
     box-sizing: border-box;
-    width: 60%;
+    width: 55%;
+    align-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     img {
-      width: 60px;
-    height: 30px;
+      width: 85px;
+      height: 40px;
     }
   }
 }
@@ -130,10 +146,13 @@
     align-items: center;
     .column-item-cert {
       width: 100%;
+      height: auto;
+      margin-bottom: 20px;
       background-image: linear-gradient(
         to bottom,
         rgba(189, 193, 182, 0.64),
-        rgba(22, 59, 81, 0.64)
+        rgb(186 181 176 / 58%),
+        rgb(255 255 255 / 58%)
       );
       border-radius: 10px;
     }

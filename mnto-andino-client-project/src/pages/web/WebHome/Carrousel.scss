@@ -6,6 +6,7 @@
   height: 500px; /* Ajusta la altura según tus necesidades */
   overflow: hidden;
   border: 1px solid #ccc; /* Borde opcional para el carrusel */
+
 }
 
 .slide {
@@ -25,6 +26,34 @@
   width: 100%;
   position: absolute;
   bottom: 0;
+  .comic-button {
+    display: inline-block;
+    padding: 7px 20px;
+    font-size: 9px;
+    text-transform: capitalize;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #8431319e;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.3s ease;
+  }
+  
+  .comic-button:hover {
+    background-color: #f0a377ad;
+    color: #ffffff;
+    border: 2px solid #ffffffe0;
+    box-shadow: 5px 5px 0px #b6af969c;
+  }
+  
+  .comic-button:active {
+    background-color: #ff5252;
+    color: #fff;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
 }
 
 .logo-superpuesto {
@@ -185,11 +214,11 @@ h3 {
 }
 
 .prev-button {
-  left: 10px;
+  left: 60px;
 }
 
 .next-button {
-  right: 10px;
+  right: 60px;
 }
 
 .indicators {

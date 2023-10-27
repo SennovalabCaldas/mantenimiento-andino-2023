@@ -33,7 +33,6 @@ export const WebMenu = () => {
   const [activeSection, setActiveSection] = useState("section1");
   const [showToggleButton, setShowToggleButton] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -74,10 +73,6 @@ export const WebMenu = () => {
   const services = useSelector((state) => state.service.services);
   const categoryServices = useSelector(
     (state) => state.categoryService.allCategoriesService
-  );
-
-  const filteredServices = services.filter((service) =>
-    service.nameService.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const scrollToSection = (sectionId) => {
@@ -182,6 +177,7 @@ function Section1() {
     </div>
   );
 }
+
 function Section2() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -194,22 +190,9 @@ function Section2() {
   );
 
   const services = useSelector((state) => state.service.services);
-  const filteredServices = services.filter((service) => {
-    if (searchTerm === "") {
-      return service;
-    } else if (
-      service.nameService.toLowerCase().includes(searchTerm.toLowerCase())
-    ) {
-      return service;
-    }
-  });
-
   return (
-    <div className="section" id="section2">
-      <WebServices
-        categoryServices={categoryServices}
-        services={filteredServices}
-      />
+    <div className="section web-section" id="section2">
+      <WebServices categoryServices={categoryServices} services={services} />
     </div>
   );
 }
@@ -221,7 +204,7 @@ function Section3() {
   }, [dispatch]);
   const clients = useSelector((state) => state.client.clients);
   return (
-    <div className="section" id="section3">
+    <div className="section web-section" id="section3">
       <WebClients clients={clients} />
     </div>
   );
@@ -235,7 +218,7 @@ function Section4() {
   const allies = useSelector((state) => state.ally.allAllies);
 
   return (
-    <div className="section" id="section4">
+    <div className="section web-section" id="section4">
       <WebAliados allies={allies} />
     </div>
   );
@@ -250,7 +233,7 @@ function Section5() {
     (state) => state.certification.allCertification
   );
   return (
-    <div className="section" id="section5">
+    <div className="section web-section" id="section5">
       <WebCertifications certifications={certifications} />
     </div>
   );
@@ -263,21 +246,16 @@ function Section6() {
   }, [dispatch]);
   const projects = useSelector((state) => state.project.allProjects);
   return (
-    <div className="section" id="section6">
+    <div className="section web-section" id="section6">
       <WebProjects projects={projects} />
     </div>
   );
 }
 
 function Section7() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllFoundationsNews());
-  }, [dispatch]);
-  const foundation = useSelector((state) => state.foundation.allFoundations);
   return (
-    <div className="section" id="section7">
-      <WebFundation foundation={foundation} />
+    <div className="section7 web-section" id="section7">
+      <WebFundation />
     </div>
   );
 }

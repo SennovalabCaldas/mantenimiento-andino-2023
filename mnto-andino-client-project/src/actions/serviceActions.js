@@ -7,6 +7,7 @@ const serviceController = new Service();
 export const createService = (serviceData) => {
     
   return async (dispatch, getState) => {
+    console.log("serviceData en el actions=>", serviceData);
     try {
       const newService = await serviceController.createService(serviceData);
       dispatch({

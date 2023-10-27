@@ -21,7 +21,6 @@ export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const isAdmin = user && user.role === "admin";
-  const isEmployee = user && user.role === "user";
 
   const loadLayout = (Layout, Page) => {
     return (
@@ -47,11 +46,9 @@ export const AppRouter = () => {
         <>
           {isAdmin && (
             <>
-              <Route index element={loadLayout(AdminLayout, Users)} />
-              <Route path="admin" element={<WebMenu />} />
               <Route path="*" element={loadLayout(AdminLayout, Home)} />
               <Route
-                path="admin/dashboard"
+                path="/admin/dashboard"
                 element={loadLayout(AdminLayout, Home)}
               />
               <Route
@@ -106,7 +103,7 @@ export const AppRouter = () => {
                 path="admin/glamping"
                 element={loadLayout(AdminLayout, Glamping)}
               />
-              <Route path="*" element={<NotFound />} />
+  
             </>
           )}
         </>

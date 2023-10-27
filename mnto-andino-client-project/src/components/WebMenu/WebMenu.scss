@@ -109,7 +109,7 @@
       }
     }
   }
-  .home{
+  .home {
     width: 100%;
   }
 }
@@ -144,9 +144,8 @@
     position: absolute;
     top: 25px;
     padding: 10px;
-    a{
+    a {
       margin: 5px;
-
     }
   }
   .navbar:not(.open) .navbar-options {
@@ -165,9 +164,9 @@
     flex-direction: row;
     border-bottom: 1px solid #90909036;
     padding: 5px;
-&:hover{
-  background-color: #000000;
-}
+    &:hover {
+      background-color: #000000;
+    }
   }
   .navbar-options a:hover {
     background-color: #000000;
@@ -176,7 +175,7 @@
 
   .navbar-toggle {
     display: block; /* Muestra el ícono de la hamburguesa en dispositivos móviles */
-}
+  }
 }
 
 /* Estilos para dispositivos de escritorio y tabletas */
@@ -186,6 +185,25 @@
   }
 
   .navbar-options {
-    display: flex; 
+    display: flex;
   }
 }
+.section7 {
+  display: flex;
+  justify-content: center;
+}
+
+.web-section {
+  margin-bottom: 20px;
+  display: flex;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+// Estilos adicionales para las secciones si es necesario

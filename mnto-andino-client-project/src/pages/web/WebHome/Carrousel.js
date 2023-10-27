@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Carrousel.scss"; // Asegúrate de tener un archivo CSS para los estilos del carrusel
 import { image } from "../../../assets";
 import { Grid } from "@mui/material";
+import { WebFundation } from "../WebFundation/WebFundation";
 
 const slidesData = [
   {
@@ -29,26 +30,48 @@ const slidesData = [
   // Agrega más objetos para más slides
 ];
 
-export const Carrousel = () => {
+export const Carrousel = ({ posts }) => {
+  const [selectedNews, setSelectedNews] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  console.log("posts =>", posts);
+  const allSlidesData = [
+    ...slidesData, // Los datos originales del carrusel
+    ...posts.map((post) => {
+      return {
+        titulo: post.titulo, // Asegúrate de tener una propiedad `title` en tus posts
+        subtitulo: post.subtitulo, // Asegúrate de tener una propiedad `subtitle` en tus posts
+        image: post.avatar, // Asegúrate de tener una propiedad `imageUrl` en tus posts
+      };
+    }),
+  ];
+
+  const scrollToSection = () => {
+    const section = document.getElementById("section7");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % allSlidesData.length);
   };
 
   const prevSlide = () => {
     setCurrentSlide(
-      (prevSlide) => (prevSlide - 1 + slidesData.length) % slidesData.length
+      (prevSlide) =>
+        (prevSlide - 1 + allSlidesData.length) % allSlidesData.length
     );
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % allSlidesData.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
+  console.log("selectedNews en Carrousel =>", selectedNews);
   return (
     <div className="carrousel-container">
       <div
@@ -64,7 +87,7 @@ export const Carrousel = () => {
       >
         <div className="img-slide">
           <img
-            src={slidesData[currentSlide].image}
+            src={allSlidesData[currentSlide].image}
             alt="Logo de la Empresa"
             className="img-slide-test"
           />
@@ -83,15 +106,22 @@ export const Carrousel = () => {
             >
               <Grid item xs={12} className="title">
                 <div>
-                  <h1>{slidesData[currentSlide].titulo}</h1>
+                  <h1>{allSlidesData[currentSlide].titulo}</h1>
                 </div>
-                <h2>{slidesData[currentSlide].subtitulo}</h2>
+                <h2>{allSlidesData[currentSlide].subtitulo}</h2>
               </Grid>
-              <Grid item xs={12}></Grid>
+              <Grid item xs={12}>
+                <button
+                  className="comic-button"
+                  onClick={() => scrollToSection()}
+                >
+                 CONOCE MÁS
+                </button>
+              </Grid>
             </div>
           </Grid>
           <div className="indicators">
-            {slidesData.map((_, index) => (
+            {allSlidesData.map((_, index) => (
               <div
                 key={index}
                 className={`indicator ${

@@ -8,8 +8,11 @@ import logo2 from "./jpg/logo2.jpg";
 import logo3 from "./jpg/logo3.jpg";
 import logo4 from "./jpg/logo4.jpg";
 import contact from "./video/mp4/contact.mp4";
+import contact1 from "./video/mp4/contact1.mp4";
 import img1 from "./png/img1.png";
 import img2 from "./png/img2.png";
+import ceoCode from "./png/ceo-code.png";
+import gerenteCode from "./png/gerente-code.png";
 import logomn from "./jpg/logo.jpg";
 import post2 from "./jpg/post2.jpeg";
 import post3 from "./jpg/post3.jpeg";
@@ -23,6 +26,7 @@ import facebook from "./svg/facebook.svg";
 import tiktok from "./svg/tiktok.svg";
 import linkedin from "./svg/linkedin.svg";
 import star from "./svg/star.svg";
+import call from "./svg/call.svg";
 
 import carulla from "./clients/carulla.png";
 import cert1 from "./clients/cert1.png";
@@ -47,53 +51,43 @@ import a3 from "./png/a3.png";
 import a4 from "./png/a4.png";
 
 import service1 from "./services/service1.jpeg";
-import service2 from "./services/service1.jpeg";
-import service3 from "./services/service1.jpeg";
-import service4 from "./services/service1.jpeg";
-import service5 from "./services/service1.jpeg";
-import service6 from "./services/service1.jpeg";
+import service2 from "./services/service2.jpeg";
+import service3 from "./services/service3.jpeg";
+import service4 from "./services/service4.jpeg";
+import service5 from "./services/service5.jpeg";
+import service6 from "./services/service6.jpeg";
 import img1services from "./services/img1.jpeg";
 
-import project1 from "./project/1.png";
-import project2 from "./project/2.png";
-import project3 from "./project/3.png";
-import project4 from "./project/4.png";
-import project5 from "./project/5.png";
-import project6 from "./project/6.png";
-import project7 from "./project/7.png";
-import project8 from "./project/8.png";
-import project9 from "./project/23.png";
-import project10 from "./project/24.png";
-import project11 from "./project/25.png";
-import project12 from "./project/AS.png";
-import project13 from "./project/c01.png";
-import project14 from "./project/c02.png";
-import project15 from "./project/c03.png";
-import project16 from "./project/ca1.png";
-import project17 from "./project/ca2.jpg";
-import project18 from "./project/ca3.jpg";
-import project19 from "./project/ca4.png";
 import concesion from "./project/concesion.jpg";
 import telacia from "./project/telacia.jpg";
 import servicio3 from "./project/servicio3.jpg";
 import cerramiento from "./project/cerramiento.jpeg";
 import cabañas from "./project/cabañas.jpg";
+import proj1 from "./project/proj1.jpeg";
+import proj2 from "./project/proj2.jpeg";
+import proj3 from "./project/proj3.jpeg";
+import proj4 from "./project/proj4.jpeg";
+import proj5 from "./project/proj5.jpeg";
+import proj6 from "./project/proj6.jpeg";
+import proj7 from "./project/proj7.jpeg";
+
 import portafolio from "./pdf/Portafolio_de_Servicios.pdf";
 import ally1 from "./allies/katcher.png";
 import errorPage from "./jpg/404.jpg";
 
-import menu1 from './homeMenu/img1.jpg'
-import menu2 from './homeMenu/img2.jpg'
-import menu3 from './homeMenu/img3.jpg'
-import menu4 from './homeMenu/img4.jpg'
-import menu5 from './homeMenu/img5.jpg'
-import menu6 from './homeMenu/img6.jpg'
-import menu7 from './homeMenu/img7.jpg'
-import menu8 from './homeMenu/img8.jpg'
-import menu9 from './homeMenu/img9.jpg'
-import img1Foundation from './homeMenu/img11.png'
+import imgPost1 from "./homeMenu/img1.jpeg";
+import menu1 from "./homeMenu/img1.jpg";
+import menu2 from "./homeMenu/img2.jpg";
+import menu3 from "./homeMenu/img3.jpg";
+import menu4 from "./homeMenu/img4.jpg";
+import menu5 from "./homeMenu/img5.jpg";
+import menu6 from "./homeMenu/img6.jpg";
+import menu7 from "./homeMenu/img7.jpg";
+import menu8 from "./homeMenu/img8.jpg";
+import menu9 from "./homeMenu/img9.jpg";
+import img1Foundation from "./homeMenu/img11.png";
 
-import mapa from './jpg/mapa.jpg'
+import mapa from "./jpg/mapa.jpg";
 
 const image = {
   authBg,
@@ -135,25 +129,6 @@ const image = {
   service6,
   img1services,
   unox,
-  project1,
-  project2,
-  project3,
-  project4,
-  project5,
-  project6,
-  project7,
-  project8,
-  project9,
-  project10,
-  project11,
-  project12,
-  project13,
-  project14,
-  project15,
-  project16,
-  project17,
-  project18,
-  project19,
   concesion,
   post2,
   post3,
@@ -187,5 +162,17 @@ const image = {
   a2,
   a3,
   a4,
+  imgPost1,
+  call,
+  contact1,
+  proj1,
+  proj2,
+  proj3,
+  proj4,
+  proj5,
+  proj6,
+  proj7,
+  ceoCode,
+  gerenteCode,
 };
 export { image };

@@ -55,8 +55,9 @@ const ServiceList = () => {
 
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
-
-  const [categoryService, setCategoryService] = useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
+  const [selectedCategoryName, setSelectedCategoryName] = useState("");
+  const [categoryService, setCategoryService] = useState(null);
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -94,42 +95,6 @@ const ServiceList = () => {
     });
   };
 
-  // Función para activar/desactivar el modo de edición de imágenes
-  const toggleImageEditing = () => {
-    setIsImageEditing(!isImageEditing);
-    setSelectedImages([]); // Limpia las imágenes seleccionadas al cambiar el modo
-  };
-
-  // Función para manejar la selección/deselección de imágenes
-  const handleImageSelection = (index) => {
-    if (selectedImages.includes(index)) {
-      // Si ya está seleccionada, quítala de la lista
-      setSelectedImages(selectedImages.filter((i) => i !== index));
-    } else {
-      // Si no está seleccionada, agrégala a la lista
-      setSelectedImages([...selectedImages, index]);
-    }
-  };
-
-  // Función para eliminar las imágenes seleccionadas
-  const deleteSelectedImages = () => {
-    // Filtra las imágenes no seleccionadas y actualiza editedService.photos e imageUrls
-    const updatedPhotos = editedService.photos.filter(
-      (_, index) => !selectedImages.includes(index)
-    );
-    const updatedImageUrls = editedService.imageUrls.filter(
-      (_, index) => !selectedImages.includes(index)
-    );
-
-    setEditedService({
-      ...editedService,
-      photos: updatedPhotos,
-      imageUrls: updatedImageUrls,
-    });
-
-    setIsImageEditing(false); // Sal del modo de edición de imágenes
-  };
-
   const onFileChange = (event, formik) => {
     const selectedFiles = Array.from(event.target.files);
     const urls = selectedFiles
@@ -150,12 +115,11 @@ const ServiceList = () => {
   const handleCreateService = async () => {
     setIsCreatingService(true);
     try {
-      // Envía solo las imágenes en el campo 'photos' de 'editedService'
       await dispatch(
         createService({
           name: editedService.name,
           description: editedService.description,
-          categoryService, // Utiliza categoryService aquí
+          categoryService: selectedCategoryName, // Envia el nombre de la categoría seleccionada
           photos: editedService.photos,
         })
       );
@@ -163,7 +127,7 @@ const ServiceList = () => {
       setEditedService({
         name: "",
         description: "",
-        categoryService: "", // Limpia el campo 'categoryService'
+        categoryService: "",
         photos: [], // Limpia el campo 'photos'
         imageUrls: [], // No es necesario limpiar 'imageUrls'
       });
@@ -172,13 +136,17 @@ const ServiceList = () => {
       console.error("Error creating service:", error);
     }
   };
-
+  
   const handleUpdateService = async () => {
     setIsCreatingService(true);
     try {
       const updatedService = {
         ...editingService,
         photos: editedService.photos,
+        categoryService: {
+          id: selectedCategoryId, // Envia el ID de la categoría seleccionada
+          name: selectedCategoryName, // Envia el nombre de la categoría seleccionada
+        },
       };
 
       await dispatch(updateService(editingService._id, updatedService));
@@ -323,13 +291,15 @@ const ServiceList = () => {
                   <Select
                     labelId="service-label"
                     id="service-select"
-                    value={categoryService}
+                    value={selectedCategoryId}
                     onChange={(e) => {
-                      setCategoryService(e.target.value); // Actualiza categoryService
-                      setEditedService({
-                        ...editedService,
-                        categoryService: e.target.value, // Actualiza categoryService en editedService
-                      });
+                      const categoryId = e.target.value;
+                      const categoryName = categoriesServiceActive.find(
+                        (category) => category._id === categoryId
+                      ).nameCategoryService;
+
+                      setSelectedCategoryId(categoryId); // Actualiza el ID de la categoría seleccionada
+                      setSelectedCategoryName(categoryName); // Actualiza el nombre de la categoría seleccionada
                     }}
                   >
                     {categoriesServiceActive.map((categoryService) => (
@@ -378,7 +348,7 @@ const ServiceList = () => {
                 {editedService.imageUrls &&
                   editedService.imageUrls.length > 0 && (
                     <img
-                      src={editedService.imageUrls[0]}
+                      src={`${baseApi}/${editedService.imageUrls[0]}`}
                       alt={`Foto principal`}
                       style={{
                         width: "200px",
@@ -393,7 +363,7 @@ const ServiceList = () => {
                     editedService.imageUrls.map((imageUrl, index) => (
                       <img
                         key={index}
-                        src={imageUrl}
+                        src={`${baseApi}/${imageUrl}`}
                         alt={`Foto ${index}`}
                         style={{
                           width: "80px",

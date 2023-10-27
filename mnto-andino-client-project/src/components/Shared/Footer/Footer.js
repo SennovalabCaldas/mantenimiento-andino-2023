@@ -15,7 +15,9 @@ const Footer = () => {
             href="mailto:
           mantenimientoandino@mantenimientoandino.co"
           >
-            mantenimientoandino@mantenimientoandino.co
+            mantenimientoandino@gmail.com
+            <br />
+            gerenciamantenimientoandino@gmail.com
           </a>
           <p>
             <strong>Celular:</strong> <br />
@@ -43,13 +45,11 @@ const Footer = () => {
         </a>
       </div>
       <div className="footer__item">
-        <h3>Privacy Policy</h3>
-
         <Link to="/privacypolicy" className="btn">
           <p>
-            Consulta
+            CONSULTA NUESTRA
             <br />
-            <strong> Politica de privacidad Mantenimiento Andino.</strong>
+            <strong>POLITICA DE PRIVACIDAD</strong>
           </p>
         </Link>
       </div>

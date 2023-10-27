@@ -99,15 +99,12 @@ export const WebProjects = ({ projects }) => {
               <h2>
                 <span className="no-select">Proyectos nacionales</span>
               </h2>
-              <a className="button" href="#">
-                <span className="no-select">Get Started</span>
-              </a>
             </div>
             <div className="images panel">
               {proyectosNacionales.length === 0 ? (
                 <>
                   <div class="container">
-                  <div class="loader"></div>
+                    <div class="loader"></div>
                   </div>
                 </>
               ) : (
@@ -138,9 +135,9 @@ export const WebProjects = ({ projects }) => {
           <div className="content panel">
             <div className="images panel">
               {proyectosInternacionales.length === 0 ? (
-                  <>
+                <>
                   <div class="container">
-                  <div class="loader"></div>
+                    <div class="loader"></div>
                   </div>
                 </>
               ) : (
@@ -169,9 +166,6 @@ export const WebProjects = ({ projects }) => {
               <h2>
                 <span className="no-select">Proyectos internacionales</span>
               </h2>
-              <a className="button" href="#">
-                <span className="no-select">Estamos trabajando en ello.</span>
-              </a>
             </div>
           </div>
         </div>

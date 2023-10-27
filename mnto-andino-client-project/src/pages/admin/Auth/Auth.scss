@@ -95,7 +95,7 @@
 
 .ui.bottom.attached.segment.active.tab {
     background: #2f3940;
-
+    height: auto;
     @media (max-width: 768px) {
         /* Estilos para pantallas pequeñas */
         padding: 10px;

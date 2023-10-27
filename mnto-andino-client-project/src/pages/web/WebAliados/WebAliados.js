@@ -10,6 +10,7 @@ export const WebAliados = ({ allies }) => {
   const uniqueAllyNames = new Set();
   const [selectedAlly, setSelectedAlly] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  
   const defaultAllies = [
     {
       avatar: image.unox,

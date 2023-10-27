@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ProductList } from "./ProductList";
 import { image } from "../../../assets";
 import "./WebServices.scss";
-import { Autocomplete, Grid, Stack, TextField } from "@mui/material";
-import { Projects } from "../WebProjects/Projects";
 
 const defaultCategories = [
+  {
+    _id: "todos",
+    nameCategoryService: "Todos los servicios",
+    descriptionCategoryService: "Descripción del Servicio Predeterminado 1",
+    active: true,
+    evaluacion: 5,
+    avatar: image.service1,
+  },
   {
     _id: "default1",
     nameCategoryService: "Obra civil y mantenimiento",
@@ -42,6 +48,8 @@ const defaultCategories = [
 
 export const WebServices = ({ categoryServices, services }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState(0);
+  const [nameActiveTab, setNameActiveTab] = useState("Todos los servicios");
 
   const uniqueCategories = [
     ...new Set([
@@ -51,6 +59,16 @@ export const WebServices = ({ categoryServices, services }) => {
       ),
     ]),
   ];
+
+  const handleTabChange = (index) => {
+    setActiveTab(index);
+    handleNameTabChange(index);
+  };
+
+  const handleNameTabChange = (index) => {
+    const categoryName = mergedCategories[index].nameCategoryService;
+    setNameActiveTab(categoryName); // Almacena el nombre de la categoría en lugar del índice
+  };
 
   const mergedCategories = uniqueCategories
     .map((categoryName) => {
@@ -66,27 +84,39 @@ export const WebServices = ({ categoryServices, services }) => {
     })
     .filter((category) => category);
 
-  const handleDownloadClick = () => {
-    const pdfUrl = image.portafolio;
-    window.open(pdfUrl, "_blank");
-  };
-
   return (
     <div className="content-section-services">
+      <h1>CONOCE NUESTRO PORTAFOLIO DE SERVICIOS</h1>
       <div className="gallery gallery-cards">
         <div className="content panel">
-          <div className="slide" data-order="1">
-            <h2>
-              <span className="no-select">
-                conoce nuestro portafolio de servicios
-              </span>
-            </h2>
-            <a className="button" href="#">
-              <span className="no-select">ESCANEA EL CÓDIGO QR</span>
-            </a>
-          </div>
           <div className="images panel">
-           <ProductList categoryServices={mergedCategories} services={services} />
+            <div className="container">
+              <div className="tabs" style={{ display: "flex" }}>
+                {mergedCategories.map((category, index) => (
+                  <React.Fragment key={index}>
+                    <input
+                      type="radio"
+                      id={`radio-${index + 1}`}
+                      name="tabs"
+                      checked={index === activeTab}
+                      onChange={() => handleTabChange(index)} // Manejar el cambio de tab
+                    />
+                    <label className="tab" htmlFor={`radio-${index + 1}`}>
+                      {category.nameCategoryService}
+                    </label>
+                  </React.Fragment>
+                ))}
+                <span className="glider"></span>
+              </div>
+            </div>
+            <div className="container-listproducts">
+              <ProductList
+                categoryServices={mergedCategories}
+                services={services}
+                activeTab={activeTab}
+                nameActiveTab={nameActiveTab}
+              />
+            </div>
           </div>
         </div>
       </div>

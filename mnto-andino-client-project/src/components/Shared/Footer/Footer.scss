@@ -5,7 +5,7 @@
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-content: center;
   align-items: center;
   .footer__item-inf {
@@ -108,5 +108,99 @@
 @media (max-width: 768px) {
   .footer__item-copyright {
     display: none;
+  }
+}
+
+.privacy-policy-container {
+  position: relative;
+  top: 80px;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-policy-container div {
+  margin-bottom: 20px;
+}
+
+.privacy-policy-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.privacy-policy-container p {
+  font-size: 12px;
+}
+
+.privacy-policy-container .definitions {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.privacy-policy-container .definitions div {
+  margin-top: 10px;
+}
+
+.privacy-policy-container .definitions div:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .tabs-privacypolicy {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto; // Permite el desplazamiento horizontal si los tabs no caben en el contenedor
+    white-space: nowrap;
+    flex-direction: row; // Vuelve a la dirección horizontal para que los tabs se desplacen horizontalmente
+  }
+  .privacy-policy-container {
+    position: relative;
+    top: 80px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-policy-container {
+    position: relative;
+    top: 80px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  // Estilos específicos para dispositivos con un ancho máximo de 480px
+  .tabs-privacypolicy {
+    margin-bottom: 15px;
+    padding-left: 5px;
+    margin-left: 5px;
+    .option-tab-pribacypolicy {
+      margin-left: 5px;
+    }
+  }
+  .tabs-privacypolicy.css-1ujnqem-MuiTabs-root > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-direction: row;
+    .option-tab-pribacypolicy {
+      margin-left: 5px;
+    }
   }
 }

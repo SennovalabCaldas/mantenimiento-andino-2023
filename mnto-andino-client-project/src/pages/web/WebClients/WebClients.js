@@ -131,41 +131,38 @@ export const WebClients = ({ clients }) => {
   const renderTestimonios = () => {
     return (
       <div className="testimonios-container">
-      {testimonios.map((testimonio, index) => (
-        <div className="e-card playing" key={index}>
-          <div className="image"></div>
-    
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-    
-          <div className="infotop">
-            <img
-              src={testimonio.avatar}
-              alt={testimonio.cliente}
-              className="client-avatar"
-            />
-            <br />
-            {testimonio.cliente}
-            <div className="name">{testimonio.cargo}</div>
-    
-            <br />
-            <div className="name">{testimonio.comentario}</div>
-            <div className="name">
-              {[...Array(testimonio.evaluacion)].map((star, index) => (
-                <img
-                  src={image.star}
-                  alt="star"
-                  className="star"
-                  key={index}
-                />
-              ))}
+        {testimonios.map((testimonio, index) => (
+          <div className="e-card playing" key={index}>
+            <div className="image"></div>
+
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+
+            <div className="infotop">
+              <img
+                src={testimonio.avatar}
+                alt={testimonio.cliente}
+                className="client-avatar"
+              />
+              <h2>{testimonio.cliente}</h2>
+              <p>{testimonio.cargo}</p>
+              <br />
+              <p>{testimonio.comentario}</p>
+              <div className="star-testimonie">
+                {[...Array(testimonio.evaluacion)].map((star, index) => (
+                  <img
+                    src={image.star}
+                    alt="star"
+                    className="star"
+                    key={index}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-    
+        ))}
+      </div>
     );
   };
   const mergedClientes = [
@@ -189,6 +186,14 @@ export const WebClients = ({ clients }) => {
       <div className="section-clients">
         <div className="gallery gallery-cards">
           <div className="content panel">
+            <div className="slide" data-order="1">
+              <h2>
+                <span className="no-select">NUESTROS </span>
+              </h2>
+              <h1>
+                <span className="no-select-2">CLIENTES</span>
+              </h1>
+            </div>
             <div className="images panel">
               <div className="column">
                 {mergedClientes.map((client, index) => (
@@ -202,19 +207,8 @@ export const WebClients = ({ clients }) => {
                 ))}
               </div>
             </div>
-
-            <div className="slide" data-order="1">
-              <h2>
-                <span className="no-select">NUESTROS </span>
-              </h2>
-              <h1>
-                <span className="no-select-2">CLIENTES</span>
-              </h1>
-            </div>
           </div>
-          <div className="content panel">
-          {renderTestimonios()}
-          </div>
+          <div className="content panel">{renderTestimonios()}</div>
         </div>
       </div>
     </>

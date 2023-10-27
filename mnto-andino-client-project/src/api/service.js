@@ -9,13 +9,12 @@ export class Service {
   baseApi = ENV.BASE_API;
 
   async createService(serviceData) {
-      
+    console.log("serviceData =>", serviceData);
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
       Object.keys(serviceData).forEach((key) => {
         if (key === "photos") {
-            
           serviceData[key].forEach((photo) => {
             formData.append("photos", photo);
           });
@@ -33,10 +32,9 @@ export class Service {
         body: formData,
       };
 
-        
       const response = await fetch(url, params);
       const result = await response.json();
-
+      console.log("result =>", result);
       if (response.status !== 201) throw result;
 
       return result;
@@ -54,7 +52,7 @@ export class Service {
       },
     };
     try {
-      const response = await fetch(url, params);  
+      const response = await fetch(url, params);
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(
@@ -63,7 +61,7 @@ export class Service {
       }
 
       const serviceData = await response.json();
-        
+
       return serviceData;
     } catch (error) {
       throw error; // Re-lanzamos el error para manejarlo en un nivel superior
@@ -89,7 +87,6 @@ export class Service {
   }
 
   async updateService(_id, updatedData) {
-      
     const accessToken = authController.getAccessToken();
     try {
       const formData = new FormData();
@@ -112,12 +109,10 @@ export class Service {
         body: formData,
       };
 
-        
       const response = await fetch(url, params);
       const result = await response.json();
 
       if (response.status !== 200) throw result;
-
     } catch (error) {
       console.error("Error al actualizar el servicio:", error);
       throw error;

@@ -62,7 +62,6 @@ async function updateMe(req, res) {
   }
 }
 
-
 async function getUsers(req, res) {
   console.log("Estoy en el listar usuarios");
   try {
@@ -86,8 +85,6 @@ async function getUsers(req, res) {
     res.status(500).send({ msg: "Error del servidor" });
   }
 }
-
-
 // Crear un nuevo usuario
 async function createUser(req, res) {
   try {

@@ -14,7 +14,7 @@ const serviceSchema = new mongoose.Schema({
     default: true,
   },
   categoryService: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String, // Almacenar solo el nombre de la categoría como una cadena
     ref: "CategoryService",
   },
   photos: [

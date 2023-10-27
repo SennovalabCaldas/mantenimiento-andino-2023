@@ -3,15 +3,19 @@ import "./WebContactUs.scss";
 import { image } from "../../../assets";
 import {
   Avatar,
+  Button,
   Checkbox,
   Chip,
+  Fade,
   FormControl,
   FormControlLabel,
   ListItem,
   MenuItem,
+  Modal,
   Paper,
-  Radio,
+  Backdrop,
   Select,
+  Switch,
   TextField,
 } from "@mui/material";
 import DepartamentosApi from "../../../api/departamentos";
@@ -20,6 +24,16 @@ import { Mapa } from "../../../components/GeneralLayout";
 export const WebContactUs = () => {
   const api = new DepartamentosApi();
   const [selectedChips, setSelectedChips] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const [chipData, setChipData] = React.useState([
     { key: 0, label: "Todos" },
     { key: 1, label: "Obra civil y mantenimiento" },
@@ -63,13 +77,68 @@ export const WebContactUs = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [isPersonaNatural, setIsPersonaNatural] = useState(true);
   const [nombre, setNombre] = useState("");
-  const [nombreCompania, setNombreCompania] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [nombreCompania, setNombreCompania] = useState("No aplica");
   const [correo, setCorreo] = useState("");
 
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
+  const handlePersonaTipoChange = (event) => {
+    setIsPersonaNatural(event.target.checked);
+    setNombre(event.target.checked ? "" : "No aplica");
+    setNombreCompania(event.target.checked ? "No aplica" : "");
+  };
+
+  const descargarPortafolio = () => {
+    const rutaArchivoPDF = "../../../../assets/pdf/rrr.pdf";
+    window.open(rutaArchivoPDF);
+
+    handleCloseModal();
+  };
+
+  const enviarCorreo = () => {
+    if (
+      !nombre ||
+      !correo ||
+      (isColombia && !selectedCountry) ||
+      (!isColombia && !selectedCountry) ||
+      selectedChips.length === 0
+    ) {
+      // Muestra un mensaje de error si algún campo obligatorio está vacío o no se ha seleccionado ningún servicio.
+      alert(
+        "Por favor, complete todos los campos obligatorios y seleccione al menos un servicio."
+      );
+      return;
+    }
+
+    const correos = [
+      "mantenimientoandino@gmail.com",
+      "gerenciamantenimientoandino@gmail.com",
+    ];
+    const asunto = "Consulta sobre servicios de Mantenimiento Andino SAS.";
+    const serviciosSeleccionados = selectedChips
+      .filter((chipKey) => chipKey !== 0) // Filtra el chip "Todos"
+      .map((chipKey) => chipData.find((data) => data.key === chipKey).label)
+      .join(", ");
+    const ubicacion = isColombia
+      ? "Colombia - " + selectedCountry
+      : "Fuera de Colombia - " + selectedCountry;
+    const tipoCliente = isPersonaNatural ? "Persona Natural" : "Empresa";
+    const cuerpoMensaje =
+      `Nombre: ${nombre} ${apellido}\n` +
+      `Tipo de Cliente: ${tipoCliente}\n` +
+      `Nombre de la Compañía: ${nombreCompania}\n` +
+      `Quiero recibir información al correo electrónico: ${correo}\n` +
+      `Ubicación: ${ubicacion}\n` +
+      `Servicios Seleccionados: ${serviciosSeleccionados}\n` + // Agrega los servicios seleccionados
+      `\n\nAsunto: ${asunto}\n` + // Agrega el asunto del formulario
+      `\n${mensaje}\n` +
+      `\nEspero su información. Gracias!`;
+
+    const correoTo = `mailto:${correos.join(",")}?subject=${encodeURIComponent(
+      asunto
+    )}&body=${encodeURIComponent(cuerpoMensaje)}`;
+
+    window.location.href = correoTo;
   };
 
   const handleChipClick = (chipKey) => {
@@ -82,7 +151,6 @@ export const WebContactUs = () => {
     const updatedChips = selectedChips.filter((key) => key !== chipKey);
     setSelectedChips(updatedChips);
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,146 +166,254 @@ export const WebContactUs = () => {
 
   console.log(departamentos);
   return (
-    <div className="contact-section">
-      <div className="item1">
-        <article>
-          <header
-            style={{
-              backgroundImage: `url(${image.authBg})`,
-            }}
-          >
-            <div className="upper-header">
-              <div className="mini-title">formulario de contacto</div>
-            </div>
-            <div className="form-contact-us">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => setIsPersonaNatural(e.target.checked)}
-                  />
-                }
-                label="¿Es persona natural?"
-              />
-              {isPersonaNatural ? (
-                <div style={{ marginBottom: "10px" }}>
-                  <TextField
-                    fullWidth
-                    id="standard-basic"
-                    label="Nombre(s)"
-                    variant="standard"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                  />
-                </div>
-              ) : (
-                <div style={{ marginBottom: "10px" }}>
-                  <TextField
-                    fullWidth
-                    id="standard-basic"
-                    label="Nombre de la Compañía"
-                    variant="standard"
-                    value={nombreCompania}
-                    onChange={(e) => setNombreCompania(e.target.value)}
-                  />
-                </div>
-              )}
-              <TextField
-                fullWidth
-                id="standard-basic"
-                label="Correo Electrónico"
-                variant="standard"
-                value={correo} // Asigna el estado 'correo' al valor del campo
-                onChange={(e) => setCorreo(e.target.value)} // Maneja el cambio en el estado 'correo'
-              />
-              ¿Está en Colombia?
-              <br />
-              <FormControl component="fieldset">
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={isColombia}
-                      onChange={() => setIsColombia(true)}
-                    />
-                  }
-                  label="Sí, estoy en Colombia"
-                />
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={!isColombia}
-                      onChange={() => setIsColombia(false)}
-                    />
-                  }
-                  label="No, no estoy en Colombia"
-                />
-              </FormControl>
-              {isColombia ? (
-                <Select
-                  fullWidth
-                  label="Departamento"
-                  value={selectedCountry}
-                  onChange={(e) => setSelectedCountry(e.target.value)}
-                >
-                  {departamentos.map((departamento) => (
-                    <MenuItem key={departamento} value={departamento}>
-                      {departamento}{" "}
-                    </MenuItem>
-                  ))}
-                </Select>
-              ) : (
-                <Select
-                  fullWidth
-                  label="País"
-                  value={selectedCountry}
-                  onChange={(e) => setSelectedCountry(e.target.value)}
-                >
-                  {countryOptions.map((country) => (
-                    <MenuItem key={country.key} value={country.value}>
-                      {country.text}
-                    </MenuItem>
-                  ))}
-                </Select>
-              )}
-              <br />
-              <br />
-              {chipData.map((data) => {
-                const isSelected = selectedChips.indexOf(data.key) !== -1;
-
-                return (
-                  <Chip
-                    key={data.key}
-                    label={data.label}
-                    onClick={() => handleChipClick(data.key)}
-                    onDelete={
-                      isSelected ? () => handleChipDelete(data.key) : undefined
-                    }
-                    color={isSelected ? "primary" : undefined}
-                    variant={isSelected ? "outlined" : undefined}
-                    style={{ margin: "4px" }}
-                  />
-                );
-              })}
-              <div style={{ marginBottom: "10px" }}>
-                <TextField
-                  multiline
-                  fullWidth
-                  id="standard-basic"
-                  label="Mensaje"
-                  variant="standard"
-                />
+    <div className="web-contactus">
+      <div className="contact-section">
+        <div className="item1">
+          <article>
+            <header
+              style={{
+                backgroundImage: `url(${image.post3})`,
+              }}
+            >
+              <div className="upper-header">
+                <div className="mini-title">CONTÁCTANOS</div>
               </div>
-              <button className="comic-button">Enviar!</button>
+              <div className="form-contact-us">
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={isPersonaNatural}
+                      onChange={handlePersonaTipoChange}
+                      color="primary"
+                    />
+                  }
+                  label={isPersonaNatural ? "Persona Natural" : "Compañía"}
+                />
+                {isPersonaNatural ? (
+                  <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
+                    <TextField
+                      id="standard-basic"
+                      label="Nombre(s)"
+                      variant="standard"
+                      value={nombre}
+                      onChange={(e) => setNombre(e.target.value)}
+                    />
+                    <TextField
+                      id="standard-basic"
+                      label="Apellido(s)"
+                      variant="standard"
+                      value={apellido}
+                      onChange={(e) => setApellido(e.target.value)}
+                    />
+                  </div>
+                ) : (
+                  <div style={{ marginBottom: "10px" }}>
+                    <TextField
+                      fullWidth
+                      id="standard-basic"
+                      label="Nombre de la Compañía"
+                      variant="standard"
+                      value={nombreCompania}
+                      onChange={(e) => setNombreCompania(e.target.value)}
+                    />
+                  </div>
+                )}
+                <div style={{ marginTop: "10px" }}>
+                  <TextField
+                    fullWidth
+                    id="standard-basic"
+                    label="Correo Electrónico"
+                    variant="standard"
+                    value={correo} // Asigna el estado 'correo' al valor del campo
+                    onChange={(e) => setCorreo(e.target.value)} // Maneja el cambio en el estado 'correo'
+                  />
+                </div>
+                <div style={{ marginTop: "10px" }}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={isColombia}
+                        onChange={() => setIsColombia(!isColombia)}
+                        color="primary"
+                      />
+                    }
+                    label="¿Está en Colombia?"
+                  />
+                  {isColombia ? (
+                    <Select
+                      fullWidth
+                      label="Departamento"
+                      value={selectedCountry}
+                      onChange={(e) => setSelectedCountry(e.target.value)}
+                    >
+                      {departamentos.map((departamento) => (
+                        <MenuItem key={departamento} value={departamento}>
+                          {departamento}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  ) : (
+                    <Select
+                      fullWidth
+                      label="País"
+                      value={selectedCountry}
+                      onChange={(e) => setSelectedCountry(e.target.value)}
+                    >
+                      {countryOptions.map((country) => (
+                        <MenuItem key={country.key} value={country.value}>
+                          {country.text}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  )}
+                </div>
+                <br />
+                Selecciona los servicios que te interesan:
+                <br />
+                {chipData.map((data) => {
+                  const isSelected = selectedChips.indexOf(data.key) !== -1;
+
+                  return (
+                    <Chip
+                      key={data.key}
+                      label={data.label}
+                      onClick={() => handleChipClick(data.key)}
+                      onDelete={
+                        isSelected
+                          ? () => handleChipDelete(data.key)
+                          : undefined
+                      }
+                      color={isSelected ? "primary" : undefined}
+                      variant={isSelected ? "outlined" : undefined}
+                      style={{ margin: "4px" }}
+                    />
+                  );
+                })}
+                <div style={{ marginBottom: "10px" }}>
+                  <TextField
+                    multiline
+                    fullWidth
+                    id="standard-basic"
+                    label="Mensaje"
+                    value={mensaje}
+                    variant="standard"
+                    onChange={(e) => setMensaje(e.target.value)}
+                  />
+                </div>
+                <div className="buttons-sections">
+                  <button className="comic-button" onClick={enviarCorreo}>
+                    Enviar!
+                  </button>
+                  <button className="comic-button" onClick={handleOpenModal}>
+                    Socilitar portafolio
+                  </button>
+                </div>
+              </div>
+            </header>
+          </article>
+        </div>
+        <div className="item2">
+          <div className="information-item2">
+            <div className="information-item2__title">
+              <Mapa></Mapa>
             </div>
-          </header>
-        </article>
-      </div>
-      <div className="item2">
-        <div className="information-item2">
-          <div className="information-item2__title">
-            <Mapa></Mapa>
           </div>
         </div>
       </div>
+      <div className="item-profile-card">
+        <figure class="snip1336">
+          <img src={image.imgPost1} alt="sample87" />
+          <figcaption>
+            <img src={image.logomn} alt="profile-sample4" class="profile" />
+            <h2>
+              Albert Edisson Berrio Galano<span>CEO</span>
+            </h2>
+            <p>
+              310 383 3591 <br />
+              mantenimientoandino@gmail.com <br />
+              Calle 76A # 21-85, Manizales, Colombia
+            </p>
+            <div
+              style={{
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <a
+                href={`https://api.whatsapp.com/send?phone=+573103833591`}
+                class="follow"
+              >
+                Whatsapp
+              </a>
+              <a href="#" class="info">
+                Correo
+              </a>
+              <img className="qrCodeContact" src={image.ceoCode} />
+            </div>
+          </figcaption>
+        </figure>
+        <figure class="snip1336 hover">
+          <img src={image.imgPost1} alt="sample74" />
+          <figcaption>
+            <img src={image.logomn} alt="profile-sample2" class="profile" />
+            <h2>
+              Vanessa Londoño Villada<span>GERENTE ADMINISTRATIVA</span>
+            </h2>
+            <p>
+              300 842 6136 <br />
+              gerenciamantenimientoandino@gmail.com <br />
+              Calle 76A # 21-85, Manizales, Colombia
+            </p>
+            <div
+              style={{
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <a href="#" class="follow">
+                Whatsapp
+              </a>
+              <a href="#" class="info">
+                Correo
+              </a>
+              <img className="qrCodeContact" src={image.gerenteCode} />
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className="modal"
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isModalOpen}>
+          <div className="paper-modal-download">
+            <h2 id="transition-modal-title">¿Desea descargar el portafolio?</h2>
+            <p id="transition-modal-description">
+              Haga clic en "Descargar" para iniciar la descarga del portafolio.
+            </p>
+            <div className="modal-buttons">
+              <button className="comic-button" onClick={handleCloseModal}>
+                Cancelar
+              </button>
+              <button className="comic-button" onClick={descargarPortafolio}>
+                Descargar
+              </button>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 };

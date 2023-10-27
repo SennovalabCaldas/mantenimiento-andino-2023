@@ -6,7 +6,6 @@ import {
 } from "./types";
 import { Auth, User } from "../api";
 import jwt from "jwt-decode";
-import { useNavigate } from "react-router-dom";
 
 const userController = new User();
 const authController = new Auth();
@@ -32,19 +31,19 @@ export const authenticateUser = () => {
       const userData = await userController.getMe(accessToken);
       dispatch(loginSuccess(userData));
     } catch (error) {
-      dispatch(loginFailure(error.message)); 
+      dispatch(loginFailure(error.message));
     }
   };
 };
 
 export const logoutUser = () => {
-  return (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      console.log("deslogueando");
+      const accessToken = authController.getAccessToken();
+      await authController.logout(accessToken);
       dispatch(logoutSuccess());
-      authController.logout();
     } catch (error) {
-      dispatch(logoutFailure(error));
+      dispatch(logoutFailure(error.message));
     }
   };
 };

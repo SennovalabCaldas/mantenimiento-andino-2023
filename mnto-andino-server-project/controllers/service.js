@@ -1,21 +1,21 @@
 const Service = require("../models/service");
+
 async function createService(req, res) {
   try {
-    // Extract data from the FormData object
     const { name, description, categoryService } = req.body;
-    // Extract image files from the request
-    console.log("req.files", req.files);
+    console.log("categoryService", categoryService);
+   
     const photos = Array.isArray(req.files.photos)
       ? req.files.photos.map((file) => file.path)
       : [];
-    console.log("photos", photos);
-    // Create a new service object
+   
     const newService = new Service({
       name,
       description,
       photos,
       categoryService,
     });
+
     console.log("newService", newService);
     const savedService = await newService.save();
     console.log("savedService", savedService);
