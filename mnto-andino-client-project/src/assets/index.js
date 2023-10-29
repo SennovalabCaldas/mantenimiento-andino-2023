@@ -87,6 +87,12 @@ import menu8 from "./homeMenu/img8.jpg";
 import menu9 from "./homeMenu/img9.jpg";
 import img1Foundation from "./homeMenu/img11.png";
 
+import img1f from "./post_fundations/img1.png";
+import img2f from "./post_fundations/img2.jpeg";
+import img3f from "./post_fundations/img3.jpeg";
+import img4f from "./post_fundations/img4.jpeg";
+import img5f from "./post_fundations/img5.jpeg";
+
 import mapa from "./jpg/mapa.jpg";
 
 const image = {
@@ -174,5 +180,10 @@ const image = {
   proj7,
   ceoCode,
   gerenteCode,
+  img1f,
+  img2f,
+  img3f,
+  img4f,
+  img5f,
 };
 export { image };

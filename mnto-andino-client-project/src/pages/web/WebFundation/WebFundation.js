@@ -63,7 +63,7 @@ export const WebFundation = () => {
                 <br />
                 {slidesData[selectedNews].descripcion}
               </p>
-              <button>Button name</button>
+             
             </div>
             <div className="image">
               <img src={slidesData[selectedNews].image} alt="News" />

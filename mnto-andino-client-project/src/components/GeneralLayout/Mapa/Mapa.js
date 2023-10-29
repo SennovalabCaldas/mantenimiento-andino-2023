@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./Mapa.scss";
-import { Alert } from "@mui/material";
+import { Alert, Chip } from "@mui/material";
 
 export const Mapa = ({ departamentos }) => {
   const [hoveredDept, setHoveredDept] = useState(null);
@@ -200,7 +200,14 @@ export const Mapa = ({ departamentos }) => {
       y: 0.99,
     },
   };
-  const departamentosDestacados = ["Caldas", "Quindío", "Cundinamarca", "Antioquia", "Valle del Cauca", "Cauca"];
+  const departamentosDestacados = [
+    "Caldas",
+    "Quindío",
+    "Cundinamarca",
+    "Antioquia",
+    "Valle del Cauca",
+    "Cauca",
+  ];
   const coloresDepartamentos = [
     "#FF5733",
     "#33FF57",
@@ -269,20 +276,19 @@ export const Mapa = ({ departamentos }) => {
             <h5 className="card-title">
               Tenemos clientes en diferentes departamentos de Colombia:
             </h5>
-            <ul className="list-group">
+            <div className="chips-container">
               {departamentosDestacados.map((departamento, index) => (
-                <li key={index} className="list-group-item">
-                  {departamento}
-                </li>
+                <Chip key={index} label={departamento} className="chip" />
               ))}
-            </ul>
+            </div>
           </div>
         </div>
         {mostrarMensaje && (
-        <Alert severity="info">
-          ¡Puedes ser nuestro primer cliente en la región de {departamentoClickeado}!
-        </Alert>
-      )}
+          <Alert severity="info">
+            ¡Puedes ser nuestro primer cliente en la región de{" "}
+            {departamentoClickeado}!
+          </Alert>
+        )}
         <div className="card-map">
           <svg viewBox="0 0 1200 1200">
             {Object.values(simplemaps_countrymap_mapinfo.names).map(

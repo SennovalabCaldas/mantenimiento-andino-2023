@@ -10,7 +10,7 @@ export const WebAliados = ({ allies }) => {
   const uniqueAllyNames = new Set();
   const [selectedAlly, setSelectedAlly] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+
   const defaultAllies = [
     {
       avatar: image.unox,
@@ -81,8 +81,13 @@ export const WebAliados = ({ allies }) => {
               <span className="no-select">tan comprometidos y dedicados.</span>
             </h2>
             <h3>
-              Su apoyo constante ha sido fundamental para el éxito de nuestros
-              proyectos.
+              <strong>
+                <em>
+                  {" "}
+                  Su apoyo constante ha sido fundamental para el éxito de
+                  nuestros proyectos.
+                </em>
+              </strong>
             </h3>
           </div>
           <div className="images panel">

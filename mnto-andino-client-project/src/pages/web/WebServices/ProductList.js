@@ -138,13 +138,34 @@ export const ProductList = ({
     <>
       {isAllServicesActive && (
         <div className="services-container">
-          <div className="container">
+          <div
+            className="container"
+            style={{
+              display: "flex",
+            }}
+          >
             <div className="gallery-wrap">
-              <div className="item item-1"></div>
-              <div className="item item-2"></div>
-              <div className="item item-3"></div>
-              <div className="item item-4"></div>
-              <div className="item item-5"></div>
+              <div className="item item-1"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={image.img1f} />
+              </div>
+              <div className="item item-2">
+                <img src={image.img2f} />
+              </div>
+              <div className="item item-3">
+                <img src={image.img3f} />
+              </div>
+              <div className="item item-4">
+                <img src={image.img4f} />
+              </div>
+              <div className="item item-5">
+                <img src={image.img5f} />
+              </div>
             </div>
           </div>
         </div>

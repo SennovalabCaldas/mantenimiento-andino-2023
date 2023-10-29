@@ -1,6 +1,6 @@
 .web-contactus {
   margin: 0;
-  /* font-family: "Roboto","Helvetica","Arial",sans-serif; */
+  width: 90%;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.5;
@@ -20,7 +20,7 @@
     align-items: center;
     align-content: center;
     .item1 {
-      width: 50%;
+      width: 60%;
       margin-bottom: 30px;
       article {
         width: 100%;
@@ -32,12 +32,13 @@
           min-height: 400px;
           padding: 30px;
           border-radius: 16px;
-          color: #000000;
+          font-size: 13px;
+          color: #e0e0e0;
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
           .form-contact-us {
-            background-color: rgb(244 243 243 / 90%);
+            background-color: rgb(0 0 0 / 80%);
             border-radius: 10px;
             padding: 30px;
             .item1 {
@@ -66,18 +67,17 @@
               opacity: 0.9;
             }
           }
-          .item2 {
-            width: 30%;
-            img {
-              width: 100%;
-              height: 100%;
-            }
-          }
         }
       }
     }
     .item2 {
-      width: 45%;
+      display: flex;
+      width: 38%;
+      margin-left: 10px;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
   }
 
@@ -90,16 +90,22 @@
     flex-wrap: wrap;
     flex-direction: row;
     .snip1336 {
+      border-radius: 10px;
       position: relative;
       overflow: hidden;
       margin: 10px;
       min-width: 230px;
+      display: flex;
       max-width: 270px;
       width: 100%;
       color: #ffffff;
       text-align: left;
       line-height: 1.4em;
-      background-color: #141414a8;
+      background-color: rgb(229 229 229 / 66%);
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
     }
     .snip1336 * {
       -webkit-box-sizing: border-box;
@@ -109,16 +115,27 @@
     }
     .snip1336 img {
       padding: 5px;
-      width: 98%;
+      width: 90%;
       border-radius: 5px;
-      vertical-align: top;
-      opacity: 0.55;
     }
     .snip1336 figcaption {
-      width: 100%;
-      background-color: rgb(29 28 28 / 57%);
-      padding: 25px;
+      width: 90%;
+      height: auto;
+      display: flex;
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.5),
+        rgba(205, 221, 221, 0.7),
+        rgba(177, 169, 169, 0.9)
+      );
+      padding: 5px 20px;
+      border-radius: 10px;
       position: relative;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
     }
     .snip1336 figcaption:before {
       position: absolute;
@@ -132,15 +149,13 @@
       border-color: transparent transparent transparent #908989a1;
     }
     .snip1336 figcaption a {
-      padding: 5px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
+      color: #000000;
       font-size: 0.7em;
       text-transform: uppercase;
-      margin: 10px 0;
+      /* margin: 10px 0; */
       display: inline-block;
       opacity: 0.65;
-      width: 47%;
+      width: 35%;
       text-align: center;
       text-decoration: none;
       font-weight: 600;
@@ -152,13 +167,13 @@
     .snip1336 .profile {
       border-radius: 50%;
       position: absolute;
-
       bottom: 100%;
       left: 25px;
       z-index: 1;
-      max-width: 90px;
+      max-width: 75px;
       opacity: 1;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+      box-shadow: 0 0 25px rgb(241, 45, 45);
     }
     .snip1336 .follow {
       margin-right: 4%;
@@ -168,17 +183,22 @@
     .snip1336 h2 {
       margin: 0 0 5px;
       font-weight: 300;
+      text-transform: uppercase;
+      color: black;
+      font-size: 12px;
+      font-weight: 600;
     }
     .snip1336 h2 span {
       display: block;
-      font-size: 0.5em;
+      font-weight: 500;
+      font-size: 11px;
       color: #2980b9;
     }
     .snip1336 p {
       margin: 0 0 10px;
-      font-size: 0.8em;
+      font-size: 8px;
       letter-spacing: 1px;
-      opacity: 0.8;
+      color: black;
     }
   }
 }
@@ -250,11 +270,20 @@
     min-height: 400px;
     padding: 10px;
     border-radius: 16px;
-    color: #000000;
+    color: #dfdfdf;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
+}
+
+.css-6od3lo-MuiChip-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 12px;
+  padding-right: 12px;
+  white-space: nowrap;
+  color: aliceblue;
 }
 .paper-modal-download {
   opacity: 1.5;
@@ -296,6 +325,7 @@
     }
   }
 }
-.qrCodeContact{
-  max-width: 80px;
+
+.qrCodeContact {
+  width: 100px;
 }

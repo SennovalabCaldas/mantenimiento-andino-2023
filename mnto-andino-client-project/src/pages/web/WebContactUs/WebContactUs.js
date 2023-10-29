@@ -140,6 +140,18 @@ export const WebContactUs = () => {
 
     window.location.href = correoTo;
   };
+  const enviarCorreoContact = () => {
+    const correos = [
+      "mantenimientoandino@gmail.com",
+      "gerenciamantenimientoandino@gmail.com",
+    ];
+    const asunto = "Consulta sobre servicios de Mantenimiento Andino SAS.";
+    const cuerpoMensaje = `Hola, estoy interesado en sus servicios.`;
+    const correoTo = `mailto:${correos.join(",")}?subject=${encodeURIComponent(
+      asunto
+    )}&body=${encodeURIComponent(cuerpoMensaje)}`;
+    window.location.href = correoTo;
+  };
 
   const handleChipClick = (chipKey) => {
     if (selectedChips.indexOf(chipKey) === -1) {
@@ -275,6 +287,7 @@ export const WebContactUs = () => {
 
                   return (
                     <Chip
+                      style={{ margin: "4px", backgroundColor: "#67bbe382" }}
                       key={data.key}
                       label={data.label}
                       onClick={() => handleChipClick(data.key)}
@@ -285,7 +298,6 @@ export const WebContactUs = () => {
                       }
                       color={isSelected ? "primary" : undefined}
                       variant={isSelected ? "outlined" : undefined}
-                      style={{ margin: "4px" }}
                     />
                   );
                 })}
@@ -322,7 +334,7 @@ export const WebContactUs = () => {
       </div>
       <div className="item-profile-card">
         <figure class="snip1336">
-          <img src={image.imgPost1} alt="sample87" />
+          <img src={image.fondoSlide} alt="sample87" />
           <figcaption>
             <img src={image.logomn} alt="profile-sample4" class="profile" />
             <h2>
@@ -342,20 +354,28 @@ export const WebContactUs = () => {
               }}
             >
               <a
-                href={`https://api.whatsapp.com/send?phone=+573103833591`}
+                href={`https://api.whatsapp.com/send?phone=573103833591&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
                 class="follow"
               >
-                Whatsapp
+                <img
+                  src={image.whatsApp}
+                  style={{ width: "30px", height: "30px" }}
+                />
               </a>
-              <a href="#" class="info">
-                Correo
-              </a>
-              <img className="qrCodeContact" src={image.ceoCode} />
+              <button onClick={enviarCorreoContact}>
+                <img
+                  src={image.email}
+                  style={{ width: "30px", height: "30px" }}
+                ></img>
+              </button>
+              <div className="qrCodeContact">
+                <img src={image.ceoCode} />
+              </div>
             </div>
           </figcaption>
         </figure>
         <figure class="snip1336 hover">
-          <img src={image.imgPost1} alt="sample74" />
+          <img src={image.fondoSlide} alt="sample74" />
           <figcaption>
             <img src={image.logomn} alt="profile-sample2" class="profile" />
             <h2>
@@ -374,13 +394,24 @@ export const WebContactUs = () => {
                 justifyContent: "center",
               }}
             >
-              <a href="#" class="follow">
-                Whatsapp
+              <a
+                href={`https://api.whatsapp.com/send?phone=573008426136&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
+                class="follow"
+              >
+                <img
+                  src={image.whatsApp}
+                  style={{ width: "30px", height: "30px" }}
+                />
               </a>
-              <a href="#" class="info">
-                Correo
-              </a>
-              <img className="qrCodeContact" src={image.gerenteCode} />
+              <button onClick={enviarCorreoContact}>
+                <img
+                  src={image.email}
+                  style={{ width: "30px", height: "30px" }}
+                ></img>
+              </button>
+              <div className="qrCodeContact">
+                <img src={image.gerenteCode} />
+              </div>
             </div>
           </figcaption>
         </figure>

@@ -262,7 +262,7 @@ function Section7() {
 
 function Section8() {
   return (
-    <div className="section" id="section8">
+    <div className="section  web-section" id="section8">
       <WebContactUs />
     </div>
   );

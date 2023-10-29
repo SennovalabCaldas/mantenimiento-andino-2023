@@ -1,9 +1,37 @@
 .mapa-section {
-  .card-map{
+  .chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+  }
+
+  .chip {
+    background-color: #2196f3;
+    color: #fff;
+    font-size: 14px;
+    padding: -2px 8px;
+    border-radius: 16px;
+    cursor: pointer;
+    .css-6od3lo-MuiChip-label {
+      overflow: hidden;
+      font-size: 11px;
+      text-overflow: ellipsis;
+      padding-left: 12px;
+      padding-right: 12px;
+      white-space: nowrap;
+    }
+  }
+
+  .chip:hover {
+    background-color: #0d8bf5; /* Cambia el color de fondo al pasar el mouse sobre el chip */
+  }
+  .card-map {
     width: 100%;
-    height: auto;
-    padding: 16px;
-    margin: 16px;
+    height: 480px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,14 +42,23 @@
     border-radius: 8px;
   }
   .card {
-    width: 300px;
     height: auto;
+    width: 100%;
     margin: 0 auto;
-    background-color: #6da4a280;
+    background: linear-gradient(
+      to right,
+      rgb(255 255 255 / 50%),
+      rgb(187 195 195 / 70%),
+      rgb(211 211 211 / 90%)
+    );
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
+    margin-bottom: 5px;
+    .card-body {
+      padding: 10px;
+    }
   }
 
   .card:hover {
@@ -29,8 +66,11 @@
   }
 
   .card-title {
-    font-size: 1.25rem; /* Tamaño del título */
-    margin-bottom: 1rem; /* Margen inferior del título */
+    color: rgba(0, 0, 0, 0.87);
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 0;
+    padding: 10px;
   }
 
   .list-group-item {
