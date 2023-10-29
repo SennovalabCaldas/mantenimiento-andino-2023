@@ -123,9 +123,6 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.privacy-policy-container div {
-  margin-bottom: 20px;
-}
 
 .privacy-policy-container h2 {
   font-size: 24px;
@@ -156,7 +153,8 @@
     justify-content: flex-start;
     overflow-x: auto; // Permite el desplazamiento horizontal si los tabs no caben en el contenedor
     white-space: nowrap;
-    flex-direction: row; // Vuelve a la dirección horizontal para que los tabs se desplacen horizontalmente
+    flex-direction: row;
+    overflow: auto;
   }
   .privacy-policy-container {
     position: relative;
