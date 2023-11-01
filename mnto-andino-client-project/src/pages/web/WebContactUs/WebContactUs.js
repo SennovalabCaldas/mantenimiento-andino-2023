@@ -89,11 +89,16 @@ export const WebContactUs = () => {
   };
 
   const descargarPortafolio = () => {
-    const rutaArchivoPDF = "../../../../assets/pdf/rrr.pdf";
-    window.open(rutaArchivoPDF);
-
+    const rutaArchivoPDF = "http://mantenimientoandino.co/pdf/portafolio.pdf";
+    console.log(rutaArchivoPDF);
+    const link = document.createElement('a');
+    link.href = rutaArchivoPDF;
+    link.download = 'portafolio.pdf'; 
+    link.target = '_blank'; 
+    link.click(); 
     handleCloseModal();
   };
+  
 
   const enviarCorreo = () => {
     if (
@@ -427,10 +432,6 @@ export const WebContactUs = () => {
         open={isModalOpen}
         onClose={handleCloseModal}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
         <Fade in={isModalOpen}>
           <div className="paper-modal-download">

@@ -73,7 +73,7 @@ import proj5 from "./project/proj5.jpeg";
 import proj6 from "./project/proj6.jpeg";
 import proj7 from "./project/proj7.jpeg";
 
-import portafolio from "./pdf/Portafolio_de_Servicios.pdf";
+import portafolio from "./pdf/portafolio.pdf";
 import ally1 from "./allies/katcher.png";
 import errorPage from "./jpg/404.jpg";
 
