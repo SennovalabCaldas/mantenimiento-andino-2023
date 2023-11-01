@@ -67,7 +67,7 @@ export const WebServices = ({ categoryServices, services }) => {
 
   const handleNameTabChange = (index) => {
     const categoryName = mergedCategories[index].nameCategoryService;
-    setNameActiveTab(categoryName); // Almacena el nombre de la categoría en lugar del índice
+    setNameActiveTab(categoryName);
   };
 
   const mergedCategories = uniqueCategories
@@ -91,9 +91,15 @@ export const WebServices = ({ categoryServices, services }) => {
         <div className="content panel">
           <div className="images panel">
             <div className="container">
-              <div className="tabs" style={{ display: "flex" }}>
+              <div className="tabs" style={{ display: "flex",
+    width: "100%",
+    alignContent: "center",
+    justifyContent:"center",
+    alignItems:"center",
+    flexWrap:"wrap",
+    flexDirection: "row",}}>
                 {mergedCategories.map((category, index) => (
-                  <React.Fragment key={index}>
+                  <div key={index}>
                     <input
                       type="radio"
                       id={`radio-${index + 1}`}
@@ -104,7 +110,7 @@ export const WebServices = ({ categoryServices, services }) => {
                     <label className="tab" htmlFor={`radio-${index + 1}`}>
                       {category.nameCategoryService}
                     </label>
-                  </React.Fragment>
+                  </div>
                 ))}
                 <span className="glider"></span>
               </div>

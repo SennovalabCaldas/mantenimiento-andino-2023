@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { image } from "../../../assets";
 import "./WebFundation.scss";
+import Slider from "react-slick";
 
 export const WebFundation = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -35,39 +36,38 @@ export const WebFundation = () => {
   ];
 
   const [selectedNews, setSelectedNews] = useState(0);
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1, // Muestra un slide a la vez
+    slidesToScroll: 1, // Desplázate un slide a la vez
+  };
   return (
     <div className="web-fundations">
       <div className="landing-page">
-        <header>
-          <div className="container">
-            <ul className="news-list">
-              {slidesData.map((slide, index) => (
-                <li
-                  key={index}
-                  className={selectedNews === index ? "active" : ""}
-                  onClick={() => setSelectedNews(index)}
-                >
-                  {slide.titulo}
-                </li>
-              ))}
-            </ul>
+        <div className="landing-page__content">
+          <div className="landing-page__content__text">
+            <h1 className="landing-page__content__text__title">
+              {slidesData[selectedNews].titulo}
+            </h1>
+            <p className="landing-page__content__text__subtitle">
+              {slidesData[selectedNews].subtitulo}
+            </p>
+            <p className="landing-page__content__text__description">
+              {slidesData[selectedNews].descripcion}
+            </p>
+            <button
+              className="landing-page__content__text__button"
+              onClick={() => {
+                window.location.href = "/servicios";
+              }}
+            >
+              Conoce más
+            </button>
           </div>
-        </header>
-        <div className="content">
-          <div className="container">
-            <div className="info">
-              <h1>{slidesData[selectedNews].titulo}</h1>
-              <p>
-                {slidesData[selectedNews].subtitulo}
-                <br />
-                {slidesData[selectedNews].descripcion}
-              </p>
-             
-            </div>
-            <div className="image">
-              <img src={slidesData[selectedNews].image} alt="News" />
-            </div>
+          <div className="landing-page__content__image">
+            <img src={slidesData[selectedNews].image} alt="Imagen" />
           </div>
         </div>
       </div>

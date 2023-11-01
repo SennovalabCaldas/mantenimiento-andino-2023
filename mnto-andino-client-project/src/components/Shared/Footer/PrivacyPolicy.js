@@ -769,8 +769,10 @@ export const PrivacyPolicy = () => {
           onChange={handleTabChange}
           indicatorColor="primary"
           textColor="primary"
-          variant="fullWidth"
           className="tabs-privacypolicy"
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile
         >
           <Tab className="option-tab-pribacypolicy" label="Introducción" />
           <Tab className="option-tab-pribacypolicy" label="Definiciones" />

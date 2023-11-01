@@ -52,8 +52,7 @@ export const WebMenu = () => {
   const handleSetActiveSection = (section) => {
     setActiveSection(section);
     setShowToggleButton(section !== "section1");
-
-    // Renderizar los componentes SlideBarWebMenu y SocialSlideBar
+    console.log("activeSection",activeSection);
     if (section !== "section1") {
       return (
         <>
@@ -132,12 +131,11 @@ export const WebMenu = () => {
                 href="#foundations"
                 onClick={() => scrollToSection("section7")}
               >
-                Fundaciones
+                Actualidad
               </a>
               <a href="#contact" onClick={() => scrollToSection("section8")}>
                 Contacto
               </a>
-              {/* INiciar sesión */}
               <Link to="/login">Iniciar sesión</Link>
             </div>
           </nav>
@@ -254,7 +252,7 @@ function Section6() {
 
 function Section7() {
   return (
-    <div className="section7 web-section" id="section7">
+    <div className="section web-section" id="section7">
       <WebFundation />
     </div>
   );

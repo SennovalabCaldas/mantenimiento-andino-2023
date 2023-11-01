@@ -182,11 +182,7 @@ export const WebContactUs = () => {
       <div className="contact-section">
         <div className="item1">
           <article>
-            <header
-              style={{
-                backgroundImage: `url(${image.post3})`,
-              }}
-            >
+            <header>
               <div className="upper-header">
                 <div className="mini-title">CONTÁCTANOS</div>
               </div>
@@ -280,14 +276,20 @@ export const WebContactUs = () => {
                   )}
                 </div>
                 <br />
-                Selecciona los servicios que te interesan:
+                <span>
+                  <strong>Selecciona los servicios que te interesan:</strong>
+                </span>
                 <br />
                 {chipData.map((data) => {
                   const isSelected = selectedChips.indexOf(data.key) !== -1;
 
                   return (
                     <Chip
-                      style={{ margin: "4px", backgroundColor: "#67bbe382" }}
+                      style={{
+                        margin: "4px",
+                        background:
+                          "linear-gradient(rgba(235, 239, 241, 0.48), rgba(103, 187, 227, 0.48))",
+                      }}
                       key={data.key}
                       label={data.label}
                       onClick={() => handleChipClick(data.key)}
@@ -301,12 +303,12 @@ export const WebContactUs = () => {
                     />
                   );
                 })}
-                <div style={{ marginBottom: "10px" }}>
+                <div style={{ marginBottom: "20px", marginTop: "10px" }}>
                   <TextField
                     multiline
                     fullWidth
                     id="standard-basic"
-                    label="Mensaje"
+                    label="Déjanos tu mensaje, nosotros te contactaremos."
                     value={mensaje}
                     variant="standard"
                     onChange={(e) => setMensaje(e.target.value)}
@@ -336,9 +338,10 @@ export const WebContactUs = () => {
         <figure class="snip1336">
           <img src={image.fondoSlide} alt="sample87" />
           <figcaption>
-            <img src={image.logomn} alt="profile-sample4" class="profile" />
             <h2>
-              Albert Edisson Berrio Galano<span>CEO</span>
+              Albert Edisson Berrio Galeano
+              <br />
+              <span>CEO</span>
             </h2>
             <p>
               310 383 3591 <br />
@@ -377,9 +380,10 @@ export const WebContactUs = () => {
         <figure class="snip1336 hover">
           <img src={image.fondoSlide} alt="sample74" />
           <figcaption>
-            <img src={image.logomn} alt="profile-sample2" class="profile" />
             <h2>
-              Vanessa Londoño Villada<span>GERENTE ADMINISTRATIVA</span>
+              Vanessa Londoño Villada
+              <br />
+              <span>GERENTE ADMINISTRATIVA</span>
             </h2>
             <p>
               300 842 6136 <br />

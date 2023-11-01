@@ -1,6 +1,7 @@
 import React from "react";
 import "./WebAliados.scss";
-import { Modal, Typography } from "@mui/material";
+import { Modal, Typography, Card, CardContent, CardMedia } from "@mui/material";
+
 import { image } from "../../../assets";
 import { useState } from "react";
 import { ENV } from "../../../utils/constants";
@@ -93,23 +94,32 @@ export const WebAliados = ({ allies }) => {
           <div className="images panel">
             <div className="certification-img">
               {defaultCertification.map((cert, index) => (
-                <div key={index}>
-                  <div className="column-item-cert">
-                    <h1>
-                      <span className="no-select">{cert.name}</span>
-                    </h1>
-                    <div className="column-item">
-                      {cert.avatar.map((image, imageIndex) => (
-                        <img
-                          src={image}
-                          alt={`${cert.name} ${imageIndex}`}
-                          className="certification"
-                          key={imageIndex}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                <Card
+                  key={index}
+                  className="certification-card"
+                  onClick={() => openModal(cert)}
+                >
+                  {cert.avatar.map((logo, logoIndex) => (
+                    <CardMedia
+                      key={logoIndex}
+                      component="img"
+                      alt={cert.name}
+                      height="140"
+                      image={logo}
+                    />
+                  ))}
+                  <CardContent>
+                    <Typography
+                      component="div"
+                      style={{
+                        userSelect: "none",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {cert.name}
+                    </Typography>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>

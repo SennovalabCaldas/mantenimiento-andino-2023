@@ -100,28 +100,28 @@ export const WebClients = ({ clients }) => {
     {
       cliente: "Cliente 1",
       cargo: "Director de Operaciones",
-      avatar: image.a1,
+      avatar: image.logomn,
       comentario: "Excelente servicio, muy profesionales.",
       evaluacion: 5,
     },
     {
       cliente: "Cliente 2",
       cargo: "Gerente de Producción",
-      avatar: image.a2,
+      avatar: image.logomn,
       comentario: "Trabajo excepcional, los recomiendo totalmente.",
       evaluacion: 4,
     },
     {
       cliente: "Cliente 3",
       cargo: "Gerente de Producción",
-      avatar: image.a3,
+      avatar: image.logomn,
       comentario: "Trabajo excepcional, los recomiendo totalmente.",
       evaluacion: 5,
     },
     {
       cliente: "Cliente 3",
       cargo: "Gerente de Producción",
-      avatar: image.a4,
+      avatar: image.logomn,
       comentario: "Trabajo excepcional, los recomiendo totalmente.",
       evaluacion: 5,
     },
@@ -134,11 +134,6 @@ export const WebClients = ({ clients }) => {
         {testimonios.map((testimonio, index) => (
           <div className="e-card playing" key={index}>
             <div className="image"></div>
-
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
-
             <div className="infotop">
               <img
                 src={testimonio.avatar}
@@ -146,10 +141,18 @@ export const WebClients = ({ clients }) => {
                 className="client-avatar"
               />
               <h2>{testimonio.cliente}</h2>
-              <p>{testimonio.cargo}</p>
-              <br />
+              <div className="client-avatar-testimonie">
+                <p>
+                  <strong>{testimonio.cargo}</strong>
+                </p>
+              </div>
               <p>{testimonio.comentario}</p>
-              <div className="star-testimonie">
+              <div
+                className="star-testimonie"
+                style={{
+                  zIndex: "9999",
+                }}
+              >
                 {[...Array(testimonio.evaluacion)].map((star, index) => (
                   <img
                     src={image.star}
@@ -187,9 +190,6 @@ export const WebClients = ({ clients }) => {
         <div className="gallery gallery-cards">
           <div className="content panel">
             <div className="slide" data-order="1">
-              <h2>
-                <span className="no-select">NUESTROS </span>
-              </h2>
               <h1>
                 <span className="no-select-2">CLIENTES</span>
               </h1>
@@ -207,6 +207,13 @@ export const WebClients = ({ clients }) => {
                 ))}
               </div>
             </div>
+          </div>
+          <div>
+           
+              <h1>
+                <span className="no-select-g">Testimonios</span>
+              </h1>
+            
           </div>
           <div className="content panel">{renderTestimonios()}</div>
         </div>

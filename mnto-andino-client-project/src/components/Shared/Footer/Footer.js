@@ -8,7 +8,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__item">
-        <h3>Información de contacto</h3>
+        <h3>
+          <strong>CONTACTO</strong>
+        </h3>
 
         <div className="footer__item-inf">
           <a
@@ -26,7 +28,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__item">
-        <h3>Dirección</h3>
+        <h3>
+          <strong>DIRECCIÓN</strong>
+        </h3>
 
         <a
           href="https://goo.gl/maps/9JvQ1J1Z1Z1Z1Z1Z1"
@@ -44,16 +48,13 @@ const Footer = () => {
           </p>
         </a>
       </div>
+
       <div className="footer__item">
         <Link to="/privacypolicy" className="btn">
           <p>
-            CONSULTA NUESTRA
-            <br />
             <strong>POLITICA DE PRIVACIDAD</strong>
           </p>
         </Link>
-      </div>
-      <div className="footer__item">
         <ul>
           <div className="footer__item-sennovalab">
             <div className="footer__item-img">

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { image } from "../../../assets";
+import Slider from "react-slick";
 
 const defaultServicesMap = {
   default1: [
@@ -84,9 +85,22 @@ export const ProductList = ({
 }) => {
   console.log("services =>", services);
   const phoneNumber = "573103833591";
+  const videoRef = useRef(null);
   const categoryServiceList = useRef(
     categoryServices?.map((category) => category.nameCategoryService)
   );
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+  };
 
   const mergedCategories = [
     ...categoryServiceList.current,
@@ -126,6 +140,7 @@ export const ProductList = ({
     };
   });
 
+
   console.log("groupedServices =>", groupedServices);
   const filteredServices =
     nameActiveTab === "Todos los servicios"
@@ -137,37 +152,17 @@ export const ProductList = ({
   return (
     <>
       {isAllServicesActive && (
-        <div className="services-container">
-          <div
-            className="container"
-            style={{
-              display: "flex",
-            }}
+        <div className="video-container-services">
+          <video
+            ref={videoRef}
+            preload="metadata"
+            autoPlay={true}
+            muted={true}
+            loop={true}
           >
-            <div className="gallery-wrap">
-              <div className="item item-1"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img src={image.img1f} />
-              </div>
-              <div className="item item-2">
-                <img src={image.img2f} />
-              </div>
-              <div className="item item-3">
-                <img src={image.img3f} />
-              </div>
-              <div className="item item-4">
-                <img src={image.img4f} />
-              </div>
-              <div className="item item-5">
-                <img src={image.img5f} />
-              </div>
-            </div>
-          </div>
+            <source src={image.portafolio_video} type="video/mp4" />
+            Tu navegador no soporta el elemento de video.
+          </video>
         </div>
       )}
       {filteredServices &&

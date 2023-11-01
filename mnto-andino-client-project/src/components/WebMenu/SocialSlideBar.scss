@@ -1,17 +1,18 @@
 /* Estilos para el slide bar */
 .social-slide-bar {
   position: fixed;
-  border-radius: 3px;
+  border-radius: 5px;
   bottom: 300px;
-  right: 15px;
-  width: 50px;
-  height: 35%;
-  background-color: rgb(105 143 147 / 51%);
+  z-index: 999;
+  right: 10px;
+  width: 42px;
+  height: 22%;
+  background-color: rgb(210 218 219 / 51%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: right 0.3s;
+  transition: right 1.3s;
   .toggle-button {
     cursor: pointer;
     font-size: 11px;
@@ -25,12 +26,22 @@
     border-bottom: #ffffffcf 2px solid;
     user-select: none;
   }
-}
-
-.social-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .social-icons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    a{
+      img {
+        margin-right: 0;
+        width: 22px;
+        height: 22px;
+      }
+    }
+    
+  }
 }
 
 .social-icons a {
@@ -41,12 +52,11 @@
     height: 35px;
   }
   .footer__icon-img-large-whatsapp {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
   }
 }
 
 .social-icons a:hover {
   transform: scale(1.2); /* Efecto de escala al pasar el mouse */
 }
-

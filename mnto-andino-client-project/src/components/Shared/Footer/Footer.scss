@@ -1,109 +1,81 @@
+/* Footer.scss */
+
 .footer {
-  position: relative;
-  width: 100%;
-  background-color: rgb(218, 218, 218);
-  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 30px 50px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: center;
-  align-items: center;
-  .footer__item-inf {
-    p {
-      margin: 0;
-      font-size: 12px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #000;
-    }
-  }
-  .footer__item-icon {
-    width: 50px;
-    .footer__icon-img-large {
-      width: 25px; /* Ancho de la imagen */
-      height: 25px; /* Alto de la imagen */
-    }
-  }
-  .footer__item-icon:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-  .footer__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #000;
-    justify-content: center;
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      margin: 0;
-    }
-
-    h3 {
-      margin: 0;
-      font-size: 13px;
-      color: #000;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    a {
-      font-family: Arial, Helvetica, sans-serif;
-      text-decoration: none;
-      color: #000000;
-      font-size: 11px;
-    }
-
-    li {
-      list-style: none;
-      width: 20px;
-      a {
-        text-decoration: none;
-        color: #000000;
-      }
-    }
-
-    .footer__icon {
-      font-size: 20px;
-      color: #000;
-    }
-    .footer__text {
-      font-size: 12px;
-      color: #000;
-    }
-  }
-
-  .footer__item-sennovalab {
-    width: 20%;
-    padding: 0;
-    color: #000;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    h3 {
-      font-size: 11px;
-      font-weight: 550;
-      color: #000;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      bottom: 5px;
-      right: 30px;
-      padding: 0;
-      position: fixed;
-    }
-    img {
-      height: 135px;
-      padding: 0;
-      margin: 0;
-    }
-  }
+  justify-content: space-around;
 }
+
+.footer__item {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.footer__item h3 {
+  font-size: 14px;
+  color: currentColor;
+}
+
+.footer__item-inf a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.btn {
+  // background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  color: #b65241;
+}
+
+.footer__item-sennovalab {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer__item-img img {
+  width: 50px; /* Ajusta el tamaño del logo según tus necesidades */
+  margin-right: 10px;
+}
+
+/* Estilos para los enlaces */
+.footer__item a {
+  color: #9c9c9c;
+  text-decoration: none;
+}
+
+.footer__item a:hover {
+  text-decoration: underline;
+}
+
+.footer__item-copyright h3 {
+  font-size: 11px;
+  margin: 0;
+  font-weight: 600;
+}
+
 // ocultar en pantallas pequeñas
 @media (max-width: 768px) {
   .footer__item-copyright {
@@ -122,7 +94,6 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .privacy-policy-container h2 {
   font-size: 24px;
@@ -151,10 +122,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    overflow-x: auto; // Permite el desplazamiento horizontal si los tabs no caben en el contenedor
     white-space: nowrap;
     flex-direction: row;
-    overflow: auto;
+    width: 100%;
   }
   .privacy-policy-container {
     position: relative;
@@ -183,20 +153,13 @@
   }
   // Estilos específicos para dispositivos con un ancho máximo de 480px
   .tabs-privacypolicy {
-    margin-bottom: 15px;
-    padding-left: 5px;
-    margin-left: 5px;
-    .option-tab-pribacypolicy {
-      margin-left: 5px;
-    }
-  }
-  .tabs-privacypolicy.css-1ujnqem-MuiTabs-root > div > div {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    overflow-x: auto;
     white-space: nowrap;
     flex-direction: row;
+    overflow: auto !important;
+
     .option-tab-pribacypolicy {
       margin-left: 5px;
     }

@@ -9,6 +9,8 @@ import logo3 from "./jpg/logo3.jpg";
 import logo4 from "./jpg/logo4.jpg";
 import contact from "./video/mp4/contact.mp4";
 import contact1 from "./video/mp4/contact1.mp4";
+import contact2 from "./video/mp4/contact2.mp4";
+import noticias from "./video/mp4/noticias.mp4";
 import img1 from "./png/img1.png";
 import img2 from "./png/img2.png";
 import ceoCode from "./png/ceo-code.png";
@@ -85,13 +87,21 @@ import menu6 from "./homeMenu/img6.jpg";
 import menu7 from "./homeMenu/img7.jpg";
 import menu8 from "./homeMenu/img8.jpg";
 import menu9 from "./homeMenu/img9.jpg";
-import img1Foundation from "./homeMenu/img11.png";
+import verVideo1 from "./homeMenu/img11.png";
+import verVideo2 from "./homeMenu/img12.png";
+import verVideo3 from "./homeMenu/img13.png";
 
 import img1f from "./post_fundations/img1.png";
 import img2f from "./post_fundations/img2.jpeg";
 import img3f from "./post_fundations/img3.jpeg";
 import img4f from "./post_fundations/img4.jpeg";
 import img5f from "./post_fundations/img5.jpeg";
+
+import portafolio_video from "./video/mp4/portafolio.mp4";
+import portafolio_p1 from "./portfolio/p1.jpeg";
+import portafolio_p2 from "./portfolio/p2.jpeg";
+import portafolio_p3 from "./portfolio/p3.jpeg";
+import portafolio_p4 from "./portfolio/p4.jpeg";
 
 import mapa from "./jpg/mapa.jpg";
 
@@ -160,7 +170,9 @@ const image = {
   menu8,
   menu9,
   mapa,
-  img1Foundation,
+  verVideo1,
+  verVideo2,
+  verVideo3,
   fondoSlide,
   star,
   cert1,
@@ -185,5 +197,12 @@ const image = {
   img3f,
   img4f,
   img5f,
+  portafolio_video,
+  portafolio_p1,
+  portafolio_p2,
+  portafolio_p3,
+  portafolio_p4,
+  noticias,
+  contact2
 };
 export { image };

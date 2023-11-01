@@ -8,7 +8,7 @@
   background-color: #fff;
   border-radius: 10px;
   .slide {
-    width: 50%;
+    width: 35%;
     height: auto;
     /* height: 500px; */
     display: flex;
@@ -93,15 +93,16 @@
   .gallery-cards .images {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px;
+    /* padding: 0 20px; */
     box-sizing: border-box;
-    width: 55%;
+    width: 85%;
     align-content: flex-start;
     align-items: center;
     flex-direction: row;
     justify-content: center;
     img {
       width: 85px;
+      object-fit: fill;
       height: 40px;
     }
   }
@@ -111,7 +112,7 @@
   .projects-section .gallery-cards .content {
     display: flex;
     box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to right, #ffffff, #5e7383, #fff);
+    // background: linear-gradient(to right, #ffffff, #5e7383, #fff);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -123,7 +124,6 @@
     align-content: center;
     justify-content: center;
     align-items: center;
-    
   }
   .projects-section .gallery .slide {
     width: 25%;
@@ -143,22 +143,27 @@
     font-weight: 550;
     padding: 10px;
     margin: 10px;
-}
+  }
 }
 
 .panel {
   display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   img {
     width: 75px;
     height: 75px;
   }
   .certification-img {
     display: flex;
-    width: 100%;
+    width: 80%;
     object-fit: cover;
     border-radius: 10px;
     margin: 10px;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
@@ -177,8 +182,30 @@
     }
 
     img {
-      width: 85%;
+      width: 65%;
       height: 65%;
     }
+  }
+}
+.certification-img {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  // Estilos para el contenedor de las tarjetas de certificación
+}
+
+.certification-card {
+  width: 330px;
+
+  height: 140px; // Establece la altura fija para la tarjeta (puedes ajustarla según tus necesidades)
+  margin: 20px;
+  cursor: pointer;
+  overflow: hidden; // Oculta cualquier parte de la imagen que se desborde del contenedor
+  border: 1px solid #ccc; // Agrega un borde para resaltar el contorno de la tarjeta
+
+  .MuiCardMedia-root {
+    object-fit: cover; // Hace que la imagen se ajuste para cubrir completamente el área asignada
+    width: 100%; // Hace que la imagen ocupe todo el ancho del contenedor
+    height: 100%; // Hace que la imagen ocupe todo el alto del contenedor
   }
 }

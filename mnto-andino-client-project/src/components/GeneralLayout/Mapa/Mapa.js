@@ -28,10 +28,6 @@ export const Mapa = ({ departamentos }) => {
     setHoveredDept(null);
   };
 
-  const handleMouseMove = (event) => {
-    setMousePosition({ x: event.clientX, y: event.clientY });
-  };
-
   var simplemaps_countrymap_mapinfo = {
     map_name: "country",
     state_bbox_array: {
@@ -219,17 +215,14 @@ export const Mapa = ({ departamentos }) => {
   let colorIndex = 0;
 
   const getDepartamentoColor = (deptName) => {
-    const color = "rgba(105, 143, 147, 0.51)";
     if (deptName === hoveredDept) {
       return "#70A9B0"; // Color cuando el departamento está siendo señalado
     } else if (departamentosDestacados.includes(deptName)) {
-      // Asigna un color diferente a los departamentos en el array departamentosDestacados
       return "#FF5733"; // Por ejemplo, el color naranja para Caldas y Quindío
     } else {
-      return color; // Otros departamentos conservan el color original
+      return "#D1D1D1"; // Otros departamentos conservan un color gris claro
     }
   };
-
   // Obtener la lista de departamentos del objeto simplemaps_countrymap_mapinfo
   const departamentosMapa = Object.keys(
     simplemaps_countrymap_mapinfo.names
@@ -273,18 +266,23 @@ export const Mapa = ({ departamentos }) => {
       <div className="mapa-section">
         <div className="card mt-3">
           <div className="card-body">
-            <h5 className="card-title">
+            <h5 className="card-title text-center">
               Tenemos clientes en diferentes departamentos de Colombia:
             </h5>
             <div className="chips-container">
               {departamentosDestacados.map((departamento, index) => (
-                <Chip key={index} label={departamento} className="chip" />
+                <Chip
+                  key={index}
+                  label={departamento}
+                  className="chip"
+                  variant="outlined"
+                />
               ))}
             </div>
           </div>
         </div>
         {mostrarMensaje && (
-          <Alert severity="info">
+          <Alert severity="success">
             ¡Puedes ser nuestro primer cliente en la región de{" "}
             {departamentoClickeado}!
           </Alert>

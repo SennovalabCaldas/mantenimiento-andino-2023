@@ -23,6 +23,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
   };
   return (
     <div className="slide-bar">
+      {/* INICIO */}
       <Link
         to="section1"
         spy={true}
@@ -35,7 +36,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
           <FontAwesomeIcon icon={faHome} />
         </div>
       </Link>
-
+      {/* SERVICIOS */}
       <Link
         to="section2"
         spy={true}
@@ -48,7 +49,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
           <FontAwesomeIcon icon={faFolderOpen} />
         </div>
       </Link>
-
+      {/* CLIENTES */}
       <Link
         to="section3"
         spy={true}
@@ -61,7 +62,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
           <FontAwesomeIcon icon={faGlobe} />
         </div>
       </Link>
-
+      {/* ALIADOS */}
       <Link
         to="section4"
         spy={true}
@@ -74,9 +75,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
           <FontAwesomeIcon icon={faTruck} />
         </div>
       </Link>
-
-
-
+      {/* PROYECTOS */}
       <Link
         to="section5"
         spy={true}
@@ -90,6 +89,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
         </div>
       </Link>
 
+      {/* FUNDACIONES */}
       <Link
         to="section6"
         spy={true}
@@ -102,7 +102,7 @@ function SlideBarWebMenu({ activeSection, handleSetActiveSection }) {
           <FontAwesomeIcon icon={faHandHoldingHeart} />
         </div>
       </Link>
-
+      {/* CONTACTO */}
       <Link
         to="section7"
         spy={true}

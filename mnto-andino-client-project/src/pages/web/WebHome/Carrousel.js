@@ -77,11 +77,10 @@ export const Carrousel = ({ posts }) => {
       <div
         className="slide"
         style={{
-          backgroundImage: `url(${image.authBg})`,
+          background: "linear-gradient(to right, rgb(240 240 240 / 0%), rgb(164 155 159 / 66%),rgba(22, 16, 19, 0.93)) center center / cover",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          width: "100%", // Asegura que el contenedor tenga el 100% del ancho
-
+          width: "100%",
           boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)",
         }}
       >

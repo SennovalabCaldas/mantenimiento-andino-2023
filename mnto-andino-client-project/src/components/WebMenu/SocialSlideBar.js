@@ -15,7 +15,7 @@ export const SocialSlideBar = () => {
   return (
     <div className={`social-slide-bar ${isOpen ? "open" : ""}`}>
       <div className="social-icons">
-        <a 
+        <a
           href={enlaceWhatsApp}
           rel="noreferrer"
           target="_blank"
@@ -43,7 +43,10 @@ export const SocialSlideBar = () => {
           className="transition text-grey hover:hover:text-blue-500"
         >
           {/* <span className="sr-only">Instagram</span> */}
-          <img src={image.instagram} className="footer__icon-img-large-whatsapp" />
+          <img
+            src={image.instagram}
+            className="footer__icon-img-large-whatsapp"
+          />
         </a>
         <a
           href="https://www.linkedin.com/"
@@ -52,20 +55,15 @@ export const SocialSlideBar = () => {
           className="transition text-grey hover:hover:text-blue-500"
         >
           {/* <span className="sr-only">Instagram</span> */}
-          <img src={image.linkedin} className="footer__icon-img-large-whatsapp" />
+          <img
+            src={image.linkedin}
+            className="footer__icon-img-large-whatsapp"
+          />
         </a>
-        <a
-          href="https://www.tiktok.com/"
-          rel="noreferrer"
-          target="_blank"
-          className="transition text-grey hover:hover:text-blue-500"
-        >
-          {/* <span className="sr-only">Instagram</span> */}
-          <img src={image.tiktok} className="footer__icon-img-large-whatsapp" />
-        </a>
+ 
       </div>
       <div className="toggle-button" onClick={toggleSlideBar}>
-        Redes
+        <strong>Ir</strong>{" "}
       </div>
     </div>
   );

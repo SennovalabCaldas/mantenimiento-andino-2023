@@ -10,7 +10,7 @@
   }
 
   .chip {
-    background-color: #2196f3;
+    background: linear-gradient(rgba(235, 239, 241, 0.48), rgba(103, 187, 227, 0.48));
     color: #fff;
     font-size: 14px;
     padding: -2px 8px;
@@ -27,7 +27,7 @@
   }
 
   .chip:hover {
-    background-color: #0d8bf5; /* Cambia el color de fondo al pasar el mouse sobre el chip */
+    background-color: rgba(103, 187, 227, 0.51);; /* Cambia el color de fondo al pasar el mouse sobre el chip */
   }
   .card-map {
     width: 100%;
@@ -45,12 +45,6 @@
     height: auto;
     width: 100%;
     margin: 0 auto;
-    background: linear-gradient(
-      to right,
-      rgb(255 255 255 / 50%),
-      rgb(187 195 195 / 70%),
-      rgb(211 211 211 / 90%)
-    );
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -6,6 +6,7 @@
   height: 500px; /* Ajusta la altura según tus necesidades */
   overflow: hidden;
   border: 1px solid #ccc; /* Borde opcional para el carrusel */
+  filter: grayscale(35%);
 
 }
 
@@ -22,10 +23,14 @@
   color: #ffffff;
   text-align: center;
   /* padding: 20px; */
-  background: rgb(60 75 79 / 55%);
+  background: rgb(0 0 0 / 79%);
   width: 100%;
   position: absolute;
   bottom: 0;
+  h2{
+    color: white;
+    text-transform: uppercase;
+  }
   .comic-button {
     display: inline-block;
     padding: 7px 20px;
@@ -162,11 +167,6 @@
 
   .card-social__item svg:hover {
     fill: #232323;
-    transform: scale(1.1);
-  }
-
-  .card-avatar:hover {
-    transform: scale(1.1);
   }
 }
 
@@ -202,8 +202,9 @@ h3 {
   color: white;
   background: rgba(0, 0, 0, 0.5);
   border: none;
-  padding: 10px 15px;
+  padding: 5px 10px;
   cursor: pointer;
+  border-radius: 5px;
   transition: 0.3s ease-in-out;
   z-index: 1;
 }
@@ -214,11 +215,11 @@ h3 {
 }
 
 .prev-button {
-  left: 60px;
+  left: 40px;
 }
 
 .next-button {
-  right: 60px;
+  right: 40px;
 }
 
 .indicators {
@@ -232,8 +233,8 @@ h3 {
 }
 
 .indicator {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: #ccc;
   margin: 0 5px;
@@ -269,16 +270,15 @@ h3 {
   }
 
   .title h1 {
-    font-size: 24px;
+    font-size: 14px;
     margin: 0;
   }
 
-  h2 {
-    font-size: 14px;
-    margin: 10px 0;
-    font-family: sans-serif;
-    font-weight: 500;
-  }
+  .slide-content h2 {
+    color: white;
+    padding: 15px 25px;
+    text-transform: uppercase;
+}
 
   h3 {
     font-size: 14px;
@@ -287,19 +287,18 @@ h3 {
 }
 
 .img-slide {
-  width: 70%;
-  height: 80%;
+  width: 80%;
+  height: 90%;
   object-fit: cover;
   border-radius: 5px;
   .img-slide-test {
     width: 100%;
-    height: 90%;
+    height: 100%;
     object-fit: cover;
     border-radius: 5px;
   
   }
   &:hover {
-    transform: scale(1.1);
     border: 1px solid #ccc;
   }
 }

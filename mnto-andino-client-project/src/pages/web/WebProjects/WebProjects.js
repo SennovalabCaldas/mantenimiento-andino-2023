@@ -1,18 +1,7 @@
 import React from "react";
 import "./WebProjects.scss";
 import { image } from "../../../assets";
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid,
-  ImageList,
-  ImageListItem,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Paper } from "@mui/material";
 import { ENV } from "../../../utils";
 import { styled } from "@mui/material/styles";
 const proyectosBase = [
@@ -79,6 +68,9 @@ export const WebProjects = ({ projects }) => {
   const proyectosInternacionales = combinedProjects.filter(
     (project) => project.national === false
   );
+
+  const hasNationalProjects = proyectosNacionales.length > 0;
+  const hasInternationalProjects = proyectosInternacionales.length > 0;
   const getAvatarUrl = (project) => {
     if (
       proyectosBase.some(
@@ -93,82 +85,91 @@ export const WebProjects = ({ projects }) => {
   return (
     <>
       <div className="projects-section">
-        <div className="gallery gallery-cards">
-          <div className="content panel">
-            <div className="slide" data-order="1">
-              <h2>
-                <span className="no-select">Proyectos nacionales</span>
-              </h2>
-            </div>
-            <div className="images panel">
-              {proyectosNacionales.length === 0 ? (
-                <>
-                  <div class="container">
-                    <div class="loader"></div>
-                  </div>
-                </>
-              ) : (
-                proyectosNacionales.map((project, index) => (
-                  <div class="myCard">
-                    <div class="innerCard">
-                      <div class="frontSide">
-                        <img src={getAvatarUrl(project)} alt="" />
-                        <p>{project.projectName}</p>
-                      </div>
-                      <div
-                        class="backSide"
-                        style={{
-                          backgroundImage: `url(${getAvatarUrl(project)})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                      ></div>
+        {hasNationalProjects && (
+          <div className="gallery gallery-cards">
+            <div className="content panel">
+              <div className="slide" data-order="1">
+                <h2>
+                  <span className="no-select">Proyectos nacionales</span>
+                </h2>
+              </div>
+              <div className="images panel">
+                {proyectosNacionales.length === 0 ? (
+                  <>
+                    <div class="container">
+                      <div class="loader"></div>
                     </div>
-                  </div>
-                ))
-              )}
+                  </>
+                ) : (
+                  proyectosNacionales.map((project, index) => (
+                    <div class="myCard">
+                      <div class="innerCard">
+                        <div class="frontSide">
+                          <img src={getAvatarUrl(project)} alt="" />
+                          <p>{project.projectName}</p>
+                        </div>
+                        <div
+                          class="backSide"
+                          style={{
+                            backgroundImage: `url(${getAvatarUrl(project)})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="gallery gallery-cards">
-          <div className="content panel">
-            <div className="images panel">
-              {proyectosInternacionales.length === 0 ? (
-                <>
-                  <div class="container">
-                    <div class="loader"></div>
-                  </div>
-                </>
-              ) : (
-                proyectosInternacionales.map((project, index) => (
-                  <div class="myCard">
-                    <div class="innerCard">
-                      <div class="frontSide">
-                        <img src={getAvatarUrl(project)} alt="" />
-                        <p>{project.projectName}</p>
-                      </div>
-                      <div
-                        class="backSide"
-                        style={{
-                          backgroundImage: `url(${getAvatarUrl(project)})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                      ></div>
+        )}
+        {hasInternationalProjects && (
+          <div className="gallery gallery-cards">
+            <div className="content panel">
+              <div className="images panel">
+                {proyectosInternacionales.length === 0 ? (
+                  <>
+                    <div class="container">
+                      <div class="loader"></div>
                     </div>
-                  </div>
-                ))
-              )}
-            </div>
-            <div className="slide" data-order="1">
-              <h2>
-                <span className="no-select">Proyectos internacionales</span>
-              </h2>
+                  </>
+                ) : (
+                  proyectosInternacionales.map((project, index) => (
+                    <div class="myCard">
+                      <div class="innerCard">
+                        <div class="frontSide">
+                          <img src={getAvatarUrl(project)} alt="" />
+                          <p>{project.projectName}</p>
+                        </div>
+                        <div
+                          class="backSide"
+                          style={{
+                            backgroundImage: `url(${getAvatarUrl(project)})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+              <div className="slide" data-order="1">
+                <h2>
+                  <span className="no-select">Proyectos internacionales</span>
+                </h2>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {!hasNationalProjects && !hasInternationalProjects && (
+          <div className="no-projects-message">
+            <p>No hay proyectos disponibles en este momento.</p>
+          </div>
+        )}
       </div>
     </>
   );
