@@ -345,10 +345,10 @@ export const WebContactUs = () => {
                 </h3>
                 <div className="buttons-sections">
                   <button className="comic-button" onClick={enviarCorreo}>
-                    Enviar!
+                    Enviar
                   </button>
                   <button className="comic-button" onClick={handleOpenModal}>
-                    Socilitar portafolio
+                    Solicitar portafolio
                   </button>
                 </div>
               </div>
