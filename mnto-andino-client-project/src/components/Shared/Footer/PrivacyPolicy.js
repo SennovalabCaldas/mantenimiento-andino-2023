@@ -776,13 +776,40 @@ export const PrivacyPolicy = () => {
         >
           <Tab className="option-tab-pribacypolicy" label="Introducción" />
           <Tab className="option-tab-pribacypolicy" label="Definiciones" />
-          <Tab className="option-tab-pribacypolicy" label="Responsable y Encargado" />
-          <Tab className="option-tab-pribacypolicy" label="Finalidad y Tratamiento" />
-          <Tab className="option-tab-pribacypolicy" label="Cookies y Autorización" />
-          <Tab className="option-tab-pribacypolicy" label="Medidas de seguridad" />
-          <Tab className="option-tab-pribacypolicy" label="Derechos de los titulares" />
+          <Tab
+            className="option-tab-pribacypolicy"
+            label="Responsable y Encargado"
+          />
+          <Tab
+            className="option-tab-pribacypolicy"
+            label="Finalidad y Tratamiento"
+          />
+          <Tab
+            className="option-tab-pribacypolicy"
+            label="Cookies y Autorización"
+          />
+          <Tab
+            className="option-tab-pribacypolicy"
+            label="Medidas de seguridad"
+          />
+          <Tab
+            className="option-tab-pribacypolicy"
+            label="Derechos de los titulares"
+          />
         </Tabs>
-        <div className="tab-content">{tabContent[tabIndex]}</div>
+        <div
+          className="tab-content"
+          style={{
+            color: "black",
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "row",
+          }}
+        >
+          {tabContent[tabIndex]}
+        </div>
       </div>
     </>
   );

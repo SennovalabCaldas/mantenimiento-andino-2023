@@ -313,6 +313,8 @@ export const WebContactUs = () => {
                         margin: "4px",
                         background:
                           "linear-gradient(rgba(235, 239, 241, 0.48), rgba(103, 187, 227, 0.48))",
+                        color: "black",
+                        fontSize: "12px",
                       }}
                       key={data.key}
                       label={data.label}
@@ -339,9 +341,12 @@ export const WebContactUs = () => {
                     onChange={(e) => setMensaje(e.target.value)}
                   />
                 </div>
-                <br/>
+                <br />
                 <h3>
-                En <strong>Mantenimiento Andino</strong>, priorizamos la privacidad y seguridad de tu información. Envía el formulario con confianza sabiendo que tus datos están seguros con nosotros.
+                  En <strong>Mantenimiento Andino</strong>, priorizamos la
+                  privacidad y seguridad de tu información. Envía el formulario
+                  con confianza sabiendo que tus datos están seguros con
+                  nosotros.
                 </h3>
                 <div className="buttons-sections">
                   <button className="comic-button" onClick={enviarCorreo}>
