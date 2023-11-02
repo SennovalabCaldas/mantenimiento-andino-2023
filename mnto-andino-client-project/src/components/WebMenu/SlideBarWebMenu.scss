@@ -5,34 +5,36 @@
   top: 60%;
   left: 0;
   transform: translateY(-50%);
-  background-color: rgba(105, 143, 147, 0.51);
-  width: 40px;
+  background-color: rgba(210, 218, 219, 0.51);
+  width: 42px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 36vh;
   z-index: 999;
   border-radius: 7px;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
   .icon {
-    font-size: 16px;
+    font-size: 20px;
     color: #000000;
     cursor: pointer;
     transition: background-color 0.3s;
-    padding: 5px;
     display: flex;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
-    padding: 5px;
+    padding: 8px;
+    svg {
+      margin-left: 2px;
+    }
   }
 
   .icon.active {
     background-color: rgba(156, 154, 99, 0.4549019608);
-    border-right: 4px solid #fff;
- 
+    border-right: 4px solid #000;
   }
   .toggle-button {
     cursor: pointer;

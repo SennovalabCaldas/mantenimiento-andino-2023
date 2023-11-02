@@ -1,27 +1,27 @@
 .back-to {
     display: flex;
     position: relative;
-    width: 205px;
+    width: 165px;
     align-items: center;
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
   }
   .btn-back-to {
-    width: 9em;
+    width: 8em;
     height: 2em;
     border-radius: 20em;
-    font-size: 15px;
+    font-size: 12px;
     font-family: inherit;
     border: none;
     position: relative;
     overflow: hidden;
     z-index: 1;
-    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff00;
     transition: 0.5s ease;
     cursor: pointer;
     display: flex;
@@ -40,7 +40,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-image: linear-gradient(to right, #dabb58bb 0%, #f03f38ae 100%);
+    background-image: linear-gradient(to right, #fbe5cabb 0%, #f03f38ae 100%);
     transition: 0.5s ease;
     display: block;
     z-index: -1;

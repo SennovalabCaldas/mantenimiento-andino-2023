@@ -20,6 +20,8 @@ import { getAllCertifications } from "../../actions/certificationActions";
 import { getAllProjects } from "../../actions/projectActions";
 import { getAllFoundationsNews } from "../../actions/foundationNewsActions";
 
+import Flags from "react-flags-select";
+import getCountryCode from "../../utils/getCountryCode";
 import { CubeWithImages } from "../Client";
 import { image } from "../../assets";
 import SlideBarWebMenu from "./SlideBarWebMenu";
@@ -30,11 +32,18 @@ import { Link } from "react-router-dom";
 
 export const WebMenu = () => {
   const dispatch = useDispatch();
-  const [activeSection, setActiveSection] = useState("section1");
+  const [activeSection, setActiveSection] = useState("services");
   const [showToggleButton, setShowToggleButton] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [userCountryCode, setUserCountryCode] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState("Colombia");
 
   useEffect(() => {
+    const fetchCountryCode = async () => {
+      const countryCode = await getCountryCode(); 
+      setUserCountryCode(countryCode);
+      setSelectedCountry(countryCode); 
+    };
     dispatch(getAllPosts());
     dispatch(getAllCategoriesService());
     dispatch(getServices());
@@ -43,17 +52,24 @@ export const WebMenu = () => {
     dispatch(getAllCertifications());
     dispatch(getAllProjects());
     dispatch(getAllFoundationsNews());
+    fetchCountryCode();
   }, [dispatch]);
+
+  const handleCountrySelect = (countryCode) => {
+    setSelectedCountry(countryCode);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+
+  
   const handleSetActiveSection = (section) => {
     setActiveSection(section);
-    setShowToggleButton(section !== "section1");
-    console.log("activeSection",activeSection);
-    if (section !== "section1") {
+    setShowToggleButton(section !== "home");
+    console.log("activeSection", activeSection);
+    if (section !== "home") {
       return (
         <>
           <SlideBarWebMenu />
@@ -64,15 +80,6 @@ export const WebMenu = () => {
       return null; // Si la sección es "section1", no renderizar los componentes
     }
   };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  const services = useSelector((state) => state.service.services);
-  const categoryServices = useSelector(
-    (state) => state.categoryService.allCategoriesService
-  );
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -86,22 +93,30 @@ export const WebMenu = () => {
 
   return (
     <div className="webmenu-page">
+      {activeSection !== "home" || (
+        <>
+          <SlideBarWebMenu />
+          <SocialSlideBar />
+        </>
+      )}
+
+      <CubeWithImages />
       <div className="header">
         <div id="topbarMenu" className="topbarMenu">
-          <div className="social-icons">
-            <img src={image.linkedin} alt="facebook" />
-            <img src={image.whatsApp} alt="facebook" />
-            <img src={image.location} alt="facebook" />
-            <img src={image.email} alt="facebook" />
-          </div>
-          <div className="search-bar">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Buscar..."
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          <Link to="/sedes">SEDES</Link>
+          <a href="#contact" onClick={() => scrollToSection("section8")}>
+            SOLICITA NUESTROS SERVICIO
+          </a>
+          <Link to="/pqrs">PQRS</Link>
+          {userCountryCode && (
+            <div className="user-country-flag">
+              <Flags
+                selected={selectedCountry}
+                onSelect={handleCountrySelect}
+                className="user-flag"
+              />
+            </div>
+          )}
         </div>
         <div id="menuBar" className="menuBar">
           <div className="logo">
@@ -112,9 +127,6 @@ export const WebMenu = () => {
               ☰
             </div>
             <div className="navbar-options">
-              <a href="#home" onClick={() => scrollToSection("section1")}>
-                Inicio
-              </a>
               <a href="#services" onClick={() => scrollToSection("section2")}>
                 Servicios
               </a>

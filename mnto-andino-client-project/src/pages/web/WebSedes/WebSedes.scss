@@ -1,14 +1,56 @@
-.content-web-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* WebSedes.scss */
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  width: 100%;
-  height: 700px;
+.content-web-section {
+  padding: 20px;
 }
 
+.sedes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.sedes-container-card{
+  display: flex;
+  padding-top: 115px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.sede-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 10px;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}
+
+/* Estilos para el indicador de carga */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #333;
+}

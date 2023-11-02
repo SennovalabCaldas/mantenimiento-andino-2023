@@ -690,7 +690,7 @@ export const PrivacyPolicy = () => {
             la información contenida en las Bases de Datos debe ser objeto de
             corrección, actualización o supresión, o cuando adviertan el
             presunto incumplimiento de cualquiera de los deberes contenidos en
-            <strong>la Ley 1581 de 2012</strong>, podrán presentar un reclamo
+            <strong> la Ley 1581 de 2012</strong>, podrán presentar un reclamo
             ante MANTENIMIENTO ANDINO, el cual será tramitado bajo las
             siguientes reglas: <br />
             <ol>

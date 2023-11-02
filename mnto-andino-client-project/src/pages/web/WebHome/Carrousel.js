@@ -9,12 +9,12 @@ const slidesData = [
     titulo: "BIENVENIDO",
     subtitulo:
       "Conoce nuestros servicios excepcionales y lleva tu Negocio al próximo nivel.",
-    image: image.post3,
+    image: image.img6f,
   },
   {
     titulo: "Construimos Sueños",
     subtitulo: "Creamos Resultados",
-    image: image.post2,
+    image: image.img6f,
   },
   {
     titulo: "Únete a nuestro equipo",

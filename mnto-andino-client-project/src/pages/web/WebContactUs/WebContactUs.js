@@ -81,6 +81,7 @@ export const WebContactUs = () => {
   const [mensaje, setMensaje] = useState("");
   const [nombreCompania, setNombreCompania] = useState("No aplica");
   const [correo, setCorreo] = useState("");
+  const [correoError, setCorreoError] = useState(false);
 
   const handlePersonaTipoChange = (event) => {
     setIsPersonaNatural(event.target.checked);
@@ -89,16 +90,16 @@ export const WebContactUs = () => {
   };
 
   const descargarPortafolio = () => {
-    const rutaArchivoPDF = "http://mantenimientoandino.co/pdf/portafolio.pdf";
+    const rutaArchivoPDF =
+      "http://mantenimientoandino.co:3000/uploads/pdfs/portafolio.pdf";
     console.log(rutaArchivoPDF);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = rutaArchivoPDF;
-    link.download = 'portafolio.pdf'; 
-    link.target = '_blank'; 
-    link.click(); 
+    link.download = "portafolio.pdf";
+    link.target = "_blank";
+    link.click();
     handleCloseModal();
   };
-  
 
   const enviarCorreo = () => {
     if (
@@ -145,6 +146,15 @@ export const WebContactUs = () => {
 
     window.location.href = correoTo;
   };
+
+  const handleCorreoChange = (e) => {
+    const correoValue = e.target.value;
+    setCorreo(correoValue);
+    const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const esCorreoValido = correoRegex.test(correoValue);
+    setCorreoError(!esCorreoValido);
+  };
+
   const enviarCorreoContact = () => {
     const correos = [
       "mantenimientoandino@gmail.com",
@@ -200,7 +210,7 @@ export const WebContactUs = () => {
                       color="primary"
                     />
                   }
-                  label={isPersonaNatural ? "Persona Natural" : "Compañía"}
+                  label={isPersonaNatural ? "Soy persona natural" : "Empresa"}
                 />
                 {isPersonaNatural ? (
                   <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
@@ -237,8 +247,12 @@ export const WebContactUs = () => {
                     id="standard-basic"
                     label="Correo Electrónico"
                     variant="standard"
-                    value={correo} // Asigna el estado 'correo' al valor del campo
-                    onChange={(e) => setCorreo(e.target.value)} // Maneja el cambio en el estado 'correo'
+                    value={correo}
+                    onChange={handleCorreoChange}
+                    error={correoError}
+                    helperText={
+                      correoError ? "Correo electrónico inválido" : ""
+                    }
                   />
                 </div>
                 <div style={{ marginTop: "10px" }}>
@@ -250,14 +264,19 @@ export const WebContactUs = () => {
                         color="primary"
                       />
                     }
-                    label="¿Está en Colombia?"
+                    label={
+                      isColombia
+                        ? "Estoy en Colombia"
+                        : "Estoy fuera de Colombia"
+                    }
                   />
                   {isColombia ? (
                     <Select
                       fullWidth
-                      label="Departamento"
+                      label="Selecciona el departamento"
                       value={selectedCountry}
                       onChange={(e) => setSelectedCountry(e.target.value)}
+                      style={{ marginTop: "10px", color: "black" }}
                     >
                       {departamentos.map((departamento) => (
                         <MenuItem key={departamento} value={departamento}>
@@ -268,7 +287,7 @@ export const WebContactUs = () => {
                   ) : (
                     <Select
                       fullWidth
-                      label="País"
+                      label="Selecciona el país"
                       value={selectedCountry}
                       onChange={(e) => setSelectedCountry(e.target.value)}
                     >
@@ -308,10 +327,11 @@ export const WebContactUs = () => {
                     />
                   );
                 })}
-                <div style={{ marginBottom: "20px", marginTop: "10px" }}>
+                <div style={{ marginBottom: "15px", marginTop: "10px" }}>
                   <TextField
                     multiline
                     fullWidth
+                    rows={4}
                     id="standard-basic"
                     label="Déjanos tu mensaje, nosotros te contactaremos."
                     value={mensaje}
@@ -319,6 +339,10 @@ export const WebContactUs = () => {
                     onChange={(e) => setMensaje(e.target.value)}
                   />
                 </div>
+                <br/>
+                <h3>
+                En <strong>Mantenimiento Andino</strong>, priorizamos la privacidad y seguridad de tu información. Envía el formulario con confianza sabiendo que tus datos están seguros con nosotros.
+                </h3>
                 <div className="buttons-sections">
                   <button className="comic-button" onClick={enviarCorreo}>
                     Enviar!
@@ -339,6 +363,7 @@ export const WebContactUs = () => {
           </div>
         </div>
       </div>
+
       <div className="item-profile-card">
         <figure class="snip1336">
           <img src={image.fondoSlide} alt="sample87" />
@@ -349,8 +374,35 @@ export const WebContactUs = () => {
               <span>CEO</span>
             </h2>
             <p>
+              <img
+                src={image.call}
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  marginRight: "5px",
+                  color: "beige",
+                }}
+              />
               310 383 3591 <br />
+              <img
+                src={image.email}
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  marginRight: "5px",
+                  color: "beige",
+                }}
+              />
               mantenimientoandino@gmail.com <br />
+              <img
+                src={image.location}
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  marginRight: "5px",
+                  color: "beige",
+                }}
+              />
               Calle 76A # 21-85, Manizales, Colombia
             </p>
             <div
@@ -367,15 +419,16 @@ export const WebContactUs = () => {
               >
                 <img
                   src={image.whatsApp}
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "15px", height: "15px" }}
                 />
               </a>
-              <button onClick={enviarCorreoContact}>
+              <a>
                 <img
                   src={image.email}
-                  style={{ width: "30px", height: "30px" }}
+                  onClick={enviarCorreoContact}
+                  style={{ width: "15px", height: "15px" }}
                 ></img>
-              </button>
+              </a>
               <div className="qrCodeContact">
                 <img src={image.ceoCode} />
               </div>
@@ -391,16 +444,46 @@ export const WebContactUs = () => {
               <span>GERENTE ADMINISTRATIVA</span>
             </h2>
             <p>
+              <img
+                src={image.call}
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  marginRight: "5px",
+                  color: "beige",
+                }}
+              />
               300 842 6136 <br />
+              <img
+                src={image.email}
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  marginRight: "5px",
+                  color: "beige",
+                }}
+              />
               gerenciamantenimientoandino@gmail.com <br />
+              <img
+                src={image.location}
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  marginRight: "5px",
+                  color: "beige",
+                }}
+              />
               Calle 76A # 21-85, Manizales, Colombia
             </p>
             <div
               style={{
                 display: "flex",
-                alignContent: "center",
-                alignItems: "center",
+                placeContent: "center",
+                alignItems: "flex-end",
                 justifyContent: "center",
+                alignContent: "center",
+                flexWrap: "wrap",
+                flexDirection: "row",
               }}
             >
               <a
@@ -409,15 +492,16 @@ export const WebContactUs = () => {
               >
                 <img
                   src={image.whatsApp}
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "15px", height: "15px" }}
                 />
               </a>
-              <button onClick={enviarCorreoContact}>
+              <a>
                 <img
                   src={image.email}
-                  style={{ width: "30px", height: "30px" }}
+                  onClick={enviarCorreoContact}
+                  style={{ width: "15px", height: "15px" }}
                 ></img>
-              </button>
+              </a>
               <div className="qrCodeContact">
                 <img src={image.gerenteCode} />
               </div>

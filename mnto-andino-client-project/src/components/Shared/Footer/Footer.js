@@ -2,36 +2,49 @@ import React from "react";
 import "./Footer.scss"; // Estilo CSS para el footer
 import { image } from "../../../assets";
 import { Link } from "react-router-dom";
+
 const Footer = () => {
   const numeroDeTelefono = "+57310833591"; // Reemplaza esto con el número de teléfono deseado
   const enlaceWhatsApp = `https://wa.me/${numeroDeTelefono}`;
+
   return (
     <footer className="footer">
       <div className="footer__item">
         <h3>
           <strong>CONTACTO</strong>
         </h3>
-
         <div className="footer__item-inf">
-          <a
-            href="mailto:
-          mantenimientoandino@mantenimientoandino.co"
-          >
+          <a href="mailto:mantenimientoandino@mantenimientoandino.co">
             mantenimientoandino@gmail.com
             <br />
             gerenciamantenimientoandino@gmail.com
           </a>
-          <p>
-            <strong>Celular:</strong> <br />
-          </p>
-          <a href="tel:+573103833591">+57 310 383 3591</a>
+
+          <br />
+          <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center",
+                flexDirection: "row"
+          }}>
+            <img
+              src={image.call}
+              alt="WhatsApp Logo"
+              style={{
+                width: "20px",
+                paddingRight: "5px"
+              }}
+            />
+            <a href={`tel:${numeroDeTelefono}`}>{numeroDeTelefono}</a>
+          </div>
         </div>
       </div>
+
       <div className="footer__item">
         <h3>
           <strong>DIRECCIÓN</strong>
         </h3>
-
         <a
           href="https://goo.gl/maps/9JvQ1J1Z1Z1Z1Z1Z1"
           target="_blank"
@@ -51,31 +64,41 @@ const Footer = () => {
 
       <div className="footer__item">
         <Link to="/privacypolicy" className="btn">
-          <p>
-            <strong>POLITICA DE PRIVACIDAD</strong>
+          <p
+            style={{
+              color: "#fff",
+            }}
+          >
+            <strong>POLÍTICA DE PRIVACIDAD</strong>
           </p>
         </Link>
-        <ul>
-          <div className="footer__item-sennovalab">
-            <div className="footer__item-img">
-              <a
-                href="http://sennovalab.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={image.logoSennovalabNoC} />
-              </a>
-            </div>
+
+        <div className="footer__item-sennovalab">
+          <div className="footer__item-img">
             <a
               href="http://sennovalab.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer__item-copyright"
             >
-              <h3>© Copyright 2023 SENNOVALAB</h3>
+              <img
+                src={image.logoSennovalabNoC}
+                alt="Sennovalab Logo"
+                style={{
+                  width: "100px",
+                }}
+              />
             </a>
           </div>
-        </ul>
+
+          <a
+            href="http://sennovalab.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__item-copyright"
+          >
+            <h3>©2023 SENNOVALAB. Todos los derechos reservados</h3>
+          </a>
+        </div>
       </div>
     </footer>
   );

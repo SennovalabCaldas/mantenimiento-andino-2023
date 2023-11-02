@@ -9,13 +9,19 @@ import { Providers } from "../pages/admin/Providers";
 import Foundation from "../pages/admin/Foundation/Foundation";
 import { WebMenu } from "../components/WebMenu";
 import { Projects } from "../pages/admin/Projects/Projects";
-import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "../pages/web";
+import {
+  LaMartina,
+  MakinaAndina,
+  MakinaAndinaMiami,
+  WebSedes,
+} from "../pages/web";
 import { Allies } from "../components/Admin/Allies";
 import { Certification } from "../pages/admin/Certification";
 import { MakinaAndinaMiamiAdmin } from "../pages/admin/MakinaAndinaMiamiAdmin";
 import { Glamping } from "../pages/admin/Glamping";
 import { PrivacyPolicy } from "../components/Shared/Footer/PrivacyPolicy";
 import { NotFound } from "../components";
+import { WebPqrs } from "../pages/web/WebPqrs/WebPqrs";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
@@ -40,6 +46,8 @@ export const AppRouter = () => {
           <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
           <Route path="/lamartina" element={<LaMartina />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/sedes" element={<WebSedes />} />
+          <Route path="/pqrs" element={<WebPqrs />} />
           <Route path="*" element={<NotFound />} />
         </>
       ) : (
@@ -103,7 +111,6 @@ export const AppRouter = () => {
                 path="admin/glamping"
                 element={loadLayout(AdminLayout, Glamping)}
               />
-  
             </>
           )}
         </>

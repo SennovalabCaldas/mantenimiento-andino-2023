@@ -55,15 +55,18 @@
   }
 
   .gallery {
-    height: auto; /* Ajusta la altura según el contenido */
+    height: auto;
     display: flex;
-    width: 100%; /* Ocupa todo el ancho del contenedor padre */
-    flex-direction: column; /* Alinea los elementos verticalmente en dispositivos móviles */
-    // background-image: url("../../../assets/clients/mapa.jpg");
+    width: 100%;
+    flex-direction: row;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .content-allies .gallery .slide {
@@ -95,20 +98,21 @@
     flex-wrap: wrap;
     /* padding: 0 20px; */
     box-sizing: border-box;
-    width: 85%;
+    width: 65%;
     align-content: flex-start;
     align-items: center;
     flex-direction: row;
     justify-content: center;
     img {
       width: 85px;
+      padding: 5px;
       object-fit: fill;
       height: 40px;
     }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .projects-section .gallery-cards .content {
     display: flex;
     box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.5);
@@ -144,6 +148,29 @@
     padding: 10px;
     margin: 10px;
   }
+
+  .content-allies .gallery-cards .images {
+    display: flex;
+    flex-wrap: wrap;
+    /* padding: 0 20px; */
+    box-sizing: border-box;
+    width: 100%;
+    align-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .content-allies .slide {
+    width: 95%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+  }
+ 
 }
 
 .panel {
@@ -196,8 +223,6 @@
 
 .certification-card {
   width: 330px;
-
-  height: 140px; // Establece la altura fija para la tarjeta (puedes ajustarla según tus necesidades)
   margin: 20px;
   cursor: pointer;
   overflow: hidden; // Oculta cualquier parte de la imagen que se desborde del contenedor

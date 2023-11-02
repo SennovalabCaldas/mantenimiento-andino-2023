@@ -33,7 +33,6 @@ export const SocialSlideBar = () => {
           target="_blank"
           className="transition text-grey hover:hover:text-blue-500"
         >
-          {/* <span className="sr-only">Facebook</span> */}
           <img src={image.facebook} className="footer__icon-img-large" />
         </a>
         <a

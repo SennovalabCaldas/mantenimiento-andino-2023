@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "./actions/authActions";
 import { Auth } from "./pages/admin";
 import { Loading, WebMenu } from "./components/Shared";
-import { LaMartina, MakinaAndina, MakinaAndinaMiami } from "./pages/web";
+import { LaMartina, MakinaAndina, MakinaAndinaMiami, WebSedes } from "./pages/web";
 import { PrivacyPolicy } from "./components/Shared/Footer/PrivacyPolicy";
 import { NotFound } from "./components/Shared/NotFound";
+import { WebPqrs } from "./pages/web/WebPqrs/WebPqrs";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -74,7 +75,8 @@ const App = () => {
             <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
             <Route path="/lamartina" element={<LaMartina />} />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route path="/sedes" element={<WebSedes />} />
+            <Route path="/pqrs" element={<WebPqrs />} />
           </Routes>
         )}
       </BrowserRouter>

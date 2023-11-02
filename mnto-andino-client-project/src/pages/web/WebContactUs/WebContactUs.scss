@@ -100,11 +100,11 @@
     }
   }
   .item-profile-card {
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 50px;
 
     figure {
       margin: 0;
@@ -115,8 +115,9 @@
       text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: 0.3s;
-      width: 200px; /* Ajusta el ancho según tus necesidades */
+      width: 260px;
       height: 290px;
+      border-radius: 5px;
       &:hover {
         transform: scale(1.05);
       }
@@ -129,8 +130,7 @@
 
       figcaption {
         padding: 20px;
-        height: 100px; /* Ajusta la altura del figcaption según tus necesidades */
-
+        height: auto;
         h2 {
           font-size: 11px;
           margin-bottom: 10px;
@@ -229,6 +229,15 @@
       }
     }
   }
+
+  .web-contactus .item-profile-card {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+}
   .web-contactus .contact-section .item1 article header {
     display: flex;
     flex-direction: column;

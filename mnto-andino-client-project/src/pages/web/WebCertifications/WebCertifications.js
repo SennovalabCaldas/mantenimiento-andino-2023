@@ -36,21 +36,6 @@ export const WebCertifications = () => {
     <div className="web-certifications">
       <div className="gallery gallery-cards">
         <div className="content panel">
-          <div className="slide" data-order="1">
-            <h2>
-              <span className="no-select">
-                en mantenimiento andino{" "}
-              </span>
-            </h2>
-            <h1>
-              {" "}
-              <span className="no-select-g">construimos</span>
-            </h1>
-            <h2>
-              <span className="no-select">felicidad, sueños y experiencias.</span>
-            </h2>
-            
-          </div>
           <div className="video-container">
             <video
               ref={videoRef}
@@ -79,21 +64,32 @@ export const WebCertifications = () => {
         </div>
       </div>
 
-      <div className="container">
-        <div className="main-img">
-          <img src={image.img1services} id="current" />
-        </div>
+      <div className="slide-photos">
+        <div className="container">
+          <div className="main-img">
+            <img src={image.img1services} id="current" />
+          </div>
 
-        <div className="imgs">
-          <img src={image.proj1} />
-          <img src={image.service1} />
-          <img src={image.service2} />
-          <img src={image.service5} />
-          <img src={image.service6} />
-          <img src={image.proj6} />
-          <img src={image.service5} />
-          <img src={image.service6} />
-          <img src={image.proj5} />
+          <div className="imgs">
+            <img src={image.proj1} />
+            <img src={image.service1} />
+            <img src={image.service2} />
+            <img src={image.service5} />
+            <img src={image.service6} />
+            <img src={image.proj6} />
+            <img src={image.service5} />
+            <img src={image.service6} />
+            <img src={image.proj5} />
+          </div>
+        </div>
+        <div className="slide" data-order="1">
+          <h1>
+            {" "}
+            <span className="no-select-g">construimos</span>
+          </h1>
+          <h2>
+            <span className="no-select">felicidad, sueños y experiencias.</span>
+          </h2>
         </div>
       </div>
     </div>

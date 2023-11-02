@@ -1,7 +1,7 @@
 /* Footer.scss */
 
 .footer {
-  background-color: #333;
+  background-color: #232323ed;
   color: white;
   padding: 30px 50px;
   display: flex;
@@ -55,16 +55,29 @@
   flex-wrap: wrap;
 }
 
-.footer__item-img img {
-  width: 50px; /* Ajusta el tamaño del logo según tus necesidades */
-  margin-right: 10px;
-}
-
 /* Estilos para los enlaces */
 .footer__item a {
   color: #9c9c9c;
   font-size: 11px;
   text-decoration: none;
+  padding: 0;
+  margin: 0;
+  .footer__item-sennovalab {
+    margin-top: 10px;
+    img {
+      width: 100px;
+      height: 100px;
+      margin: 0;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      transition: all 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 0.5em rgba(45, 39, 39, 0.9);
+      }
+    }
+  }
 }
 
 .footer__item a:hover {
@@ -95,7 +108,9 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+.css-tkn350-MuiTabs-root {
+  padding-bottom: 40px;
+}
 .privacy-policy-container h2 {
   font-size: 24px;
   color: #333;

@@ -1,0 +1,66 @@
+// WebPqrs.scss
+
+.formContainer-pqrs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  .formContainer {
+    margin: 20px;
+  }
+  .css-ahj2mt-MuiTypography-root {
+    margin: 0;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+  }
+}
+
+.formControl {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.comic-button {
+  display: inline-block;
+  padding: 7px 20px;
+  font-size: 13px;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  background-color: rgba(132, 49, 49, 0.6196078431);
+  border: 1px solid #000;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0px #000;
+  transition: all 0.3s ease;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.comic-button:hover {
+  background-color: #f0a377ad;
+  color: #ffffff;
+  border: 2px solid #ffffffe0;
+  box-shadow: 5px 5px 0px #b6af969c;
+}
+
+.comic-button:active {
+  background-color: #ff5252;
+  color: #fff;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.form-group-buttons{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}

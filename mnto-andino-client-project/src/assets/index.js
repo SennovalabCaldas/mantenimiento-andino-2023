@@ -47,10 +47,7 @@ import multidrogas from "./clients/multidrogas.png";
 import cafam from "./clients/cafam.png";
 import logomnbg from "./jpg/image-removebg-preview.jpg";
 import qrServices from "./png/qrServices.png";
-import a1 from "./png/a1.png";
-import a2 from "./png/a2.png";
-import a3 from "./png/a3.png";
-import a4 from "./png/a4.png";
+
 
 import service1 from "./services/service1.jpeg";
 import service2 from "./services/service2.jpeg";
@@ -96,6 +93,7 @@ import img2f from "./post_fundations/img2.jpeg";
 import img3f from "./post_fundations/img3.jpeg";
 import img4f from "./post_fundations/img4.jpeg";
 import img5f from "./post_fundations/img5.jpeg";
+import img6f from "./post_fundations/img6.jpeg";
 
 import portafolio_video from "./video/mp4/portafolio.mp4";
 import portafolio_p1 from "./portfolio/p1.jpeg";
@@ -176,10 +174,6 @@ const image = {
   fondoSlide,
   star,
   cert1,
-  a1,
-  a2,
-  a3,
-  a4,
   imgPost1,
   call,
   contact1,
@@ -197,6 +191,7 @@ const image = {
   img3f,
   img4f,
   img5f,
+  img6f,
   portafolio_video,
   portafolio_p1,
   portafolio_p2,

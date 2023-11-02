@@ -9,7 +9,7 @@
     flex-direction: column;
     flex-wrap: wrap;
 
-    .topbarMenu {
+     .topbarMenu {
       width: 100%;
       height: 35px;
       display: flex;
@@ -17,9 +17,22 @@
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-around;
+      justify-content: flex-end;
       align-content: center;
-
+  
+      a {
+      
+        text-transform: uppercase;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        margin-right: 20px;
+        font-weight: 600;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+      }
       .search-bar {
         right: 10px;
         position: absolute;
@@ -206,4 +219,19 @@
   flex-wrap: wrap;
 }
 
-// Estilos adicionales para las secciones si es necesario
+#rfs-btn{
+  font-size: 12px !important;
+  color: black;
+  span{
+    color: black;
+  }
+}
+
+.ReactFlagsSelect-module_label__27pw9, .ReactFlagsSelect-module_secondaryLabel__37t1D {
+  font-size: 12px;
+  padding-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+
+}

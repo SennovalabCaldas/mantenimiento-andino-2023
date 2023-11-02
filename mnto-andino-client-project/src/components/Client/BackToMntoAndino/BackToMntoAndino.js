@@ -10,7 +10,7 @@ export const BackToMntoAndino = () => {
         <img src={image.logomn}></img>
       </Link>
       <Link to="/">
-        <button className="btn-back-to">Volver atrás</button>
+        <button className="btn-back-to"><strong>IR ATRÁS</strong></button>
       </Link>
     </div>
   );

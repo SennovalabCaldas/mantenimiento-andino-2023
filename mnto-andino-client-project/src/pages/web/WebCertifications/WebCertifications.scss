@@ -56,16 +56,22 @@
       align-items: center;
       img {
         border-style: none;
-        width: 110px;
-        height: 100px;
+        width: 160px;
+        height: 155px;
         border-radius: 10px;
         margin: 5px;
         box-shadow: 0 0 0.5em rgba(45, 39, 39, 0.9);
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+          box-shadow: 0 0 0.5em rgba(45, 39, 39, 0.9);
+        }
       }
     }
   }
   .container {
-    width: 40%;
+    width: 30%;
     /* margin: auto; */
     display: flex;
     background: #fff;
@@ -91,6 +97,7 @@
     }
     img {
       width: 100%;
+      padding: 5px;
     }
   }
   .imgs img {
@@ -109,7 +116,7 @@
   }
   .imgs {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-gap: 5px;
   }
 
@@ -126,7 +133,7 @@
   }
 }
 // Visualización en moviles
-@media (max-width: 768px) {
+@media (max-width:600px) {
   .web-certifications {
     display: flex;
     justify-content: center;
@@ -173,6 +180,57 @@
   .gallery-cards {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .web-certifications .imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .web-certifications .imgs img {
+    height: 80px;
+    width: 75px;
+    transition: opacity 0.3s ease;
+    border-radius: 3px;
+  }
+  .slide-photos{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.slide-photos {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  .slide {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+  .container {
+    width: 65%;
+    display: flex;
+    background: #fff;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
