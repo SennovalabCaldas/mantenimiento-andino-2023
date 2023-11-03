@@ -6,7 +6,7 @@ const createSede = async (req, res) => {
   try {
     const { nombre, telefono_contacto, email_contacto, direccion } = req.body;
 
-    // Crear la dirección primero
+  
     const newAddress = new Address(direccion);
     const addressSaved = await newAddress.save();
 
