@@ -91,13 +91,18 @@ export const WebServices = ({ categoryServices, services }) => {
         <div className="content panel">
           <div className="images panel">
             <div className="container">
-              <div className="tabs" style={{ display: "flex",
-    width: "100%",
-    alignContent: "center",
-    justifyContent:"center",
-    alignItems:"center",
-    flexWrap:"wrap",
-    flexDirection: "row",}}>
+              <div
+                className="tabs"
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  alignContent: "center",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  flexDirection: "row",
+                }}
+              >
                 {mergedCategories.map((category, index) => (
                   <div key={index}>
                     <input

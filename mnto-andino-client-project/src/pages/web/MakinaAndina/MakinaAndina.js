@@ -9,8 +9,13 @@ import { ProductList } from "./ProductList";
 import "./MakinaAndina.scss";
 import { CubeOtherCompany } from "../LaMartina/CubeOtherCompany";
 import { Divider, Grid, Paper } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getServices } from "../../../actions/makinaAndinaActions";
+import { useSelector } from "react-redux";
 
 export const MakinaAndina = () => {
+  const dispatch = useDispatch();
   const products_makina_andina = [
     {
       id: 1,
@@ -67,12 +72,24 @@ export const MakinaAndina = () => {
       status: true,
     },
   ];
+
+  useEffect(() => {
+    dispatch(getServices());
+  }, [dispatch]);
+
+  const makinaAndinaServices = useSelector(
+    (state) => state.makinaAndina.makinaAndinaServices
+  );
+  console.log(makinaAndinaServices);
   return (
     <>
       <div className="title-makina-andina">
-        <img src={image.logo4} alt="Logo Makina Andina" className="logo" />
-        <h1>Makina Andina Ingeniería SAS</h1>
+        <h1>
+          <strong>MAKINA ANDINA INGENIERÍA S.A.S</strong>
+        </h1>
       </div>
+      <img src={image.logo4} alt="Logo Makina Andina" className="logo" />
+
       <Divider />
       <Grid
         container

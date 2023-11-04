@@ -20,7 +20,7 @@ const register = async (req, res) => {
     // Generar hash de la contraseña
     const salt = await bcrypt.genSalt(10);
     const hash_password = await bcrypt.hash(current_password, salt);
-    // Crear un nuevo usuario con los datos obtenidos de la API y la información del formulario
+
     const newUser = new User({
       firstname,
       lastname,
@@ -30,7 +30,6 @@ const register = async (req, res) => {
       current_password: hash_password,
     });
 
-    // Guardar el nuevo usuario en la base de datos
     const userStorage = await newUser.save();
     console.log(userStorage);
     res.status(201).send(userStorage);

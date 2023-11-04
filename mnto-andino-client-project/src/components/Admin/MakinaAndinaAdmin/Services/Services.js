@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
-import {
-  createService,
-  deleteService,
-  getServices,
-  updateService,
-} from "../../../../actions/makinaAndinaActions";
+import React, { useEffect, useState } from "react";
+import { Formik } from "formik";
+import { initialValues, validationSchema } from "./Servicio.form";
 import {
   Card,
   CardContent,
@@ -14,34 +10,54 @@ import {
   TextField,
   Alert,
   IconButton,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  createService,
+  deleteService,
+  getServices,
+  updateService,
+} from "../../../../actions/serviceActions";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { ENV } from "../../../../utils";
 
 export const Services = () => {
-  const makinaAndinaServices = useSelector(
-    (state) => state.makinaAndina.makinaAndinaServices
+  const baseApi = ENV.BASE_PATH;
+  const services = useSelector((state) => state.service.services);
+  const categories = useSelector(
+    (state) => state.categoryService.allCategoriesService
   );
-  console.log(makinaAndinaServices);
+  const categoriesServiceActive = categories.filter(
+    (category) => category.active === true
+  );
+  console.log(categoriesServiceActive);
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [uploadError, setUploadError] = useState(false);
-  const baseApi = ENV.BASE_PATH;
   const [isCreatingService, setIsCreatingService] = useState(false);
   const [editingService, setEditingService] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedService, setEditedService] = useState({
-    serviceName: "",
+    name: "",
     description: "",
+    categoryService: "",
     photos: [],
     imageUrls: [],
-    active: true,
-    createdAt: new Date().toISOString(),
   });
+
+  const [isImageEditing, setIsImageEditing] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
+  const [selectedCategoryName, setSelectedCategoryName] = useState("");
+  const [categoryService, setCategoryService] = useState(null);
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -52,21 +68,34 @@ export const Services = () => {
     dispatch(getServices());
   };
 
+  const handleEdit = (service) => {
+    setEditingService(service);
+    setIsEditing(true);
+    setEditedService({
+      name: service.name,
+      description: service.description,
+      categoryService: service.categoryService,
+      photos: service.photos.map((photo) => photo),
+      imageUrls: service.photos.map((photo) => photo),
+    });
+
+    handleModalOpen();
+  };
+
   const handleModalClose = () => {
     setModalOpen(false);
     setEditingService(null);
     setIsEditing(false);
     setEditedService({
-      serviceName: "",
+      name: "",
       description: "",
-      active: true,
+      categoryService: "",
       photos: [],
       imageUrls: [],
-      createdAt: new Date().toISOString(),
     });
   };
 
-  const onFileChange = (event) => {
+  const onFileChange = (event, formik) => {
     const selectedFiles = Array.from(event.target.files);
     const urls = selectedFiles
       .map((file) => URL.createObjectURL(file))
@@ -74,9 +103,11 @@ export const Services = () => {
 
     setEditedService((prevService) => ({
       ...prevService,
-      photos: selectedFiles, // Reemplaza las imágenes anteriores con las nuevas seleccionadas
-      imageUrls: urls, // Reemplaza las URL anteriores con las nuevas URL de imágenes
+      photos: [...prevService.photos, ...selectedFiles],
+      imageUrls: [...prevService.imageUrls, ...urls],
     }));
+
+    formik.setFieldValue("photos", [...formik.values.photos, ...selectedFiles]);
   };
 
   /* ------------------------------------------------------ */
@@ -84,28 +115,46 @@ export const Services = () => {
   const handleCreateService = async () => {
     setIsCreatingService(true);
     try {
-      // Envía solo las imágenes en el campo 'photos' de 'editedService'
       await dispatch(
         createService({
-          serviceName: editedService.serviceName,
+          name: editedService.name,
           description: editedService.description,
-          active: editedService.active,
+          categoryService: selectedCategoryName, // Envia el nombre de la categoría seleccionada
           photos: editedService.photos,
-          createdAt: editedService.createdAt,
         })
       );
       await dispatch(getServices());
       setEditedService({
-        serviceName: "",
+        name: "",
         description: "",
-        active: true,
-        photos: [],
-        imageUrls: [],
-        createdAt: new Date().toISOString(),
+        categoryService: "",
+        photos: [], // Limpia el campo 'photos'
+        imageUrls: [], // No es necesario limpiar 'imageUrls'
       });
       setModalOpen(false);
     } catch (error) {
       console.error("Error creating service:", error);
+    }
+  };
+
+  const handleUpdateService = async () => {
+    setIsCreatingService(true);
+    try {
+      const updatedService = {
+        ...editingService,
+        photos: editedService.photos,
+        categoryService: {
+          id: selectedCategoryId, // Envia el ID de la categoría seleccionada
+          name: selectedCategoryName, // Envia el nombre de la categoría seleccionada
+        },
+      };
+
+      await dispatch(updateService(editingService._id, updatedService));
+      await dispatch(getServices());
+      setIsEditing(false);
+      handleModalClose();
+    } catch (error) {
+      console.error("Error updating service:", error);
     }
   };
 
@@ -125,7 +174,7 @@ export const Services = () => {
       </Button>
 
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "20px" }}>
-        {makinaAndinaServices.map((service) => (
+        {services.map((service) => (
           <Card
             key={service.id}
             style={{
@@ -156,10 +205,11 @@ export const Services = () => {
                   />
                 )}
               </div>
-              <Typography variant="h6">{service.serviceName}</Typography>
+              <Typography variant="h6">{service.name}</Typography>
               <Typography variant="body2" color="textSecondary">
                 {service.description}
               </Typography>
+              {/* Display other service details */}
               <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {service.photos &&
                   service.photos.map((photo, index) => (
@@ -178,6 +228,9 @@ export const Services = () => {
                   marginTop: "10px",
                 }}
               >
+                <IconButton onClick={() => handleEdit(service)}>
+                  <EditIcon />
+                </IconButton>
                 <IconButton onClick={() => handleDelete(service._id)}>
                   <DeleteIcon />
                 </IconButton>
@@ -186,118 +239,156 @@ export const Services = () => {
           </Card>
         ))}
       </div>
-      <form className="user-form">
-        <Modal open={modalOpen} onClose={handleModalClose}>
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "#fff",
-              padding: "20px",
-              borderRadius: "5px",
-              width: "400px",
-            }}
-          >
-            {uploadError && (
-              <Alert severity="error" style={{ marginBottom: "10px" }}>
-                Debes seleccionar al menos una foto.
-              </Alert>
-            )}
-            <IconButton
-              onClick={handleModalClose}
-              style={{ position: "absolute", top: "10px", right: "10px" }}
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h5">
-              {isEditing ? "Editar Servicio" : "Crear Nuevo Servicio"}
-            </Typography>
-
-            <TextField
-              label="Nombre del Servicio"
-              fullWidth
-              margin="normal"
-              value={editedService.serviceName}
-              onChange={(e) =>
-                setEditedService({
-                  ...editedService,
-                  serviceName: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Descripción"
-              fullWidth
-              margin="normal"
-              value={editedService.description}
-              onChange={(e) =>
-                setEditedService({
-                  ...editedService,
-                  description: e.target.value,
-                })
-              }
-            />
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              id="file-input"
-              style={{ display: "none" }}
-              onChange={(e) => onFileChange(e, editedService)}
-            />
-
-            <label htmlFor="file-input">
-              <Button
-                variant="contained"
-                color="primary"
-                component="span"
-                style={{ marginTop: "10px" }}
-              >
-                Elegir archivos
-              </Button>
-            </label>
-
-            {editedService.imageUrls && editedService.imageUrls.length > 0 && (
-              <img
-                src={`${baseApi}/${editedService.imageUrls[0]}`}
-                alt={`Foto principal`}
+      <Formik
+        initialValues={initialValues(editedService)}
+        validationSchema={validationSchema()}
+        onSubmit={isEditing ? handleUpdateService : handleCreateService}
+      >
+        {(formik) => (
+          <form className="user-form">
+            <Modal open={modalOpen} onClose={handleModalClose}>
+              <div
                 style={{
-                  width: "200px",
-                  height: "200px",
-                  marginBottom: "10px",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  backgroundColor: "#fff",
+                  padding: "20px",
+                  borderRadius: "5px",
+                  width: "400px", // Ajusta el ancho de la ventana modal según tu preferencia
                 }}
-              />
-            )}
+              >
+                {uploadError && (
+                  <Alert severity="error" style={{ marginBottom: "10px" }}>
+                    Debes seleccionar al menos una foto.
+                  </Alert>
+                )}
+                <IconButton
+                  onClick={handleModalClose}
+                  style={{ position: "absolute", top: "10px", right: "10px" }}
+                >
+                  <CloseIcon />
+                </IconButton>
+                <Typography variant="h5">
+                  {isEditing ? "Editar Servicio" : "Crear Nuevo Servicio"}
+                </Typography>
 
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {editedService.imageUrls &&
-                editedService.imageUrls.map((imageUrl, index) => (
-                  <img
-                    key={index}
-                    src={`${baseApi}/${imageUrl}`}
-                    alt={`Foto ${index}`}
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      margin: "5px",
+                <TextField
+                  label="Nombre del Servicio"
+                  fullWidth
+                  margin="normal"
+                  value={editedService.name}
+                  onChange={(e) =>
+                    setEditedService({ ...editedService, name: e.target.value })
+                  }
+                />
+
+                <FormControl fullWidth margin="normal">
+                  <InputLabel id="service-label">
+                    Selecciona un servicio
+                  </InputLabel>
+                  <Select
+                    labelId="service-label"
+                    id="service-select"
+                    value={selectedCategoryId}
+                    onChange={(e) => {
+                      const categoryId = e.target.value;
+                      const categoryName = categoriesServiceActive.find(
+                        (category) => category._id === categoryId
+                      ).nameCategoryService;
+
+                      setSelectedCategoryId(categoryId); // Actualiza el ID de la categoría seleccionada
+                      setSelectedCategoryName(categoryName); // Actualiza el nombre de la categoría seleccionada
                     }}
-                  />
-                ))}
-            </div>
+                  >
+                    {categoriesServiceActive.map((categoryService) => (
+                      <MenuItem
+                        key={categoryService._id}
+                        value={categoryService._id}
+                      >
+                        {categoryService.nameCategoryService}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
 
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleCreateService}
-              style={{ marginTop: "10px" }}
-            >
-              {isEditing ? "Actualizar" : "Crear"}
-            </Button>
-          </div>
-        </Modal>
-      </form>
+                <TextField
+                  label="Descripción"
+                  fullWidth
+                  margin="normal"
+                  value={editedService.description}
+                  onChange={(e) =>
+                    setEditedService({
+                      ...editedService,
+                      description: e.target.value,
+                    })
+                  }
+                />
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  id="file-input"
+                  style={{ display: "none" }}
+                  onChange={(event) => onFileChange(event, formik)}
+                />
+
+                <label htmlFor="file-input">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    style={{ marginTop: "10px" }}
+                  >
+                    Elegir archivos
+                  </Button>
+                </label>
+
+                {editedService.imageUrls &&
+                  editedService.imageUrls.length > 0 && (
+                    <img
+                      src={`${baseApi}/${editedService.imageUrls[0]}`}
+                      alt={`Foto principal`}
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  )}
+
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                  {editedService.imageUrls &&
+                    editedService.imageUrls.map((imageUrl, index) => (
+                      <img
+                        key={index}
+                        src={`${baseApi}/${imageUrl}`}
+                        alt={`Foto ${index}`}
+                        style={{
+                          width: "80px",
+                          height: "80px",
+                          margin: "5px",
+                        }}
+                      />
+                    ))}
+                </div>
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={
+                    isEditing ? handleUpdateService : handleCreateService
+                  }
+                  style={{ marginTop: "10px" }}
+                >
+                  {isEditing ? "Actualizar" : "Crear"}
+                </Button>
+              </div>
+            </Modal>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 };

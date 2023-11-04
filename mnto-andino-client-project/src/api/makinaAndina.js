@@ -43,7 +43,7 @@ export class MakinaAndina {
     }
   }
 
-  async getMakinaAndinaServices() {
+  async getServices() {
     const url = `${this.baseApi}/${MAKINA_ANDINA}`;
     const params = {
       method: "GET",
@@ -60,25 +60,13 @@ export class MakinaAndina {
         );
       }
 
-      const makinaAndinaServiceData = await response.json();
-      // Construye la URL completa para las imágenes
-      const servicesWithFullImageUrls = makinaAndinaServiceData.map(
-        (service) => {
-          return {
-            ...service,
-            photos: service.photos.map(
-              (photo) => `${this.baseOutApi}/${photo}`
-            ), // Agrega el origen del servidor
-          };
-        }
-      );
-      console.log("servicesWithFullImageUrls", servicesWithFullImageUrls);
-      return servicesWithFullImageUrls;
+      const serviceData = await response.json();
+
+      return serviceData;
     } catch (error) {
       throw error; // Re-lanzamos el error para manejarlo en un nivel superior
     }
   }
-
   async getMakinaAndinaService(_id) {
     const accessToken = authController.getAccessToken();
     try {

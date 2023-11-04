@@ -40,9 +40,9 @@ export const WebMenu = () => {
 
   useEffect(() => {
     const fetchCountryCode = async () => {
-      const countryCode = await getCountryCode(); 
+      const countryCode = await getCountryCode();
       setUserCountryCode(countryCode);
-      setSelectedCountry(countryCode); 
+      setSelectedCountry(countryCode);
     };
     dispatch(getAllPosts());
     dispatch(getAllCategoriesService());
@@ -63,8 +63,6 @@ export const WebMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-
-  
   const handleSetActiveSection = (section) => {
     setActiveSection(section);
     setShowToggleButton(section !== "home");
@@ -100,7 +98,6 @@ export const WebMenu = () => {
         </>
       )}
 
-      <CubeWithImages />
       <div className="header">
         <div id="topbarMenu" className="topbarMenu">
           <Link to="/sedes">SEDES</Link>
@@ -153,7 +150,7 @@ export const WebMenu = () => {
           </nav>
         </div>
       </div>
-
+      <CubeWithImages />
       <div className="home">
         <Section1 />
         <Section2 />
@@ -169,7 +166,7 @@ export const WebMenu = () => {
         activeSection={activeSection}
         handleSetActiveSection={handleSetActiveSection}
       />
-      <CubeWithImages />
+
       <Footer />
     </div>
   );

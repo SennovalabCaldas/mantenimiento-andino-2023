@@ -11,12 +11,10 @@ export const CubeWithImages = () => {
     const option2 = document.getElementById("option2");
     const option3 = document.getElementById("option3");
     let animationPaused = false;
-
+  
     if (cube && optionsContainer && option1 && option2 && option3) {
       cube.addEventListener("click", () => {
-          
         if (!animationPaused) {
-            
           cube.style.animationPlayState = "paused";
           optionsContainer.style.display = "block";
           animationPaused = true;
@@ -29,6 +27,7 @@ export const CubeWithImages = () => {
       });
     }
   }, []);
+  
 
   return (
     <div className="cubeContainer">
