@@ -1,78 +1,23 @@
 import React from "react";
 import "./WebProjects.scss";
-import { image } from "../../../assets";
-import { Paper } from "@mui/material";
 import { ENV } from "../../../utils";
-import { styled } from "@mui/material/styles";
-const proyectosBase = [
-  {
-    projectName:
-      "Centro de control y operaciones. Autopista Conexión Pacífico II.",
-    national: true,
-    avatar: image.concesion,
-    joinDate: "2021-10-10",
-  },
-  {
-    projectName: "Edificaciones Túnel Tesalia.",
-    national: true,
-    avatar: image.telacia,
-    joinDate: "2021-10-10",
-  },
-  {
-    projectName: "Área de servicios II. Autopista Conexión Pacífico II.",
-    national: true,
-    avatar: image.servicio3,
-    joinDate: "2021-10-10",
-  },
-  {
-    projectName:
-      "Muro de cerramiento Proyecto ampliación a tercer carril vía Bogotá - Girardot.",
-    national: true,
-    avatar: image.cerramiento,
-    joinDate: "2021-10-10",
-  },
-  {
-    projectName: "Centro vacacional Melgar CAFAM - Remodelación de cabañas.",
-    national: true,
-    avatar: image.cabañas,
-    joinDate: "2021-10-10",
-  },
-];
 
 export const WebProjects = ({ projects }) => {
   const baseApi = ENV.BASE_PATH;
   console.log(projects);
 
-  const combinedProjects = [
-    ...proyectosBase,
-    ...projects.filter(
-      (project) =>
-        !proyectosBase.some(
-          (baseProject) => baseProject.projectName === project.projectName
-        )
-    ),
-  ];
-
-  const proyectosNacionales = combinedProjects.filter(
+  const proyectosNacionales = projects.filter(
     (project) => project.national === true
   );
 
-  const proyectosInternacionales = combinedProjects.filter(
+  const proyectosInternacionales = projects.filter(
     (project) => project.national === false
   );
 
   const hasNationalProjects = proyectosNacionales.length > 0;
   const hasInternationalProjects = proyectosInternacionales.length > 0;
   const getAvatarUrl = (project) => {
-    if (
-      proyectosBase.some(
-        (baseProject) => baseProject.projectName === project.projectName
-      )
-    ) {
-      return project.avatar;
-    } else {
-      return `${baseApi}/${project.avatar}`;
-    }
+    return `${baseApi}/${project.avatar}`;
   };
   return (
     <>
@@ -88,20 +33,20 @@ export const WebProjects = ({ projects }) => {
               <div className="images panel">
                 {proyectosNacionales.length === 0 ? (
                   <>
-                    <div class="container">
-                      <div class="loader"></div>
+                    <div className="container">
+                      <div className="loader"></div>
                     </div>
                   </>
                 ) : (
-                  proyectosNacionales.map((project, index) => (
-                    <div class="myCard">
-                      <div class="innerCard">
-                        <div class="frontSide">
+                  proyectosNacionales.map((project) => (
+                    <div className="myCard" key={project._id}>
+                      <div className="innerCard">
+                        <div className="frontSide">
                           <img src={getAvatarUrl(project)} alt="" />
                           <p>{project.projectName}</p>
                         </div>
                         <div
-                          class="backSide"
+                          className="backSide"
                           style={{
                             backgroundImage: `url(${getAvatarUrl(project)})`,
                             backgroundSize: "cover",
@@ -123,20 +68,20 @@ export const WebProjects = ({ projects }) => {
               <div className="images panel">
                 {proyectosInternacionales.length === 0 ? (
                   <>
-                    <div class="container">
-                      <div class="loader"></div>
+                    <div className="container">
+                      <div className="loader"></div>
                     </div>
                   </>
                 ) : (
                   proyectosInternacionales.map((project, index) => (
-                    <div class="myCard">
-                      <div class="innerCard">
-                        <div class="frontSide">
+                    <div className="myCard" key={project._id}>
+                      <div className="innerCard">
+                        <div className="frontSide">
                           <img src={getAvatarUrl(project)} alt="" />
                           <p>{project.projectName}</p>
                         </div>
                         <div
-                          class="backSide"
+                          className="backSide"
                           style={{
                             backgroundImage: `url(${getAvatarUrl(project)})`,
                             backgroundSize: "cover",

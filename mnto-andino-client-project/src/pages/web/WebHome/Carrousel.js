@@ -84,7 +84,15 @@ export const Carrousel = ({ posts }) => {
           />
         </div>
         <div className="slide-content">
-          <Grid spacing={2}>
+          <Grid 
+            container
+            style={{
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
             <div
               style={{
                 display: "flex",

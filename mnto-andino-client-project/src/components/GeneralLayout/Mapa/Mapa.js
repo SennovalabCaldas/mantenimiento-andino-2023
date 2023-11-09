@@ -207,20 +207,22 @@ export const Mapa = ({ departamentos }) => {
     dispatch(getAllDepartments());
   }, [dispatch]);
 
-  // los departamentosDestacadps contienen el nombre de getAllDepartments
+
   const departamentosDestacados = useSelector(
     (state) => state.department.departments
   );
-  console.log(departamentosDestacados);
+
 
   const departamentosDestacadosArray = departamentosDestacados.map(
     (departamento) => departamento.departmentName
   );
 
+  console.log("Departamentos destacados:", departamentosDestacadosArray);
+
   const getDepartamentoColor = (deptName) => {
     if (deptName === hoveredDept) {
       return "#70A9B0"; // Color cuando el departamento está siendo señalado
-    } else if (departamentosDestacados.includes(deptName)) {
+    } else if (departamentosDestacadosArray.includes(deptName)) {
       return "#FF5733"; // Por ejemplo, el color naranja para Caldas y Quindío
     } else {
       return "#D1D1D1"; // Otros departamentos conservan un color gris claro

@@ -370,7 +370,7 @@ export const WebContactUs = () => {
       </div>
 
       <div className="item-profile-card">
-        <figure class="snip1336">
+        <figure className="snip1336">
           <img src={image.fondoSlide} alt="sample87" />
           <figcaption>
             <h2>
@@ -420,7 +420,7 @@ export const WebContactUs = () => {
             >
               <a
                 href={`https://api.whatsapp.com/send?phone=573103833591&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
-                class="follow"
+                className="follow"
               >
                 <img
                   src={image.whatsApp}
@@ -440,7 +440,7 @@ export const WebContactUs = () => {
             </div>
           </figcaption>
         </figure>
-        <figure class="snip1336 hover">
+        <figure className="snip1336 hover">
           <img src={image.fondoSlide} alt="sample74" />
           <figcaption>
             <h2>
@@ -493,7 +493,7 @@ export const WebContactUs = () => {
             >
               <a
                 href={`https://api.whatsapp.com/send?phone=573008426136&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
-                class="follow"
+                className="follow"
               >
                 <img
                   src={image.whatsApp}

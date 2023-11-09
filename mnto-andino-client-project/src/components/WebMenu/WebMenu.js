@@ -22,7 +22,6 @@ import { getAllFoundationsNews } from "../../actions/foundationNewsActions";
 import { getAllTestimonies } from "../../actions/testimonieActions";
 
 import Flags from "react-flags-select";
-import getCountryCode from "../../utils/getCountryCode";
 import { CubeWithImages } from "../Client";
 import { image } from "../../assets";
 import SlideBarWebMenu from "./SlideBarWebMenu";
@@ -40,11 +39,6 @@ export const WebMenu = () => {
   const [selectedCountry, setSelectedCountry] = useState("Colombia");
 
   useEffect(() => {
-    const fetchCountryCode = async () => {
-      const countryCode = await getCountryCode();
-      setUserCountryCode(countryCode);
-      setSelectedCountry(countryCode);
-    };
     dispatch(getAllPosts());
     dispatch(getAllCategoriesService());
     dispatch(getServices());
@@ -54,7 +48,6 @@ export const WebMenu = () => {
     dispatch(getAllCertifications());
     dispatch(getAllProjects());
     dispatch(getAllFoundationsNews());
-    fetchCountryCode();
   }, [dispatch]);
 
   const handleCountrySelect = (countryCode) => {

@@ -3,62 +3,11 @@ import { ProductList } from "./ProductList";
 import { image } from "../../../assets";
 import "./WebServices.scss";
 
-const defaultCategories = [
-  {
-    _id: "todos",
-    nameCategoryService: "Todos los servicios",
-    descriptionCategoryService: "Descripción del Servicio Predeterminado 1",
-    active: true,
-    evaluacion: 5,
-    avatar: image.service1,
-  },
-  {
-    _id: "default1",
-    nameCategoryService: "Obra civil y mantenimiento",
-    descriptionCategoryService: "Descripción del Servicio Predeterminado 1",
-    active: true,
-    evaluacion: 5,
-    avatar: image.service1,
-  },
-  {
-    _id: "default2",
-    nameCategoryService: "Construcción y adecuación",
-    descriptionCategoryService: "Descripción del Servicio Predeterminado 2",
-    active: true,
-    evaluacion: 5,
-    avatar: image.service1,
-  },
-  {
-    _id: "default3",
-    nameCategoryService: "Suministro e instalación",
-    descriptionCategoryService: "Descripción del Servicio Predeterminado 3",
-    active: true,
-    evaluacion: 5,
-    avatar: image.service1,
-  },
-  {
-    _id: "default4",
-    nameCategoryService: "Redes de frio y refrigeración",
-    descriptionCategoryService: "Descripción del Servicio Predeterminado 4",
-    active: true,
-    evaluacion: 5,
-    avatar: image.service1,
-  },
-];
 
 export const WebServices = ({ categoryServices, services }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState(0);
   const [nameActiveTab, setNameActiveTab] = useState("Todos los servicios");
-
-  const uniqueCategories = [
-    ...new Set([
-      ...defaultCategories.map((category) => category.nameCategoryService),
-      ...(categoryServices || []).map(
-        (category) => category.nameCategoryService
-      ),
-    ]),
-  ];
 
   const handleTabChange = (index) => {
     setActiveTab(index);
@@ -66,23 +15,11 @@ export const WebServices = ({ categoryServices, services }) => {
   };
 
   const handleNameTabChange = (index) => {
-    const categoryName = mergedCategories[index].nameCategoryService;
+    const categoryName = categoryServices[index].nameCategoryService;
     setNameActiveTab(categoryName);
   };
 
-  const mergedCategories = uniqueCategories
-    .map((categoryName) => {
-      const category =
-        categoryServices?.find(
-          (category) => category.nameCategoryService === categoryName
-        ) ||
-        defaultCategories.find(
-          (category) => category.nameCategoryService === categoryName
-        );
 
-      return category;
-    })
-    .filter((category) => category);
 
   return (
     <div className="content-section-services">
@@ -103,7 +40,7 @@ export const WebServices = ({ categoryServices, services }) => {
                   flexDirection: "row",
                 }}
               >
-                {mergedCategories.map((category, index) => (
+                {categoryServices.map((category, index) => (
                   <div key={index}>
                     <input
                       type="radio"
@@ -122,7 +59,7 @@ export const WebServices = ({ categoryServices, services }) => {
             </div>
             <div className="container-listproducts">
               <ProductList
-                categoryServices={mergedCategories}
+                categoryServices={categoryServices}
                 services={services}
                 activeTab={activeTab}
                 nameActiveTab={nameActiveTab}

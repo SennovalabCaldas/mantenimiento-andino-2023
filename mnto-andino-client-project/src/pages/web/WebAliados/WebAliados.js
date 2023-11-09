@@ -1,8 +1,6 @@
 import React from "react";
 import "./WebAliados.scss";
 import { Modal, Typography, Card, CardContent, CardMedia } from "@mui/material";
-
-import { image } from "../../../assets";
 import { useState } from "react";
 import { ENV } from "../../../utils/constants";
 
@@ -81,7 +79,6 @@ export const WebAliados = ({ allies, certifications }) => {
                   ))}
                   <CardContent>
                     <Typography
-                      component="div"
                       style={{
                         userSelect: "none",
                         textTransform: "uppercase",
@@ -91,7 +88,6 @@ export const WebAliados = ({ allies, certifications }) => {
                     </Typography>
 
                     <Typography
-                      component="div"
                       style={{
                         userSelect: "none",
                         textTransform: "uppercase",

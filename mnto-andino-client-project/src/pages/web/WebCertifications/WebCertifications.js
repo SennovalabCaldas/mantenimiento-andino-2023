@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { image } from "../../../assets";
 import "./WebCertifications.scss";
+import { ENV } from "../../../utils";
 
-export const WebCertifications = () => {
+export const WebCertifications = ({ certifications }) => {
+  console.log("certifications", certifications);
+  const baseApi = ENV.BASE_PATH;
   const videoRef = useRef(null);
   const videoSrc1 = image.contact;
   const videoSrc2 = image.contact2;
@@ -14,7 +17,6 @@ export const WebCertifications = () => {
       document.querySelectorAll(".imgs img"),
     ];
     const opacity = 0.6;
-    imgs[0].style.opacity = opacity;
     imgs.forEach((img) => img.addEventListener("click", imgClick));
 
     function imgClick(e) {
@@ -71,15 +73,17 @@ export const WebCertifications = () => {
           </div>
 
           <div className="imgs">
-            <img src={image.proj1} />
-            <img src={image.service1} />
-            <img src={image.service2} />
-            <img src={image.service5} />
-            <img src={image.service6} />
-            <img src={image.proj6} />
-            <img src={image.service5} />
-            <img src={image.service6} />
-            <img src={image.proj5} />
+            {certifications.map((cert, index) => (
+              <div key={index}>
+                {cert.photos.map((photo, photoIndex) => (
+                  <img
+                    key={photoIndex}
+                    src={`${baseApi}/${photo}`}
+                    alt={`${cert.name} - Foto ${photoIndex + 1}`}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
         <div className="slide" data-order="1">
@@ -87,8 +91,12 @@ export const WebCertifications = () => {
             {" "}
             <span className="no-select-g">construimos</span>
           </h1>
-          <h2>
-            <span className="no-select">felicidad, sueños y experiencias.</span>
+          <h2
+            style={{
+              color: "#F5A623",
+            }}
+          >
+            <span>felicidad, sueños y experiencias.</span>
           </h2>
         </div>
       </div>
