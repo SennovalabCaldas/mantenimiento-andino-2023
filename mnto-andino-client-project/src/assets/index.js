@@ -29,21 +29,6 @@ import linkedin from "./svg/linkedin.svg";
 import star from "./svg/star.svg";
 import call from "./svg/call.svg";
 
-import carulla from "./clients/carulla.png";
-import cert1 from "./clients/cert1.png";
-import consorcio from "./clients/consorcio.png";
-import exito from "./clients/exito.png";
-import juanvaldez from "./clients/juanvaldez.jpg";
-import ani from "./clients/ani.png";
-import ara from "./clients/ara.svg";
-import Mercaldas from "./clients/Mercaldas.png";
-import Rational from "./clients/Rational.png";
-import unox from "./clients/unox.png";
-import superinter from "./clients/superinter.png";
-import superal from "./clients/superal.png";
-import concesionpintada from "./clients/concesionpintada.png";
-import multidrogas from "./clients/multidrogas.png";
-import cafam from "./clients/cafam.png";
 import logomnbg from "./jpg/image-removebg-preview.jpg";
 import qrServices from "./png/qrServices.png";
 
@@ -70,29 +55,7 @@ import proj6 from "./project/proj6.jpeg";
 import proj7 from "./project/proj7.jpeg";
 
 import portafolio from "./pdf/portafolio.pdf";
-import ally1 from "./allies/katcher.png";
 import errorPage from "./jpg/404.jpg";
-
-import imgPost1 from "./homeMenu/img1.jpeg";
-import menu1 from "./homeMenu/img1.jpg";
-import menu2 from "./homeMenu/img2.jpg";
-import menu3 from "./homeMenu/img3.jpg";
-import menu4 from "./homeMenu/img4.jpg";
-import menu5 from "./homeMenu/img5.jpg";
-import menu6 from "./homeMenu/img6.jpg";
-import menu7 from "./homeMenu/img7.jpg";
-import menu8 from "./homeMenu/img8.jpg";
-import menu9 from "./homeMenu/img9.jpg";
-import verVideo1 from "./homeMenu/img11.png";
-import verVideo2 from "./homeMenu/img12.png";
-import verVideo3 from "./homeMenu/img13.png";
-
-import img1f from "./post_fundations/img1.png";
-import img2f from "./post_fundations/img2.jpeg";
-import img3f from "./post_fundations/img3.jpeg";
-import img4f from "./post_fundations/img4.jpeg";
-import img5f from "./post_fundations/img5.jpeg";
-import img6f from "./post_fundations/img6.jpeg";
 
 import portafolio_video from "./video/mp4/portafolio.mp4";
 import portafolio_p1 from "./portfolio/p1.jpeg";
@@ -103,35 +66,34 @@ import portafolio_p4 from "./portfolio/p4.jpeg";
 import mapa from "./jpg/mapa.jpg";
 
 const image = {
+  logoSennovalabNoC,
+  logoH,
   authBg,
+  fondoSlide,
   background,
   logo2,
   logo3,
   logo4,
-  logoSennovalabNoC,
-  location,
-  email,
-  whatsApp,
-  logoH,
-  location,
-  facebook,
-  instagram,
-  logomn,
-  tiktok,
-  linkedin,
   contact,
-  carulla,
-  consorcio,
-  exito,
-  juanvaldez,
-  ani,
-  ara,
-  Mercaldas,
-  Rational,
-  superinter,
-  superal,
+  contact1,
+  contact2,
+  noticias,
   img1,
   img2,
+  ceoCode,
+  gerenteCode,
+  logomn,
+  post2,
+  post3,
+  email,
+  whatsApp,
+  location,
+  instagram,
+  facebook,
+  tiktok,
+  linkedin,
+  star,
+  call,
   logomnbg,
   qrServices,
   service1,
@@ -141,40 +103,11 @@ const image = {
   service5,
   service6,
   img1services,
-  unox,
   concesion,
-  post2,
-  post3,
-  contact,
-  multidrogas,
-  concesionpintada,
-  cafam,
-  portafolio,
-  errorPage,
   telacia,
   servicio3,
   cerramiento,
   cabañas,
-  ally1,
-  menu1,
-  menu2,
-  menu3,
-  menu4,
-  menu5,
-  menu6,
-  menu7,
-  menu8,
-  menu9,
-  mapa,
-  verVideo1,
-  verVideo2,
-  verVideo3,
-  fondoSlide,
-  star,
-  cert1,
-  imgPost1,
-  call,
-  contact1,
   proj1,
   proj2,
   proj3,
@@ -182,20 +115,13 @@ const image = {
   proj5,
   proj6,
   proj7,
-  ceoCode,
-  gerenteCode,
-  img1f,
-  img2f,
-  img3f,
-  img4f,
-  img5f,
-  img6f,
+  portafolio,
+  errorPage,
   portafolio_video,
   portafolio_p1,
   portafolio_p2,
   portafolio_p3,
   portafolio_p4,
-  noticias,
-  contact2
+  mapa,
 };
 export { image };
