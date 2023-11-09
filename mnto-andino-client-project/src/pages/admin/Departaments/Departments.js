@@ -20,7 +20,6 @@ import {
   deleteManyDepartments,
   getAllDepartments,
 } from "../../../actions/departmentActions";
-import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 
 export const Departments = () => {
