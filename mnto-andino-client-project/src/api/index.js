@@ -17,3 +17,5 @@ export * from "./foundation";
 export * from "./makinaAndina";
 export * from "./makinaAndinaMiami";
 export * from "./glamping";
+export * from "./testimonies";
+export * from "./departments";

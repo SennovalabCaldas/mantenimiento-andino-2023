@@ -14,7 +14,10 @@ import {
   IconButton,
   ListItemAvatar,
 } from "@mui/material";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import EditIcon from "@mui/icons-material/Edit";
 const userController = new User();
 
 const UserItem = ({ user, onReload, handleSelectedUser }) => {
@@ -122,38 +125,23 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
           </div>
 
           <div className="user-item__buttons">
-            <Button icon onClick={openUpdateUser}>
-              <IconButton
-                className="icon-user-item"
-                name="pencil"
-                style={{
-                  fontSize: "24px", 
-                  color: "#007bff", 
-                }}
-              />
-            </Button>
-            <Button icon onClick={openDesactivateActivateConfim}>
-              <IconButton
-                className="icon-user-item"
-                name={user.active ? "eye slash outline" : "eye"}
-                style={{
-                  fontSize: "24px", // Tamaño del icono
-                  color: "#007bff", // Color del icono
-                  // Otros estilos personalizados si los deseas
-                }}
-              />
-            </Button>
-            <Button icon onClick={openDeleteConfirm}>
-              <IconButton
-                className="icon-user-item"
-                name="trash"
-                style={{
-                  fontSize: "24px", // Tamaño del icono
-                  color: "#007bff", // Color del icono
-                  // Otros estilos personalizados si los deseas
-                }}
-              />
-            </Button>
+            <div className="user-item__buttons">
+              <Button icon onClick={openUpdateUser}>
+                <IconButton className="icon-user-item">
+                  <EditIcon />
+                </IconButton>
+              </Button>
+              <Button icon onClick={openDesactivateActivateConfim}>
+                <IconButton className="icon-user-item">
+                  {user.active ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </Button>
+              <Button icon onClick={openDeleteConfirm}>
+                <IconButton className="icon-user-item">
+                  <DeleteIcon />
+                </IconButton>
+              </Button>
+            </div>
           </div>
         </ListItemAvatar>
       </div>
@@ -170,6 +158,7 @@ const UserItem = ({ user, onReload, handleSelectedUser }) => {
         onClose={onOpenCloseConfirm}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        className="custom-dialog" // Agrega una clase CSS personalizada al diálogo
       >
         <div className="dialog-confirm">
           <h2 id="alert-dialog-title">{confirmMessage}</h2>

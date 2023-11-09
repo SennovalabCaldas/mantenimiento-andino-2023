@@ -7,7 +7,6 @@ import {
 import { useDispatch } from "react-redux";
 import "../CertificationsNal/CertificationsNal.scss";
 
-
 export const CertificationsInterNal = ({ certifications, national }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,42 +43,39 @@ export const CertificationsInterNal = ({ certifications, national }) => {
   return (
     <div>
       <table className="certification-table">
-        {/* ...estructura de la tabla */}
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Fotos</th>
+            <th>Fecha de inicio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
         <tbody>
           {currentCertifications.map((certification) => (
             <tr key={certification.id}>
               <td>{certification.certificationName}</td>
               <td>
-                <div
-                  onMouseEnter={() => handlePreviewImage(certification.avatar)}
-                  onMouseLeave={handleHidePreviewImage}
-                >
-                  <img
-                    src={`${baseApi}/${certification.avatar}`}
-                    alt="Avatar"
-                    width="50"
-                    height="50"
-                  />
-                  {previewImage === certification.avatar && (
-                    <div className="image-preview">
-                      <img
-                        src={`${baseApi}/${certification.avatar}`}
-                        alt="Avatar Preview"
-                        width="150"
-                        height="150"
-                      />
-                    </div>
-                  )}
+                <div className="image-container">
+                  {certification.photos.map((photo, index) => (
+                    <img
+                      key={index}
+                      src={`${baseApi}/${photo}`}
+                      alt={`Foto ${index + 1}`}
+                      className="small-image"
+                      onClick={() => handlePreviewImage(photo)}
+                    />
+                  ))}
                 </div>
               </td>
               <td>{new Date(certification.joinDate).toLocaleDateString()}</td>
               <td>
-                <span
-                  className="delete-link"
+                <button
+                  className="btn btn-danger"
                   onClick={() => handleDeleteCertification(certification._id)}
                 >
                   Eliminar
-                </span>
+                </button>
               </td>
             </tr>
           ))}

@@ -4,15 +4,13 @@ const mongoose = require("mongoose");
 const glampingSchema = new mongoose.Schema({
   serviceName: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
-    required: true,
   },
-  photos: [
+  images: [
     {
-      type: String, // Guardaremos la URL de la imagen en la base de datos
+      type: String,
     },
   ],
   createdAt: {

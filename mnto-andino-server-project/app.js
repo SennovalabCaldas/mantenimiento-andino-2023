@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
-/* Cargar rutas */
+
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const sedeRoutes = require("./routes/sede");
@@ -21,12 +21,13 @@ const foundationRoutes = require("./routes/foundation");
 const makinaAndinaRoutes = require("./routes/makinaAndina");
 const makinaAndinaMiamiRoutes = require("./routes/makinaAndinaMiami");
 const glampingRoutes = require("./routes/glamping");
+const testimonieRoutes = require("./routes/testimonie");
+const departmentsRoutes = require("./routes/department");
 
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
@@ -48,19 +49,8 @@ app.use(`/api/v1/admin/foundations`, foundationRoutes);
 app.use(`/api/v1/admin/makinandina`, makinaAndinaRoutes);
 app.use(`/api/v1/admin/makinandinamiami`, makinaAndinaMiamiRoutes);
 app.use(`/api/v1/admin/glamping`, glampingRoutes);
+app.use(`/api/v1/admin/testimonies`, testimonieRoutes);
+app.use(`/api/v1/admin/departments`, departmentsRoutes);
 
-// function printRoutes(stack, parentPath = "") {
-//   stack.forEach((layer) => {
-//     if (layer.route) {
-//       // Si es una ruta, imprime su método y ruta
-//       console.log(
-//         `Ruta: [${layer.route.stack[0].method}] ${parentPath}${layer.route.path}`
-//       );
-//     } else if (layer.name === "router" && layer.handle.stack) {
-//       // Si es un enrutador anidado, llama a la función recursivamente
-//       printRoutes(layer.handle.stack, `${parentPath}${layer.regexp.source}`);
-//     }
-//   });
-// }
 
 module.exports = { app };

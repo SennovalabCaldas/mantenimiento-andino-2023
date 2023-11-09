@@ -17,7 +17,10 @@ const ProfileMenu = connect()(() => {
 
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
-  const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
+  const onOpenCloseModal = () => {
+    console.log("Modal Abierta/Cerrada");
+    setShowModal((prevState) => !prevState);
+  };
 
   const openUpdateUser = () => {
     if (userState && userState.firstname && userState.lastname) {

@@ -18,7 +18,6 @@ import gerenteCode from "./png/gerente-code.png";
 import logomn from "./jpg/logo.jpg";
 import post2 from "./jpg/post2.jpeg";
 import post3 from "./jpg/post3.jpeg";
-import contactImg from "./jpg/contact-img.jpeg";
 
 import email from "./svg/mail-icon.svg";
 import whatsApp from "./svg/whatsapp-icon.svg";
@@ -150,7 +149,6 @@ const image = {
   multidrogas,
   concesionpintada,
   cafam,
-  contactImg,
   portafolio,
   errorPage,
   telacia,

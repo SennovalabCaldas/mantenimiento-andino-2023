@@ -31,7 +31,6 @@ export const ClientList = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const baseApi = ENV.BASE_PATH;
-  const [previewImage, setPreviewImage] = useState(null);
 
   const clients = useSelector((state) => state.client.clients);
   console.log(clients);
@@ -161,7 +160,6 @@ export const ClientList = () => {
                   style={{ display: "none" }}
                   onChange={handleAvatarChange}
                 />
-                {/* Button to trigger file input */}
                 <Button
                   onClick={() => document.getElementById("imageUpload").click()}
                   variant="contained"

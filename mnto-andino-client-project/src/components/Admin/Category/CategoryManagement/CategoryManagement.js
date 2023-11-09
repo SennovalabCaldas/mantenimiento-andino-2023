@@ -20,6 +20,11 @@ import {
   TableHead,
   TableRow,
   TablePagination,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@material-ui/core";
 import { updatePostState } from "../../../../actions/postActions";
 
@@ -30,7 +35,8 @@ export const CategoryManagement = (news) => {
     nombre: "",
     active: false,
   });
-
+  const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
+  const [categoryToDelete, setCategoryToDelete] = useState(null);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.allCategories);
 
@@ -52,38 +58,46 @@ export const CategoryManagement = (news) => {
   };
 
   const handleUpdateCategory = async (categoryId, updatedData) => {
-      
     try {
-      // Si la categoría se está activando y existen noticias relacionadas
       if (!updatedData.active) {
-          
-        // Lógica para verificar si existen noticias relacionadas con esta categoría
-        const noticiasRelacionadas = news.news.filter((noticia) => {
-          noticia.categorias.includes(categoryId);
-            
-        });
+        const noticiasRelacionadas = news.news.filter((noticia) =>
+          noticia.categorias.includes(categoryId)
+        );
+
         if (noticiasRelacionadas.length > 0) {
-            
-          // Llama al dispatch para actualizar el estado de las noticias relacionadas
-          for (const noticia of noticiasRelacionadas) {
-            await dispatch(updatePostState(noticia._id, false));
-          }
+          console.log(
+            "Esta categoría tiene noticias relacionadas. No se puede desactivar."
+          );
+          return;
         }
       }
-
-      // Llama al dispatch para actualizar el estado de la categoría
       await dispatch(updateCategory(categoryId, updatedData));
+      const updatedCategories = categories.map((category) =>
+        category._id === categoryId
+          ? { ...category, active: updatedData.active }
+          : category
+      );
+      dispatch({ type: "SET_ALL_CATEGORIES", payload: updatedCategories });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleDeleteCategory = async (categoryId) => {
-    try {
-      await dispatch(deleteCategory(categoryId));
-      await dispatch(getAllCategories());
-    } catch (error) {
-      console.error(error);
+  const handleDeleteCategory = (categoryId) => {
+    setCategoryToDelete(categoryId);
+    setConfirmationDialogOpen(true);
+  };
+
+  const handleConfirmationDialogClose = (confirmed) => {
+    setConfirmationDialogOpen(false);
+    if (confirmed) {
+      try {
+        dispatch(deleteCategory(categoryToDelete));
+        setCategoryToDelete(null);
+        dispatch(getAllCategories());
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -98,8 +112,6 @@ export const CategoryManagement = (news) => {
 
   return (
     <div>
-      <h2>Listado de Categorías</h2>
-
       <div>
         <Card>
           <CardContent>
@@ -191,6 +203,34 @@ export const CategoryManagement = (news) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <Dialog
+        open={confirmationDialogOpen}
+        onClose={() => handleConfirmationDialogClose(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Confirmación</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            ¿Estás seguro de que deseas eliminar esta categoría?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => handleConfirmationDialogClose(false)}
+            color="primary"
+          >
+            Cancelar
+          </Button>
+          <Button
+            onClick={() => handleConfirmationDialogClose(true)}
+            color="primary"
+            autoFocus
+          >
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

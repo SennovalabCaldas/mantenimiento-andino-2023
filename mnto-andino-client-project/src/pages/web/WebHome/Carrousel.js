@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Carrousel.scss"; // Asegúrate de tener un archivo CSS para los estilos del carrusel
 import { image } from "../../../assets";
 import { Grid } from "@mui/material";
-import { WebFundation } from "../WebFundation/WebFundation";
+import { ENV } from "../../../utils";
 
 const slidesData = [
   {
@@ -11,37 +11,28 @@ const slidesData = [
       "Conoce nuestros servicios excepcionales y lleva tu Negocio al próximo nivel.",
     image: image.img6f,
   },
-  {
-    titulo: "Construimos Sueños",
-    subtitulo: "Creamos Resultados",
-    image: image.img6f,
-  },
-  {
-    titulo: "Únete a nuestro equipo",
-    subtitulo: "Conoce los perfiles que buscamos",
-    image: image.post2,
-  },
-  {
-    titulo: "EMOCIONANTES NOVEDADES",
-    subtitulo:
-      "No te pierdas nuestras últimas noticias y mantente actualizado con nuestras actividades y proyectos",
-    image: image.post2,
-  },
-  // Agrega más objetos para más slides
 ];
 
 export const Carrousel = ({ posts }) => {
   const [selectedNews, setSelectedNews] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const baseApi = ENV.BASE_PATH;
   console.log("posts =>", posts);
   const allSlidesData = [
-    ...slidesData, // Los datos originales del carrusel
+    ...slidesData.map((slide) => {
+      return {
+        titulo: slide.titulo,
+        subtitulo: slide.subtitulo,
+        image: slide.image,
+      };
+    }),
     ...posts.map((post) => {
       return {
-        titulo: post.titulo, // Asegúrate de tener una propiedad `title` en tus posts
-        subtitulo: post.subtitulo, // Asegúrate de tener una propiedad `subtitle` en tus posts
-        image: post.avatar, // Asegúrate de tener una propiedad `imageUrl` en tus posts
+        titulo: post.titulo,
+        subtitulo: post.subtitulo,
+        image: post.avatar.startsWith("uploads")
+          ? `${baseApi}/${post.avatar}`
+          : image.img6f,
       };
     }),
   ];
@@ -77,7 +68,8 @@ export const Carrousel = ({ posts }) => {
       <div
         className="slide"
         style={{
-          background: "linear-gradient(to right, rgb(240 240 240 / 0%), rgb(164 155 159 / 66%),rgba(22, 16, 19, 0.93)) center center / cover",
+          background:
+            "linear-gradient(to right, rgb(240 240 240 / 0%), rgb(164 155 159 / 66%),rgba(22, 16, 19, 0.93)) center center / cover",
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
@@ -114,7 +106,7 @@ export const Carrousel = ({ posts }) => {
                   className="comic-button"
                   onClick={() => scrollToSection()}
                 >
-                 CONOCE MÁS
+                  CONOCE MÁS
                 </button>
               </Grid>
             </div>

@@ -12,6 +12,7 @@ import { Certification } from "../api/certification";
 const certificationController = new Certification();
 
 export const createCertification = (data) => {  
+  console.log("data", data);
   return async (dispatch, getState) => {
     try {
       const certification = await certificationController.createCertification(

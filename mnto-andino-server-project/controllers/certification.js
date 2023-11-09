@@ -5,24 +5,23 @@ async function createCertification(req, res) {
     const certificationData = req.body; // Obtiene los datos del allye incluyendo la dirección como objeto JSON
     console.log("certificationdata", certificationData);
 
-    if (!req.files || !req.files.avatar) {
-      return res.status(400).json({ msg: "Error al subir la imagen" });
-    } else {
-      const imagePath = req.files.avatar.path;
-      console.log("imagePath", imagePath);
-      certificationData.avatar = imagePath;
-    }
+    const photos = Array.isArray(req.files.photos)
+      ? req.files.photos.map((file) => file.path)
+      : [];
+      console.log("photos", photos);
+
+    certificationData.photos = photos;
+    console.log("certificationData", certificationData);
+
     const allyStored = new Certification(certificationData);
     await allyStored.save();
-
     res.status(201).json({
       _id: allyStored._id,
       certificationName: allyStored.certificationName,
-      avatar: allyStored.avatar,
       national: allyStored.national,
-      joinDate: allyStored.joinDate, // Devuelve el objeto de dirección completo
+      photos: allyStored.photos,
+      joinDate: allyStored.joinDate,
     });
-
     console.log(allyStored);
   } catch (error) {
     console.error(error);

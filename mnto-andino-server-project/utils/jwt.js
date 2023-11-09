@@ -12,7 +12,7 @@ const createAccessToken = (user) => {
     exp: expToken.getTime(),
   };
 
-  console.log('accessToken del jwt: ',payload.user_id);
+  console.log('accessToken del jwt: ',payload);
   return jwt.sign(payload, JWT_SECRET_KEY);
 };
 

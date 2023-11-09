@@ -1,17 +1,14 @@
 import {
   CREATE_FOUNDATION_SUCCESS,
   SET_ALL_FOUNDATIONS_SERVICE,
-  GET_FOUNDATION_SUCCESS,
+  GET_FOUNDATION_BY_ID_SUCCESS,
   DELETE_FOUNDATION_SUCCESS,
-  UPDATE_FOUNDATION_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
   foundation: {
     _id: null,
-    activityName: null,
-    active: null,
-    avatar: [],
+    images: [],
     createdAt: null,
   },
   allFoundations: [],
@@ -30,12 +27,7 @@ const foundationReducer = (state = initialState, action) => {
         ...state,
         allFoundations: action.payload,
       };
-    case UPDATE_FOUNDATION_SUCCESS:
-      return {
-        ...state,
-        foundation: action.payload,
-      };
-    case GET_FOUNDATION_SUCCESS:
+    case GET_FOUNDATION_BY_ID_SUCCESS:
       return {
         ...state,
         foundation: action.payload,

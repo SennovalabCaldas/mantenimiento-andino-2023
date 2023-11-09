@@ -46,7 +46,7 @@ export class Category {
       });
 
       const data = await response.json();
-        
+
       return data;
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
@@ -78,17 +78,14 @@ export class Category {
   async updateCategory(_id, updatedData) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${CATEGORY_ROUTE}/edit/${_id}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(updatedData),
-          headers: {
-            "Content-Type": CONTENT_TYPE_JSON,
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${this.baseApi}/${CATEGORY_ROUTE}/${_id}`, {
+        method: "PATCH",
+        body: JSON.stringify(updatedData),
+        headers: {
+          "Content-Type": CONTENT_TYPE_JSON,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       const data = await response.json();
       return data;
     } catch (error) {
@@ -98,7 +95,6 @@ export class Category {
   }
 
   async updatePostsEstadoMostrar(_id, mostrar) {
-      
     const accessToken = authController.getAccessToken();
     try {
       const response = await fetch(
@@ -113,9 +109,9 @@ export class Category {
           },
         }
       );
-        
+
       const data = await response.json();
-        
+
       return data;
     } catch (error) {
       console.error(
@@ -129,18 +125,15 @@ export class Category {
   async deleteCategory(_id) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(
-        `${this.baseApi}/${CATEGORY_ROUTE}/${_id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-        
+      const response = await fetch(`${this.baseApi}/${CATEGORY_ROUTE}/${_id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
       const data = await response.json();
-        
+
       return data;
     } catch (error) {
       console.error("Error al eliminar la categoría:", error);

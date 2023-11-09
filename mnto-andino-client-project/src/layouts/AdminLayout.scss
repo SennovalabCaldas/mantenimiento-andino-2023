@@ -18,10 +18,9 @@
   min-height: 2.85714286em;
 }
 
-
 .ui.vertical.icon.menu .item {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   color: black;
 
   > .icon:not(.dropdown) {
@@ -54,71 +53,24 @@
     color: #20678a;
   }
 }
+.ui.vertical.icon.menu .item.active {
+ 
+  opacity: 0.7;
+  float: none;
+ 
+}
 
-// .admin-layout__header-logout {
-//   position: relative;
-//   margin-right: 1em;
-// }
-
-// .admin-layout__header {
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   display: flex;
-//   align-items: center;
-// }
-
-// .header-bar {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   padding: 10px;
-//   background-color: rgb(80 123 156 / 23%);
-//   height: 50px;
-//   width: 100%;
-//   z-index: 100;
-// }
-// .admin-menu-container.menu-visible {
-//   background-color: rgb(7 6 6 / 0%);
-// }
-
-// .admin-menu {
-//   &.header {
-//     top: 0;
-//     left: 0;
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     padding: 10px;
-//     background-color: rgb(0 0 0 / 4%);
-//     /* height: 60px; */
-//     width: 100%;
-//     font: 13px/27px Roboto, Arial, sans-serif;
-//     z-index: 986;
-//   }
-// }
-
-// .admin-layout__right-content {
-//   padding-left: 40px;
-//   padding-left: 70px;
-//   padding-right: 30px;
-//   padding-bottom: 40px;
-//   padding-top: 40px;
-//   overflow-y: auto;
-//   overflow-x: hidden;
-// }
-
-// .responsive-table::-webkit-scrollbar {
-//   display: none;
-// }
-
-// .cube-container {
-//   position: fixed;
-//   bottom: -30px;
-//   right: 20px;
-//   z-index: 100;
-// }
-
-// .first-load .slide-wrapper.active .slide-content-text > p {
-//   margin-bottom: 0;
-// }
+// estilos para celular
+@media (max-width: 640px) {
+  .ui.vertical.icon.menu .item {
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    margin: 0 auto;
+    float: none;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}

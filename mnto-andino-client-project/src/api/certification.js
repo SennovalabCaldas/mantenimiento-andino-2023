@@ -7,24 +7,28 @@ const authController = new Auth();
 
 export class Certification {
   baseApi = ENV.BASE_API;
-
   async createCertification(data) {
+    console.log("data", data);
     const accessToken = authController.getAccessToken();
+    const formData = new FormData();
+
     try {
-      const formData = new FormData();
-      if (data.avatar && data.avatar.image instanceof Blob) {
-        formData.append("avatar", data.avatar.image);
-      } else {
-        console.error("Imagen de avatar no válida.");
-        return; // Aborta la función si la imagen no es válida
+      // Asegúrate de que 'photos' sea siempre un array
+      const photosArray = Array.isArray(data.photos)
+        ? data.photos
+        : [data.photos];
+
+      photosArray.forEach((photo) => {
+        formData.append("photos", photo.image || photo);
+      });
+      Object.keys(data).forEach((key) => {
+        if (key !== "photos") {
+          formData.append(key, data[key]);
+        }
       }
-      formData.append("certificationName", data.certificationName);
-      formData.append("national", data.national);
-      formData.append("joinDate", data.joinDate);
+      );
 
-      console.log("Estos son los datos del proyecto", formData.get("avatar"));
       const url = `${this.baseApi}/${CERTIFICATION}/new-certification`;
-
       const params = {
         method: "POST",
         headers: {
@@ -34,10 +38,17 @@ export class Certification {
       };
 
       const response = await fetch(url, params);
+
+      if (response.status !== 201) {
+        const errorData = await response.json();
+        console.error("Error al crear la certificación:", errorData);
+        throw new Error("Error al crear la certificación");
+      }
+
       const result = await response.json();
-      if (response.status !== 201) throw result;
+      return result;
     } catch (error) {
-      console.error(error);
+      console.error("Error al crear la certificación:", error);
       throw error;
     }
   }

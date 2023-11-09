@@ -13,21 +13,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: rgb(0 0 0 / 38%); /* Utiliza rgba para definir la opacidad */
+  background: linear-gradient(to bottom, rgba(27, 28, 29, 0.65), rgb(164 167 170 / 65%));
   height: 50px;
   width: 100%;
   z-index: 2;
   align-content: center;
   flex-wrap: wrap;
   flex-direction: row;
-  backdrop-filter: blur(20px); /* Ajusta el valor de blur según tu preferencia */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px); /* Ajusta el valor de blur según tu preferencia */
+  box-shadow: 0 0 10px rgba(0, 0.7, 0.23, 34.6);
 }
 
 .ui.menu.fluid > .item, .ui.vertical.menu.fluid > .item {
   display: flex;
   color: #b0afaf;
-  /* padding: 0.7em 1.14285714em; */
   position: relative;
   width: 100%;
   align-content: center;
@@ -42,7 +41,6 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 0;
-  // background-color: rgba(5, 47, 60, 0.208);
   padding: 0 7px 15px !important;
   flex-wrap: wrap;
   align-content: center;

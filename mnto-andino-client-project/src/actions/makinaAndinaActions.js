@@ -2,14 +2,16 @@
 import * as types from "./types";
 import { MakinaAndina } from "../api/makinaAndina"; // Ajusta la ruta a la ubicación de tu clase Service
 
+
 const makinaAndinaController = new MakinaAndina();
 
-export const createService = (makinaAndinaData) => {
+export const createService = (makinaAndinaServiceData) => {
+  console.log("makinaAndinaServiceData", makinaAndinaServiceData);
   return async (dispatch, getState) => {
     try {
       const newMakinaAndinaService =
         await makinaAndinaController.createMakinaAndinaService(
-          makinaAndinaData
+          makinaAndinaServiceData
         );
       dispatch({
         type: types.CREATE_MAKINA_ANDINA_SUCCESS,
@@ -24,43 +26,17 @@ export const createService = (makinaAndinaData) => {
   };
 };
 
-export const updateService = (serviceId, updatedServiceData) => {
-  console.log("serviceId", serviceId);
-  console.log("updatedServiceData", updatedServiceData);
-  return async (dispatch, getState) => {
-    try {
-      const updatedMakinaAndinaService =
-        await makinaAndinaController.updateMakinaAndinaService(
-          serviceId,
-          updatedServiceData
-        );
-      console.log("updatedMakinaAndinaService", updatedMakinaAndinaService);
-      dispatch({
-        type: types.UPDATE_MAKINA_ANDINA_SUCCESS,
-        payload: updatedMakinaAndinaService,
-      });
-    } catch (error) {
-      dispatch({
-        type: types.UPDATE_MAKINA_ANDINA_FAILURE,
-        payload: error.message,
-      });
-    }
-  };
-};
-
 export const getServices = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      const services = await makinaAndinaController.getMakinaAndinaServices();
-
+      const makinaAndinaServices = await makinaAndinaController.getServices();
       dispatch({
-        type: types.GET_MAKINA_ANDINAS_SUCCESS,
-        payload: services,
+        type: types.GET_MAKINA_ANDINA_SUCCESS,
+        payload: makinaAndinaServices,
       });
     } catch (error) {
-      // En caso de error, despacha una acción de error
       dispatch({
-        type: types.GET_MAKINA_ANDINAS_FAILURE,
+        type: types.GET_MAKINA_ANDINA_FAILURE,
         payload: error.message,
       });
     }
@@ -80,4 +56,22 @@ export const deleteService = (_id) => async (dispatch) => {
       payload: error.message,
     });
   }
+};
+
+export const getMakinaAndinaService = (_id) => {
+  return async (dispatch) => {
+    try {
+      const makinaAndinaService =
+        await makinaAndinaController.getMakinaAndinaService(_id);
+      dispatch({
+        type: types.GET_SERVICE_MAKINA_ANDINA_SUCCESS,
+        payload: makinaAndinaService,
+      });
+    } catch (error) {
+      dispatch({
+        type: types.GET_SERVICE_MAKINA_ANDINA_FAILURE,
+        payload: error.message,
+      });
+    }
+  };
 };

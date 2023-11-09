@@ -1,6 +1,5 @@
 import { ENV } from "../utils";
 import { Auth } from "./auth";
-import { Service } from "./service";
 
 const FOUNDATION = ENV.API_ROUTES.FOUNDATION;
 const CONTENT_TYPE_JSON = "application/json";
@@ -9,22 +8,25 @@ const authController = new Auth();
 export class Foundation {
   baseApi = ENV.BASE_API;
 
-  async createFoundationNew(data) {
+  async createFoundation(data) {
+    console.log("data =>", data);
     const accessToken = authController.getAccessToken();
+    const formData = new FormData();
     try {
-      const formData = new FormData();
-      if (data.avatar && data.avatar.image instanceof Blob) {
-        formData.append("avatar", data.avatar.image);
-      } else {
-        console.error("Imagen de avatar no válida.");
-        return; // Aborta la función si la imagen no es válida
-      }
-      formData.append("activityName", data.activityName);
-      formData.append("createdAt", data.createdAt);
+      const imagesArray = Array.isArray(data.images)
+        ? data.images
+        : [data.images];
 
-      console.log("Estos son los datos de la fundación", formData.get("avatar"));
-      const url = `${this.baseApi}/${FOUNDATION}/new-post`;
-        
+      imagesArray.forEach((photo) => {
+        formData.append("images", photo.image || photo);
+      });
+      Object.keys(data).forEach((key) => {
+        if (key !== "images") {
+          formData.append(key, data[key]);
+        }
+      });
+
+      const url = `${this.baseApi}/${FOUNDATION}/new-fundation`;
       const params = {
         method: "POST",
         headers: {
@@ -32,18 +34,19 @@ export class Foundation {
         },
         body: formData,
       };
-        
+
       const response = await fetch(url, params);
-        
       const result = await response.json();
+      console.log("result =>", result);
       if (response.status !== 201) throw result;
+
+      return result;
     } catch (error) {
-      console.error(error);
       throw error;
     }
   }
 
-  async getFoundationsNews() {
+  async getAllFoundations() {
     const url = `${this.baseApi}/${FOUNDATION}`;
     const params = {
       method: "GET",
@@ -53,66 +56,63 @@ export class Foundation {
     };
     try {
       const response = await fetch(url, params);
-      const data = await response.json();
-      return data;
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(
+          "Error al obtener las fundaciones: " + errorResponse.message
+        );
+      }
+      const result = await response.json();
+      return result;
     } catch (error) {
-      console.error("Error al obtener las fundaciones:", error);
       throw error;
     }
   }
 
-  async getFoundationNew(_id) {
-    const accessToken = authController.getAccessToken();
+  async getFoundationById(foundationId) {
+    const url = `${this.baseApi}/${FOUNDATION}/${foundationId}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await response.json();
-      return data;
+      const response = await fetch(url, params);
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(
+          "Error al obtener la fundación: " + errorResponse.message
+        );
+      }
+      const result = await response.json();
+      return result;
     } catch (error) {
-      console.error("Error al obtener la fundación:", error);
       throw error;
     }
   }
 
-  async updateFoundationNew(_id, updatedData) {
+  async deleteFoundation(foundationId) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {
-        method: "PATCH",
-        body: JSON.stringify(updatedData),
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al actualizar la fundaciń:", error);
-      throw error;
-    }
-  }
-
-  async deleteFoundationNew(_id) {
-    const accessToken = authController.getAccessToken();
-    try {
-      const response = await fetch(`${this.baseApi}/${FOUNDATION}/${_id}`, {
+      const url = `${this.baseApi}/${FOUNDATION}/${foundationId}`;
+      const params = {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      });
-        
-      const data = await response.json();
-        
-      return data;
+      };
+
+      const response = await fetch(url, params);
+      if (response.status !== 200) {
+        const errorResponse = await response.json();
+        throw new Error(
+          "Error al eliminar la fundación: " + errorResponse.message
+        );
+      }
+      const result = await response.json();
+      return result;
     } catch (error) {
-      console.error("Error al eliminar la fundación:", error);
       throw error;
     }
   }

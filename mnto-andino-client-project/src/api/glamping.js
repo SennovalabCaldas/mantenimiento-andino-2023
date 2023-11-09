@@ -7,23 +7,25 @@ const authController = new Auth();
 
 export class Glamping {
   baseApi = ENV.BASE_API;
-  baseOutApi = ENV.BASE_PATH;
-
-  async createGlampingService(makinaAndinaServiceData) {
+  async createGlamping(data) {
+    console.log("data =>", data);
     const accessToken = authController.getAccessToken();
+    const formData = new FormData();
     try {
-      const formData = new FormData();
-      Object.keys(makinaAndinaServiceData).forEach((key) => {
-        if (key === "photos") {
-          makinaAndinaServiceData[key].forEach((photo) => {
-            formData.append("photos", photo);
-          });
-        } else {
-          formData.append(key, makinaAndinaServiceData[key]);
+      const imagesArray = Array.isArray(data.images)
+        ? data.images
+        : [data.images];
+
+      imagesArray.forEach((photo) => {
+        formData.append("images", photo.image || photo);
+      });
+      Object.keys(data).forEach((key) => {
+        if (key !== "images") {
+          formData.append(key, data[key]);
         }
       });
 
-      const url = `${this.baseApi}/${GLAMPING}/new-post`;
+      const url = `${this.baseApi}/${GLAMPING}/new-service`;
       const params = {
         method: "POST",
         headers: {
@@ -34,7 +36,7 @@ export class Glamping {
 
       const response = await fetch(url, params);
       const result = await response.json();
-
+      console.log("result =>", result);
       if (response.status !== 201) throw result;
 
       return result;
@@ -43,98 +45,73 @@ export class Glamping {
     }
   }
 
-  async getGlampingServices() {
-    const accessToken = authController.getAccessToken();
+  async getAllGlampingServices() {
+    const url = `${this.baseApi}/${GLAMPING}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
     try {
-      const response = await fetch(`${this.baseApi}/${GLAMPING}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al obtener los servicios:", error);
-      throw error;
-    }
-  }
-
-  async getGlampingService(_id) {
-    const accessToken = authController.getAccessToken();
-    try {
-      const response = await fetch(`${this.baseApi}/${GLAMPING}/${_id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": CONTENT_TYPE_JSON,
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al obtener el servicio:", error);
-      throw error;
-    }
-  }
-
-  async updateGlampingService(_id, updatedData) {
-    console.log("updatedData", updatedData);
-    const accessToken = authController.getAccessToken();
-    try {
-      const formData = new FormData();
-      Object.keys(updatedData).forEach((key) => {
-        if (key === "photos") {
-          updatedData[key].forEach((photo) => {
-            formData.append("photos", photo);
-          });
-        } else {
-          formData.append(key, updatedData[key]);
-        }
-      });
-
-      const url = `${this.baseApi}/${GLAMPING}/${_id}`;
-      const params = {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: formData,
-      };
-      console.log("url", url);
-      console.log("params", params);
       const response = await fetch(url, params);
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(
+          "Error al obtener las fundaciones: " + errorResponse.message
+        );
+      }
       const result = await response.json();
-
-      if (response.status !== 200) throw result;
-
-      // Actualizar la URL completa de las imágenes en la respuesta
-      const updatedServiceWithFullImageUrls = {
-        ...result,
-        photos: result.photos.map((photo) => `${this.baseOutApi}/${photo}`), // Agrega el origen del servidor
-      };
-
-      return updatedServiceWithFullImageUrls;
+      return result;
     } catch (error) {
-      console.error("Error al actualizar el servicio:", error);
       throw error;
     }
   }
 
-  async deleteGlampingService(_id) {
+  async getGlampingSServiceById(glampingId) {
+    const url = `${this.baseApi}/${GLAMPING}/${glampingId}`;
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": CONTENT_TYPE_JSON,
+      },
+    };
+    try {
+      const response = await fetch(url, params);
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(
+          "Error al obtener la fundación: " + errorResponse.message
+        );
+      }
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteGlampingService(glampingId) {
     const accessToken = authController.getAccessToken();
     try {
-      const response = await fetch(`${this.baseApi}/${GLAMPING}/${_id}`, {
+      const url = `${this.baseApi}/${GLAMPING}/${glampingId}`;
+      const params = {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      });
-      const data = await response.json();
-      return data;
+      };
+
+      const response = await fetch(url, params);
+      if (response.status !== 200) {
+        const errorResponse = await response.json();
+        throw new Error(
+          "Error al eliminar la fundación: " + errorResponse.message
+        );
+      }
+      const result = await response.json();
+      return result;
     } catch (error) {
-      console.error("Error al eliminar el servicio:", error);
       throw error;
     }
   }

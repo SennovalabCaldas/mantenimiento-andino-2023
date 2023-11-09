@@ -12,50 +12,45 @@ const initialState = {
     nombre: null,
     active: null,
   },
-  error: null,
-  loading: false,
   allCategories: [],
 };
 
 const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_CATEGORY_SUCCESS:
-        
       return {
         ...state,
-        category: {
-          ...state.category,
-          ...action.payload,
-        },
+        category: action.payload,
+        error: null,
+        loading: false,
       };
-
     case UPDATE_CATEGORY_SUCCESS:
-      console.log(action.payload)
-      const updatedCategory = action.payload;
-      const updatedCategories = state.allCategories.map((category) =>
-        category._id === updatedCategory._id ? updatedCategory : category
-      );
       return {
         ...state,
-        allCategories: updatedCategories,
+        category: action.payload,
+        error: null,
+        loading: false,
+      };
+    case GET_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        category: action.payload,
+        error: null,
+        loading: false,
       };
     case SET_ALL_CATEGORIES:
       return {
         ...state,
         allCategories: action.payload,
-      };
-    case GET_CATEGORY_SUCCESS:
-      return {
-        ...state,
-        category: {
-          ...state.category,
-          ...action.payload,
-        },
+        error: null,
+        loading: false,
       };
     case DELETE_CATEGORY_SUCCESS:
       return {
         ...state,
-        category: initialState.category, // Restaurar el objeto category a su estado inicial
+        category: action.payload,
+        error: null,
+        loading: false,
       };
     default:
       return state;

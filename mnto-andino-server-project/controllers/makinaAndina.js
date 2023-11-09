@@ -1,27 +1,26 @@
-const MakinaAndina = require("../models/makinaAndina"); // Importa el modelo
-const baseApi = "http://localhost:3500/";
-// const baseApi = "http://mantenimientoandino:3000/";
+const MakinaAndina = require("../models/makinaAndina");
+const fs = require("fs");
 
 async function createService(req, res) {
-  const serviceData = req.body;
-  const photos = Array.isArray(req.files.photos)
-    ? req.files.photos.map((file) => file.path)
-    : [];
-  serviceData.photos = photos;
-  const serviceStored = new MakinaAndina(serviceData);
-
+  console.log("req.files", req.files);
   try {
-    await serviceStored.save();
-    res.status(201).json({
-      _id: serviceStored._id,
-      serviceName: serviceStored.serviceName,
-      active: serviceStored.active,
-      description: serviceStored.description,
-      photos: serviceStored.photos,
-      createdAt: serviceStored.createdAt,
+    const { serviceName, description, createdAt } = req.body;
+    const photos = req.files.map((file) => file.filename);
+    console.log("photos", photos);
+    const newService = new MakinaAndina({
+      serviceName,
+      description,
+      photos,
+      createdAt,
     });
-
-    console.log(serviceStored);
+    const savedService = await newService.save();
+    res.status(201).json({
+      _id: savedService._id,
+      serviceName: savedService.serviceName,
+      description: savedService.description,
+      photos: savedService.photos,
+      createdAt: savedService.createdAt,
+    });
   } catch (error) {
     console.error(error);
     res.status(400).json({ msg: "Error al crear el Servicio" });
@@ -31,35 +30,9 @@ async function createService(req, res) {
 async function getAllServices(req, res) {
   try {
     const services = await MakinaAndina.find();
-    const servicesWithFullImageUrls = services.map((service) => {
-      return {
-        _id: service._id,
-        serviceName: service.serviceName,
-        description: service.description,
-        active: service.active,
-        photos: service.photos.map((photo) => `http://localhost:3500/${photo}`), // Agrega el origen del servidor
-        createdAt: service.createdAt,
-      };
-    });
-    console.log(servicesWithFullImageUrls);
-
     res.json(services);
   } catch (error) {
     res.status(500).json({ error: "Error al obtener los servicios" });
-  }
-}
-
-async function deleteServiceById(req, res) {
-  try {
-    const { id } = req.params;
-    const deletedService = await MakinaAndina.findByIdAndDelete(id);
-    if (deletedService) {
-      res.json({ message: "Servicio eliminada exitosamente" });
-    } else {
-      res.status(404).json({ error: "Servicio no encontrado" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Error al eliminar la Servicio" });
   }
 }
 
@@ -70,38 +43,24 @@ async function getServiceById(req, res) {
     if (service) {
       res.json(service);
     } else {
-      res.status(404).json({ error: "Fundación no encontrada" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Error al obtener el Fundación" });
-  }
-}
-
-// Actualizar un cliente por ID
-async function updateServiceById(req, res) {
-  try {
-    const { id } = req.params;
-    console.log("id", id);
-    const serviceData = req.body;
-    console.log("serviceData", serviceData);
-    const photos = Array.isArray(req.files.photos)
-      ? req.files.photos.map((file) => file.path)
-      : [];
-    serviceData.photos = photos;
-    const serviceUpdated = await MakinaAndina.findByIdAndUpdate(
-      id,
-      serviceData,
-      {
-        new: true,
-      }
-    );
-    if (serviceUpdated) {
-      res.json(serviceUpdated);
-    } else {
       res.status(404).json({ error: "Servicio no encontrado" });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error al actualizar el Servicio" });
+    res.status(500).json({ error: "Error al obtener el servicio" });
+  }
+}
+
+async function deleteServiceById(req, res) {
+  try {
+    const { id } = req.params;
+    const deletedTestimonie = await MakinaAndina.findByIdAndDelete(id);
+    if (deletedTestimonie) {
+      res.json({ message: "Testimonie eliminado exitosamente" });
+    } else {
+      res.status(404).json({ error: "Testimonie no encontrado" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error al eliminar el servicio" });
   }
 }
 
@@ -110,5 +69,4 @@ module.exports = {
   getAllServices,
   deleteServiceById,
   getServiceById,
-  updateServiceById,
 };

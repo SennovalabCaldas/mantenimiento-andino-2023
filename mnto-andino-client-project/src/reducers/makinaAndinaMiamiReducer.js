@@ -1,15 +1,18 @@
 import {
+  CREATE_MAKINA_ANDINA_MIAMI_FAILURE,
   CREATE_MAKINA_ANDINA_MIAMI_SUCCESS,
-  UPDATE_MAKINA_ANDINA_MIAMI_SUCCESS,
   GET_MAKINA_ANDINA_MIAMI_SUCCESS,
+  GET_MAKINA_ANDINA_MIAMI_FAILURE,
   DELETE_MAKINA_ANDINA_MIAMI_SUCCESS,
+  DELETE_MAKINA_ANDINA_MIAMI_FAILURE,
+  GET_SERVICE_MAKINA_ANDINA_MIAMI_SUCCESS,
+  GET_SERVICE_MAKINA_ANDINA_MIAMI_FAILURE,
 } from "../actions/types";
 
 const initialState = {
   makinaAndinaMiami: {
     _id: null,
     serviceName: null,
-    active: false,
     description: null,
     photos: [],
     createdAt: null,
@@ -22,32 +25,45 @@ const makinaAndinaMiamiReducer = (state = initialState, action) => {
     case CREATE_MAKINA_ANDINA_MIAMI_SUCCESS:
       return {
         ...state,
-        makinaAndinaMiami: {
-          ...state.makinaAndinaMiami,
-          ...action.payload,
-        },
+        makinaAndinaMiami: action.payload,
       };
-
-    case UPDATE_MAKINA_ANDINA_MIAMI_SUCCESS:
+    case CREATE_MAKINA_ANDINA_MIAMI_FAILURE:
       return {
         ...state,
-        makinaAndinaMiami: {
-          ...state.makinaAndinaMiami,
-          ...action.payload,
-        },
+        error: action.payload,
       };
+
     case GET_MAKINA_ANDINA_MIAMI_SUCCESS:
       return {
         ...state,
         makinaAndinaMiamiServices: action.payload,
       };
+    case GET_MAKINA_ANDINA_MIAMI_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
     case DELETE_MAKINA_ANDINA_MIAMI_SUCCESS:
       return {
         ...state,
-        makinaAndinaMiami: {
-          ...state.makinaAndinaMiami,
-          ...action.payload,
-        },
+        makinaAndinaMiamiServices: state.makinaAndinaMiamiServices.filter(
+          (makinaAndinaMiamiService) => makinaAndinaMiamiService._id !== action.payload
+        ),
+      };
+    case DELETE_MAKINA_ANDINA_MIAMI_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case GET_SERVICE_MAKINA_ANDINA_MIAMI_SUCCESS:
+      return {
+        ...state,
+        makinaAndinaMiami: action.payload,
+      };
+    case GET_SERVICE_MAKINA_ANDINA_MIAMI_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

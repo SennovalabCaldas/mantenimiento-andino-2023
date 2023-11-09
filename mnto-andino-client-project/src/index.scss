@@ -34,7 +34,7 @@ body {
   justify-content: stretch;
 
   .admin-menu-container {
-    min-width: 80px;
+    min-width: 90px;
     .admin-menu {
       width: 190px;
       display: flex;
@@ -52,7 +52,7 @@ body {
       top: 50%;
       left: 0;
       transform: translateY(-50%);
-      background-color: #405566;
+      background-color: #739cbd75;
       width: 50px;
       display: none;
       flex-direction: column;
@@ -79,9 +79,9 @@ body {
 
 /* Estilos para dispositivos móviles */
 @media only screen and (max-width: 880px) {
-  .admin-menu-container .admin-menu {
-    display: none !important;
-  }
+  // .admin-menu-container .admin-menu {
+  //   display: none !important;
+  // }
   .admin-menu-container .slide-bar-panel {
     position: fixed;
     margin-left: 10px;
@@ -105,8 +105,8 @@ body {
 }
 
 .left-panel {
-  min-width: 180px;
-  width: 15%;
+  min-width: 190px;
+  width: 18%;
   transition: all 333ms;
   border-radius: 0;
 }
@@ -132,20 +132,13 @@ body {
 
 .right-panel-big {
   width: calc(100% - 70px);
-  // background-color: red;
 }
 
 .scrollable-container {
-  /* Altura máxima del contenedor para que se muestre la barra de desplazamiento */
   max-height: 400px;
-  /* Agrega un desplazamiento solo si el contenido excede la altura máxima */
   overflow-y: auto;
-
-  /* Oculta la barra de desplazamiento */
   -ms-overflow-style: none;
-  /* Para IE 10+ */
   scrollbar-width: none;
-  /* Para Firefox */
 }
 
 .scrollable-container::-webkit-scrollbar {

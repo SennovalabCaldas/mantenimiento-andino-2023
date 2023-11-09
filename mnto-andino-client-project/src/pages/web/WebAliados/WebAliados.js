@@ -6,43 +6,14 @@ import { image } from "../../../assets";
 import { useState } from "react";
 import { ENV } from "../../../utils/constants";
 
-export const WebAliados = ({ allies }) => {
+export const WebAliados = ({ allies, certifications }) => {
+  console.log("allies", allies);
+  console.log("certifications", certifications);
   const baseApi = ENV.BASE_PATH;
   const uniqueAllyNames = new Set();
   const [selectedAlly, setSelectedAlly] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const defaultAllies = [
-    {
-      avatar: image.unox,
-      allyName: "UNOX",
-      national: true,
-    },
-    {
-      avatar: image.Rational,
-      allyName: "Rational",
-      national: true,
-    },
-    {
-      avatar: image.ally1,
-      allyName: "Katcher",
-      national: true,
-    },
-  ];
-
-  const defaultCertification = [
-    {
-      name: "Instalación y mantenimiento preventivo y correctivo de hornos",
-      avatar: [image.unox, image.Rational],
-    },
-    {
-      name: "Certificación en fallas y mantenimiento en equipos de limpieza industrial",
-      avatar: [image.ally1],
-    },
-  ];
-  defaultAllies.forEach((ally) => {
-    uniqueAllyNames.add(ally.allyName);
-  });
   allies.forEach((ally) => {
     uniqueAllyNames.add(ally.allyName);
   });
@@ -93,19 +64,19 @@ export const WebAliados = ({ allies }) => {
           </div>
           <div className="images panel">
             <div className="certification-img">
-              {defaultCertification.map((cert, index) => (
+              {certifications.map((cert, index) => (
                 <Card
                   key={index}
                   className="certification-card"
                   onClick={() => openModal(cert)}
                 >
-                  {cert.avatar.map((logo, logoIndex) => (
+                  {cert.photos.map((logo, logoIndex) => (
                     <CardMedia
                       key={logoIndex}
                       component="img"
                       alt={cert.name}
                       height="140"
-                      image={logo}
+                      image={`${baseApi}/${logo}`}
                     />
                   ))}
                   <CardContent>
@@ -116,7 +87,17 @@ export const WebAliados = ({ allies }) => {
                         textTransform: "uppercase",
                       }}
                     >
-                      {cert.name}
+                      {cert.certificationName}
+                    </Typography>
+
+                    <Typography
+                      component="div"
+                      style={{
+                        userSelect: "none",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {cert.national}
                     </Typography>
                   </CardContent>
                 </Card>

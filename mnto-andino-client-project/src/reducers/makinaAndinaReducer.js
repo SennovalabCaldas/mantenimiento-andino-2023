@@ -1,19 +1,18 @@
 import {
   CREATE_MAKINA_ANDINA_FAILURE,
   CREATE_MAKINA_ANDINA_SUCCESS,
-  UPDATE_MAKINA_ANDINA_SUCCESS,
-  UPDATE_MAKINA_ANDINA_FAILURE,
-  GET_MAKINA_ANDINAS_SUCCESS,
-  GET_MAKINA_ANDINAS_FAILURE,
+  GET_MAKINA_ANDINA_SUCCESS,
+  GET_MAKINA_ANDINA_FAILURE,
   DELETE_MAKINA_ANDINA_SUCCESS,
   DELETE_MAKINA_ANDINA_FAILURE,
+  GET_SERVICE_MAKINA_ANDINA_SUCCESS,
+  GET_SERVICE_MAKINA_ANDINA_FAILURE,
 } from "../actions/types";
 
 const initialState = {
   makinaAndina: {
     _id: null,
     serviceName: null,
-    active: false,
     description: null,
     photos: [],
     createdAt: null,
@@ -31,57 +30,44 @@ const makinaAndinaReducer = (state = initialState, action) => {
     case CREATE_MAKINA_ANDINA_FAILURE:
       return {
         ...state,
-        makinaAndina: {
-          _id: null,
-          serviceName: null,
-          active: false,
-          description: null,
-          photos: [],
-          createdAt: null,
-        },
+        error: action.payload,
       };
-    case UPDATE_MAKINA_ANDINA_SUCCESS:
-      return {
-        ...state,
-        makinaAndina: action.payload,
-      };
-    case UPDATE_MAKINA_ANDINA_FAILURE:
-      return {
-        ...state,
-        makinaAndina: {
-          _id: null,
-          serviceName: null,
-          active: false,
-          description: null,
-          photos: [],
-          createdAt: null,
-        },
-      };
-    case GET_MAKINA_ANDINAS_SUCCESS:
+
+    case GET_MAKINA_ANDINA_SUCCESS:
       return {
         ...state,
         makinaAndinaServices: action.payload,
       };
-    case GET_MAKINA_ANDINAS_FAILURE:
+    case GET_MAKINA_ANDINA_FAILURE:
       return {
         ...state,
-        makinaAndinaServices: [],
+        error: action.payload,
       };
     case DELETE_MAKINA_ANDINA_SUCCESS:
       return {
         ...state,
         makinaAndinaServices: state.makinaAndinaServices.filter(
-          (makinaAndina) => makinaAndina._id !== action.payload
+          (makinaAndinaService) => makinaAndinaService._id !== action.payload
         ),
       };
     case DELETE_MAKINA_ANDINA_FAILURE:
       return {
         ...state,
-        makinaAndinaServices: [],
+        error: action.payload,
+      };
+    case GET_SERVICE_MAKINA_ANDINA_SUCCESS:
+      return {
+        ...state,
+        makinaAndina: action.payload,
+      };
+    case GET_SERVICE_MAKINA_ANDINA_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;
   }
-}
+};
 
 export default makinaAndinaReducer;

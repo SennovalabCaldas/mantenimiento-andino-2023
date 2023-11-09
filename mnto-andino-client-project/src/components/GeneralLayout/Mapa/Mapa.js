@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import "./Mapa.scss";
 import { Alert, Chip } from "@mui/material";
+import { getAllDepartments } from "../../../actions/departmentActions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const Mapa = ({ departamentos }) => {
   const [hoveredDept, setHoveredDept] = useState(null);
@@ -9,6 +12,8 @@ export const Mapa = ({ departamentos }) => {
   const [isHoveringMessage, setIsHoveringMessage] = useState(false);
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
   const [departamentoClickeado, setDepartamentoClickeado] = useState("");
+  const [departamentosClientes, setDepartamentosClientes] = useState([]);
+  const dispatch = useDispatch();
 
   const mostrarPrimerClienteMensaje = (nombreDepartamento) => {
     setDepartamentoClickeado(nombreDepartamento); // Guarda el nombre del departamento clickeado
@@ -26,6 +31,7 @@ export const Mapa = ({ departamentos }) => {
 
   const handleMouseLeave = () => {
     setHoveredDept(null);
+    setDepartamentoClickeado(""); // Restablece el nombre del departamento clickeado
   };
 
   var simplemaps_countrymap_mapinfo = {
@@ -196,23 +202,20 @@ export const Mapa = ({ departamentos }) => {
       y: 0.99,
     },
   };
-  const departamentosDestacados = [
-    "Caldas",
-    "Quindío",
-    "Cundinamarca",
-    "Antioquia",
-    "Valle del Cauca",
-    "Cauca",
-  ];
-  const coloresDepartamentos = [
-    "#FF5733",
-    "#33FF57",
-    "#5733FF",
-    "#FF33E9",
-    // Agrega más colores según sea necesario
-  ];
 
-  let colorIndex = 0;
+  useEffect(() => {
+    dispatch(getAllDepartments());
+  }, [dispatch]);
+
+  // los departamentosDestacadps contienen el nombre de getAllDepartments
+  const departamentosDestacados = useSelector(
+    (state) => state.department.departments
+  );
+  console.log(departamentosDestacados);
+
+  const departamentosDestacadosArray = departamentosDestacados.map(
+    (departamento) => departamento.departmentName
+  );
 
   const getDepartamentoColor = (deptName) => {
     if (deptName === hoveredDept) {
@@ -270,7 +273,7 @@ export const Mapa = ({ departamentos }) => {
               Tenemos clientes en diferentes departamentos de Colombia:
             </h5>
             <div className="chips-container">
-              {departamentosDestacados.map((departamento, index) => (
+              {departamentosDestacadosArray.map((departamento, index) => (
                 <Chip
                   key={index}
                   label={departamento}

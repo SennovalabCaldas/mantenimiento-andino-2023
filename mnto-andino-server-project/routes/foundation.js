@@ -1,31 +1,38 @@
 const express = require("express");
-const fundationController = require("../controllers/foundation");
-const multiparty = require("connect-multiparty");
+const foundationController = require("../controllers/foundation");
 const md_auth = require("../middlewares/authenticated");
+const multer = require("multer");
+const path = require("path");
 
-const md_upload = multiparty({ uploadDir: "./uploads/foundations" });
+// Configura el almacenamiento y el nombre del archivo
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/foundations"); // Especifica el directorio donde se guardarán las imágenes
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); // Asigna un nombre único al archivo
+  },
+});
+
+// Configura el middleware multer
+const upload = multer({ storage: storage });
+
 const api = express.Router();
 
 api.post(
-  "/new-post",
-  [md_auth.ensureAuth, md_upload],
-  fundationController.createFoundation
+  "/new-fundation",
+  [md_auth.ensureAuth, upload.array("images")],
+  foundationController.createFoundation
 );
 
-api.patch(
-  "/:id",
-  [md_auth.ensureAuth, md_upload],
-  fundationController.updateFoundationById
-);
+api.get("/", foundationController.getAllFoundations);
 
-api.get("/", fundationController.getAllFoundations);
-
-api.get("/:id", fundationController.getFoundationById);
+api.get("/:id", foundationController.getFoundationById);
 
 api.delete(
   "/:id",
   md_auth.ensureAuth,
-  fundationController.deleteFoundationById
+  foundationController.deleteFoundationById
 );
 
 module.exports = api;

@@ -10,3 +10,6 @@ export * from "./Sedes";
 export * from "./Foundation";
 export * from "./Certification";
 export * from "./MakinaAndinaAdmin";
+export * from "./MakinaAndinaMiamiAdmin";
+export * from "./Glamping";
+export * from "./TestimoniesP";

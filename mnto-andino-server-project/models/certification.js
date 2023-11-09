@@ -10,9 +10,11 @@ const certificationSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  avatar: {
-    type: String,
-  },
+  photos: [
+    {
+      type: String,
+    },
+  ],
   joinDate: {
     type: Date,
     default: Date.now,

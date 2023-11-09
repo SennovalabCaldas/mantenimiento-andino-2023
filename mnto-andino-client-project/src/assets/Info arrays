@@ -1,0 +1,117 @@
+NOTICIAS
+  {
+    titulo: "BIENVENIDO",
+    subtitulo:
+      "Conoce nuestros servicios excepcionales y lleva tu Negocio al próximo nivel.",
+    image: image.img6f,
+  },
+  {
+    titulo: "Construimos Sueños",
+    subtitulo: "Creamos Resultados",
+    image: image.img6f,
+  },
+  {
+    titulo: "Únete a nuestro equipo",
+    subtitulo: "Conoce los perfiles que buscamos",
+    image: image.post2,
+  },
+  {
+    titulo: "EMOCIONANTES NOVEDADES",
+    subtitulo:
+      "No te pierdas nuestras últimas noticias y mantente actualizado con nuestras actividades y proyectos",
+    image: image.post2,
+  },
+  
+  --------------------------------------------------------
+ PRODUCTOS
+ 
+const defaultServicesMap = {
+  default1: [
+    {
+      _id: "servicedefault1",
+      name: "Construcción, mantenimiento y reparación de maquinaria industrial y obras civiles.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Obra civil y mantenimiento",
+      photos: [image.service1, image.service2, image.service3],
+    },
+  ],
+  default2: [
+    {
+      _id: "servicedefault2",
+      name: "Construcción, adecuación y mantenimiento de Cavas para Refrigeración y Congelación.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Construcción y adecuación",
+      photos: [image.service1, image.service2],
+    },
+    {
+      _id: "servicedefault3",
+      name: "Mantenimiento preventivo y correctivo de equipos",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Construcción y adecuación",
+      photos: [image.service1, image.service2, image.service3],
+    },
+  ],
+  default3: [
+    {
+      _id: "servicedefault4",
+      name: "Mantenimiento y adecuación de instalaciones eléctricas industriales.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Suministro e instalación",
+      photos: [image.service1, image.service2, image.service3],
+    },
+    {
+      _id: "servicedefault5",
+      name: "Importación y venta de repuestos especializados.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Suministro e instalación",
+      photos: [image.service1, image.service2],
+    },
+    {
+      _id: "servicedefault6",
+      name: "Suministro e instalación de aires acondicionados.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Suministro e instalación",
+      photos: [image.service1, image.service2, image.service3],
+    },
+  ],
+  default4: [
+    {
+      _id: "servicedefault7",
+      name: "Redes de frío, rack, condensadores, neveras autocontenidas, islas de refrigeración y congelación.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Redes de frio y refrigeración",
+      photos: [image.service1, image.service2, image.service3],
+    },
+    {
+      _id: "servicedefault8",
+      name: "Diseño, cálculo, construcción y remanufactura de muebles.",
+      description: "Descripción del Servicio Predeterminado 1",
+      active: true,
+      categoryService: "Redes de frio y refrigeración",
+      photos: [image.service1, image.service2, image.service3],
+    },
+  ],
+};
+
+
+___________________________________________________
+CERTIFICACIONES:
+  const defaultCertification = [
+    {
+      name: "Instalación y mantenimiento preventivo y correctivo de hornos",
+      avatar: [image.unox, image.Rational],
+    },
+    {
+      name: "Certificación en fallas y mantenimiento en equipos de limpieza industrial",
+      avatar: [image.ally1],
+    },
+  ];
+
+

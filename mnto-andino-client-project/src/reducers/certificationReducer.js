@@ -11,7 +11,7 @@ const initialState = {
     _id: null,
     certificationName: null,
     national: undefined,
-    avatar: [],
+    photos: [],
     joinDate: null,
   },
   allCertification: [],
@@ -20,6 +20,7 @@ const initialState = {
 const certificationReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_CERTIFICATION_SUCCESS:
+      console.log("action.payload", action.payload);
       return {
         ...state,
         certification: action.payload,

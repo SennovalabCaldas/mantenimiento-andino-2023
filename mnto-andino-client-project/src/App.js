@@ -5,10 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticateUser } from "./actions/authActions";
 import { Auth } from "./pages/admin";
 import { Loading, WebMenu } from "./components/Shared";
-import { LaMartina, MakinaAndina, MakinaAndinaMiami, WebSedes } from "./pages/web";
+import {
+  LaMartina,
+  MakinaAndina,
+  MakinaAndinaMiami,
+  WebSedes,
+} from "./pages/web";
 import { PrivacyPolicy } from "./components/Shared/Footer/PrivacyPolicy";
 import { NotFound } from "./components/Shared/NotFound";
 import { WebPqrs } from "./pages/web/WebPqrs/WebPqrs";
+import { VerifyToken } from "./components";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -65,7 +71,10 @@ const App = () => {
           <Routes>
             {isLoggedIn ? (
               <>
-              <Route path="*" element={<AppRouter isLoggedIn={isLoggedIn} />} />
+                <Route
+                  path="*"
+                  element={<AppRouter isLoggedIn={isLoggedIn} />}
+                />
               </>
             ) : (
               <Route path="/" element={<WebMenu />} />
@@ -77,6 +86,7 @@ const App = () => {
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
             <Route path="/sedes" element={<WebSedes />} />
             <Route path="/pqrs" element={<WebPqrs />} />
+            <Route path="/verify-auth/:token" element={<VerifyToken />} />
           </Routes>
         )}
       </BrowserRouter>

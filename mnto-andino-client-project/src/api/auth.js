@@ -54,17 +54,33 @@ export class Auth {
     }
   };
 
-  logout = async() => {
+  logout = async () => {
     localStorage.clear();
-    if (!localStorage.getItem("token"))
-      window.location.href="/"
+    if (!localStorage.getItem("token")) window.location.href = "/";
   };
 
-  // logout = () => {
-  //   sessionStorage.removeItem("access");
-  //   sessionStorage.removeItem("refresh");
-  //   window.location.href = "/";
-  // };
+  verifyAuth = async (token) => {
+    const url = `${this.baseApi}/${API_ROUTES.VERIFY_AUTH}/${token}`;
+    console.log(url);
+    const params = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(url, params);
+      if (!response.ok) {
+        throw new Error("Error en la solicitud: " + response.status);
+      }
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
   resetPassword = async (data) => {
     const url = `${this.baseApi}/${API_ROUTES.RESET_PASSWORD}`;
@@ -160,8 +176,4 @@ export class Auth {
   getRefreshToken = () => {
     return localStorage.getItem("refresh");
   };
-
-
-  
-
 }

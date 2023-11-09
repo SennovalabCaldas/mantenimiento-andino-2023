@@ -1,16 +1,15 @@
-// serviceActions.js
-import * as types from "./types";
-import { MakinaAndinaMiami } from "../api/makinaAndinaMiami"; // Ajusta la ruta a la ubicación de tu clase Service
 
+import { MakinaAndinaMiami } from "../api/makinaAndinaMiami"; 
+import * as types from "./types";
 const makinaAndinaMiamiController = new MakinaAndinaMiami();
 
-
-export const createService = (makinaAndinaData) => {
+export const createServiceMakinaMiami = (makinaAndinaMiamiServiceData) => {
+  console.log("makinaAndinaMiamiServiceData", makinaAndinaMiamiServiceData);
   return async (dispatch, getState) => {
     try {
       const newMakinaAndinaService =
-        await makinaAndinaMiamiController.createMakinaAndinaService(
-          makinaAndinaData
+        await makinaAndinaMiamiController.createMakinaAndinaMiamiService(
+          makinaAndinaMiamiServiceData
         );
       dispatch({
         type: types.CREATE_MAKINA_ANDINA_MIAMI_SUCCESS,
@@ -25,14 +24,13 @@ export const createService = (makinaAndinaData) => {
   };
 };
 
-export const getServicesMiami = () => {
-  return async (dispatch, getState) => {
+export const getServicesMakinaMiami = () => {
+  return async (dispatch) => {
     try {
-      const makinaAndinaMiamiServices =
-        await makinaAndinaMiamiController.getMakinaAndinaMiamiServices();
+      const makinaAndinaServices = await makinaAndinaMiamiController.getServicesMiami();
       dispatch({
         type: types.GET_MAKINA_ANDINA_MIAMI_SUCCESS,
-        payload: makinaAndinaMiamiServices,
+        payload: makinaAndinaServices,
       });
     } catch (error) {
       dispatch({
@@ -43,41 +41,35 @@ export const getServicesMiami = () => {
   };
 };
 
-export const deleteService = (serviceId) => {
-  return async (dispatch, getState) => {
+export const deleteServiceMakinaMiami = (_id) => async (dispatch) => {
+  try {
+    await makinaAndinaMiamiController.deleteMakinaAndinaServiceMiami(_id);
+    dispatch({
+      type: types.DELETE_MAKINA_ANDINA_MIAMI_SUCCESS,
+      payload: _id,
+    });
+  } catch (error) {
+    dispatch({
+      type: types.DELETE_MAKINA_ANDINA_MIAMI_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+export const getMakinaMiami = (_id) => {
+  return async (dispatch) => {
     try {
-      await makinaAndinaMiamiController.deleteMakinaAndinaService(serviceId);
+      const makinaAndinaService =
+        await makinaAndinaMiamiController.getMakinaAndinaServiceMiami(_id);
       dispatch({
-        type: types.DELETE_MAKINA_ANDINA_MIAMI_SUCCESS,
-        payload: serviceId,
+        type: types.GET_SERVICE_MAKINA_ANDINA_MIAMI_SUCCESS,
+        payload: makinaAndinaService,
       });
     } catch (error) {
       dispatch({
-        type: types.DELETE_MAKINA_ANDINA_MIAMI_FAILURE,
+        type: types.GET_SERVICE_MAKINA_ANDINA_MIAMI_FAILURE,
         payload: error.message,
       });
     }
   };
 };
-
-export const updateService = (serviceId, makinaAndinaData) => {
-  return async (dispatch, getState) => {
-    try {
-      const updatedMakinaAndinaService =
-        await makinaAndinaMiamiController.updateMakinaAndinaService(
-          serviceId,
-          makinaAndinaData
-        );
-      dispatch({
-        type: types.UPDATE_MAKINA_ANDINA_MIAMI_SUCCESS,
-        payload: updatedMakinaAndinaService,
-      });
-    } catch (error) {
-      dispatch({
-        type: types.UPDATE_MAKINA_ANDINA_MIAMI_FAILURE,
-        payload: error.message,
-      });
-    }
-  };
-};
-

@@ -1,12 +1,8 @@
 import {
-  CREATE_GLAMPING_SUCCESS,
-  CREATE_GLAMPING_FAILURE,
-  UPDATE_GLAMPING_SUCCESS,
-  UPDATE_GLAMPING_FAILURE,
-  GET_GLAMPING_SUCCESS,
-  GET_GLAMPING_FAILURE,
-  DELETE_GLAMPING_SUCCESS,
-  DELETE_GLAMPING_FAILURE,
+  CREATE_GLAMPING_SERVICE_SUCCESS,
+  SET_ALL_GLAMPING_SERVICES_SERVICE,
+  GET_GLAMPING_SERVICE_BY_ID_SUCCESS,
+  DELETE_GLAMPING_SERVICE_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -23,61 +19,25 @@ const initialState = {
 
 const glampingReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_GLAMPING_SUCCESS:
+    case CREATE_GLAMPING_SERVICE_SUCCESS:
       return {
         ...state,
         glamping: action.payload,
       };
-    case CREATE_GLAMPING_FAILURE:
-      return {
-        ...state,
-        glamping: {
-          _id: null,
-          serviceName: null,
-          active: false,
-          description: null,
-          photos: [],
-          createdAt: null,
-        },
-      };
-    case UPDATE_GLAMPING_SUCCESS:
-      return {
-        ...state,
-        glamping: action.payload,
-      };
-    case UPDATE_GLAMPING_FAILURE:
-      return {
-        ...state,
-        glamping: {
-          _id: null,
-          serviceName: null,
-          active: false,
-          description: null,
-          photos: [],
-          createdAt: null,
-        },
-      };
-    case GET_GLAMPING_SUCCESS:
+    case SET_ALL_GLAMPING_SERVICES_SERVICE:
       return {
         ...state,
         glampingServices: action.payload,
       };
-    case GET_GLAMPING_FAILURE:
+    case GET_GLAMPING_SERVICE_BY_ID_SUCCESS:
       return {
         ...state,
-        glampingServices: [],
+        glamping: action.payload,
       };
-    case DELETE_GLAMPING_SUCCESS:
+    case DELETE_GLAMPING_SERVICE_SUCCESS:
       return {
         ...state,
-        glampingServices: state.glampingServices.filter(
-          (glamping) => glamping._id !== action.payload
-        ),
-      };
-    case DELETE_GLAMPING_FAILURE:
-      return {
-        ...state,
-        glampingServices: [],
+        glamping: action.payload,
       };
     default:
       return state;

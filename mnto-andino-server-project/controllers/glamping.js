@@ -1,27 +1,29 @@
 const Glamping = require("../models/glamping"); // Importa el modelo
 
 async function createService(req, res) {
-  const serviceData = req.body;
-  const photos = Array.isArray(req.files.photos)
-    ? req.files.photos.map((file) => file.path)
-    : [];
-  serviceData.photos = photos;
-  const serviceStored = new Glamping(serviceData);
+  console.log("req.files", req.files);
 
   try {
-    await serviceStored.save();
-    res.status(201).json({
-      _id: serviceStored._id,
-      serviceName: serviceStored.serviceName,
-      description: serviceStored.description,
-      photos: serviceStored.photos,
-      createdAt: serviceStored.createdAt,
-    });
+    const images = req.files.map((file) => file.path);
+    const glampingData = {
+      images: images,
+      serviceName: req.body.serviceName,
+      description: req.body.description,
+    };
 
-    console.log(serviceStored);
+    const glamping = new Glamping(glampingData);
+    await glamping.save();
+
+    res.status(201).json({
+      _id: glamping._id,
+      images: glamping.images,
+      serviceName: glamping.serviceName,
+      description: glamping.description,
+      createdAt: glamping.createdAt,
+    });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ msg: "Error al crear el Servicio" });
+    res.status(500).json({ error: "Error al crear la fundación" });
   }
 }
 
@@ -68,13 +70,9 @@ async function updateServiceById(req, res) {
     const { id } = req.params;
     console.log("id", id);
     const serviceData = req.body;
-    const updatedService = await Glamping.findByIdAndUpdate(
-      id,
-      serviceData,
-      {
-        new: true,
-      }
-    );
+    const updatedService = await Glamping.findByIdAndUpdate(id, serviceData, {
+      new: true,
+    });
     if (updatedService) {
       res.json(updatedService);
     } else {

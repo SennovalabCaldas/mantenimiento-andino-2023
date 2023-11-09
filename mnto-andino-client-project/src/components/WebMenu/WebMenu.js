@@ -19,6 +19,7 @@ import { getAllAllies } from "../../actions/allyActions";
 import { getAllCertifications } from "../../actions/certificationActions";
 import { getAllProjects } from "../../actions/projectActions";
 import { getAllFoundationsNews } from "../../actions/foundationNewsActions";
+import { getAllTestimonies } from "../../actions/testimonieActions";
 
 import Flags from "react-flags-select";
 import getCountryCode from "../../utils/getCountryCode";
@@ -48,6 +49,7 @@ export const WebMenu = () => {
     dispatch(getAllCategoriesService());
     dispatch(getServices());
     dispatch(getAllClients());
+    dispatch(getAllTestimonies());
     dispatch(getAllAllies());
     dispatch(getAllCertifications());
     dispatch(getAllProjects());
@@ -208,11 +210,14 @@ function Section3() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllClients());
+    dispatch(getAllTestimonies());
   }, [dispatch]);
   const clients = useSelector((state) => state.client.clients);
+  const testimonies = useSelector((state) => state.testimonie.testimonies);
+  console.log("testimonies =>", testimonies);
   return (
     <div className="section web-section" id="section3">
-      <WebClients clients={clients} />
+      <WebClients clients={clients} testimonies={testimonies} />
     </div>
   );
 }
@@ -221,12 +226,16 @@ function Section4() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllAllies());
+    dispatch(getAllCertifications());
   }, [dispatch]);
   const allies = useSelector((state) => state.ally.allAllies);
+  const certifications = useSelector(
+    (state) => state.certification.allCertification
+  );
 
   return (
     <div className="section web-section" id="section4">
-      <WebAliados allies={allies} />
+      <WebAliados allies={allies} certifications={certifications} />
     </div>
   );
 }

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Menu, Icon } from "semantic-ui-react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import "./RoutesMenu.scss";
-import SlideBarWebMenuPanel from "../GeneralLayout/TopBar/SlideBarWebMenuPanel";
+import { image } from "../../assets";
 
 const menuItems = [
   {
@@ -37,6 +36,18 @@ const menuItems = [
     path: "/admin/clients",
     icon: "handshake",
     text: "Clientes",
+    roles: ["admin"],
+  },
+  {
+    path: "/admin/departments-clients",
+    icon: "handshake",
+    text: "Departamentos clientes",
+    roles: ["admin"],
+  },
+  {
+    path: "/admin/testimonies",
+    icon: "handshake",
+    text: "Testimonios",
     roles: ["admin"],
   },
 
@@ -91,17 +102,8 @@ const menuItems = [
 ];
 
 export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
-  const location = useLocation();
   const user = useSelector((state) => state.auth.user);
   const [activeSection, setActiveSection] = useState("");
-  const isCurrentPath = (path) => {
-    const { pathname } = location;
-    return path === pathname;
-  };
-
-  const handleSetActiveSection = (section) => {
-    setActiveSection(section);
-  };
 
   const filteredMenuItems = menuItems.filter(
     (item) =>
@@ -110,6 +112,9 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
 
   return (
     <div className="admin-menu-container">
+      <div className="admin-menu-header">
+        <img src={image.logomn} alt="logo" />
+      </div>
       <Menu
         fluid
         vertical
@@ -120,23 +125,23 @@ export const RoutesMenu = ({ menuVisible, activeMenuItem }) => {
           <Menu.Item
             as={Link}
             to={item.path}
-            active={activeMenuItem === item.path} // Utiliza activeSection para determinar el elemento activo
+            active={activeMenuItem === item.path}
             key={item.path}
             className={activeSection === item.path ? "active" : ""}
           >
             <Icon name={item.icon} />
             {menuVisible && item.text}{" "}
-            {/* Mostrar el texto solo si el menú está visible */}
           </Menu.Item>
         ))}
       </Menu>
-
-      {/* <SlideBarWebMenuPanel
-        handleSetActiveSection={handleSetActiveSection}
-        activeMenuItem={activeMenuItem}
-        className="admin-menu"
-        show={menuVisible}
-      /> */}
+      <div>
+        <div className="admin-menu-footer">
+          <img src={image.logoSennovalabNoC} alt="logo" />
+          <p>
+            <strong>© 2023 SENNOVALAB</strong>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

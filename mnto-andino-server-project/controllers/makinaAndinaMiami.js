@@ -1,24 +1,25 @@
 const MakinaAndinaMiami = require("../models/makinaAndinaMiami"); // Importa el modelo
 
 async function createService(req, res) {
-  const serviceData = req.body;
-  const photos = Array.isArray(req.files.photos)
-    ? req.files.photos.map((file) => file.path)
-    : [];
-  serviceData.photos = photos;
-  const serviceStored = new MakinaAndinaMiami(serviceData);
-
+  console.log("req.files", req.files);
   try {
-    await serviceStored.save();
-    res.status(201).json({
-      _id: serviceStored._id,
-      serviceName: serviceStored.serviceName,
-      description: serviceStored.description,
-      photos: serviceStored.photos,
-      createdAt: serviceStored.createdAt,
+    const { serviceName, description, createdAt } = req.body;
+    const photos = req.files.map((file) => file.filename);
+    console.log("photos", photos);
+    const newService = new MakinaAndinaMiami({
+      serviceName,
+      description,
+      photos,
+      createdAt,
     });
-
-    console.log(serviceStored);
+    const savedService = await newService.save();
+    res.status(201).json({
+      _id: savedService._id,
+      serviceName: savedService.serviceName,
+      description: savedService.description,
+      photos: savedService.photos,
+      createdAt: savedService.createdAt,
+    });
   } catch (error) {
     console.error(error);
     res.status(400).json({ msg: "Error al crear el Servicio" });

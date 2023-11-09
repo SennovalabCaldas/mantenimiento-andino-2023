@@ -1,14 +1,27 @@
 const express = require("express");
 const glampingController = require("../controllers/glamping");
-const multiparty = require("connect-multiparty");
 const md_auth = require("../middlewares/authenticated");
+const multer = require("multer");
+const path = require("path");
 
-const md_upload = multiparty({ uploadDir: "./uploads/glamping" });
+// Configura el almacenamiento y el nombre del archivo
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/glamping"); // Especifica el directorio donde se guardarán las imágenes
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); // Asigna un nombre único al archivo
+  },
+});
+
+// Configura el middleware multer
+const upload = multer({ storage: storage });
+
 const api = express.Router();
 
 api.post(
-  "/new-post",
-  [md_auth.ensureAuth, md_upload],
+  "/new-service",
+  [md_auth.ensureAuth, upload.array("images")],
   glampingController.createService
 );
 

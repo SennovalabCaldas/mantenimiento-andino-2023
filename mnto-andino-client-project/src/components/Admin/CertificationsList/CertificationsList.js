@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tab } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TextField,
   Button,
@@ -13,9 +13,6 @@ import {
   Select,
   Switch,
 } from "@material-ui/core";
-
-import "./CertificationList.scss";
-import { useSelector } from "react-redux";
 import {
   createCertification,
   getAllCertifications,
@@ -24,35 +21,23 @@ import {
 import { CertificationsNal } from "../CertificationsNal";
 import { CertificationsInterNal } from "../CertificationsInterNal";
 
+import "./CertificationList.scss";
+
 export const CertificationsList = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCertifications());
+  }, [dispatch]);
   const certifications = useSelector(
     (state) => state.certification.allCertification
   );
-  console.log("Certificaciones:", certifications);
 
   const [activeTab, setActiveTab] = useState(0);
-  const [isCreatingCertification, setIsCreatingCertification] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-
   const [certificationName, setCertificationName] = useState("");
   const [national, setNational] = useState(true);
-  const [avatarPreview, setAvatarPreview] = useState(null);
-  const [avatar, setAvatar] = useState(null);
-  const [newCertification, setNewCertification] = useState({
-    certificationName: "",
-    national: true,
-    avatar: [],
-    joinDate: new Date().toISOString(),
-  });
-
-  const [editingCertification, setEditingCertification] = useState(null);
-  const [editedCertification, setEditedCertification] = useState({
-    certificationName: "",
-    national: true,
-    avatar: [],
-    joinDate: new Date().toISOString(),
-  });
+  const [photos, setPhotos] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const nationalCertification = certifications.filter(
     (certification) => certification.national
@@ -60,17 +45,55 @@ export const CertificationsList = () => {
   const internationalCertification = certifications.filter(
     (certification) => !certification.national
   );
-  console.log("Certificaciones nacionales:", nationalCertification);
-  console.log("Certificaciones internacionales:", internationalCertification);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
     setModalOpen(true);
   };
 
-  useEffect(() => {
-    dispatch(getAllCertifications());
-  }, [dispatch]);
+  const handleModalClose = () => {
+    setModalOpen(false);
+    setCertificationName("");
+    setNational(true);
+    setPhotos([]);
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFiles = Array.from(event.target.files);
+    setPhotos(selectedFiles);
+  };
+
+  const handleSave = async () => {
+    const saveCertification = async (data) => {
+      try {
+        if (data._id) {
+          await dispatch(updateCertification(data._id, data));
+        } else {
+          await dispatch(createCertification(data));
+        }
+        await dispatch(getAllCertifications());
+      } catch (error) {
+        console.error("Error al guardar la certificación:", error);
+      } finally {
+        handleModalClose();
+      }
+    };
+
+    if (photos.length > 0) {
+      let data = {
+        certificationName: certificationName,
+        national: national,
+        photos: Array.isArray(photos) ? photos : [photos],
+      };
+
+      saveCertification(data);
+    } else {
+      let data = {
+        certificationName: certificationName,
+        national: national,
+      };
+      saveCertification(data);
+    }
+  };
 
   const panes = [
     {
@@ -86,7 +109,6 @@ export const CertificationsList = () => {
     },
     {
       menuItem: "Certificaciones Internacionales",
-
       render: () => (
         <Tab.Pane>
           <CertificationsInterNal
@@ -98,92 +120,17 @@ export const CertificationsList = () => {
     },
   ];
 
-  const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const blob = new Blob([file], { type: file.type });
-      setAvatar({
-        blob,
-        image: file,
-      });
-      const imageUrl = URL.createObjectURL(file);
-      setAvatarPreview(imageUrl);
-    }
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
-    setEditingCertification(null);
-    setIsEditing(false);
-    setEditedCertification({
-      certificationName: "",
-      national: true,
-      avatar: [],
-      joinDate: new Date().toISOString(),
-    });
-  };
-
-  const handleSave = async () => {
-    const data = {
-      ...newCertification,
-      certificationName: certificationName,
-      national: national,
-      avatar: avatar,
-      joinDate: new Date().toISOString(),
-    };
-    console.log("Guardando datos de certificación:", data);
-    if (data._id) {
-      console.log("Updating certificación", data._id);
-      console.log(data._id);
-      await dispatch(updateCertification(data._id, data));
-    } else {
-      console.log("Saving new certificación", data);
-      await dispatch(createCertification(data));
-    }
-    await dispatch(getAllCertifications());
-    setCertificationName("");
-    setNational(true);
-    setAvatarPreview(null);
-    setAvatar(null);
-    setNewCertification({
-      certificationName: "",
-      national: true,
-      avatar: [],
-      joinDate: new Date().toISOString(),
-    });
-  };
-
-  const handleUpdateCertification = async () => {
-    setIsCreatingCertification(true);
-    try {
-      console.log("Updated Photos:", editingCertification.avatar);
-      const updatedCertification = {
-        ...editingCertification,
-        avatar: editingCertification.avatar,
-      };
-      console.log("Updated certification:", updatedCertification);
-      await dispatch(
-        updateCertification(editingCertification._id, updatedCertification)
-      );
-      await dispatch(getAllCertifications());
-      setIsEditing(false);
-      handleModalClose();
-    } catch (error) {
-      console.error("Error updating certification:", error);
-    }
-  };
   return (
-    <>
-      <div>
+    <div className="certifications-list-container">
+      <div className="certifications-list-form">
         <h2>Crear certificación</h2>
-
-        <Card className="card-create-project">
+        <Card className="card-create-certification">
           <CardContent>
             <Typography variant="h5" component="h3">
               Ingresar una nueva certificación
             </Typography>
             <form encType="multipart/form-data">
-              <div className="card-project-style">
+              <div className="certification-form-fields">
                 <TextField
                   label="Nombre"
                   value={certificationName}
@@ -191,7 +138,7 @@ export const CertificationsList = () => {
                 />
                 <Switch
                   checked={national}
-                  onChange={(e) => setNational(e.target.checked)}
+                  onChange={() => setNational(!national)}
                   color="primary"
                   inputProps={{ "aria-label": "Certificación Nacional" }}
                 />
@@ -200,26 +147,35 @@ export const CertificationsList = () => {
                     ? "Certificación Nacional"
                     : "Certificación Internacional"}
                 </Typography>
-
                 <input
                   type="file"
-                  id="imageUpload"
+                  accept="image/*"
+                  multiple
+                  id="file-input"
                   style={{ display: "none" }}
-                  onChange={handleAvatarChange}
+                  onChange={handleFileChange}
                 />
-                <Button
-                  onClick={() => document.getElementById("imageUpload").click()}
-                  variant="contained"
-                  color="primary"
-                >
-                  Upload Image
-                </Button>
-                {avatarPreview && (
-                  <img
-                    src={avatarPreview}
-                    alt="Avatar Preview"
-                    style={{ height: "100px" }}
-                  />
+                <label htmlFor="file-input">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    style={{ marginTop: "10px" }}
+                  >
+                    Elegir archivos
+                  </Button>
+                </label>
+                {photos.length > 0 && (
+                  <div className="certification-images-preview">
+                    {photos.map((file, index) => (
+                      <img
+                        key={index}
+                        src={URL.createObjectURL(file)}
+                        alt={`Foto ${index}`}
+                        className="certification-image"
+                      />
+                    ))}
+                  </div>
                 )}
                 <Button
                   onClick={handleSave}
@@ -232,7 +188,9 @@ export const CertificationsList = () => {
             </form>
           </CardContent>
         </Card>
-        <Card className="card-list-project">
+      </div>
+      <div className="certifications-list-tabs">
+        <Card className="card-list-certification">
           <Tab
             panes={panes}
             activeIndex={activeTab}
@@ -241,6 +199,6 @@ export const CertificationsList = () => {
           />
         </Card>
       </div>
-    </>
+    </div>
   );
 };

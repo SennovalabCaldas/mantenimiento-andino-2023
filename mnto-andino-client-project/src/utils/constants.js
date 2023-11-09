@@ -1,6 +1,6 @@
 const SERVER_IP =
   process.env.NODE_ENV !== "production"
-    ?  "http://localhost:3500"
+    ? "http://localhost:3500"
     : "http://mantenimientoandino.co:3000";
 
 const API_VERSION = "api/v1";
@@ -25,6 +25,7 @@ export const ENV = {
     GET_USER: "get-user",
     REGISTER: "auth/register",
     LOGIN: "auth/login",
+    VERIFY_AUTH: "auth/verify-auth",
     RESET_PASSWORD: "auth/change-password",
     PASSWORD_RECOVERY: "auth/password-recovery",
     REFRESH_TOKEN: "auth/refresh-access-token",
@@ -40,6 +41,8 @@ export const ENV = {
     SERVICE: "admin/services",
     CLIENT: "admin/clients/new-client",
     CLIENTS: "admin/clients",
+    TESTIMONIE: "admin/testimonies",
+    DEPARTMENTS: "admin/departments",
   },
   JWT: {
     ACCESS: "access",

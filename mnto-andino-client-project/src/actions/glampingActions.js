@@ -1,82 +1,88 @@
-import * as types from "./types";
+import {
+  CREATE_GLAMPING_SERVICE_SUCCESS,
+  SET_ALL_GLAMPING_SERVICES_SERVICE,
+  GET_GLAMPING_SERVICE_BY_ID_SUCCESS,
+  DELETE_GLAMPING_SERVICE_SUCCESS,
+} from "./types";
 import { Glamping } from "../api/glamping"; // Ajusta la ruta a la ubicación de tu clase Service
 
 const glampingController = new Glamping();
 
-
-export const createService = (makinaAndinaData) => {
+export const createService = (glampingData) => {
   return async (dispatch, getState) => {
     try {
-      const newGlampingService =
-        await glampingController.createGlampingService(
-          makinaAndinaData
-        );
-      dispatch({
-        type: types.CREATE_GLAMPING_SUCCESS,
-        payload: newGlampingService,
-      });
+      const glampingService = await glampingController.createGlamping(
+        glampingData
+      );
+      dispatch(createGlampingSuccess(glampingService));
     } catch (error) {
-      dispatch({
-        type: types.CREATE_GLAMPING_FAILURE,
-        payload: error.message,
-      });
+      console.error(error);
     }
   };
 };
 
-export const getServicesMiami = () => {
+export const getAllGlampingServices = () => {
   return async (dispatch, getState) => {
     try {
       const glampingServices =
-        await glampingController.getGlampingServices();
-      dispatch({
-        type: types.GET_GLAMPING_SUCCESS,
-        payload: glampingServices,
-      });
+        await glampingController.getAllGlampingServices();
+      dispatch(setAllGlampingServices(glampingServices));
     } catch (error) {
-      dispatch({
-        type: types.GET_GLAMPING_FAILURE,
-        payload: error.message,
-      });
+      console.error(error);
     }
   };
 };
 
-export const deleteService = (serviceId) => {
+export const getGlampingServiceById = (glampingServiceId) => {
   return async (dispatch, getState) => {
     try {
-      await glampingController.deleteGlampingService(serviceId);
-      dispatch({
-        type: types.DELETE_GLAMPING_SUCCESS,
-        payload: serviceId,
-      });
+      const glampingService = await glampingController.getGlampingServiceById(
+        glampingServiceId
+      );
+      dispatch(getGlampingServiceSuccess(glampingService));
     } catch (error) {
-      dispatch({
-        type: types.DELETE_GLAMPING_FAILURE,
-        payload: error.message,
-      });
+      console.error(error);
     }
   };
 };
 
-export const updateService = (serviceId, makinaAndinaData) => {
+export const deleteGlampingService = (glampingServiceId) => {
   return async (dispatch, getState) => {
     try {
-      const updatedGlampingService =
-        await glampingController.updateGlampingService(
-          serviceId,
-          makinaAndinaData
-        );
-      dispatch({
-        type: types.UPDATE_GLAMPING_SUCCESS,
-        payload: updatedGlampingService,
-      });
+      const glampingService = await glampingController.deleteGlampingService(
+        glampingServiceId
+      );
+      dispatch(deleteGlampingServiceSuccess(glampingService));
     } catch (error) {
-      dispatch({
-        type: types.UPDATE_GLAMPING_FAILURE,
-        payload: error.message,
-      });
+      console.error(error);
     }
   };
 };
 
+export const createGlampingSuccess = (glampingService) => {
+  return {
+    type: CREATE_GLAMPING_SERVICE_SUCCESS,
+    payload: glampingService,
+  };
+};
+
+export const setAllGlampingServices = (glampingServices) => {
+  return {
+    type: SET_ALL_GLAMPING_SERVICES_SERVICE,
+    payload: glampingServices,
+  };
+};
+
+export const getGlampingServiceSuccess = (glampingService) => {
+  return {
+    type: GET_GLAMPING_SERVICE_BY_ID_SUCCESS,
+    payload: glampingService,
+  };
+};
+
+export const deleteGlampingServiceSuccess = (glampingService) => {
+  return {
+    type: DELETE_GLAMPING_SERVICE_SUCCESS,
+    payload: glampingService,
+  };
+};

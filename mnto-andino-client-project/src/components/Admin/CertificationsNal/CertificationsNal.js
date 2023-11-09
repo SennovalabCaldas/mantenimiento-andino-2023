@@ -24,6 +24,14 @@ export const CertificationsNal = ({ certifications, national }) => {
     }
   };
 
+  const handlePreviewImage = (photos) => {
+    if (Array.isArray(photos) && photos.length > 0) {
+      setPreviewImage(photos[0]); // Muestra la primera foto si hay varias
+    } else if (typeof photos === 'string') {
+      setPreviewImage(photos); // Muestra la única foto si hay solo una
+    }
+  };
+
   const indexOfLastCertification = currentPage * certificationsPerPage;
   const indexOfFirstCertification = indexOfLastCertification - certificationsPerPage;
   const currentCertifications = certifications.slice(
@@ -39,7 +47,7 @@ export const CertificationsNal = ({ certifications, national }) => {
         <thead>
           <tr>
             <th>Proyecto</th>
-            <th>Foto</th>
+            <th>Fotos</th>
             <th>Fecha de inicio</th>
             <th>Acciones</th>
           </tr>
@@ -49,21 +57,35 @@ export const CertificationsNal = ({ certifications, national }) => {
             <tr key={certification.id}>
               <td>{certification.certificationName}</td>
               <td>
-                <img
-                  src={`${baseApi}/${certification.avatar}`}
-                  alt="Avatar"
-                  width="50"
-                  height="50"
-                />
+                <div className="image-container">
+                  {Array.isArray(certification.photos) &&
+                    certification.photos.map((photo, index) => (
+                      <img
+                        key={index}
+                        src={`${baseApi}/${photo}`}
+                        alt={`Foto ${index + 1}`}
+                        className="small-image"
+                        onClick={() => handlePreviewImage(certification.photos)}
+                      />
+                    ))}
+                  {typeof certification.photos === 'string' && (
+                    <img
+                      src={`${baseApi}/${certification.photos}`}
+                      alt="Foto 1"
+                      className="small-image"
+                      onClick={() => handlePreviewImage(certification.photos)}
+                    />
+                  )}
+                </div>
               </td>
               <td>{new Date(certification.joinDate).toLocaleDateString()}</td>
               <td>
-                <span
-                  className="delete-link"
+                <button
+                  className="btn btn-danger"
                   onClick={() => handleDeleteCertification(certification._id)}
                 >
                   Eliminar
-                </span>
+                </button>
               </td>
             </tr>
           ))}

@@ -1,80 +1,9 @@
 import React, { useRef, useState } from "react";
 import { image } from "../../../assets";
-import Slider from "react-slick";
+import { ENV } from "../../../utils";
 
 const defaultServicesMap = {
-  default1: [
-    {
-      _id: "servicedefault1",
-      name: "Construcción, mantenimiento y reparación de maquinaria industrial y obras civiles.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Obra civil y mantenimiento",
-      photos: [image.service1, image.service2, image.service3],
-    },
-  ],
-  default2: [
-    {
-      _id: "servicedefault2",
-      name: "Construcción, adecuación y mantenimiento de Cavas para Refrigeración y Congelación.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Construcción y adecuación",
-      photos: [image.service1, image.service2],
-    },
-    {
-      _id: "servicedefault3",
-      name: "Mantenimiento preventivo y correctivo de equipos",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Construcción y adecuación",
-      photos: [image.service1, image.service2, image.service3],
-    },
-  ],
-  default3: [
-    {
-      _id: "servicedefault4",
-      name: "Mantenimiento y adecuación de instalaciones eléctricas industriales.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Suministro e instalación",
-      photos: [image.service1, image.service2, image.service3],
-    },
-    {
-      _id: "servicedefault5",
-      name: "Importación y venta de repuestos especializados.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Suministro e instalación",
-      photos: [image.service1, image.service2],
-    },
-    {
-      _id: "servicedefault6",
-      name: "Suministro e instalación de aires acondicionados.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Suministro e instalación",
-      photos: [image.service1, image.service2, image.service3],
-    },
-  ],
-  default4: [
-    {
-      _id: "servicedefault7",
-      name: "Redes de frío, rack, condensadores, neveras autocontenidas, islas de refrigeración y congelación.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Redes de frio y refrigeración",
-      photos: [image.service1, image.service2, image.service3],
-    },
-    {
-      _id: "servicedefault8",
-      name: "Diseño, cálculo, construcción y remanufactura de muebles.",
-      description: "Descripción del Servicio Predeterminado 1",
-      active: true,
-      categoryService: "Redes de frio y refrigeración",
-      photos: [image.service1, image.service2, image.service3],
-    },
-  ],
+
 };
 
 export const ProductList = ({
@@ -83,24 +12,12 @@ export const ProductList = ({
   activeTab,
   nameActiveTab,
 }) => {
-  console.log("services =>", services);
-  const phoneNumber = "573103833591";
+  const baseApi = ENV.BASE_PATH;
+  const phoneNumber = "+573103833591";
   const videoRef = useRef(null);
   const categoryServiceList = useRef(
     categoryServices?.map((category) => category.nameCategoryService)
   );
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    fade: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-  };
 
   const mergedCategories = [
     ...categoryServiceList.current,
@@ -111,9 +28,7 @@ export const ProductList = ({
 
   const groupedServices = uniqueValuesMergedCategories.map((category) => {
     const matchingDefaultCategory = Object.keys(defaultServicesMap).find(
-      (key) => {
-        return defaultServicesMap[key][0].categoryService === category;
-      }
+      (key) => defaultServicesMap[key][0].categoryService === category
     );
     let servicesForCategory = [];
 
@@ -134,12 +49,23 @@ export const ProductList = ({
       ];
     }
 
+    servicesForCategory.forEach((service) => {
+      if (service.photos && Array.isArray(service.photos)) {
+        service.photos = service.photos.map((photo) => {
+          if (!photo.startsWith(baseApi)) {
+            return `${baseApi}/${photo}`;
+          }else{
+            return photo;
+          }
+        });
+      }
+    });
+
     return {
-      category: category, // Nombre de la categoría
-      services: servicesForCategory, // Servicios asociados a la categoría
+      category: category,
+      services: servicesForCategory,
     };
   });
-
 
   console.log("groupedServices =>", groupedServices);
   const filteredServices =
