@@ -9,7 +9,7 @@ const slidesData = [
     titulo: "BIENVENIDO",
     subtitulo:
       "Conoce nuestros servicios excepcionales y lleva tu Negocio al próximo nivel.",
-    image: image.img6f,
+    image: image.post3,
   },
 ];
 

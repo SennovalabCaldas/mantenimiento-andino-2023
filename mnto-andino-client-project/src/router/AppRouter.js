@@ -55,7 +55,7 @@ export const AppRouter = () => {
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/sedes" element={<WebSedes />} />
           <Route path="/pqrs" element={<WebPqrs />} />
-          {/* <Route path="/verify-auth/:token" element={<VerifyToken />} /> */}
+          <Route path="/verify-auth/:token" element={<VerifyToken />} />
           <Route path="*" element={<NotFound />} />
         </>
       ) : (
