@@ -16,79 +16,23 @@ import { useSelector } from "react-redux";
 
 export const MakinaAndina = () => {
   const dispatch = useDispatch();
-  const products_makina_andina = [
-    {
-      id: 1,
-      name: "Conexiones hidráulicas",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 2,
-      name: "Grafadora hidraulica",
-      cover: image.logo4,
-      status: false,
-    },
-    {
-      id: 3,
-      name: "Comprensores para refrigeración",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 4,
-      name: "Mangueras hidraulicas",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 5,
-      name: "Adaptadores hidraulicas",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 6,
-      name: "Todo tipo de repuestos para linea de refrigeración",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 7,
-      name: "Correas y bandas",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 8,
-      name: "Linea de refrigeración",
-      cover: image.logo4,
-      status: true,
-    },
-    {
-      id: 9,
-      name: "Todo tipo de repuesto para linea de procesamiento y sistemas de ventilación, aires acondicionados",
-      cover: image.logo4,
-      status: true,
-    },
-  ];
+  const products_makina_andina = useSelector(
+    (state) => state.makinaAndina.makinaAndinaServices
+  );
 
   useEffect(() => {
     dispatch(getServices());
   }, [dispatch]);
+  console.log(products_makina_andina);
 
-  const makinaAndinaServices = useSelector(
-    (state) => state.makinaAndina.makinaAndinaServices
-  );
-  console.log(makinaAndinaServices);
   return (
     <>
       <div className="title-makina-andina">
+        <img src={image.logo4} alt="Logo Makina Andina" className="logo" />
         <h1>
           <strong>MAKINA ANDINA INGENIERÍA S.A.S</strong>
         </h1>
       </div>
-      <img src={image.logo4} alt="Logo Makina Andina" className="logo" />
 
       <Divider />
       <Grid

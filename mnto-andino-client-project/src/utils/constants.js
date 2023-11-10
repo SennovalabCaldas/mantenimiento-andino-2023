@@ -21,6 +21,7 @@ export const ENV = {
     FOUNDATION: "admin/foundations",
     MAKINA_ANDINA: "admin/makinandina",
     MAKINA_ANDINA_MIAMI: "admin/makinandinamiami",
+    PROFILE: "admin/profiles",
     GLAMPING: "admin/glamping",
     GET_USER: "get-user",
     REGISTER: "auth/register",

@@ -10,7 +10,7 @@ export const ProductList = ({ products_makina_andina }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredProducts = products_makina_andina.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.serviceName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleWhatsAppClick = () => {
@@ -41,15 +41,9 @@ export const ProductList = ({ products_makina_andina }) => {
             md={3}
             className="product-item"
           >
-            <img src={product.cover} alt={product.name} />
-            <div
-              className={`status-avatar ${
-                product.status ? "available" : "unavailable"
-              }`}
-            >
-              {product.status ? "Disponible" : "No Disponible"}
-            </div>
-            <h1>{product.name}</h1>
+            <img src={product.photos[0]} alt={product.serviceName} />
+
+            <h1>{product.serviceName}</h1>
             {product.status && (
               <>
                 <div className="contact-buttons">

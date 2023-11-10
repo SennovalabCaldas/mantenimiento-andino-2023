@@ -27,6 +27,7 @@ export const WebProjects = ({ projects }) => {
     return (
       <div className="gallery gallery-cards">
         <div className="content panel">
+      
           <div className="slide" data-order="1">
             <h1>Proyectos</h1>
             <h2>

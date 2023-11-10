@@ -23,6 +23,7 @@ const makinaAndinaMiamiRoutes = require("./routes/makinaAndinaMiami");
 const glampingRoutes = require("./routes/glamping");
 const testimonieRoutes = require("./routes/testimonie");
 const departmentsRoutes = require("./routes/department");
+const profileRoutes = require("./routes/profile");
 
 app.use(cors());
 
@@ -51,6 +52,6 @@ app.use(`/api/v1/admin/makinandinamiami`, makinaAndinaMiamiRoutes);
 app.use(`/api/v1/admin/glamping`, glampingRoutes);
 app.use(`/api/v1/admin/testimonies`, testimonieRoutes);
 app.use(`/api/v1/admin/departments`, departmentsRoutes);
-
+app.use(`/api/v1/admin/profiles`, profileRoutes);
 
 module.exports = { app };

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { image } from "../../../assets";
 import "./WebCertifications.scss";
 import { ENV } from "../../../utils";
+import { ImageListItem } from "@mui/material";
 
 export const WebCertifications = ({ certifications }) => {
   console.log("certifications", certifications);
@@ -34,6 +35,15 @@ export const WebCertifications = ({ certifications }) => {
     videoRef.current.play();
   };
 
+  function srcset(item) {
+    const { img, size, rows = 1, cols = 1 } = item;
+    return {
+      src: `${img}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${img}?w=${size * cols}&h=${
+        size * rows
+      }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
   return (
     <div className="web-certifications">
       <div className="gallery gallery-cards">
@@ -67,38 +77,19 @@ export const WebCertifications = ({ certifications }) => {
       </div>
 
       <div className="slide-photos">
-        <div className="container">
-          <div className="main-img">
-            <img src={image.img1services} id="current" />
-          </div>
-
-          <div className="imgs">
-            {certifications.map((cert, index) => (
-              <div key={index}>
-                {cert.photos.map((photo, photoIndex) => (
-                  <img
-                    key={photoIndex}
-                    src={`${baseApi}/${photo}`}
-                    alt={`${cert.name} - Foto ${photoIndex + 1}`}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="slide" data-order="1">
-          <h1>
-            {" "}
-            <span className="no-select-g">construimos</span>
-          </h1>
-          <h2
-            style={{
-              color: "#F5A623",
-            }}
+        {certifications.map((certification, index) => (
+          <ImageListItem
+            key={index}
+            cols={certification.cols || 1}
+            rows={certification.rows || 1}
           >
-            <span>felicidad, sueños y experiencias.</span>
-          </h2>
-        </div>
+            <img
+              {...srcset(certification)}
+              alt={`Certification ${index}`}
+              loading="lazy"
+            />
+          </ImageListItem>
+        ))}
       </div>
     </div>
   );

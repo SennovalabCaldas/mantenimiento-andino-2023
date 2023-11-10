@@ -50,6 +50,12 @@ const menuItems = [
     text: "Testimonios",
     roles: ["admin"],
   },
+  {
+    path: "/admin/profile",
+    icon: "handshake",
+    text: "Perfiles a contratar",
+    roles: ["admin"],
+  },
 
   {
     path: "/admin/providers",

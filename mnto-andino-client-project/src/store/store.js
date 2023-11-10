@@ -19,6 +19,7 @@ import makinaAndinaMiamiReducer from "../reducers/makinaAndinaMiamiReducer";
 import glampingReducer from "../reducers/glampingReducer";
 import testimonieReducer from "../reducers/testimonieReducer";
 import departmentReducer from "../reducers/departmentReducer";
+import profileReducer from "../reducers/profileReducer";
 
 const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   glamping: glampingReducer,
   testimonie: testimonieReducer,
   department: departmentReducer,
+  profile: profileReducer,
 });
 
 const store = createStore(

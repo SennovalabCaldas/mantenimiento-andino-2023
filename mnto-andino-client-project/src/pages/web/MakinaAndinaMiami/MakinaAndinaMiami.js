@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./MakinaAndinaMiami.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,69 +8,24 @@ import Footer from "../../../components/Shared/Footer/Footer";
 import { ProductListMakinaAndinaMiami } from "./ProductListMakinaAndinaMiami";
 import { CubeOtherCompany } from "../LaMartina/CubeOtherCompany";
 import { Divider, Grid, Paper } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getServicesMakinaMiami } from "../../../actions/makinaAndinaMiamiActions";
 
 export const MakinaAndinaMiami = () => {
-  const products_makina_andina = [
-    {
-      id: 1,
-      name: "Conexiones hidráulicas",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 2,
-      name: "Grafadora hidraulica",
-      cover: image.product1MakinaAndina,
-      status: false,
-    },
-    {
-      id: 3,
-      name: "Comprensores para refrigeración",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 4,
-      name: "Mangueras hidraulicas",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 5,
-      name: "Adaptadores hidraulicas",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 6,
-      name: "Todo tipo de repuestos para linea de refrigeración",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 7,
-      name: "Correas y bandas",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 8,
-      name: "Linea de refrigeración",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-    {
-      id: 9,
-      name: "Todo tipo de repuesto para linea de procesamiento y sistemas de ventilación, aires acondicionados",
-      cover: image.product1MakinaAndina,
-      status: true,
-    },
-  ];
+  const dispatch = useDispatch();
+  const products_makina_andina_miami = useSelector(
+    (state) => state.makinaAndinaMiami.makinaAndinaMiamiServices
+  );
+
+  useEffect(() => {
+    dispatch(getServicesMakinaMiami());
+  }, [dispatch]);
+  console.log(products_makina_andina_miami);
   return (
     <>
       <div className="title-makina-andina">
-        <img src={image.logo4} alt="Logo Makina Andina" className="logo" />
-        <h1>Makina Andina Ingeniería SAS</h1>
+        <img src={image.logo3} alt="Logo Makina Andina" className="logo" />
+        <h1>MAKINA ANDINA MIAMI S.A.S</h1>
       </div>
       <Divider />
       <Grid
@@ -111,7 +66,7 @@ export const MakinaAndinaMiami = () => {
         />
       </div>
       <ProductListMakinaAndinaMiami
-        products_makina_andina={products_makina_andina}
+        products_makina_andina_miami={products_makina_andina_miami}
       ></ProductListMakinaAndinaMiami>
       <CubeOtherCompany></CubeOtherCompany>
       <Footer></Footer>

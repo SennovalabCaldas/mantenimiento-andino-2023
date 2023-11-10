@@ -5,12 +5,14 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import ModalForm from "../ModalForm/ModalForm";
 
-export const ProductListMakinaAndinaMiami = ({ products_makina_andina }) => {
+export const ProductListMakinaAndinaMiami = ({
+  products_makina_andina_miami,
+}) => {
   const [searchTerm, setSearchTerm] = useState(""); // Estado local para el término de búsqueda
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredProducts = products_makina_andina.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProducts = products_makina_andina_miami.filter((product) =>
+    product.serviceName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleWhatsAppClick = () => {
@@ -41,15 +43,15 @@ export const ProductListMakinaAndinaMiami = ({ products_makina_andina }) => {
             md={3}
             className="product-item"
           >
-            <img src={product.cover} alt={product.name} />
-            <div
+            <img src={product.photos[0]} alt={product.serviceName} />
+            {/* <div
               className={`status-avatar ${
                 product.status ? "available" : "unavailable"
               }`}
             >
               {product.status ? "Disponible" : "No Disponible"}
-            </div>
-            <h1>{product.name}</h1>
+            </div> */}
+            <h1>{product.serviceName}</h1>
             {product.status && (
               <>
                 <div className="contact-buttons">
@@ -71,7 +73,7 @@ export const ProductListMakinaAndinaMiami = ({ products_makina_andina }) => {
       {isModalOpen && (
         <ModalForm
           onClose={() => setIsModalOpen(false)}
-          products={products_makina_andina}
+          products={products_makina_andina_miami}
         />
       )}
     </div>

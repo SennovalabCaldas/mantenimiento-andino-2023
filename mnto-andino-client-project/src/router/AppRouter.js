@@ -29,6 +29,7 @@ import { PrivacyPolicy } from "../components/Shared/Footer/PrivacyPolicy";
 import { NotFound, VerifyToken } from "../components";
 import { WebPqrs } from "../pages/web/WebPqrs/WebPqrs";
 import { Departments } from "../pages/admin/Departaments/Departments";
+import { Profile } from "../pages/admin/Profile/Profile";
 
 export const AppRouter = () => {
   const user = useSelector((state) => state.auth.user);
@@ -106,6 +107,10 @@ export const AppRouter = () => {
               <Route
                 path="admin/foundation"
                 element={loadLayout(AdminLayout, Foundation)}
+              />
+              <Route
+                path="admin/profile"
+                element={loadLayout(AdminLayout, Profile)}
               />
               <Route
                 path="admin/testimonies"

@@ -29,6 +29,7 @@ import { SocialSlideBar } from "./SocialSlideBar";
 import Footer from "../Shared/Footer/Footer";
 import "./WebMenu.scss";
 import { Link } from "react-router-dom";
+import { getAllProfiles } from "../../actions/profileActions";
 
 export const WebMenu = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export const WebMenu = () => {
     dispatch(getAllCertifications());
     dispatch(getAllProjects());
     dispatch(getAllFoundationsNews());
+    dispatch(getAllProfiles());
   }, [dispatch]);
 
   const handleCountrySelect = (countryCode) => {
@@ -262,9 +264,15 @@ function Section6() {
 }
 
 function Section7() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProfiles());
+  }, [dispatch]);
+  const profiles = useSelector((state) => state.profile.allProfiles);
+  console.log("profiles =>", profiles);
   return (
     <div className="section web-section" id="section7">
-      <WebFundation />
+      <WebFundation profiles={profiles} />
     </div>
   );
 }
