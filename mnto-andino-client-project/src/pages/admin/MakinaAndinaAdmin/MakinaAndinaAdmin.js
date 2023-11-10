@@ -104,11 +104,11 @@ export const MakinaAndinaAdmin = () => {
             </Typography>
             <form encType="multipart/form-data">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <TextField
+                {/* <TextField
                   label="Nombre"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                />
+                /> */}
                 <TextField
                   type="text"
                   id="serviceName"

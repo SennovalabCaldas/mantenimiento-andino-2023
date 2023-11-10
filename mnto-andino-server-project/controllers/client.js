@@ -1,9 +1,6 @@
 // clientController.js
 
 const Client = require("../models/client");
-const Address = require("../models/address");
-// const baseUrl = "http://mantenimientoandino.co:3000"
-const baseUrl = "http://localhost:3100/";
 // Crear un nuevo cliente
 async function createClient(req, res) {
   try {
