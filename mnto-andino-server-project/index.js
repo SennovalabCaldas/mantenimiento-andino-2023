@@ -39,7 +39,7 @@ mongoose
           app
         )
         .listen(PORT, function () {
-          console.log("Servidor https correindo en el puerto 443");
+          console.log(`https://${IP_SERVER}:${PORT}/api/${API_VERSION}`);
         });
     } else {
       app.listen(PORT, () => {

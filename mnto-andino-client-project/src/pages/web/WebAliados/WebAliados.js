@@ -15,13 +15,6 @@ export const WebAliados = ({ allies, certifications }) => {
   allies.forEach((ally) => {
     uniqueAllyNames.add(ally.allyName);
   });
-  const mergedAllies = Array.from(uniqueAllyNames).map((allyName) => {
-    const foundAlly =
-      defaultAllies.find((ally) => ally.allyName === allyName) ||
-      allies.find((ally) => ally.allyName === allyName);
-
-    return foundAlly;
-  });
 
   const openModal = (ally) => {
     setSelectedAlly(ally);
@@ -32,7 +25,6 @@ export const WebAliados = ({ allies, certifications }) => {
     setSelectedAlly({});
     setModalIsOpen(false);
   };
-  console.log(mergedAllies);
   return (
     <div className="content-allies">
       <div className="gallery gallery-cards">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./WebProjects.scss";
 import { ENV } from "../../../utils";
 
@@ -14,100 +14,95 @@ export const WebProjects = ({ projects }) => {
     (project) => project.national === false
   );
 
-  const hasNationalProjects = proyectosNacionales.length > 0;
-  const hasInternationalProjects = proyectosInternacionales.length > 0;
+  const [loading, setLoading] = React.useState(true);
+  useEffect(() => {
+    setLoading(false);
+  }, [projects]);
+
   const getAvatarUrl = (project) => {
     return `${baseApi}/${project.avatar}`;
   };
-  return (
-    <>
-      <div className="projects-section">
-        {hasNationalProjects && (
-          <div className="gallery gallery-cards">
-            <div className="content panel">
-              <div className="slide" data-order="1">
-                <h2>
-                  <span className="no-select">Proyectos nacionales</span>
-                </h2>
-              </div>
-              <div className="images panel">
-                {proyectosNacionales.length === 0 ? (
-                  <>
-                    <div className="container">
-                      <div className="loader"></div>
-                    </div>
-                  </>
-                ) : (
-                  proyectosNacionales.map((project) => (
-                    <div className="myCard" key={project._id}>
-                      <div className="innerCard">
-                        <div className="frontSide">
-                          <img src={getAvatarUrl(project)} alt="" />
-                          <p>{project.projectName}</p>
-                        </div>
-                        <div
-                          className="backSide"
-                          style={{
-                            backgroundImage: `url(${getAvatarUrl(project)})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundRepeat: "no-repeat",
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
+
+  const renderProjects = (projectList, title) => {
+    return (
+      <div className="gallery gallery-cards">
+        <div className="content panel">
+          <div className="slide" data-order="1">
+            <h1>Proyectos</h1>
+            <h2>
+              <span className="no-select">{title}</span>
+            </h2>
+            <h3>
+              <em>
+                <ul
+                  style={{
+                    listStyleType: "none",
+                    padding: "0",
+                    margin: "0",
+                    textAlign: "center",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  {projectList.map((project, index) => (
+                    <li key={project._id}>
+                      {index + 1}. {project.projectName}
+                    </li>
+                  ))}
+                </ul>
+              </em>
+            </h3>
           </div>
-        )}
-        {hasInternationalProjects && (
-          <div className="gallery gallery-cards">
-            <div className="content panel">
-              <div className="images panel">
-                {proyectosInternacionales.length === 0 ? (
-                  <>
-                    <div className="container">
-                      <div className="loader"></div>
-                    </div>
-                  </>
-                ) : (
-                  proyectosInternacionales.map((project, index) => (
-                    <div className="myCard" key={project._id}>
-                      <div className="innerCard">
-                        <div className="frontSide">
-                          <img src={getAvatarUrl(project)} alt="" />
-                          <p>{project.projectName}</p>
-                        </div>
-                        <div
-                          className="backSide"
-                          style={{
-                            backgroundImage: `url(${getAvatarUrl(project)})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundRepeat: "no-repeat",
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))
-                )}
+          <div className="images panel">
+            {loading ? (
+              <div className="container">
+                <div className="loader"></div>
               </div>
-              <div className="slide" data-order="1">
-                <h2>
-                  <span className="no-select">Proyectos internacionales</span>
-                </h2>
-              </div>
-            </div>
+            ) : (
+              projectList.map((project) => (
+                <div className="myCard" key={project._id}>
+                  <div className="innerCard">
+                    <div className="frontSide">
+                      <img src={getAvatarUrl(project)} alt="" />
+                      <p>{project.projectName}</p>
+                      <p
+                        style={{
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                          color: "#000000",
+                          opacity: "0.5",
+                        }}
+                      >
+                        <small>{project.entity}</small>
+                      </p>
+                    </div>
+                    <div
+                      className="backSide"
+                      style={{
+                        backgroundImage: `url(${getAvatarUrl(project)})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
-        )}
-        {!hasNationalProjects && !hasInternationalProjects && (
-          <div className="no-projects-message">
-            <p>No hay proyectos disponibles en este momento.</p>
-          </div>
-        )}
+        </div>
       </div>
-    </>
+    );
+  };
+
+  return (
+    <div className="projects-section">
+      {renderProjects(proyectosNacionales, "nacionales")}
+      {renderProjects(proyectosInternacionales, "internacionales")}
+      {!loading && !projects.length && (
+        <div className="no-projects-message">
+          <p>No hay proyectos disponibles en este momento.</p>
+        </div>
+      )}
+    </div>
   );
 };

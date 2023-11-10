@@ -12,11 +12,25 @@
     user-select: none;
     text-transform: uppercase;
   }
-  h2 {
+  h1 {
     color: rgba(0, 0, 0, 0.87);
     text-transform: uppercase;
     font-size: 30px;
-    span{
+    margin-bottom: 0;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  h2 {
+    color: rgba(0, 0, 0, 0.87);
+    padding-top: 0;
+    text-transform: uppercase;
+    /* padding-bottom: 25px; */
+    font-size: 30px;
+    margin: 0;
+    span {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,15 +46,15 @@
     text-decoration: none;
     text-transform: uppercase;
     line-height: 1;
-    margin-top: 20px; /* Espaciado entre el texto y el botón */
+    margin-top: 20px;
   }
 
   .gallery {
-    height: auto; /* Ajusta la altura según el contenido */
+    height: auto;
     display: flex;
-    width: 100%; /* Ocupa todo el ancho del contenedor padre */
-    flex-direction: column; /* Alinea los elementos verticalmente en dispositivos móviles */
-    // background-image: url("../../../assets/clients/mapa.jpg");
+    width: 100%;
+    padding-bottom: 50px;
+    flex-direction: column;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -48,7 +62,7 @@
   }
 
   .gallery .slide {
-    width: 25%;
+    width: 90%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -81,7 +95,7 @@
   .myCard {
     background-color: transparent;
     width: 250px;
-    height: 250px;
+    height: 400px;
     margin: 5px;
     perspective: 1000px;
   }
@@ -126,7 +140,11 @@
 
   .frontSide,
   .frontSide::before {
-    background-image: linear-gradient(to right, #d6d6d6, rgb(246 246 246 / 81%));
+    background-image: linear-gradient(
+      to right,
+      #d6d6d6,
+      rgb(246 246 246 / 81%)
+    );
   }
   .frontSide {
     img {
@@ -137,10 +155,11 @@
       color: black;
       text-align: center;
       text-transform: uppercase;
-      padding: 10px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       font-family: inherit;
+      margin: 0;
+      font-weight: 600;
     }
   }
   .backSide {
@@ -177,7 +196,7 @@
   }
 }
 
-// diseño para moviles
+
 @media (max-width: 768px) {
   .projects-section .gallery-cards .content {
     display: flex;
@@ -193,6 +212,15 @@
     align-content: center;
     justify-content: center;
     align-items: center;
+  }
+  .projects-section .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 550;
+    padding: 0;
+    margin: 0;
   }
 }
 
