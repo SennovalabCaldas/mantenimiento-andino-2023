@@ -100,10 +100,10 @@ const login = async (req, res) => {
   try {
     if (!email || !current_password) {
       throw new Error("El email y la contraseña son obligatorios");
-      console.log("no recibe datos");
+      
     }
     const emailLowerCase = email.toLowerCase();
-    const userStore = await User.findOne({ email: emailLowerCase }).exec();
+    const userStore = await User.findOne({ email: email.toLowerCase() }).exec();
     if (!userStore) {
       throw new Error("El usuario no existe");
     }
