@@ -26,7 +26,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
-import { updatePostState } from "../../../../actions/postActions";
 
 export const CategoryManagement = (news) => {
   const [page, setPage] = useState(0);
@@ -112,49 +111,50 @@ export const CategoryManagement = (news) => {
 
   return (
     <div>
-      <div>
-        <Card>
-          <CardContent>
-            <Typography variant="h5" component="h3">
-              Crear Nueva Categoría
-            </Typography>
-            <form encType="multipart/form-data">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <TextField
-                  label="Nombre"
-                  value={newCategory.nombre}
-                  onChange={(e) =>
-                    setNewCategory({ ...newCategory, nombre: e.target.value })
-                  }
-                />
-                <Switch
-                  checked={newCategory.active}
-                  onChange={(e) =>
-                    setNewCategory({
-                      ...newCategory,
-                      active: e.target.checked,
-                    })
-                  }
-                  color="primary"
-                  inputProps={{ "aria-label": "Categoría activa" }}
-                />
-                <Typography>
-                  {newCategory.active
-                    ? "Categoría activa"
-                    : "Categoría inactiva"}
-                </Typography>
-                <Button
-                  onClick={handleCreateCategory}
-                  variant="contained"
-                  color="primary"
-                >
-                  Crear
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
+      <Card
+        style={{
+          width: "80%",
+        }}
+      >
+        <CardContent>
+          <Typography variant="h5" component="h3">
+            Crear Nueva Categoría
+          </Typography>
+          <form encType="multipart/form-data">
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <TextField
+                label="Nombre"
+                value={newCategory.nombre}
+                onChange={(e) =>
+                  setNewCategory({ ...newCategory, nombre: e.target.value })
+                }
+              />
+              <Switch
+                checked={newCategory.active}
+                onChange={(e) =>
+                  setNewCategory({
+                    ...newCategory,
+                    active: e.target.checked,
+                  })
+                }
+                color="primary"
+                inputProps={{ "aria-label": "Categoría activa" }}
+              />
+              <Typography>
+                {newCategory.active ? "Categoría activa" : "Categoría inactiva"}
+              </Typography>
+              <div style={{ flexGrow: 1 }} />
+              <Button
+                onClick={handleCreateCategory}
+                variant="contained"
+                color="primary"
+              >
+                Crear
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
 
       <h3>Lista de Categorías</h3>
       <TableContainer>

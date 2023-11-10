@@ -101,12 +101,9 @@ const NewsComponent = () => {
           }
         }
       }
-      // Actualiza el estado "active" en las noticias correspondientes
       for (const noticiaData of noticiasActualizar) {
         await dispatch(updatePost(noticiaData));
       }
-
-      // Actualiza el estado de las noticias después de la actualización
       await dispatch(getAllPosts());
     } catch (error) {
       console.error("Error al actualizar estado de active de noticias:", error);

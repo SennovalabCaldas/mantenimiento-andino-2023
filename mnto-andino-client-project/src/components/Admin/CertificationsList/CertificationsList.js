@@ -7,12 +7,9 @@ import {
   Card,
   CardContent,
   Typography,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   Switch,
 } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 import {
   createCertification,
   getAllCertifications,
@@ -152,15 +149,15 @@ export const CertificationsList = () => {
                   accept="image/*"
                   multiple
                   id="file-input"
-                  style={{ display: "none" }}
+                  style={{ display: "none", paddingBottom: "5px" }}
                   onChange={handleFileChange}
                 />
-                <label htmlFor="file-input">
+                <label htmlFor="file-input" style={{paddingBottom: "5px" }}>
                   <Button
                     variant="contained"
                     color="primary"
                     component="span"
-                    style={{ marginTop: "10px" }}
+                    style={{ marginTop: "10px",paddingBottom: "5px" }}
                   >
                     Elegir archivos
                   </Button>

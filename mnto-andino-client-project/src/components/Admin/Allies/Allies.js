@@ -33,9 +33,6 @@ export const Allies = () => {
   const baseApi = ENV.BASE_PATH;
   const [previewImage, setPreviewImage] = useState(null);
 
-  // Estados para la edición de aliados
-  const [editAvatar, setEditAvatar] = useState(null);
-  const [editAvatarPreview, setEditAvatarPreview] = useState(null);
   const [selectedAlly, setSelectedAlly] = useState(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false); // Identificador para el diálogo de edición
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false); // Identificador para el diálogo de detalles

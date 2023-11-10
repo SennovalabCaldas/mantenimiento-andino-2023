@@ -91,7 +91,7 @@ export const WebContactUs = () => {
 
   const descargarPortafolio = () => {
     const rutaArchivoPDF =
-      "http://mantenimientoandino.co:3000/uploads/pdfs/portafolio.pdf";
+      "https://mantenimientoandino.co:3000/uploads/pdfs/portafolio.pdf";
     console.log(rutaArchivoPDF);
     const link = document.createElement("a");
     link.href = rutaArchivoPDF;

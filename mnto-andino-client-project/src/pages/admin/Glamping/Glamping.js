@@ -90,11 +90,11 @@ export const Glamping = () => {
   return (
     <div className="fundations-list-container">
       <div className="fundations-list-form">
-        <h2>Crear certificación</h2>
+        <h2>Crear servicio del Glamping</h2>
         <Card className="card-create-certification">
           <CardContent>
             <Typography variant="h5" component="h3">
-              Ingresar una nueva certificación
+              Ingresar servicio
             </Typography>
             <form encType="multipart/form-data">
               <div className="certification-form-fields">

@@ -86,41 +86,35 @@ export const MakinaAndinaAdmin = () => {
   return (
     <div className="makina-andina-list-container">
       <div className="fundations-list-form">
-      <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ marginLeft: "10px" }}>
-            <img src={image.logo4} alt="Makina Andina Miami" />
-          </div>
-        </div>
         <Card className="card-create-certification">
-          <CardContent
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
-              alignContent: "center",
-              justifyContent: "center",
-              alignItems: "flex-start",
-            }}
-          >
-            <Typography
-              variant="h5"
-              component="h3"
-              style={{
-                textAlign: "center",
-                marginBottom: "20px",
-              }}
-            >
-              Ingresar servicio de Makina Andina
+          <CardContent className="certification-form-content">
+            <div className="titulo-servicios-makina-andina">
+              <div className="logo-container">
+                <img src={image.logo4} alt="Makina Andina Miami" />
+              </div>
+              <Typography variant="h5" component="h3">
+                <strong>SERVICIOS</strong>
+              </Typography>
+            </div>
+
+            <Card>
+          <CardContent>
+            <Typography variant="h5" component="h3">
+              Crear Cliente
             </Typography>
             <form encType="multipart/form-data">
-              <div className="certification-form-fields">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <TextField
+                  label="Nombre"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                />
                 <TextField
                   type="text"
                   id="serviceName"
                   name="serviceName"
                   placeholder="Nombre del servicio"
                   size="small"
-                  style={{ marginRight: "10px" }}
                   required
                   value={serviceName}
                   onChange={(event) => setServiceName(event.target.value)}
@@ -141,9 +135,6 @@ export const MakinaAndinaAdmin = () => {
                     id="createdAt"
                     name="createdAt"
                     size="small"
-                    style={{
-                      marginLeft: "10px",
-                    }}
                     placeholder="Fecha de creación"
                     required
                     value={createdAt}
@@ -195,6 +186,8 @@ export const MakinaAndinaAdmin = () => {
             </form>
           </CardContent>
         </Card>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="fundations-list">
@@ -224,24 +217,26 @@ export const MakinaAndinaAdmin = () => {
                     <Typography variant="body2" component="p">
                       Cantidad de fotos: {makinaAndinaService.photos.length}
                     </Typography>
-                    <IconButton
-                      aria-label="Eliminar"
-                      onClick={() => {
-                        setSelectedMakinAndinaService(makinaAndinaService);
-                        setDeleteConfirmationDialogOpen(true);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="Buscar"
-                      onClick={() => {
-                        setSelectedMakinAndinaService(makinaAndinaService);
-                        setModalOpen(true);
-                      }}
-                    >
-                      <SearchIcon />
-                    </IconButton>
+                    <div className="card-actions">
+                      <IconButton
+                        aria-label="Eliminar"
+                        onClick={() => {
+                          setSelectedMakinAndinaService(makinaAndinaService);
+                          setDeleteConfirmationDialogOpen(true);
+                        }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                      <IconButton
+                        aria-label="Buscar"
+                        onClick={() => {
+                          setSelectedMakinAndinaService(makinaAndinaService);
+                          setModalOpen(true);
+                        }}
+                      >
+                        <SearchIcon />
+                      </IconButton>
+                    </div>
                   </CardContent>
                 </Card>
               </Grid>
@@ -267,7 +262,7 @@ export const MakinaAndinaAdmin = () => {
         open={deleteConfirmationDialogOpen}
         onClose={() => setDeleteConfirmationDialogOpen(false)}
       >
-        <DialogTitle style={{ textAlign: "center", color: "rgb(0 0 0)" }}>
+        <DialogTitle style={{ textAlign: "center", color: "#000" }}>
           Confirmar Eliminación
         </DialogTitle>
         <DialogContent>

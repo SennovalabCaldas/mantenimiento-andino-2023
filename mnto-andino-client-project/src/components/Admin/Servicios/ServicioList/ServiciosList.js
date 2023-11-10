@@ -209,7 +209,6 @@ const ServiceList = () => {
               <Typography variant="body2" color="textSecondary">
                 {service.description}
               </Typography>
-              {/* Display other service details */}
               <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {service.photos &&
                   service.photos.map((photo, index) => (
@@ -373,6 +372,8 @@ const ServiceList = () => {
                       />
                     ))}
                 </div>
+
+          
 
                 <Button
                   variant="contained"

@@ -4,24 +4,46 @@ import {
   deleteCertification,
   getAllCertifications,
 } from "../../../actions/certificationActions";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { useDispatch } from "react-redux";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  IconButton,
+} from "@mui/material";
 import "../CertificationsNal/CertificationsNal.scss";
 
 export const CertificationsInterNal = ({ certifications, national }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const [certificationToDelete, setCertificationToDelete] = useState(null);
   const certificationsPerPage = 5;
   const baseApi = ENV.BASE_PATH;
   const dispatch = useDispatch();
 
-  const handleDeleteCertification = async (certificationId) => {
-    console.log("Eliminar certificación:", certificationId);
+  const handleDeleteCertification = (certificationId) => {
+    setCertificationToDelete(certificationId);
+    setDeleteConfirmationOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
     try {
-      await dispatch(deleteCertification(certificationId));
+      await dispatch(deleteCertification(certificationToDelete));
       await dispatch(getAllCertifications());
     } catch (error) {
       console.error(error);
+    } finally {
+      setDeleteConfirmationOpen(false);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setCertificationToDelete(null);
+    setDeleteConfirmationOpen(false);
   };
 
   const indexOfLastCertification = currentPage * certificationsPerPage;
@@ -70,12 +92,12 @@ export const CertificationsInterNal = ({ certifications, national }) => {
               </td>
               <td>{new Date(certification.joinDate).toLocaleDateString()}</td>
               <td>
-                <button
-                  className="btn btn-danger"
+                <IconButton
+                  color="secondary"
                   onClick={() => handleDeleteCertification(certification._id)}
                 >
-                  Eliminar
-                </button>
+                  <DeleteIcon />
+                </IconButton>
               </td>
             </tr>
           ))}
@@ -95,6 +117,26 @@ export const CertificationsInterNal = ({ certifications, national }) => {
           </span>
         ))}
       </div>
+
+      <Dialog
+        open={deleteConfirmationOpen}
+        onClose={handleCancelDelete}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Confirmar eliminación</DialogTitle>
+        <DialogContent>
+          ¿Estás seguro de que deseas eliminar esta certificación?
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelDelete} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleConfirmDelete} color="primary" autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
