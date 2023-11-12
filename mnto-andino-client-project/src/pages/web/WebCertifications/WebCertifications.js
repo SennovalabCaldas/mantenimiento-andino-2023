@@ -3,10 +3,10 @@ import { image } from "../../../assets";
 import "./WebCertifications.scss";
 import { ENV } from "../../../utils";
 import { ImageListItem } from "@mui/material";
+import { Photos } from "./Photos";
 
-export const WebCertifications = ({ certifications }) => {
-  console.log("certifications", certifications);
-  const baseApi = ENV.BASE_PATH;
+export const WebCertifications = ({ foundations }) => {
+  console.log("foundations", foundations);
   const videoRef = useRef(null);
   const videoSrc1 = image.contact;
   const videoSrc2 = image.contact2;
@@ -51,7 +51,7 @@ export const WebCertifications = ({ certifications }) => {
           <div className="video-container">
             <video
               ref={videoRef}
-              controls // Muestra los controles del reproductor (play, pausa, volumen, etc.)
+              controls
               preload="metadata" // Precarga solo la información del video (no la reproducción)
               poster={image.videoPoster} // Póster que se muestra antes de que se reproduzca el video
             >
@@ -76,21 +76,7 @@ export const WebCertifications = ({ certifications }) => {
         </div>
       </div>
 
-      <div className="slide-photos">
-        {certifications.map((certification, index) => (
-          <ImageListItem
-            key={index}
-            cols={certification.cols || 1}
-            rows={certification.rows || 1}
-          >
-            <img
-              {...srcset(certification)}
-              alt={`Certification ${index}`}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </div>
+      <Photos foundations={foundations} />
     </div>
   );
 };

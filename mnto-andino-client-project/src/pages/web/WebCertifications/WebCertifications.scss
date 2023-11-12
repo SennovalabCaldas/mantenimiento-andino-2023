@@ -56,8 +56,7 @@
       align-items: center;
       img {
         border-style: none;
-        width: 160px;
-        height: 155px;
+        width: 130px;
         border-radius: 10px;
         margin: 5px;
         box-shadow: 0 0 0.5em rgba(45, 39, 39, 0.9);
@@ -81,59 +80,11 @@
     justify-content: center;
     align-items: center;
   }
-  .main-img {
-    display: flex;
-    width: 70%;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    .imgs img {
-      padding: 10px;
-      width: 95%;
-      max-height: 490px;
-      border-radius: 5px;
-    }
-    img {
-      width: 100%;
-      padding: 5px;
-    }
-  }
-  .imgs img {
-    height: 80px;
-    width: 75px;
-    transition: opacity 0.3s ease;
-    border-radius: 3px;
-  }
-  .imgs img:hover {
-    cursor: pointer; /* Cambia el cursor a una mano */
-    opacity: 0.6; /* Reduzca ligeramente la opacidad al pasar el mouse */
-  }
-  .imgs img.selected {
-    border: 2px solid #ff5733; /* Establece un borde para indicar la selección */
-    opacity: 1; /* Mantiene la opacidad al 100% para la imagen seleccionada */
-  }
-  .imgs {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 5px;
-  }
-
-  /*fade in animation*/
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-
-  .fade-in {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in 1 forwards;
-  }
+ 
+    
 }
 // Visualización en moviles
-@media (max-width:600px) {
+@media (max-width: 600px) {
   .web-certifications {
     display: flex;
     justify-content: center;
@@ -201,7 +152,7 @@
     transition: opacity 0.3s ease;
     border-radius: 3px;
   }
-  .slide-photos{
+  .slide-photos {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

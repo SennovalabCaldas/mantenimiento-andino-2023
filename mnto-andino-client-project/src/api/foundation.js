@@ -48,6 +48,7 @@ export class Foundation {
 
   async getAllFoundations() {
     const url = `${this.baseApi}/${FOUNDATION}`;
+    console.log("url =>", url);
     const params = {
       method: "GET",
       headers: {

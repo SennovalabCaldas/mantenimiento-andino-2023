@@ -84,7 +84,7 @@ export const Carrousel = ({ posts }) => {
           />
         </div>
         <div className="slide-content">
-          <Grid 
+          <Grid
             container
             style={{
               height: "100%",
@@ -126,7 +126,7 @@ export const Carrousel = ({ posts }) => {
                 className={`indicator ${
                   index === currentSlide ? "active" : ""
                 }`}
-              ></div>
+              />
             ))}
           </div>
         </div>

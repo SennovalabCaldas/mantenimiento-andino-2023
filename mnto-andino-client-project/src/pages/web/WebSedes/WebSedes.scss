@@ -1,56 +1,71 @@
-/* WebSedes.scss */
-
-.content-web-section {
-  padding: 20px;
-}
-
-.sedes-container {
+.sedes-e-card {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.sedes-container-card{
-  display: flex;
-  padding-top: 115px;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  align-content: center;
-}
-.sede-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  justify-content: center;
   padding: 20px;
+  margin: 20px;
+  
+}
+
+.sedes-e-card__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+.sedes-e-card__container__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.sedes-e-card__container__card__card {
   width: 300px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-
-  p {
-    margin-bottom: 10px;
-
-    strong {
-      font-weight: bold;
-    }
-  }
+  margin: 10px;
 }
 
-/* Estilos para el indicador de carga */
-.loading-indicator {
+.sedes-e-card__container__card__card__img {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  padding: 10px;
+}
+
+.sedes-e-card__container__card__card__info {
+  padding: 10px;
+  text-align: center;
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    margin-bottom: 0;
+
+  }
+  p{
+    margin-bottom: 0;
+    font-size: 11px;
+  }
+
+ 
+}
+
+
+.sedes-contact-buttons{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  font-size: 1.2rem;
-  color: #333;
+  margin-top: 10px;
+  a{
+    margin: 0 5px;
+  }
+  img{
+    width: 20px;
+    height: 20px;
+  }
 }

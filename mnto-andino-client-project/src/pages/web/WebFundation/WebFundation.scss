@@ -1,60 +1,61 @@
-/* WebFundation.scss */
-
-.web-fundations {
-  /* Estilos para el contenedor principal */
-}
-
-.landing-page {
-  background-color: #f2f2f2; /* Color de fondo del contenedor de la página de inicio */
-  padding: 50px; /* Espaciado interno del contenedor de la página de inicio */
-}
-
-.landing-page__content {
+.slider-container-fundation {
+  width: 70%;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  padding-left: 20px;
 }
 
-.landing-page__content__text {
-  flex: 1;
-  padding: 20px;
-  max-width: 400px; /* Ancho máximo del contenedor de texto */
+.text-container-fundation {
+  width: "25%";
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  transition: "0.5s ease-in-out";
+  flex-direction: "column";
+  align-content: "center";
+  flex-wrap: "wrap";
+  padding-left: "20px";
 }
 
-.landing-page__content__text__title {
-  font-size: 24px; /* Tamaño de fuente del título */
-  font-weight: bold;
-  color: #333; /* Color del texto del título */
-}
+// Vista desde ceular
+@media (max-width: 768px) {
+  .slider-container-fundation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    padding-left: 20px;
+  }
 
-.landing-page__content__text__subtitle {
-  font-size: 18px; /* Tamaño de fuente del subtítulo */
-  color: #555; /* Color del texto del subtítulo */
-}
-
-.landing-page__content__text__description {
-  font-size: 14px; /* Tamaño de fuente de la descripción */
-  color: #666; /* Color del texto de la descripción */
-}
-
-.landing-page__content__text__button {
-  background-color: #007bff; /* Color de fondo del botón */
-  color: #fff; /* Color del texto del botón */
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px; /* Espaciado superior del botón */
-  cursor: pointer;
-  font-size: 16px; /* Tamaño de fuente del botón */
-  border-radius: 5px; /* Radio de borde del botón */
-  transition: background-color 0.3s ease; /* Transición del color de fondo del botón */
-}
-
-.landing-page__content__text__button:hover {
-  background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse sobre el botón */
-}
-
-.landing-page__content__image img {
-  max-width: 100%; /* Imagen se ajusta al ancho del contenedor */
-  height: auto; /* Altura automática para mantener la proporción */
+  .text-container-fundation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    padding-left: 20px;
+  }
+  .text-container-fundation {
+    h2 {
+      padding: 0;
+    }
+    h3 {
+      font-size: 15px;
+    }
+    p {
+      color: aliceblue;
+    }
+  }
 }

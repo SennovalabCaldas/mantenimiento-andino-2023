@@ -25,7 +25,7 @@ export const MakinaAndinaMiami = () => {
     <>
       <div className="title-makina-andina">
         <img src={image.logo3} alt="Logo Makina Andina" className="logo" />
-        <h1>MAKINA ANDINA MIAMI S.A.S</h1>
+        <h1>MAKINA ANDINA LLC MIAMI</h1>
       </div>
       <Divider />
       <Grid
@@ -39,11 +39,12 @@ export const MakinaAndinaMiami = () => {
             style={{ padding: "20px 20px 20px 50px", textAlign: "center" }}
           >
             <p>
-              Makina Andina Ingeniería SAS. Sociedad por Acciones Simplificada.
+              Makina Andina LLC Miami.
             </p>
             <p>
               <strong>Dirección: </strong>Calle 76A # 21 - 8. Manizales, Caldas.{" "}
-              <strong>Correo contacto:</strong> makinaandinasas@gmail.com
+              <br/>
+              <strong>Correo contacto:</strong> makinaandinamiamisas@gmail.com
             </p>
           </Paper>
         </Grid>
@@ -54,6 +55,7 @@ export const MakinaAndinaMiami = () => {
           >
             <p>
               <strong>Descarga el portafolio de servicios </strong>
+              <br/>
               <button className="buttonDownload">Download</button>
             </p>
           </Paper>

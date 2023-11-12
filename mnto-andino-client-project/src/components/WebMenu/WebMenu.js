@@ -30,6 +30,7 @@ import Footer from "../Shared/Footer/Footer";
 import "./WebMenu.scss";
 import { Link } from "react-router-dom";
 import { getAllProfiles } from "../../actions/profileActions";
+import { getAllSedes } from "../../actions/sedesActions";
 
 export const WebMenu = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ export const WebMenu = () => {
     dispatch(getAllProjects());
     dispatch(getAllFoundationsNews());
     dispatch(getAllProfiles());
+    dispatch(getAllSedes());
   }, [dispatch]);
 
   const handleCountrySelect = (countryCode) => {
@@ -237,15 +239,18 @@ function Section4() {
 
 function Section5() {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getAllCertifications());
+    dispatch(getAllFoundationsNews());
   }, [dispatch]);
-  const certifications = useSelector(
-    (state) => state.certification.allCertification
+
+  const foundations = useSelector(
+    (state) => state.foundation.allFoundations
   );
+  console.log("foundations =>", foundations);
   return (
     <div className="section web-section" id="section5">
-      <WebCertifications certifications={certifications} />
+      <WebCertifications foundations={foundations} />
     </div>
   );
 }

@@ -1,0 +1,23 @@
+.gallery-photos-fundations {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+  margin-inline: auto;
+  max-width: 40rem;
+  background: rgb(239 239 239 / 95%);
+  padding: 1vh;
+}
+
+.gallery-photos-fundations > img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.gallery-photos-fundations:has(img:hover) img:not(:hover) {
+  scale: 0.8;
+  opacity: 0.5;
+  filter: grayscale(70%);
+}

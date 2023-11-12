@@ -50,6 +50,7 @@ export const MakinaAndina = () => {
             </p>
             <p>
               <strong>Dirección: </strong>Calle 76A # 21 - 8. Manizales, Caldas.{" "}
+              <br />
               <strong>Correo contacto:</strong> makinaandinasas@gmail.com
             </p>
           </Paper>
@@ -61,6 +62,8 @@ export const MakinaAndina = () => {
           >
             <p>
               <strong>Descarga el portafolio de servicios </strong>
+              <br />
+
               <button className="buttonDownload">Download</button>
             </p>
           </Paper>
@@ -68,8 +71,8 @@ export const MakinaAndina = () => {
       </Grid>
       <div className="back-to-mnto">
         <BackToMntoAndino
-          thumbnailSrc={image.logomnbg} // Ruta de la miniatura de la imagen
-          fullSrc={image.logoSennovalabNoC} // Ruta de la imagen completa
+          thumbnailSrc={image.logomnbg}
+          fullSrc={image.logoSennovalabNoC}
         />
       </div>
       <ProductList

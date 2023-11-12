@@ -63,6 +63,45 @@ import portafolio_p2 from "./portfolio/p2.jpeg";
 import portafolio_p3 from "./portfolio/p3.jpeg";
 import portafolio_p4 from "./portfolio/p4.jpeg";
 
+import profile1 from "./profiles/profile1.jpg";
+import profile2 from "./profiles/profile2.jpg";
+import profile3 from "./profiles/profile3.jpg";
+import profile4 from "./profiles/profile4.jpg";
+
+import amazonas from "./departments/amazonas.png";
+import antioquia from "./departments/antioquia.png";
+import arauca from "./departments/arauca.png";
+import atlantico from "./departments/atlantico.png";
+import bocaya from "./departments/bocaya.png";
+import bolivar from "./departments/bolivar.png";
+import caldas from "./departments/caldas.png";
+import caqueta from "./departments/caqueta.png";
+import casanare from "./departments/casanare.png";
+import cauca from "./departments/cauca.png";
+import cesar from "./departments/cesar.png";
+import choco from "./departments/choco.png";
+import cordoba from "./departments/cordoba.png";
+import cundinamarca from "./departments/cundinamarca.png";
+import guainia from "./departments/guainia.png";
+import guaviare from "./departments/guaviare.png";
+import huila from "./departments/huila.png";
+import guajira from "./departments/guajira.png";
+import magdalena from "./departments/magdalena.png";
+import meta from "./departments/meta.png";
+import narino from "./departments/narino.png";
+import norteSantander from "./departments/norteSantander.png";
+import putumayo from "./departments/putumayo.png";
+import quindio from "./departments/quindio.png";
+import risaralda from "./departments/risaralda.png";
+import santander from "./departments/santander.png";
+import sucre from "./departments/sucre.png";
+import tolima from "./departments/tolima.png";
+import valleDelCauca from "./departments/valleDelCauca.png";
+import vaupes from "./departments/vaupes.png";
+import vichada from "./departments/vichada.png";
+
+
+
 import mapa from "./jpg/mapa.jpg";
 
 const image = {
@@ -122,6 +161,41 @@ const image = {
   portafolio_p2,
   portafolio_p3,
   portafolio_p4,
+  profile1,
+  profile2,
+  profile3,
+  profile4,
   mapa,
+  amazonas,
+  antioquia,
+  arauca,
+  atlantico,
+  bocaya,
+  bolivar,
+  caldas,
+  caqueta,
+  casanare,
+  cauca,
+  cesar,
+  choco,
+  cordoba,
+  cundinamarca,
+  guainia,
+  guaviare,
+  huila,
+  guajira,
+  magdalena,
+  meta,
+  narino,
+  norteSantander,
+  putumayo,
+  quindio,
+  risaralda,
+  santander,
+  sucre,
+  tolima,
+  valleDelCauca,
+  vaupes,
+  vichada,
 };
 export { image };
