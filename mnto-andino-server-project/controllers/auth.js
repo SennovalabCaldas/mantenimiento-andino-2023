@@ -33,41 +33,41 @@ const register = async (req, res) => {
       current_password: hash_password,
     });
 
-    const accessToken = jwt.createAccessToken(newUser);
-    console.log(accessToken);
-    const userStorage = await newUser.save();
-    const mailOptions = {
-      from: "yanetmejia03@gmail.com",
-      to: email,
-      subject: "Verificación de Registro en Mantenimiento Andino S.A.S.",
-      html: `
-        <html>
-          <body>
-            <div style="text-align: center;">
-              <h2>¡Bienvenido al Sistema de Mantenimiento Andino!</h2>
-              <p>Estimado ${firstname} ${lastname},</p>
-              <p>Te damos la bienvenida a nuestro sistema. Para completar tu registro, haz clic en el siguiente enlace:</p>
-              <a href="http://localhost:3000/verify-auth/${accessToken}" onclick="verifyAccount('${accessToken}')">Verificar mi cuenta</a>
-              <p>Gracias por unirte a Mantenimiento Andino S.A.S.</p>
-    <br/>
-              <!-- Sección de Política y Manejo de Datos -->
-              <h3><strong>Política y Manejo de Datos<strong></h3>
-              <p>En Mantenimiento Andino S.A.S., nos tomamos muy en serio la privacidad y seguridad de tus datos personales. Puedes revisar nuestra <a href="http://mantenimientoandino.co/privacypolicy">Política de Privacidad</a> para conocer cómo manejamos y protegemos tus datos.</p>
-              <p>Al usar nuestro servicio, aceptas nuestros <a href="URL_TERMINOS_Y_CONDICIONES">Términos y Condiciones</a>, así que te recomendamos revisarlos detenidamente para entender tus derechos y responsabilidades.</p>
-            </div>
-          </body>
-        </html>
-      `,
-      attachments: [
-        {
-          filename: "logo.png", // Nombre del archivo adjunto
-          content: fs.createReadStream(logoPath), // Lee el archivo desde la ruta local
-          encoding: "base64",
-        },
-      ],
-    };
+    // const accessToken = jwt.createAccessToken(newUser);
+    // console.log(accessToken);
+    // const mailOptions = {
+    //   from: "yanetmejia03@gmail.com",
+    //   to: email,
+    //   subject: "Verificación de Registro en Mantenimiento Andino S.A.S.",
+    //   html: `
+    //     <html>
+    //       <body>
+    //         <div style="text-align: center;">
+    //           <h2>¡Bienvenido al Sistema de Mantenimiento Andino!</h2>
+    //           <p>Estimado ${firstname} ${lastname},</p>
+    //           <p>Te damos la bienvenida a nuestro sistema. Para completar tu registro, haz clic en el siguiente enlace:</p>
+    //           <a href="http://localhost:3000/verify-auth/${accessToken}" onclick="verifyAccount('${accessToken}')">Verificar mi cuenta</a>
+    //           <p>Gracias por unirte a Mantenimiento Andino S.A.S.</p>
+    // <br/>
+    //           <!-- Sección de Política y Manejo de Datos -->
+    //           <h3><strong>Política y Manejo de Datos<strong></h3>
+    //           <p>En Mantenimiento Andino S.A.S., nos tomamos muy en serio la privacidad y seguridad de tus datos personales. Puedes revisar nuestra <a href="http://mantenimientoandino.co/privacypolicy">Política de Privacidad</a> para conocer cómo manejamos y protegemos tus datos.</p>
+    //           <p>Al usar nuestro servicio, aceptas nuestros <a href="URL_TERMINOS_Y_CONDICIONES">Términos y Condiciones</a>, así que te recomendamos revisarlos detenidamente para entender tus derechos y responsabilidades.</p>
+    //         </div>
+    //       </body>
+    //     </html>
+    //   `,
+    //   attachments: [
+    //     {
+    //       filename: "logo.png", // Nombre del archivo adjunto
+    //       content: fs.createReadStream(logoPath), // Lee el archivo desde la ruta local
+    //       encoding: "base64",
+    //     },
+    //   ],
+    // };
 
-    await transporter.sendMail(mailOptions);
+    // await transporter.sendMail(mailOptions);
+    const userStorage = await newUser.save();
     console.log(userStorage);
     res.status(201).send(userStorage);
   } catch (error) {
@@ -76,22 +76,22 @@ const register = async (req, res) => {
   }
 };
 
-const verifyAuth = async (req, res) => {
-  console.log("Selecciono verificar cuenta");
-  const { token } = req.params;
-  console.log(token);
-  try {
-    const { user_id } = jwt.verify(token);
-    console.log(user_id);
-    const userStorage = await User.findOne({ _id: user_id });
-    userStorage.active = true;
-    await userStorage.save();
-    res.status(200).send({ msg: "Usuario activado exitosamente" });
-  } catch (error) {
-    console.error("Error al verificar la cuenta:", error);
-    res.status(400).send({ msg: "Error al verificar la cuenta" });
-  }
-};
+// const verifyAuth = async (req, res) => {
+//   console.log("Selecciono verificar cuenta");
+//   const { token } = req.params;
+//   console.log(token);
+//   try {
+//     const { user_id } = jwt.verify(token);
+//     console.log(user_id);
+//     const userStorage = await User.findOne({ _id: user_id });
+//     userStorage.active = true;
+//     await userStorage.save();
+//     res.status(200).send({ msg: "Usuario activado exitosamente" });
+//   } catch (error) {
+//     console.error("Error al verificar la cuenta:", error);
+//     res.status(400).send({ msg: "Error al verificar la cuenta" });
+//   }
+// };
 
 /* Función que permite iniciar sesión */
 const login = async (req, res) => {
@@ -100,7 +100,6 @@ const login = async (req, res) => {
   try {
     if (!email || !current_password) {
       throw new Error("El email y la contraseña son obligatorios");
-      
     }
     const emailLowerCase = email.toLowerCase();
     const userStore = await User.findOne({ email: email.toLowerCase() }).exec();
@@ -276,5 +275,5 @@ module.exports = {
   changePassword,
   passwordRecovery,
   refreshAccessToken,
-  verifyAuth,
+  // verifyAuth,
 };

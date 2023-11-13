@@ -8,7 +8,7 @@ api.post("/login", AuthController.login);
 api.post("/change-password", AuthController.changePassword);
 api.post("/password-recovery", AuthController.passwordRecovery);
 api.post("/refresh-access-token", AuthController.refreshAccessToken);
-api.get("/verify-auth/:token", AuthController.verifyAuth);
+// api.get("/verify-auth/:token", AuthController.verifyAuth);
 
 
 module.exports = api;
