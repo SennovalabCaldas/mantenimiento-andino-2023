@@ -63,17 +63,7 @@ export const WebFundation = ({ profiles }) => {
       <div className="slider-container-fundation">
         <Slider
           {...sliderSettings}
-          style={{
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "0.5s ease-in-out",
-            flexDirection: "column",
-            alignContent: "center",
-            flexWrap: "wrap",
-            paddingLeft: "20px",
-          }}
+       
         >
           {profiles.map((profile, index) => (
             <div
