@@ -20,7 +20,7 @@ const PostSchema = mongoose.Schema({
   fecha_creacion: {
     type: Date,
     default: Date.now,
-  },
+  }, 
   active: {
     type: Boolean,
     default: true,

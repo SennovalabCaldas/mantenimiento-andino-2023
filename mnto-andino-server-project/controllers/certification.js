@@ -5,24 +5,19 @@ async function createCertification(req, res) {
     const certificationData = req.body; // Obtiene los datos del allye incluyendo la dirección como objeto JSON
     console.log("certificationdata", certificationData);
 
-    const photos = Array.isArray(req.files.photos)
-      ? req.files.photos.map((file) => file.path)
-      : [];
-      console.log("photos", photos);
-
+    const photos = req.files.map((file) => file.path);
     certificationData.photos = photos;
-    console.log("certificationData", certificationData);
-
-    const allyStored = new Certification(certificationData);
-    await allyStored.save();
+    
+    const certificationStored = new Certification(certificationData);
+    await certificationStored.save();
     res.status(201).json({
-      _id: allyStored._id,
-      certificationName: allyStored.certificationName,
-      national: allyStored.national,
-      photos: allyStored.photos,
-      joinDate: allyStored.joinDate,
+      _id: certificationStored._id,
+      certificationName: certificationStored.certificationName,
+      national: certificationStored.national,
+      photos: certificationStored.photos,
+      joinDate: certificationStored.joinDate,
     });
-    console.log(allyStored);
+    console.log(certificationStored);
   } catch (error) {
     console.error(error);
     res.status(400).json({ msg: "Error al crear la certificación" });

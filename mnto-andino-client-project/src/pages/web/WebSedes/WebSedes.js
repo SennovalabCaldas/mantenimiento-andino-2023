@@ -43,7 +43,7 @@ export const WebSedes = () => {
         return image.arauca;
       case "Atlántico":
         return image.atlantico;
-      case "Bocaya":
+      case "Boyacá":
         return image.bocaya;
       case "Bolívar":
         return image.bolivar;
