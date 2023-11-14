@@ -28,7 +28,7 @@ const register = async (req, res) => {
       lastname,
       email: email.toLowerCase(),
       role: "admin",
-      active: false,
+      active: true,
       current_password: hash_password,
     });
 
