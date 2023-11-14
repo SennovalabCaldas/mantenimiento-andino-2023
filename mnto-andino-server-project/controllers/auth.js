@@ -20,7 +20,6 @@ const register = async (req, res) => {
       return res.status(400).send({ msg: "La contraseña es requerida" });
     }
 
-    // Generar hash de la contraseña
     const salt = await bcrypt.genSalt(10);
     const hash_password = await bcrypt.hash(current_password, salt);
 
@@ -28,7 +27,7 @@ const register = async (req, res) => {
       firstname,
       lastname,
       email: email.toLowerCase(),
-      role: "user",
+      role: "admin",
       active: false,
       current_password: hash_password,
     });
@@ -76,24 +75,6 @@ const register = async (req, res) => {
   }
 };
 
-// const verifyAuth = async (req, res) => {
-//   console.log("Selecciono verificar cuenta");
-//   const { token } = req.params;
-//   console.log(token);
-//   try {
-//     const { user_id } = jwt.verify(token);
-//     console.log(user_id);
-//     const userStorage = await User.findOne({ _id: user_id });
-//     userStorage.active = true;
-//     await userStorage.save();
-//     res.status(200).send({ msg: "Usuario activado exitosamente" });
-//   } catch (error) {
-//     console.error("Error al verificar la cuenta:", error);
-//     res.status(400).send({ msg: "Error al verificar la cuenta" });
-//   }
-// };
-
-/* Función que permite iniciar sesión */
 const login = async (req, res) => {
   const { email, current_password } = req.body;
   console.log(req.body);
