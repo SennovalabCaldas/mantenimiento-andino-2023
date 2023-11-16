@@ -44,11 +44,11 @@ export const Auth = () => {
     <div className="auth">
       <div className="back-to-mnto">
         <BackToMntoAndino
-          thumbnailSrc={image.logo} // Ruta de la miniatura de la imagen
+          thumbnailSrc={image.logomn} // Ruta de la miniatura de la imagen
           fullSrc={image.logoSennovalabNoC} // Ruta de la imagen completa
         />
       </div>
-      <img src={image.logo} alt="" className="logo" />
+      <img src={image.logomn} alt="" className="logo" />
       <div className="auth__form auth-form__tab">
         <Tab
           panes={panels}
