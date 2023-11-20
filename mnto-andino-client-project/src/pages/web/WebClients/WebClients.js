@@ -52,9 +52,11 @@ export const WebClients = ({ clients, testimonies }) => {
       <div className="section-clients">
         <div className="gallery gallery-cards">
           <div className="content panel">
-            <div className="slide" data-order="1">
+            <div className="title-service">
               <h1>
-                <span className="no-select-2">CLIENTES</span>
+                <strong>GRACIAS</strong>
+                <br />
+                A NUESTROS CLIENTES
               </h1>
             </div>
             <div className="images panel">

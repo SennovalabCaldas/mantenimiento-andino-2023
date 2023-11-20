@@ -242,15 +242,18 @@ function Section5() {
 
   useEffect(() => {
     dispatch(getAllFoundationsNews());
+    dispatch(getAllAllies());
+    dispatch(getAllClients());
   }, [dispatch]);
 
-  const foundations = useSelector(
-    (state) => state.foundation.allFoundations
-  );
-  console.log("foundations =>", foundations);
+  const foundations = useSelector((state) => state.foundation.allFoundations);
+
+  const allies = useSelector((state) => state.ally.allAllies);
+
+  const clients = useSelector((state) => state.client.clients);
   return (
     <div className="section web-section" id="section5">
-      <WebCertifications foundations={foundations} />
+      <WebCertifications foundations={foundations} allies={allies} clients ={clients} />
     </div>
   );
 }

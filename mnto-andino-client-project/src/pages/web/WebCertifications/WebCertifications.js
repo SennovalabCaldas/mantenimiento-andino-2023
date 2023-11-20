@@ -4,9 +4,11 @@ import "./WebCertifications.scss";
 import { ENV } from "../../../utils";
 import { ImageListItem } from "@mui/material";
 import { Photos } from "./Photos";
+import { Collage } from "./Collage";
 
-export const WebCertifications = ({ foundations }) => {
+export const WebCertifications = ({ foundations, allies, clients }) => {
   console.log("foundations", foundations);
+  console.log("allies", allies);
   const videoRef = useRef(null);
   const videoSrc1 = image.contact;
   const videoSrc2 = image.contact2;
@@ -76,7 +78,8 @@ export const WebCertifications = ({ foundations }) => {
         </div>
       </div>
 
-      <Photos foundations={foundations} />
+      <Photos foundations={foundations} allies={allies} clients={clients} />
+      {/* <Collage></Collage> */}
     </div>
   );
 };

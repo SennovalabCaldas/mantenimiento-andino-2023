@@ -10,7 +10,6 @@
   .slide {
     width: 35%;
     height: auto;
-    /* height: 500px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +86,6 @@
 
   .gallery-cards .content {
     color: #000000;
-    // background-color: rgb(230 230 230 / 84%);
     text-align: center;
     width: 100%;
     box-sizing: border-box;
@@ -96,9 +94,8 @@
   .gallery-cards .images {
     display: flex;
     flex-wrap: wrap;
-    /* padding: 0 20px; */
     box-sizing: border-box;
-    width: 65%;
+    width: 95%;
     align-content: flex-start;
     align-items: center;
     flex-direction: row;
@@ -116,7 +113,6 @@
   .projects-section .gallery-cards .content {
     display: flex;
     box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.5);
-    // background: linear-gradient(to right, #ffffff, #5e7383, #fff);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -170,7 +166,6 @@
     transition: 0.5s ease-in-out;
     flex-direction: column;
   }
- 
 }
 
 .panel {
