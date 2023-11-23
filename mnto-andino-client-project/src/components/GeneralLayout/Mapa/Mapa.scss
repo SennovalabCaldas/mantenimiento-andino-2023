@@ -10,7 +10,7 @@
   }
 
   .chip {
-    
+    margin: 2px;
     color: #000;
     font-size: 11px;
     padding: -2px 8px;
@@ -24,11 +24,17 @@
       padding-right: 12px;
       white-space: nowrap;
       color: black;
+      margin: 2px;
     }
   }
 
   .chip:hover {
-    background-color: rgba(241, 241, 241, 0.51);; /* Cambia el color de fondo al pasar el mouse sobre el chip */
+    background-color: rgba(
+      241,
+      241,
+      241,
+      0.51
+    ); /* Cambia el color de fondo al pasar el mouse sobre el chip */
   }
   .card-map {
     width: 100%;
@@ -87,4 +93,7 @@
       width: 100%;
     }
   }
+}
+.css-1j047yb-MuiChip-root {
+  margin: 2px;
 }

@@ -14,11 +14,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 20px;
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery-photos-fundations__item {
@@ -52,10 +52,9 @@
   margin-top: 20px;
 
   button {
-    padding: 8px 12px;
-    margin: 0 5px;
-    background-color: #3498db;
-    color: #fff;
+    padding: 7px 9px;
+    margin: 1px;
+    color: #000000;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -66,7 +65,18 @@
     }
 
     &.active {
-      background-color: #2980b9;
+      background-color: #b4babe;
+      color: black;
     }
+  }
+}
+
+//  Estilos para móviles
+@media (max-width: 768px) {
+  .container-photos {
+    width: 85%;
+  }
+  .gallery-photos-fundations__item {
+    width: calc(35% - 20px);
   }
 }

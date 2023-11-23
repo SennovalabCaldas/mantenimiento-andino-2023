@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Contact.scss";
 import { image } from "../../../assets";
 import { Chip } from "@mui/material";
+import { Mapa } from "../../../components/GeneralLayout";
 
 export const Contact = () => {
   const [name, setName] = useState("");
@@ -184,6 +185,12 @@ export const Contact = () => {
     )}&body=${encodeURIComponent(cuerpoMensaje)}`;
 
     window.location.href = correoTo;
+    setSuccessMsg("Thank you! I will get back to you as soon as possible.");
+
+    setTimeout(() => {
+      setSuccessMsg("");
+      resetForm();
+    }, 6000);
   };
 
   const handleChipDelete = (chipKey) => {
@@ -194,23 +201,24 @@ export const Contact = () => {
   return (
     <div className="contact-design">
       <div className="contact-container">
-        <div className="left-col">
-          <img className="logo" src={image.logomn} />
-        </div>
         <div className="right-col">
           <div className="form-contact-mnto">
-            <h1>Contactanos</h1>
-            <br />
-            <label
-              htmlFor="name"
+            <div
               style={{
-                paddingBottom: "22px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center",
+                textAlign: "center",
               }}
             >
-              En <strong>Mantenimiento Andino</strong>, priorizamos la
-              privacidad y seguridad de tu información. Envía el formulario con
-              confianza sabiendo que tus datos están seguros con nosotros.
-            </label>
+              <h1>Contactanos</h1>
+              <img className="logo" src={image.logomn} />
+            </div>
+
+            <br />
+
             <form
               id="contact-form"
               method="post"
@@ -218,7 +226,24 @@ export const Contact = () => {
                 e.preventDefault();
                 enviarCorreo();
               }}
+              style={{
+                marginLeft: "10px",
+                backgroundColor: "rgb(124 160 161 / 28%)",
+                borderRadius: "5px",
+                padding: "25px",
+                color: "rgba(0,0,0,.95)",
+              }}
             >
+              <label
+                htmlFor="name"
+                style={{
+                  paddingBottom: "22px",
+                }}
+              >
+                En <strong>Mantenimiento Andino</strong>, priorizamos la
+                privacidad y seguridad de tu información. Envía el formulario
+                con confianza sabiendo que tus datos están seguros con nosotros.
+              </label>
               <div>
                 <label htmlFor="name">Tipo de contacto:</label>
                 <label className="input-radio">
@@ -292,8 +317,6 @@ export const Contact = () => {
                   <Chip
                     style={{
                       margin: "4px",
-                      background:
-                        "linear-gradient(rgba(235, 239, 241, 0.48), rgba(103, 187, 227, 0.48))",
                       color: "black",
                       fontSize: "10px",
                       textTransform: "uppercase",
@@ -329,150 +352,157 @@ export const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="item-profile-card">
-        <figure className="snip1336">
-          <img src={image.fondoSlide} alt="sample87" />
-          <figcaption>
-            <h2>
-              Albert Edisson Berrio Galeano
-              <br />
-              <span>CEO</span>
-            </h2>
-            <p>
-              <img
-                src={image.call}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  marginRight: "5px",
-                  color: "beige",
-                }}
-              />
-              310 383 3591 <br />
-              <img
-                src={image.email}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  marginRight: "5px",
-                  color: "beige",
-                }}
-              />
-              mantenimientoandino@gmail.com <br />
-              <img
-                src={image.location}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  marginRight: "5px",
-                  color: "beige",
-                }}
-              />
-              Calle 76A # 21-85, Manizales, Colombia
-            </p>
-            <div
-              style={{
-                display: "flex",
-                alignContent: "center",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <a
-                href={`https://api.whatsapp.com/send?phone=573103833591&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
-                className="follow"
-              >
-                <img
-                  src={image.whatsApp}
-                  style={{ width: "15px", height: "15px" }}
-                />
-              </a>
-              <a>
-                <img
-                  src={image.email}
-                  onClick={enviarCorreoContact}
-                  style={{ width: "15px", height: "15px" }}
-                ></img>
-              </a>
-              <div className="qrCodeContact">
-                <img src={image.ceoCode} />
-              </div>
-            </div>
-          </figcaption>
-        </figure>
-        <figure className="snip1336 hover">
-          <img src={image.fondoSlide} alt="sample74" />
-          <figcaption>
-            <h2>
-              Vanessa Londoño Villada
-              <br />
-              <span>GERENTE ADMINISTRATIVA</span>
-            </h2>
-            <p>
-              <img
-                src={image.call}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  marginRight: "5px",
-                  color: "beige",
-                }}
-              />
-              300 842 6136 <br />
-              <img
-                src={image.email}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  marginRight: "5px",
-                  color: "beige",
-                }}
-              />
-              gerenciamantenimientoandino@gmail.com <br />
-              <img
-                src={image.location}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  marginRight: "5px",
-                  color: "beige",
-                }}
-              />
-              Calle 76A # 21-85, Manizales, Colombia
-            </p>
-            <div
-              style={{
-                display: "flex",
-                placeContent: "center",
-                alignItems: "flex-end",
-                justifyContent: "center",
-                alignContent: "center",
-                flexWrap: "wrap",
-                flexDirection: "row",
-              }}
-            >
-              <a
-                href={`https://api.whatsapp.com/send?phone=573008426136&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
-                className="follow"
-              >
-                <img
-                  src={image.whatsApp}
-                  style={{ width: "15px", height: "15px" }}
-                />
-              </a>
-              <a>
-                <img
-                  src={image.email}
-                  onClick={enviarCorreoContact}
-                  style={{ width: "15px", height: "15px" }}
-                ></img>
-              </a>
-              <div className="qrCodeContact">
-                <img src={image.gerenteCode} />
-              </div>
-            </div>
-          </figcaption>
-        </figure>
+      <div className="second-contact-container">
+        <div className="left-col-2">
+          <Mapa></Mapa>
+        </div>
+        <div className="right-col-2">
+          <div className="item-profile-card">
+            <figure className="snip1336">
+              <img src={image.fondoSlide} alt="sample87" />
+              <figcaption>
+                <h2>
+                  Albert Edisson Berrio Galeano
+                  <br />
+                  <span>CEO</span>
+                </h2>
+                <p>
+                  <img
+                    src={image.call}
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      marginRight: "5px",
+                      color: "beige",
+                    }}
+                  />
+                  310 383 3591 <br />
+                  <img
+                    src={image.email}
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      marginRight: "5px",
+                      color: "beige",
+                    }}
+                  />
+                  mantenimientoandino@gmail.com <br />
+                  <img
+                    src={image.location}
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      marginRight: "5px",
+                      color: "beige",
+                    }}
+                  />
+                  Calle 76A # 21-85, Manizales, Colombia
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    alignContent: "center",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=573103833591&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
+                    className="follow"
+                  >
+                    <img
+                      src={image.whatsApp}
+                      style={{ width: "15px", height: "15px" }}
+                    />
+                  </a>
+                  <a>
+                    <img
+                      src={image.email}
+                      onClick={enviarCorreoContact}
+                      style={{ width: "15px", height: "15px" }}
+                    ></img>
+                  </a>
+                  <div className="qrCodeContact">
+                    <img src={image.ceoCode} />
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+            <figure className="snip1336 hover">
+              <img src={image.fondoSlide} alt="sample74" />
+              <figcaption>
+                <h2>
+                  Vanessa Londoño Villada
+                  <br />
+                  <span>GERENTE ADMINISTRATIVA</span>
+                </h2>
+                <p>
+                  <img
+                    src={image.call}
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      marginRight: "5px",
+                      color: "beige",
+                    }}
+                  />
+                  300 842 6136 <br />
+                  <img
+                    src={image.email}
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      marginRight: "5px",
+                      color: "beige",
+                    }}
+                  />
+                  gerenciamantenimientoandino@gmail.com <br />
+                  <img
+                    src={image.location}
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      marginRight: "5px",
+                      color: "beige",
+                    }}
+                  />
+                  Calle 76A # 21-85, Manizales, Colombia
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    placeContent: "center",
+                    alignItems: "flex-end",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    flexWrap: "wrap",
+                    flexDirection: "row",
+                  }}
+                >
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=573008426136&text=Hola,%20estoy%20interesado%20en%20sus%20servicios.%20`}
+                    className="follow"
+                  >
+                    <img
+                      src={image.whatsApp}
+                      style={{ width: "15px", height: "15px" }}
+                    />
+                  </a>
+                  <a>
+                    <img
+                      src={image.email}
+                      onClick={enviarCorreoContact}
+                      style={{ width: "15px", height: "15px" }}
+                    ></img>
+                  </a>
+                  <div className="qrCodeContact">
+                    <img src={image.gerenteCode} />
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
       </div>
     </div>
   );

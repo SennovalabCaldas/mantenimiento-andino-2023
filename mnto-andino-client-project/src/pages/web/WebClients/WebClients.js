@@ -14,9 +14,10 @@ export const WebClients = ({ clients, testimonies }) => {
           {" "}
           <span
             style={{
-              color: "black",
+              color: "#d4d4d5",
               fontSize: "1.5rem",
               textTransform: "uppercase",
+              marginTop: "15px",
             }}
           >
             Tú opinión nos importa

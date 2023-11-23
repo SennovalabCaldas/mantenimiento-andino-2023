@@ -80,7 +80,7 @@
 
   .column-item {
     width: calc(
-      50% - 20px
+      35% - 20px
     ); /* Para dos clientes por fila en pantallas más pequeñas */
     margin-bottom: 20px; /* Espacio entre las filas */
   }
@@ -130,24 +130,24 @@
   align-content: center;
 
   h2 {
-    padding-top: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
     position: relative;
-    right: 30px;
   }
 }
 
 .testimonios-container {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .e-card.playing {
@@ -171,15 +171,23 @@
   }
 
   .infotop {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 
     .client-avatar {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
       border-radius: 50%;
+      filter: grayscale(40%);
+      height: 60px;
       margin-bottom: 10px;
-      transition: filter 0.3s ease;
+      object-fit: cover;
+      transition: filter .3s ease;
+      width: 60px;
 
       filter: grayscale(100%);
 
@@ -189,12 +197,11 @@
     }
 
     h2 {
-      color: black;
-      text-transform: uppercase;
-      font-size: 16px;
+      color: rgba(0,0,0,.87);
+      font-size: 12px;
       font-weight: 500;
-      margin: 5px 0;
-      text-transform: capitalize;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
     .client-avatar-testimonie {
@@ -209,7 +216,7 @@
     }
 
     p {
-      font-size: 12px;
+      font-size: 11px;
       color: #333;
       margin-bottom: 10px;
     }
@@ -325,17 +332,17 @@
 }
 
 .decoration-line-dos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 260px;
-  /* left: 20px; */
-  height: 2px;
-  background-color: #000;
-  margin: 10px 0;
   align-content: center;
+  z-index: 99999;
+  align-items: center;
+  background-color: #fff;
+  display: flex;
   flex-direction: row;
-  right: 12%;
-  position: absolute;
   flex-wrap: wrap;
+  /* height: 2px; */
+  justify-content: center;
+  margin: 10px 0;
+  position: relative;
+  right: 12%;
+  width: 260px;
 }

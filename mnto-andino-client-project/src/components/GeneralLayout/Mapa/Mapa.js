@@ -16,13 +16,8 @@ export const Mapa = ({ departamentos }) => {
   const dispatch = useDispatch();
 
   const mostrarPrimerClienteMensaje = (nombreDepartamento) => {
-    setDepartamentoClickeado(nombreDepartamento); // Guarda el nombre del departamento clickeado
+    setDepartamentoClickeado(nombreDepartamento);
     setMostrarMensaje(true);
-
-    setTimeout(() => {
-      setMostrarMensaje(false);
-      setDepartamentoClickeado(""); // Restablece el nombre del departamento clickeado
-    }, 3000); // Ocultar el mensaje después de 3 segundos (3000 milisegundos)
   };
 
   const handleMouseEnter = (deptName) => {
@@ -207,11 +202,9 @@ export const Mapa = ({ departamentos }) => {
     dispatch(getAllDepartments());
   }, [dispatch]);
 
-
   const departamentosDestacados = useSelector(
     (state) => state.department.departments
   );
-
 
   const departamentosDestacadosArray = departamentosDestacados.map(
     (departamento) => departamento.departmentName
@@ -268,31 +261,69 @@ export const Mapa = ({ departamentos }) => {
 
   return (
     <>
-      <div className="mapa-section">
-        <div className="card mt-3">
-          <div className="card-body">
-            <h5 className="card-title text-center">
-              Tenemos clientes en diferentes departamentos de Colombia:
-            </h5>
-            <div className="chips-container">
-              {departamentosDestacadosArray.map((departamento, index) => (
-                <Chip
-                  key={index}
-                  label={departamento}
-                  className="chip"
-                  variant="outlined"
-                />
-              ))}
-            </div>
+      <div className="card mt-3">
+        <div className="card-body">
+          <h5 className="card-title text-center" style={
+            {
+              color: "#FF5733",
+              fontWeight: "bold",
+              fontSize: "12px",
+              textTransform: "uppercase",
+              marginTop: "15px",
+            }
+          }>
+            Tenemos clientes en diferentes departamentos de Colombia:
+          </h5>
+          <div className="chips-container">
+            {departamentosDestacadosArray.map((departamento, index) => (
+              <Chip
+                key={index}
+                label={departamento}
+                className="chip"
+                variant="outlined"
+              />
+            ))}
           </div>
         </div>
+      </div>
+      <div className="mapa-section">
         {mostrarMensaje && (
-          <Alert severity="success">
+          <Alert
+            style={{
+              top: "25px",
+              right: "20px",
+              zIndex: "9999",
+              width: "350px",
+              textAlign: "center",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              color: "#ffffff",
+              backgroundColor: "#FF5733",
+              border: "1px solid #FF5733",
+              borderRadius: "5px",
+              padding: "10px",
+              marginTop: "20px",
+              boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+            }}
+          >
             ¡Puedes ser nuestro primer cliente en la región de{" "}
             {departamentoClickeado}!
           </Alert>
         )}
-        <div className="card-map">
+
+        <div
+          className="card-map"
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+        >
           <svg viewBox="0 0 1200 1200">
             {Object.values(simplemaps_countrymap_mapinfo.names).map(
               (deptName) => {

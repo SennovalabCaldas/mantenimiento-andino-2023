@@ -67,6 +67,8 @@ export const WebAliados = ({ allies, certifications }) => {
                   justifyContent: "space-between",
                   width: "100%",
                   marginTop: "10px",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
                 }}
               >
                 {cert.photos.map((photo, index) => (
@@ -75,11 +77,10 @@ export const WebAliados = ({ allies, certifications }) => {
                     alt={cert.certificationName}
                     className="certification-avatar"
                     style={{
-                      width: "100px",
-                      height: "100px",
+                      width: "70px",
+                      height: "70px",
                       borderRadius: "50%",
                       objectFit: "cover",
-                      
                     }}
                   />
                 ))}
