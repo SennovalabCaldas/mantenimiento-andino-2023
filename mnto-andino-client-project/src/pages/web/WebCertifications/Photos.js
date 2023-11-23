@@ -1,7 +1,6 @@
 import React from "react";
 import { ENV } from "../../../utils";
 import "./Photos.scss";
-import { ReactPhotoCollage } from "react-photo-collage";
 
 export const Photos = ({ foundations, allies, clients }) => {
   const baseApi = ENV.BASE_PATH;
