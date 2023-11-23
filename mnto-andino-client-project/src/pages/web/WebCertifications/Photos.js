@@ -6,27 +6,11 @@ import { ReactPhotoCollage } from "react-photo-collage";
 export const Photos = ({ foundations, allies, clients }) => {
   const baseApi = ENV.BASE_PATH;
   console.log("baseApi =>", foundations);
-  const imagesConfig = foundations.images
-    ? foundations.images.map((image) => ({
-        src: `${baseApi}/${image}`,
-        width: "100%",
-        height: "100%",
-      }))
-    : [];
-    console.log("imagesConfig =>", imagesConfig);
 
-  const setting = {
-    width: "100%",
-    height: ["200px", "300px"],
-    layout: [1, 2],
-    photos: imagesConfig,
-  };
-  console.log("foundations =>", foundations);
 
   console.log("allies =>", allies);
   return (
     <>
-      <ReactPhotoCollage {...setting} />
       <div className="slider-photos">
         <div className="slide-track">
           {allies.map((ally, index) => (
@@ -44,6 +28,7 @@ export const Photos = ({ foundations, allies, clients }) => {
                   padding: "5px",
                   maxWidth: "150px",
                   maxHeight: "150px",
+                  filter: "grayScale(70%)",
                 }}
                 alt=""
               />
@@ -66,6 +51,8 @@ export const Photos = ({ foundations, allies, clients }) => {
                   padding: "5px",
                   maxWidth: "150px",
                   maxHeight: "150px",
+                  filter: "grayScale(70%)",
+
                 }}
               />
             </div>

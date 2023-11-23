@@ -103,6 +103,7 @@ import vichada from "./departments/vichada.png";
 
 
 import mapa from "./jpg/mapa.jpg";
+import mapa2 from "./jpg/mapa2.png";
 
 const image = {
   logoSennovalabNoC,
@@ -197,5 +198,6 @@ const image = {
   valleDelCauca,
   vaupes,
   vichada,
+  mapa2
 };
 export { image };

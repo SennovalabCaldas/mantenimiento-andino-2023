@@ -12,21 +12,25 @@ export class Foundation {
     console.log("data =>", data);
     const accessToken = authController.getAccessToken();
     const formData = new FormData();
+  
     try {
-      const imagesArray = Array.isArray(data.images)
-        ? data.images
-        : [data.images];
-
-      imagesArray.forEach((photo) => {
-        formData.append("images", photo.image || photo);
+      const mediaArray = Array.isArray(data.media) ? data.media : [data.media];
+  
+      mediaArray.forEach((media) => {
+        if (media.type === "image") {
+          formData.append("images", media.file);
+        } else if (media.type === "video") {
+          formData.append("videos", media.file);
+        }
       });
+  
       Object.keys(data).forEach((key) => {
-        if (key !== "images") {
+        if (key !== "media") {
           formData.append(key, data[key]);
         }
       });
-
-      const url = `${this.baseApi}/${FOUNDATION}/new-fundation`;
+  
+      const url = `${this.baseApi}/${FOUNDATION}/new-foundation`;
       const params = {
         method: "POST",
         headers: {
@@ -34,18 +38,23 @@ export class Foundation {
         },
         body: formData,
       };
-
+  
       const response = await fetch(url, params);
+      console.log("response =>", response);
       const result = await response.json();
       console.log("result =>", result);
-      if (response.status !== 201) throw result;
-
+  
+      if (response.status !== 201) {
+        throw result;
+      }
+  
       return result;
     } catch (error) {
       throw error;
     }
   }
-
+  
+  
   async getAllFoundations() {
     const url = `${this.baseApi}/${FOUNDATION}`;
     console.log("url =>", url);

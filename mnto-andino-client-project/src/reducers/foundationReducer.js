@@ -9,6 +9,7 @@ const initialState = {
   foundation: {
     _id: null,
     images: [],
+    videos: [],
     createdAt: null,
   },
   allFoundations: [],
@@ -19,8 +20,12 @@ const foundationReducer = (state = initialState, action) => {
     case CREATE_FOUNDATION_SUCCESS:
       return {
         ...state,
-        foundation: action.payload,
+        foundation: {
+          ...state.foundation,
+          ...action.payload,
+        },
       };
+
     case SET_ALL_FOUNDATIONS_SERVICE:
       console.log("action.payload", action.payload);
       return {

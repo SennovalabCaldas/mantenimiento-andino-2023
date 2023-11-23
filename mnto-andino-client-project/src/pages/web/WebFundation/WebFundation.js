@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Button,
@@ -12,14 +12,20 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./WebFundation.scss";
+import { ENV } from "../../../utils/constants";
+import PaginationGallery from "./PaginationGallery";
 
-export const WebFundation = ({ profiles }) => {
+export const WebFundation = ({ profiles, foundations }) => {
+  console.log("profiles", foundations);
+  const baseApi = ENV.BASE_PATH;
   const images = [
     image.profile1,
     image.profile2,
     image.profile3,
     image.profile4,
   ];
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const sliderSettings = {
     dots: true,
@@ -28,7 +34,15 @@ export const WebFundation = ({ profiles }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+
+    autoplaySpeed: 2000,
   };
+
+  const allFoundationImages = foundations.reduce(
+    (accumulator, foundation) => [...accumulator, ...foundation.images],
+    []
+  );
+
 
   const getRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
@@ -38,33 +52,15 @@ export const WebFundation = ({ profiles }) => {
   return (
     <>
       <div className="text-container-fundation" data-order="1">
-        <h3>
-          <strong>
-            <em> Haz parte de este gran equipo</em>
-          </strong>
-        </h3>
-        <h2>
-          <span
-            style={{
-              color: "#000000",
-              fontWeight: "bold",
-              fontSize: "20px",
-              textTransform: "uppercase",
-              letterSpacing: "2px",
-              textAlign: "center",
-            }}
-          >
-            MANTENIMIENTO ANDINO
-          </span>
-        </h2>
-        <br />
+        <div className="container-foundation-profiles">
+          <h2>HAZ PARTE DE NUESTRA</h2>
+          <h1>FAMILIA Mantenimiento andino</h1>
+        </div>
+        <div className="decoration-line-tres"></div>
       </div>
 
       <div className="slider-container-fundation">
-        <Slider
-          {...sliderSettings}
-       
-        >
+        <Slider {...sliderSettings}>
           {profiles.map((profile, index) => (
             <div
               style={{
@@ -76,7 +72,7 @@ export const WebFundation = ({ profiles }) => {
                 key={index}
                 style={{
                   padding: "20px",
-                  maxWidth: "345px",
+                  maxWidth: "365px",
                   margin: "auto",
                   display: "flex",
                   justifyContent: "center",
@@ -100,9 +96,9 @@ export const WebFundation = ({ profiles }) => {
                 >
                   <div
                     style={{
-                      backgroundColor: "#000000b5",
-                      padding: "10px",
-                      margin: "10px",
+                      backgroundColor: "rgb(0 0 0 / 94%)",
+                      padding: "15px",
+                      margin: "15px",
                       borderRadius: "5px",
                     }}
                   >
@@ -114,12 +110,13 @@ export const WebFundation = ({ profiles }) => {
                           fontSize: "14px",
                           textTransform: "uppercase",
                           textAlign: "center",
+                          paddingTop: "15px",
                         }}
                       >
                         {profile.profileName}
                       </h2>
                     </Typography>
-                    <Divider style={{ margin: "10px 0" }} />
+                    <div className="decoration-line-cuatro"></div>
                     <div
                       style={{
                         color: "#ffffff",
@@ -133,7 +130,7 @@ export const WebFundation = ({ profiles }) => {
                           color: "#ffffff",
                         }}
                       >
-                        <strong>REQUISITOS:</strong>
+                        <span>REQUISITOS:</span>
                         <ul
                           style={{
                             fontSize: "12px",
@@ -153,15 +150,17 @@ export const WebFundation = ({ profiles }) => {
                       </h2>
                       <Divider style={{ margin: "10px 0" }} />
                       <h2>
-                        <strong
+                        <span
                           style={{
-                            fontWeight: "bold",
                             color: "#ffffff",
+                            textTransform: "uppercase",
+                            textAlign: "center",
+                            fontSize: "12px",
                           }}
                         >
                           Para más información sobre la vacante y los perfiles
                           requeridos, por favor contacta a:
-                        </strong>
+                        </span>
                         <ul
                           style={{
                             textAlign: "start",
@@ -170,19 +169,17 @@ export const WebFundation = ({ profiles }) => {
                             color: "#ffffff",
                           }}
                         >
-                          <li>
-                            Celular: (+57) {profile.contact_telephone}
-                          </li>
+                          <li>Celular: (+57) {profile.contact_telephone}</li>
                           <li>Correo: {profile.email}</li>
                           <li>WhatsApp: (+57) {profile.contact_whatsApp}</li>
                         </ul>
                       </h2>
-                      <Divider style={{ margin: "10px 0" }} />
+                      <Divider style={{ margin: "10px 0", color: "white" }} />
                     </div>
                     <Grid container justifyContent="center">
-                      <Button variant="contained" color="primary">
-                        Envía tu hoja de vida
-                      </Button>
+                      <button className="comic-button-profile">
+                        <span>Preguntar por más información</span>
+                      </button>
                     </Grid>
                   </div>
                 </CardContent>
@@ -190,6 +187,10 @@ export const WebFundation = ({ profiles }) => {
             </div>
           ))}
         </Slider>
+      </div>
+
+      <div className="gallery-photos-fundations">
+        <PaginationGallery images={allFoundationImages} itemsPerPage={15} />
       </div>
     </>
   );

@@ -56,7 +56,7 @@
 
     border-radius: 3px;
     .btn {
-      width: 170px;
+      width: 185px;
       border-radius: 3px;
       margin-top: 2px;
       height: 30px;
@@ -72,12 +72,16 @@
   }
   .option:hover {
     transform: scale(1.1);
-    background-color: rgba(205, 89, 99, 0.788);
+    background-color: rgba(214, 219, 164, 0.788);
     border-bottom: 2px #f9f9f9 solid;
 
     img {
       width: 30px;
       padding-right: 3px;
+    }
+    .btn{
+      color: black;
+
     }
   }
 }

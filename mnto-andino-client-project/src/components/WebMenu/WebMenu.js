@@ -253,7 +253,11 @@ function Section5() {
   const clients = useSelector((state) => state.client.clients);
   return (
     <div className="section web-section" id="section5">
-      <WebCertifications foundations={foundations} allies={allies} clients ={clients} />
+      <WebCertifications
+        foundations={foundations}
+        allies={allies}
+        clients={clients}
+      />
     </div>
   );
 }
@@ -275,12 +279,14 @@ function Section7() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProfiles());
+    dispatch(getAllFoundationsNews());
   }, [dispatch]);
   const profiles = useSelector((state) => state.profile.allProfiles);
+  const foundations = useSelector((state) => state.foundation.allFoundations);
   console.log("profiles =>", profiles);
   return (
     <div className="section web-section" id="section7">
-      <WebFundation profiles={profiles} />
+      <WebFundation profiles={profiles} foundations={foundations} />
     </div>
   );
 }

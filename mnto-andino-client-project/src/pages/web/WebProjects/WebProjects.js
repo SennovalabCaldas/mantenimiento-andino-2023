@@ -33,6 +33,7 @@ export const WebProjects = ({ projects }) => {
             <h2>
               <span className="no-select">{title}</span>
             </h2>
+            <div className="decoration-line"></div>
             <h3>
               <em>
                 <ul

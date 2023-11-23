@@ -5,8 +5,7 @@
   width: 100%;
   height: 500px; /* Ajusta la altura según tus necesidades */
   overflow: hidden;
-  filter: grayscale(35%);
-
+  filter: grayscale(50%);
 }
 
 .slide {
@@ -22,36 +21,41 @@
   color: #ffffff;
   text-align: center;
   /* padding: 20px; */
-  background: rgb(0 0 0 / 79%);
+  background: rgba(0, 0, 0, 0.79);
+  height: 45%;
   width: 100%;
   position: absolute;
   bottom: 0;
-  h2{
+  h2 {
     color: white;
     text-transform: uppercase;
   }
   .comic-button {
     display: inline-block;
-    padding: 7px 20px;
+    padding: 5px 30px;
     font-size: 9px;
+    right: 7%;
+    top: 60%;
+    height: 50px;
+    position: absolute;
     text-transform: capitalize;
     text-align: center;
     text-decoration: none;
     color: #fff;
-    background-color: #8431319e;
+    background-color: rgba(132, 49, 49, 0.6196078431);
     border: 2px solid #000;
     border-radius: 10px;
     box-shadow: 5px 5px 0px #000;
     transition: all 0.3s ease;
   }
-  
+
   .comic-button:hover {
     background-color: #f0a377ad;
     color: #ffffff;
     border: 2px solid #ffffffe0;
     box-shadow: 5px 5px 0px #b6af969c;
   }
-  
+
   .comic-button:active {
     background-color: #ff5252;
     color: #fff;
@@ -171,8 +175,8 @@
 
 .title h1 {
   font-size: 25px;
-  margin: 20px;
   text-transform: uppercase;
+  margin: 0;
 }
 
 h2 {
@@ -277,7 +281,7 @@ h3 {
     color: white;
     padding: 15px 25px;
     text-transform: uppercase;
-}
+  }
 
   h3 {
     font-size: 14px;
@@ -295,9 +299,14 @@ h3 {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
-  
   }
   &:hover {
     border: 1px solid #ccc;
   }
+}
+.decoration-line-slide{
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
 }

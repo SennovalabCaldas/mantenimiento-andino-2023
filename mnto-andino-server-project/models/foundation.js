@@ -8,6 +8,12 @@ const FoundationSchema = new mongoose.Schema({
     },
   ],
 
+  videos: [
+    {
+      type: String,
+    },
+  ],
+
   createdAt: {
     type: Date,
     default: Date.now,

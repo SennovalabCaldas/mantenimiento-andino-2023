@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from "react";
-import "./Carrousel.scss"; // Asegúrate de tener un archivo CSS para los estilos del carrusel
+import "./Carrousel.scss"; // Make sure to have a CSS file for carousel styles
 import { image } from "../../../assets";
 import { Grid } from "@mui/material";
 import { ENV } from "../../../utils";
 
 const slidesData = [
   {
-    titulo: "BIENVENIDO",
-    subtitulo:
-      "Conoce nuestros servicios excepcionales y lleva tu Negocio al próximo nivel.",
+    title: "WELCOME",
+    subtitle:
+      "Discover our exceptional services and take your business to the next level.",
     image: image.post3,
+  },
+  {
+    title: "BIENVENIDO",
+    subtitle:
+      "Descubre todo lo que tenemos para ofrecerte.",
+    image: image.service1,
   },
 ];
 
 export const Carrousel = ({ posts }) => {
-  const [selectedNews, setSelectedNews] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const baseApi = ENV.BASE_PATH;
-  console.log("posts =>", posts);
+
   const allSlidesData = [
-    ...slidesData.map((slide) => {
-      return {
-        titulo: slide.titulo,
-        subtitulo: slide.subtitulo,
-        image: slide.image,
-      };
-    }),
-    ...posts.map((post) => {
-      return {
-        titulo: post.titulo,
-        subtitulo: post.subtitulo,
-        image: post.avatar.startsWith("uploads")
-          ? `${baseApi}/${post.avatar}`
-          : image.img6f,
-      };
-    }),
+    ...slidesData,
+    ...posts.map((post) => ({
+      title: post.titulo,
+      subtitle: post.subtitulo,
+      image: post.avatar.startsWith("uploads")
+        ? `${baseApi}/${post.avatar}`
+        : image.img6f,
+    })),
   ];
 
   const scrollToSection = () => {
@@ -62,62 +59,57 @@ export const Carrousel = ({ posts }) => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log("selectedNews en Carrousel =>", selectedNews);
   return (
     <div className="carrousel-container">
       <div
         className="slide"
         style={{
-          background:
-            "linear-gradient(to right, rgb(240 240 240 / 0%), rgb(164 155 159 / 66%),rgba(22, 16, 19, 0.93)) center center / cover",
+          backgroundImage: image.mapa2,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          width: "100%",
-          boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)",
+          backgroundRepeat: "no-repeat",
+          filter: "brightness(0.9)",
         }}
       >
         <div className="img-slide">
           <img
             src={allSlidesData[currentSlide].image}
-            alt="Logo de la Empresa"
+            alt="Company Logo"
             className="img-slide-test"
           />
         </div>
-        <div className="slide-content">
-          <Grid
-            container
-            style={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
+        <div
+          className="slide-content"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#273036" fill-opacity="1" d="M0,32L40,53.3C80,75,160,117,240,144C320,171,400,181,480,160C560,139,640,85,720,58.7C800,32,880,32,960,32C1040,32,1120,32,1200,53.3C1280,75,1360,117,1400,138.7L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>'
+            )}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <Grid container className="slide-container">
             <div
+              className="title"
               style={{
                 display: "flex",
+                padding: "30px 0 0 70px",
                 flexDirection: "column",
-                padding: "30px 2rem",
+                alignContent: "flex-start",
+                flexWrap: "wrap",
+                alignItems: "flex-start",
                 justifyContent: "center",
-                alignItems: "center",
-                height: "100%",
               }}
             >
-              <Grid item xs={12} className="title">
-                <div>
-                  <h1>{allSlidesData[currentSlide].titulo}</h1>
-                </div>
-                <h2>{allSlidesData[currentSlide].subtitulo}</h2>
-              </Grid>
-              <Grid item xs={12}>
-                <button
-                  className="comic-button"
-                  onClick={() => scrollToSection()}
-                >
-                  CONOCE MÁS
-                </button>
-              </Grid>
+              <h1>{allSlidesData[currentSlide].title}</h1>
+              <div className="decoration-line-slide"></div>
+
+              <h2>{allSlidesData[currentSlide].subtitle}</h2>
             </div>
+            <button className="comic-button" onClick={() => scrollToSection()}>
+             VER MÁS
+            </button>
           </Grid>
           <div className="indicators">
             {allSlidesData.map((_, index) => (

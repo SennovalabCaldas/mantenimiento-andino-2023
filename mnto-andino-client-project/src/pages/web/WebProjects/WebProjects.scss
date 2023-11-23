@@ -82,7 +82,7 @@
     width: 100%;
   }
 
-  .gallery-cards .images {
+  .projects-section .gallery-cards .images {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -91,7 +91,7 @@
     flex-direction: row;
     align-content: center;
     align-items: center;
-  }
+}
   .myCard {
     background-color: transparent;
     width: 250px;
@@ -140,11 +140,12 @@
 
   .frontSide,
   .frontSide::before {
-    background-image: linear-gradient(
-      to right,
-      #d6d6d6,
-      rgb(246 246 246 / 81%)
-    );
+    background-image: url("../../../assets/jpg/1484.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    filter: grayscale(60%);
   }
   .frontSide {
     img {
@@ -195,7 +196,6 @@
     }
   }
 }
-
 
 @media (max-width: 768px) {
   .projects-section .gallery-cards .content {

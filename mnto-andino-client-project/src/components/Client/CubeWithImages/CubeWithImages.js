@@ -9,10 +9,10 @@ export const CubeWithImages = () => {
     const optionsContainer = document.getElementById("options");
     const option1 = document.getElementById("option1");
     const option2 = document.getElementById("option2");
-    const option3 = document.getElementById("option3");
+    // const option3 = document.getElementById("option3");
     let animationPaused = false;
   
-    if (cube && optionsContainer && option1 && option2 && option3) {
+    if (cube && optionsContainer && option1 && option2 ) {
       cube.addEventListener("click", () => {
         if (!animationPaused) {
           cube.style.animationPlayState = "paused";
@@ -124,11 +124,11 @@ export const CubeWithImages = () => {
             <span>Makina Andina</span>
           </Link>
         </div>
-        <div className="option" id="option3">
+        {/* <div className="option" id="option3">
           <Link to="/lamartina" className="btn">
             <span>La Martina</span>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

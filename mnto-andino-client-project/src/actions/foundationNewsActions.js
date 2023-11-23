@@ -3,7 +3,7 @@ import {
   CREATE_FOUNDATION_SUCCESS,
   SET_ALL_FOUNDATIONS_SERVICE,
   DELETE_FOUNDATION_SUCCESS,
-  GET_FOUNDATION_BY_ID_SUCCESS
+  GET_FOUNDATION_BY_ID_SUCCESS,
 } from "./types";
 
 // Importa el controlador de categoría
@@ -11,6 +11,7 @@ import { Foundation } from "../api/foundation";
 const foundationController = new Foundation();
 
 export const createFoundationNews = (data) => {
+  console.log("data", data);
   return async (dispatch, getState) => {
     try {
       const foundation = await foundationController.createFoundation(data);

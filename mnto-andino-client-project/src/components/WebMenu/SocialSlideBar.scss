@@ -1,17 +1,17 @@
 /* Estilos para el slide bar */
 .social-slide-bar {
-    position: fixed;
-    border-radius: 5px;
-    bottom: 300px;
-    z-index: 999;
-    right: 10px;
-    width: 42px;
-    background-color: rgba(210, 218, 219, 0.51);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    transition: right 1.3s;
+  position: fixed;
+  border-radius: 5px;
+  bottom: 300px;
+  z-index: 999;
+  right: 10px;
+  width: 42px;
+  background-color: rgba(210, 218, 219, 0.51);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transition: right 1.3s;
 
   .toggle-button {
     cursor: pointer;
@@ -33,14 +33,13 @@
     align-content: center;
     flex-wrap: wrap;
     justify-content: center;
-    a{
+    a {
       img {
         margin-right: 0;
         width: 22px;
         height: 22px;
       }
     }
-    
   }
 }
 
@@ -69,7 +68,8 @@
     bottom: 300px;
     z-index: 999;
     right: 10px;
-    width: 42px;
+    width: 30px;
+    /* top: 16px; */
     background-color: rgba(210, 218, 219, 0.51);
     display: flex;
     flex-direction: column;
@@ -77,34 +77,33 @@
     justify-content: flex-end;
     transition: right 1.3s;
 
-  .toggle-button {
-    cursor: pointer;
-    font-size: 11px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
-    background-color: rgba(186, 18, 40, 0.4117647059);
-    // padding: 10px;
-    border-radius: 3px;
-    width: 100%;
-    text-align: center;
-    border-bottom: #ffffffcf 2px solid;
-    user-select: none;
-  }
-  .social-icons {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    a{
-      img {
-        margin-right: 3px;
-        width: 22px;
-        height: 22px;
+    .toggle-button {
+      cursor: pointer;
+      font-size: 11px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+      background-color: rgba(186, 18, 40, 0.4117647059);
+      // padding: 10px;
+      border-radius: 3px;
+      width: 100%;
+      text-align: center;
+      border-bottom: #ffffffcf 2px solid;
+      user-select: none;
+    }
+    .social-icons {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      align-content: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      a {
+        img {
+          margin-right: 3px;
+          width: 22px;
+          height: 22px;
+        }
       }
     }
-    
   }
-}
 }
