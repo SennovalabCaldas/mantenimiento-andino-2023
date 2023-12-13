@@ -25,10 +25,12 @@ export const loginUser = (data) => {
 };
 
 export const authenticateUser = () => {
+  console.log("authenticateUser");
   return async (dispatch, getState) => {
     try {
       const accessToken = authController.getAccessToken();
       const userData = await userController.getMe(accessToken);
+      log
       dispatch(loginSuccess(userData));
     } catch (error) {
       dispatch(loginFailure(error.message));

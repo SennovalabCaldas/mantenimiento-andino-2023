@@ -368,6 +368,33 @@
     align-content: center;
     flex-wrap: nowrap;
   }
+
+  .contact-design .second-contact-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .contact-design .right-col-2 {
+    width: 100%;
+    display: flex;
+    margin: 20px;
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .item-profile-card {
+    width: 80%;
+    figure {
+      width: 100%;
+      display: block;
+    }
+  }
 }
 
 .comic-button {

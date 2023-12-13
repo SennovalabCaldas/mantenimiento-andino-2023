@@ -8,11 +8,12 @@ import {
 
 const initialState = {
   user: {
-    user_id: null,
+    _id: null,
     role: null,
     firstname: null,
     lastname: null,
     avatar: null,
+    email: null,
   },
   isAuthenticated: false,
   loading: false,
@@ -24,7 +25,7 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        user: { ...state.user, ...action.payload },
+        user: action.payload,
         isAuthenticated: true,
         loading: false,
         error: null,
@@ -32,7 +33,14 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_FAILURE:
       return {
         ...state,
-        user: null,
+        user: {
+          _id: null,
+          role: null,
+          firstname: null,
+          lastname: null,
+          avatar: null,
+          email: null,
+        },
         isAuthenticated: false,
         loading: false,
         error: action.payload,
@@ -40,7 +48,14 @@ const authReducer = (state = initialState, action) => {
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        user: null,
+        user: {
+          _id: null,
+          role: null,
+          firstname: null,
+          lastname: null,
+          avatar: null,
+          email: null,
+        },
         isAuthenticated: false,
         loading: false,
         error: null,
@@ -48,9 +63,18 @@ const authReducer = (state = initialState, action) => {
     case LOGOUT_FAILURE:
       return {
         ...state,
+        user: {
+          _id: null,
+          role: null,
+          firstname: null,
+          lastname: null,
+          avatar: null,
+          email: null,
+        },
+        isAuthenticated: false,
+        loading: false,
         error: action.payload,
       };
-   
     default:
       return state;
   }
