@@ -30,7 +30,7 @@ export const authenticateUser = () => {
     try {
       const accessToken = authController.getAccessToken();
       const userData = await userController.getMe(accessToken);
-      log
+      console.log("userData", userData);
       dispatch(loginSuccess(userData));
     } catch (error) {
       dispatch(loginFailure(error.message));

@@ -16,29 +16,6 @@ import { NotFound } from "./components/Shared/NotFound";
 import { WebPqrs } from "./pages/web/WebPqrs/WebPqrs";
 import { VerifyToken } from "./components";
 
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error(error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <NotFound />;
-    }
-
-    return this.props.children;
-  }
-}
-
 const App = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("access");
@@ -48,49 +25,47 @@ const App = () => {
 
   console.log({ user, token });
   useEffect(() => {
-    const handleLoggedIn = async () => {
-      if (token && !isLoggedIn) {
-        await dispatch(authenticateUser());
-        setIsLoggedIn(true);
-      }
-      if (!token) {
-        setIsLoggedIn(false);
-      }
-      setIsLoading(false); // Ocultar componente de carga
-    };
-    handleLoggedIn();
-  }, [dispatch, token, isLoggedIn, user]);
+   
+    if (token) {
+      dispatch(authenticateUser(token));
+    }
+    setIsLoading(false);
+  }, [token]);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }
+  , [user]);
+
+  
   console.log("=>", isLoggedIn);
 
   return (
-    <ErrorBoundary>
-      <BrowserRouter>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <Routes>
-            {isLoggedIn ? (
-              <>
-                <Route
-                  path="*"
-                  element={<AppRouter isLoggedIn={isLoggedIn} />}
-                />
-              </>
-            ) : (
-              <Route path="/" element={<WebMenu />} />
-            )}
-            <Route path="/login" element={<Auth />} />
-            <Route path="/makinandina" element={<MakinaAndina />} />
-            <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
-            <Route path="/lamartina" element={<LaMartina />} />
-            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-            <Route path="/sedes" element={<WebSedes />} />
-            <Route path="/pqrs" element={<WebPqrs />} />
-            <Route path="/verify-auth/:token" element={<VerifyToken />} />
-          </Routes>
-        )}
-      </BrowserRouter>
-    </ErrorBoundary>
+    <BrowserRouter>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Routes>
+          {isLoggedIn ? (
+            <>
+              <Route path="*" element={<AppRouter isLoggedIn={isLoggedIn} />} />
+            </>
+          ) : (
+            <Route path="/" element={<WebMenu />} />
+          )}
+          <Route path="/login" element={<Auth />} />
+          <Route path="/makinandina" element={<MakinaAndina />} />
+          <Route path="/makinandinamiami" element={<MakinaAndinaMiami />} />
+          <Route path="/lamartina" element={<LaMartina />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/sedes" element={<WebSedes />} />
+          <Route path="/pqrs" element={<WebPqrs />} />
+          <Route path="/verify-auth/:token" element={<VerifyToken />} />
+        </Routes>
+      )}
+    </BrowserRouter>
   );
 };
 
